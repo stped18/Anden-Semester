@@ -1,8 +1,7 @@
-## Welcome to GitHub Pages
+## Velkommen til Semestergruppen
 
-You can use the [editor on GitHub](https://github.com/sdusemsestergroupe/Anden-semester/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+Jeg håber vi får et godt Samarbejde op og køre. og får skrevet i fælleskab et godt projekt
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
 
 ### Markdown
 

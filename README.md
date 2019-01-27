@@ -3,9 +3,9 @@
 Jeg håber vi får et godt Samarbejde op og køre. og får skrevet i fælleskab et godt projekt
 
 
-### Markdown
+### Metoder
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+Jeg har sat en gitkraken op til vores projekt. da jeg synes det er et godt program til projektstyring.
 
 ```markdown
 Syntax highlighted code block

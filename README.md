@@ -13,4 +13,8 @@ hvor man kan lave brances og merge i et worddukoment. vis det er noget.
 der skal bar sendes ud til mails. https://www.simuldocs.com/
 
 Vores dokumenter bliver fundet her https://www.simuldocs.com/document/b8jfmdhqr8800/latest
-
+´´´
+public void getString(String name){
+      this.name=name;
+      }
+´´´

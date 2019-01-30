@@ -15,8 +15,9 @@ der skal bar sendes ud til mails. https://www.simuldocs.com/
 Vores dokumenter bliver fundet her https://www.simuldocs.com/document/b8jfmdhqr8800/latest
 
 ```Java
-public void getString(String name){
-      this.name=name;
+public void getFun(String name){
+      System.out.print(name+" have fun")
+      
       }
 ```
 

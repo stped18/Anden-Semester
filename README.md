@@ -2,8 +2,6 @@
 
 Jeg håber vi får et godt Samarbejde op og køre. og får skrevet i fælleskab et godt projekt
 
- heje mede kdlakl
-jeg er sej til det her shit 
 
 ### Metoder
 

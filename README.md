@@ -1,7 +1,9 @@
-## Velkommen til Semestergruppen
+﻿## Velkommen til Semestergruppen
 
 Jeg håber vi får et godt Samarbejde op og køre. og får skrevet i fælleskab et godt projekt
 
+
+jeg er sej til det her shit 
 
 ### Metoder
 

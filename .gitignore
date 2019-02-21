@@ -1,3 +1,7 @@
 /ProjektMappen/MMMI/nbproject/private/
 
 *.md
+
+\.idea/
+
+*.iml

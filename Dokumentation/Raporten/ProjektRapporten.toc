@@ -31,5 +31,5 @@
 \contentsline {subsection}{\numberline {16.1}Projektforslag}{i}% 
 \contentsline {subsection}{\numberline {16.2}Inceptionsdokument}{i}% 
 \contentsline {subsection}{\numberline {16.3}Rapportkontrolskema}{i}% 
-\contentsline {subsection}{\numberline {16.4}Diverse interne materialer}{ii}% 
-\contentsline {section}{\numberline {17}Eksterne bilag}{iii}% 
+\contentsline {subsection}{\numberline {16.4}Diverse interne materialer}{i}% 
+\contentsline {section}{\numberline {17}Eksterne bilag}{ii}% 

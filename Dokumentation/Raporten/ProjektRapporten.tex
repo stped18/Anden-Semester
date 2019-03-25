@@ -1,4 +1,4 @@
-\documentclass[12pt]{article}
+\documentclass[12pt]{report}
 
 \usepackage[Danish]{babel}
 \usepackage{microtype}
@@ -7,147 +7,174 @@
 \usepackage{graphicx}
 \usepackage{wrapfig}
 \usepackage{index}
+\usepackage{titlesec}
+\usepackage{etoolbox}
 
 \makeindex
 
-\title{MMMI}
-\author{By projektgruppe 02 }
-\date{Marts 25 - 2019}
-\pagestyle{fancy}
+
+\titleformat{\chapter}
+  {\normalfont\LARGE\bfseries}{\thechapter}{1em}{}
+\titlespacing*{\chapter}{0pt}{3.5ex plus 1ex minus .2ex}{2.3ex plus .2ex}
+\makeatletter
+\patchcmd{\chapter}{\if@openright\cleardoublepage\else\clearpage\fi}{}{}{}
+
+
 
 \begin{document}
-\begin{titlepage}
-\clearpage
-\maketitle
-\thispagestyle{empty}
-\end{titlepage}
+\input{frontpage}
 
 
-\section{Resumé}
-Omfatter resuméet:\\
-Den behandlede problemstilling - hvad blev der arbejdet med og hvorfor?\\
-Fremgangsmåden - anvendte metoder - hvordan blev der arbejdet med det? \\
-(hvordan angreb I problemet og hvordan realiserede I løsningen (hvem, hvad, hvornår og hvorfor)\\
-Hovedresultater og konklusioner  – hvad kom der ud af arbejdet?\\
-\begin{Large}
-(max  1 side)
-\end{Large}
-\section{Forord}
-Indeholder forord hensigten med rapporten, målgruppe, forhistorie, anerkendelser, afleveringsdato samt underskrifter af alle projektdeltagere?\\
-Bemærk: Projektdeltagernes aktive deltagelse i projektforløbet anerkendes gensidigt ved projektdeltagernes underskrifter i rapporten. 
-\section{Indholdsfortegnelse}
+
+
+\chapter{Resume}
+\input{Resume}
+
+
+
+
+
+
+\chapter{Forord}
+\input{Forord}
+\pagebreak
+
+
+
+
+
+
+\chapter{Indholdsfortegnelse}
+\makeatletter
+\renewcommand\tableofcontents{%
+    \@starttoc{toc}%
+}
+\makeatother
 \tableofcontents
 \pagebreak
-\section{Læsevejledning}
-Er der en vejledning i, hvordan rapporten kan læses, eksempelvis i form af hvilken rækkefølge afsnittene kan læses i og hvordan sammenhængen er mellem de forskellige dele af rapporten, fx mellem produktrapport og bilag?\\
-Er rapportens målgruppe beskrevet?
-\section{Redaktionelt}
-Beskriver redaktionelt skriveprocessen og ansvarsområder i skriveprocessen?\\
-Ansvarsområder kan fx beskrives på fx følgende form:
-\subsection{Ordliste}
-Er der en kort beskrivelse af de fagtermer der bruges gennem rapporten?
 
-\section{Indledning (30 til 40 sider til og med konklusion)}
 
-Giver indledningen et overblik over projektet og baggrunden for det?\\
-Giver indledningen et resume af den udleverede case?\\
-Indeholder indledningen problemformuleringen, jfr. inceptiondokumentet?\\
-Beskriver indledningen formålet med projektet?\\ Er formålet i overensstemmelse med hensigten med 2. semester? \\
-Beskriver indledningen målene med projektet? Udtrykker målene specifikke, målbare resultater, jfr. inceptionsdokumentet? \\
-Er målene i overensstemmelse med de overordnede mål for 2. semester som udtrykt i studieordningens kap. 9 og de mere specifikke mål for projektet, som udtrykt i fagbeskrivelsen for SI2-PRO?
 
-\subsection{Problemformulering}
 
-\subsection{Metoder}
-Er metoden i det samlede projekt beskrevet?\\
-Er det beskrevet hvordan UP og Scrum kombineres i projektet, samt hvilke fordele og ulemper der er ved det?\\
 
-\subsubsection{Indledning til metoder}
-Giver indledningen en introduktion til  afsnittet?\\
-\subsubsection{Metoder}
-Er metoden i det samlede projekt beskrevet?\\
-Er det beskrevet hvordan UP og Scrum kombineres i projektet, samt hvilke fordele og ulemper der er ved det?\\
-\subsubsection{Planlægning}
-Er planlægningen af elaborationsfasen og de enkelte iterationer beskrevet.\\
-Er backlogs beskrevet?\\
-Er rollefordelingen i projektgruppen beskrevet?\\
-Er ceremonierne beskrevet?\\
-Er scrum-buts beskrevet?\\
-Bygger planen på prioriteringen af kravene efter inceptionsfasen.\\
 
-\section{Hovedtekst}
-Hvis der indgår et teoretisk problem: Omfatter hovedteksten et teori-afsnit?\\
-\subsection{Indlening til hovedafsnit}
-Indeholder indledningen en overordnet introduktion til afsnittet?\\
-\subsection{Overordnet kravspecifikation (resume, opdateret)}
-Indeholder afsnittet et opdateret resumé  af systemafgrænsningen fra inceptionsdokumentet.
-\subsection{Detaljeret kravspecifikation}
-Omfatter den detaljerede kravspecifikation\\
-Detaljeret brugsmønsterdiagram (hvis relevant)\\
-Detaljerede brugsmønsterbeskrivelser\\
-Detaljerede beskrivelser af supplerende krav Fx organiseret efter FURPS+\\
-\subsection{Analyse}
-Omfatter afsnittet overvejelser, beslutninger og resultater vedr.\\
-Den statiske side af analysemodel\\
-Den dynamiske side af analysemodel\\
-\subsection{Design}
-Omfatter afsnittet overvejelser, beslutninger og resultater vedr.\\
-Softwarearkitektur\\
-Subsystemdesign\\
-Den statiske side af designmodel\\
-Den dynamiske side af designmodel\\
-Design af persistens\\
-Databasedesign\\
-\subsection{Implementering}
-Omfatter afsnittet overvejelser, beslutninger og resultater vedr.\\  konvertering fra design til kode illustreret gennem udvalgte centrale eksempler, samt andre vigtige implementeringsbeslutninger
-Omfatter afsnittet implementering af database.
-\subsection{Test}
-Omfatter afsnittet en beskrivelse af de udførte test samt resultatet af dem.\\
-Er der medtaget resultater både fra iteration 1 og fra iteration 2?\\
+\chapter{Læsevejledning}
+\input{Lasevejledning}
 
-\section{Diskussion}
-Omfatter diskussionen hvad der er opnået, og hvad der ikke er opnået i projektet i forhold til det forventede som beskrevet i indledningen. \\
-Hvad er styrkerne og svaghederne ved jeres resultater?\\
-Kunne I have opnået bedre resultater?\\
 
-\section{Konklusion}
-Opsummerer konklusionen resultaterne og diskussionen af dem og giver det på problemformuleringen? \\
-\section{Perspektivering}
-Fremtidigt arbejde: Hvad ville de næste skridt i projektet være, hvis der var mere tid?\\
-Refleksion: Hvordan ville I gribe projektet an, hvis I skulle starte forfra? 
 
-\section{Litteraturliste}
-Er litteratur angivet på en anerkendt form? \\
-Er alle former for litteratur som bøger, artikler og hjemmesider medtaget? \\
-Er der kildehenvisninger i teksten? \\
-Materiale som gruppen ikke selv har fremstillet i dette projekt skal være angivet med kilde! \\
-Er alle kildehenvisninger i teksten anført på samme måde? \\
-Er der kildeangivelser på figurer, grafer etc. som projektgruppen ikke selv har frembragt? \\
+
+
+
+
+\chapter{Redaktionelt}
+\input{Redaktionelt}
+
+
+
+
+
+
+
+\chapter{Indledning (30 til 40 sider til og med konklusion)}
+\input{Indledning}
+
+
+
+
+
+
+\chapter{Hovedtekst}
+\input{Hovedtekst}
+
+
+
+
+
+
+\chapter{Diskussion}
+\input{Diskussion}
+
+
+
+
+
+
+\chapter{Konklusion}
+\input{Konklusion}
+
+
+
+
+
+\chapter{Perspektivering}
+\input{Perspektivering}
+
+
+
+
+
+\chapter{Litteraturliste}
+\input{Litteraturliste}
 \pagebreak
-\section{Procesrapport (5 til 10 sider)}
-\setcounter{page}{1}
-\section{Oversigt over projektets kildekode}
-Er der link til gitgub til javadoc
-\section{Brugervejledning}
-Er der en kortfattet brugervejledning?
-\section{Projektlog}
-Er der en adresse på og et link til projektloggen i Github?
+
+
+
+
+
+
+\chapter{Procesrapport}
+\input{Procesrapport}
+
+
+
+
+
+
+
+\chapter{Kildekode}
+\input{Kildekode}
+
+
+
+
+
+
+
+\chapter{Brugervejledning}
+\input{Brugervejledning}
+
+
+
+
+
+
+
+\chapter{Projektlog}
+\input{Projektlog}
 \pagebreak
-\section{Interne}
-\pagenumbering{roman}
-Er undersectionerne sat ind?\\
-er kontrolskemaet udfyldt?
-\subsection{Projektforslag}
 
-\subsection{Inceptionsdokument}
 
-\subsection{Rapportkontrolskema}
 
-\subsection{Diverse interne materialer}
-\clearpage
-\section{Eksterne bilag}
 
-\thispagestyle{empty}
-Er der medtaget relevante eksterne bilag, dvs. materialer som gruppen ikke selv har produceret med som er nødvendige for at kunne læse rapporten?
+
+
+
+\chapter{Interne bilag}
+\input{Interne_bilag}
+
+
+
+
+
+
+
+\chapter{Eksterne bilag}
+\input{Eksterne_bilag}
+
+
+
+
+
 
 \end{document}

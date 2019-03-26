@@ -2,15 +2,29 @@
 
 \usepackage[Danish]{babel}
 \usepackage{microtype}
-\usepackage[a4paper, inner = 1.7cm, outer=1.7cm, top=2cm, bottom=2cm]{geometry}
+%\usepackage[a4paper, inner = 1.7cm, outer=1.7cm, top=2cm, bottom=3cm]{geometry}
+\usepackage[a4paper,top=3cm,bottom=3cm,left=1.5cm,right=1.5cm,marginparwidth=1.75cm]{geometry}
 \usepackage{fancyhdr}
 \usepackage{graphicx}
 \usepackage{wrapfig}
 \usepackage{index}
 \usepackage{titlesec}
 \usepackage{etoolbox}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[colorlinks=true, allcolors=black]{hyperref}
+
 
 \makeindex
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+
 
 
 \titleformat{\chapter}
@@ -20,27 +34,17 @@
 \patchcmd{\chapter}{\if@openright\cleardoublepage\else\clearpage\fi}{}{}{}
 
 
-
 \begin{document}
 \input{frontpage}
-
-
 
 
 \chapter{Resume}
 \input{Resume}
 
 
-
-
-
-
 \chapter{Forord}
 \input{Forord}
-\pagebreak
-
-
-
+\newpage
 
 
 
@@ -51,85 +55,44 @@
 }
 \makeatother
 \tableofcontents
-\pagebreak
-
-
-
-
+\newpage
 
 
 \chapter{Læsevejledning}
 \input{Lasevejledning}
 
 
-
-
-
-
-
 \chapter{Redaktionelt}
 \input{Redaktionelt}
 
 
-
-
-
-
-
-\chapter{Indledning (30 til 40 sider til og med konklusion)}
+\chapter{Indledning \textbf{\small (30 til 40 sider til og med konklusion)} }
 \input{Indledning}
-
-
-
-
 
 
 \chapter{Hovedtekst}
 \input{Hovedtekst}
 
 
-
-
-
-
 \chapter{Diskussion}
 \input{Diskussion}
-
-
-
-
 
 
 \chapter{Konklusion}
 \input{Konklusion}
 
 
-
-
-
 \chapter{Perspektivering}
 \input{Perspektivering}
 
 
-
-
-
 \chapter{Litteraturliste}
 \input{Litteraturliste}
-\pagebreak
-
-
-
-
+\newpage
 
 
 \chapter{Procesrapport}
 \input{Procesrapport}
-
-
-
-
-
 
 
 \chapter{Kildekode}
@@ -137,43 +100,21 @@
 
 
 
-
-
-
-
 \chapter{Brugervejledning}
 \input{Brugervejledning}
 
 
-
-
-
-
-
 \chapter{Projektlog}
 \input{Projektlog}
-\pagebreak
-
-
-
-
-
+\newpage
 
 
 \chapter{Interne bilag}
 \input{Interne_bilag}
 
 
-
-
-
-
-
 \chapter{Eksterne bilag}
 \input{Eksterne_bilag}
-
-
-
 
 
 

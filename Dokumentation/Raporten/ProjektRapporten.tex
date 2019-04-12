@@ -1,5 +1,6 @@
 \documentclass[12pt]{report}
 
+
 \usepackage[Danish]{babel}
 \usepackage{microtype}
 %\usepackage[a4paper, inner = 1.7cm, outer=1.7cm, top=2cm, bottom=3cm]{geometry}
@@ -11,11 +12,16 @@
 \usepackage{titlesec}
 \usepackage{etoolbox}
 \usepackage{amsmath}
-\usepackage{graphicx}
+
+
 \usepackage[utf8x]{inputenc}
-\usepackage[T1]{fontenc}
+%\usepackage[T1]{fontenc}
 \usepackage[colorlinks=true, allcolors=black]{hyperref}
 
+%\usepackage[utf8]{inputenc}
+%\usepackage{longtable}
+\usepackage{array}
+\usepackage[none]{hyphenat}
 
 \makeindex
 \pagestyle{fancy}
@@ -53,8 +59,7 @@
 }
 \makeatother
 \tableofcontents
-\newpage
-
+\pagebreak
 
 \chapter{Læsevejledning}
 \input{Lasevejledning}
@@ -105,7 +110,6 @@
 \chapter{Projektlog}
 \input{Projektlog}
 \newpage
-
 
 \chapter{Interne bilag}
 \input{Interne_bilag}

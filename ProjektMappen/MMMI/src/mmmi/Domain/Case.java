@@ -43,7 +43,7 @@ public class Case {
     }
 
     /**
-     * Have been added so it's possibal to change the status of the case.
+     * Have been added so it's possible to change the status of the case.
      *
      * @param newCaseStatus
      * @return True if the status of the case has been changed.
@@ -69,7 +69,7 @@ public class Case {
 
     /**
      *
-     * @return A list af citizens that has requested the case.
+     * @return A list of citizens that has requested the case.
      */
     public List<Citizen> getRequestingCitizens() {
         
@@ -102,7 +102,7 @@ public class Case {
 
     /**
      *
-     * @return
+     * @return The map with all the information for the case. 
      */
     public Map<String, String> getAllInformation() {
         
@@ -112,7 +112,7 @@ public class Case {
     /**
      *
      * @param key
-     * @return
+     * @return Gets the information of the key. 
      */
     public String getSpecificInformation(String key) {
         
@@ -123,7 +123,7 @@ public class Case {
      *
      * @param key
      * @param information
-     * @return
+     * @return True if information is added. 
      */
     public boolean addInformation(String key, String information) {
         
@@ -136,7 +136,7 @@ public class Case {
      *
      * @param key
      * @param information
-     * @return
+     * @return True if the information is updated.
      */
     public boolean updateInformation(String key, String information) {
 
@@ -144,11 +144,19 @@ public class Case {
 
         return this.information.containsValue(information);
     }
+    
+    /**
+     * 
+     * @return The date of the case last work
+     */
+    public String getDate(){
+        return date;
+    }
 
     /**
      *
      * @param information
-     * @return
+     * @return Closes the case and return true. 
      */
     public boolean closeCase(String information) {
         // TODO - implement Case.closeCase
@@ -157,7 +165,7 @@ public class Case {
 
     /**
      *
-     * @return The Date to tell when a case have been crated.
+     * @return The Date to tell when a case have been created.
      */
     private String dateStamp() {
         
@@ -167,7 +175,7 @@ public class Case {
         int year = now.get(Calendar.YEAR);
         int hour = now.get(Calendar.HOUR_OF_DAY);
         int minute = now.get(Calendar.MINUTE);
-
+// should just be the date not all the texts. 
         return "The case have been crated on: Day " + day + "/" + mounth + "-"
                 + year + " Time: " + hour + ":" + minute;
     }

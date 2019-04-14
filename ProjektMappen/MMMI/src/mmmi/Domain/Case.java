@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class Case {
 
-    private final int caseNumber;
+    private final String caseNumber;
     private String caseStatus;
     private final String date; // Has been changed from object Date to a String.
     private final Citizen regardingCitizen;
@@ -24,12 +24,13 @@ public class Case {
      * @param departmentID
      */
     public Case(Citizen regardingCitizen, String reason, int departmentID) {
+        
         this.regardingCitizen = regardingCitizen;
-        this.caseNumber = 1; // Has to be crated in another way.
         this.information.put("reason", reason);
-        this.caseStatus = "Created";
         this.departmentID = departmentID;
+        this.caseNumber = setCaseNumber();
         this.date = dateStamp();
+        this.caseStatus = "Created";
     }
 
     /**
@@ -37,6 +38,7 @@ public class Case {
      * @return The status of the case.
      */
     public String getCaseStatus() {
+        
         return this.caseStatus;
     }
 
@@ -61,6 +63,7 @@ public class Case {
      * @return The citizen the cases is about.
      */
     public Citizen getRegardingCitizen() {
+        
         return this.regardingCitizen;
     }
 
@@ -69,6 +72,7 @@ public class Case {
      * @return A list af citizens that has requested the case.
      */
     public List<Citizen> getRequestingCitizens() {
+        
         return this.requestingCitizen;
     }
 
@@ -78,6 +82,7 @@ public class Case {
      * @return True if the requesting citizen has been added.
      */
     public boolean addRequestingCitizen(Citizen requestingCitizen) {
+
         if (!this.requestingCitizen.contains(requestingCitizen)) {
             this.requestingCitizen.add(regardingCitizen);
             return true;
@@ -91,6 +96,7 @@ public class Case {
      * @return The ID of the department that have the case.
      */
     public int getDepartmentID() {
+        
         return this.departmentID;
     }
 
@@ -99,8 +105,8 @@ public class Case {
      * @return
      */
     public Map<String, String> getAllInformation() {
-        // TODO - implement Case.getAllInformation
-        throw new UnsupportedOperationException();
+        
+        return this.information;
     }
 
     /**
@@ -109,8 +115,8 @@ public class Case {
      * @return
      */
     public String getSpecificInformation(String key) {
-        // TODO - implement Case.getSpecificInformation
-        throw new UnsupportedOperationException();
+        
+        return this.information.get(key);
     }
 
     /**
@@ -120,8 +126,10 @@ public class Case {
      * @return
      */
     public boolean addInformation(String key, String information) {
-        // TODO - implement Case.addInformation
-        throw new UnsupportedOperationException();
+        
+        this.information.put(key, information);
+
+        return this.information.containsKey(key);
     }
 
     /**
@@ -131,8 +139,10 @@ public class Case {
      * @return
      */
     public boolean updateInformation(String key, String information) {
-        // TODO - implement Case.updateInformation
-        throw new UnsupportedOperationException();
+
+        this.information.replace(key, information);
+
+        return this.information.containsValue(information);
     }
 
     /**
@@ -150,6 +160,7 @@ public class Case {
      * @return The Date to tell when a case have been crated.
      */
     private String dateStamp() {
+        
         Calendar now = GregorianCalendar.getInstance();
         int day = now.get(Calendar.DAY_OF_MONTH);
         int mounth = now.get(Calendar.MONTH);
@@ -159,5 +170,28 @@ public class Case {
 
         return "The case have been crated on: Day " + day + "/" + mounth + "-"
                 + year + " Time: " + hour + ":" + minute;
+    }
+
+    /**
+     *
+     * @return A new case number when the constructor is called.
+     */
+    private String setCaseNumber() {
+
+        int socialCount = 1;
+        int handicapCount = 1;
+
+        switch (this.departmentID) {
+            case 1:
+                String socialNum = "Social" + socialCount;
+                socialCount++;
+                return socialNum;
+            case 2:
+                String handicapNum = "Handicap" + handicapCount;
+                handicapCount++;
+                return handicapNum;
+            default:
+                return "Not a validated department";
+        }
     }
 }

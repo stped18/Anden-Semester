@@ -1,5 +1,7 @@
 package mmmi.Domain;
 
+import java.util.ArrayList;
+
 public class Caseworker extends JobTitle {
     
     /**

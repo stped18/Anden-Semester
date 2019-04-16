@@ -1,5 +1,7 @@
 package mmmi.Domain;
 
+import java.util.List;
+
 public abstract class JobTitle {
     private static final String CREATECASE = "create case";
     private static final String ADDINFORMATION = "add information";

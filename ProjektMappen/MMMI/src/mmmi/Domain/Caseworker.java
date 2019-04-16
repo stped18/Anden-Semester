@@ -1,7 +1,17 @@
 package mmmi.Domain;
 
 public class Caseworker extends JobTitle {
-
+    
+    /**
+     *
+     * Rights should be read from DB and saved in the list.
+     */
+    public Caseworker() {
+        rights = new ArrayList<>();
+        rights.add("create case");
+        rights.add("add information");
+        rights.add("cloase case");
+    }
 	/**
 	 * 
 	 * @param name

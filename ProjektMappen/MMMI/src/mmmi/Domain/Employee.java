@@ -30,4 +30,8 @@ public class Employee {
 		this.name = name;
 	}
 
+    void setCase(int caseNumber) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

@@ -5,15 +5,32 @@ public class Employee {
     private int id;
     private String name;
     private int departmentID;
+    private JobTitle jobFunction; // Role, jobtitle, ...
 
     /**
      *
      * @param name
      */
-    public Employee(String name, int id, int departmentID) {
+    public Employee(String name, int id, int departmentID, String title) {
         this.name = name;
         this.id = id;
         this.departmentID = departmentID;
+        if(title.equalsIgnoreCase("caseworker")) {
+            jobFunction = new Caseworker();
+        } else if(title.equalsIgnoreCase("secretary")) {
+            jobFunction = new Secretary();
+        } else if(title.equalsIgnoreCase("departmentmanager")) {
+            jobFunction = new DepartmentManager();
+        }
+    }
+
+    public JobTitle getJob() {
+        return jobFunction;
+    }
+
+    public void setJob(JobTitle job) {
+        this.jobFunction = job;
+        
     }
 
     public int getId() {

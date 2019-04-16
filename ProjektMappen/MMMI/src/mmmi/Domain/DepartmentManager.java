@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DepartmentManager extends JobTitle {
-    
+
 
     /**
      *
@@ -14,9 +14,17 @@ public class DepartmentManager extends JobTitle {
         rights = new ArrayList<>();
         rights.add("create case");
         rights.add("add information");
-        rights.add("cloase case");
+        rights.add("close case");
         rights.add("assign case");
         rights.add("reassign case");
+    }
+
+    @Override
+    public boolean checkRights(String right) {
+        if(rights.indexOf(right) > -1) {
+            return true;
+        }
+        return false;
     }
 
     /**

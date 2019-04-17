@@ -10,7 +10,7 @@ public class Department {
     private String name;
     private int id;
     private Map<Integer, Case> caseMap; //Integer is the case number.
-    private Map<Integer, Integer> employMap;
+    //private Map<Integer, Integer> employMap;
     private static int countSearch = 0;
     private Employee employee;
     private DepartmentManager departmentManager;

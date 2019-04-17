@@ -69,7 +69,6 @@ public class Department {
      * @return
      */
     public Citizen createCitizen(String name) {
-
         // TODO - implement Department.createCitizen
         return new Citizen(name);
 
@@ -86,12 +85,14 @@ public class Department {
 
         if (employee.getId() != employeeID) {
             System.out.println("Employee not found!");
+            return false;
         } else {
             departmentManager.assignCase(caseNumber, employeeID);
             System.out.println("Case added to employee");
+            return true;
         }
 
-        throw new UnsupportedOperationException();
+        //throw new UnsupportedOperationException();
     }
 
     /**

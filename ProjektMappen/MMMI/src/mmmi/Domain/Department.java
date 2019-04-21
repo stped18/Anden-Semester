@@ -128,10 +128,7 @@ public class Department {
             Citizen citizen = createCitizen(name);
             Case newCase = new Case(citizen, reason, departmentID);
 
-            Integer rdmCaseNumber = 0;
-            Random rdm = new Random();
-            rdmCaseNumber = rdm.nextInt(500);
-            caseMap.put(rdmCaseNumber, newCase);
+            caseMap.put(new Random().nextInt(50000), newCase);
             System.out.println("Case created!");
             return true;
         } else {

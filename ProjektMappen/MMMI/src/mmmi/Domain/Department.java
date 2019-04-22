@@ -14,6 +14,8 @@ public class Department {
     private static int countSearch = 0;
     private Employee employee;
     private DepartmentManager departmentManager;
+    private Case originalCase;
+    
 
     public Department() {
         employee = new Employee(name);
@@ -29,7 +31,7 @@ public class Department {
         // Søge case frem baseret på sagsnummer, cpr nummer, navn. 
 
         List<Case> listCases = new ArrayList<>();
-        Case c;
+        
 
         for (Case searchCase : caseMap.values()) {
 
@@ -53,13 +55,13 @@ public class Department {
      */
     public Case openCase(int caseNumber) {
         // TODO - implement Department.openCase
-        Case getCase = null;
+       
         for (Integer caseNo : caseMap.keySet()) {
             if (caseNumber == caseNo) {
-                getCase = caseMap.get(caseNo);
+                this.originalCase = caseMap.get(caseNo);
             }
         }
-        return getCase;
+        return originalCase;
 
     }
 

@@ -11,6 +11,7 @@ public class Case {
 
     private final String caseNumber;
     private String caseStatus;
+
     private final String date; // Has been changed from object Date to a String.
     private final Citizen regardingCitizen;
     private final List<Citizen> requestingCitizen = new ArrayList<>();
@@ -24,7 +25,7 @@ public class Case {
      * @param departmentID
      */
     public Case(Citizen regardingCitizen, String reason, int departmentID) {
-        
+
         this.regardingCitizen = regardingCitizen;
         this.information.put("reason", reason);
         this.departmentID = departmentID;
@@ -38,7 +39,7 @@ public class Case {
      * @return The status of the case.
      */
     public String getCaseStatus() {
-        
+
         return this.caseStatus;
     }
 
@@ -63,7 +64,7 @@ public class Case {
      * @return The citizen the cases is about.
      */
     public Citizen getRegardingCitizen() {
-        
+
         return this.regardingCitizen;
     }
 
@@ -72,7 +73,7 @@ public class Case {
      * @return A list of citizens that has requested the case.
      */
     public List<Citizen> getRequestingCitizens() {
-        
+
         return this.requestingCitizen;
     }
 
@@ -96,26 +97,26 @@ public class Case {
      * @return The ID of the department that have the case.
      */
     public int getDepartmentID() {
-        
+
         return this.departmentID;
     }
 
     /**
      *
-     * @return The map with all the information for the case. 
+     * @return The map with all the information for the case.
      */
     public Map<String, String> getAllInformation() {
-        
+
         return this.information;
     }
 
     /**
      *
      * @param key
-     * @return Gets the information of the key. 
+     * @return Gets the information of the key.
      */
     public String getSpecificInformation(String key) {
-        
+
         return this.information.get(key);
     }
 
@@ -123,10 +124,10 @@ public class Case {
      *
      * @param key
      * @param information
-     * @return True if information is added. 
+     * @return True if information is added.
      */
     public boolean addInformation(String key, String information) {
-        
+
         this.information.put(key, information);
 
         return this.information.containsKey(key);
@@ -144,19 +145,19 @@ public class Case {
 
         return this.information.containsValue(information);
     }
-    
+
     /**
-     * 
+     *
      * @return The date of the case last work
      */
-    public String getDate(){
+    public String getDate() {
         return date;
     }
 
     /**
      *
      * @param information
-     * @return Closes the case and return true. 
+     * @return Closes the case and return true.
      */
     public boolean closeCase(String information) {
         // TODO - implement Case.closeCase
@@ -168,7 +169,7 @@ public class Case {
      * @return The Date to tell when a case have been created.
      */
     private String dateStamp() {
-        
+
         Calendar now = GregorianCalendar.getInstance();
         int day = now.get(Calendar.DAY_OF_MONTH);
         int mounth = now.get(Calendar.MONTH);
@@ -201,5 +202,13 @@ public class Case {
             default:
                 return "Not a validated department";
         }
+    }
+
+    public String getCaseNumber() {
+        return caseNumber;
+    }
+
+    public String generateCaseNumber() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

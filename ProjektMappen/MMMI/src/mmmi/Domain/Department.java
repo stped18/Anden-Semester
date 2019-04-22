@@ -140,7 +140,7 @@ public class Department {
             Citizen citizen = createCitizen(name);
             Case newCase = new Case(citizen, reason, departmentID);
 
-            caseMap.put(newCase.generateCaseNumber(), newCase);
+            caseMap.put(newCase.getCaseNumber(), newCase);
             System.out.println("Case created!");
             return true;
         } else {

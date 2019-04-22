@@ -134,12 +134,12 @@ public class Department {
      * @param departmentID
      * @return
      */
-    public boolean createCase(String name, String reason, int departmentID) {
+    public boolean createCase(String name, String reason) {
         // Skal kalde createCitizen og skal bruge det objekt for at oprette en ny case. 
         // Skal ligges i caseMap nÃ¥r det er oprettet. 
-        if (!(name.isEmpty() && reason.isEmpty() && departmentID == 0)) {
+        if (!(name.isEmpty() && reason.isEmpty() && id == 0)) {
             Citizen citizen = createCitizen(name);
-            Case newCase = new Case(citizen, reason, departmentID);
+            Case newCase = new Case(citizen, reason, this.id);
 
             caseMap.put(newCase.getCaseNumber(), newCase);
             System.out.println("Case created!");

@@ -102,8 +102,8 @@ public class Main {
                 + "Quit : for at afslutte programet \n");
     }
 
-    public static void caseInfo(Employee employee) {
-        if(employee.getJob())
+    public static void caseInfo() {
+        
         System.out.println("Case Informationer\n");
         System.out.println("Skriv : \n"
                 + "Create case : lav en ny sag \n"

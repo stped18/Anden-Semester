@@ -2,6 +2,7 @@ package mmmi.Domain;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -27,6 +28,7 @@ public class Department {
     public Department(String name , int id) {
           this.name = name;
           this.id = id;
+          this.caseMap = new HashMap<>();
     }
 
     public Employee createEmployee(String eName, int eID, String eTitle) {
@@ -52,7 +54,7 @@ public class Department {
                     || searchCase.getRegardingCitizen().getName().equalsIgnoreCase(searchWord)) {
                 listCases.add(searchCase);
 
-                System.out.println(Arrays.asList(listCases));   // Test to find the stuff found in the array
+                //System.out.println(Arrays.asList(listCases));   // Test to find the stuff found in the array
             }
         }
 
@@ -137,15 +139,12 @@ public class Department {
     public boolean createCase(String name, String reason) {
         // Skal kalde createCitizen og skal bruge det objekt for at oprette en ny case. 
         // Skal ligges i caseMap nÃ¥r det er oprettet. 
-        if (!(name.isEmpty() && reason.isEmpty() && id == 0)) {
+        if (!(name.isEmpty() && reason.isEmpty())) {
             Citizen citizen = createCitizen(name);
             Case newCase = new Case(citizen, reason, this.id);
-
             caseMap.put(newCase.getCaseNumber(), newCase);
-            System.out.println("Case created!");
             return true;
         } else {
-            System.out.println("Missing information");
             return false;
         }
 
@@ -195,5 +194,7 @@ public class Department {
         System.out.println("Case not removed");
         return false;
     }
+ 
+          
 
 }

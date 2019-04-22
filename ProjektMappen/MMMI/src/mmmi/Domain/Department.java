@@ -61,6 +61,10 @@ public class Department {
         return listCases;
     }
 
+    public Employee getEmployee() {
+        return employee;
+    }
+
     /**
      *
      * @param caseNumber

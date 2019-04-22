@@ -15,26 +15,31 @@ public class Main {
     private static boolean quit = false;
     
     
+    
+    
     public static void main(String[] args) {
+        Department detDepartment = new Department();
+        detDepartment.createEmployee("trine", 252525, 5000, "Secretary");
+        
+        
+        
          while(!quit){
+             
         try (Scanner sc = new Scanner(System.in))  {
             String text = sc.nextLine();
+            
+            
+
             switch(text){
-                case " create casse":
+                case "Secretary":
                     
                     break; 
                     
                     
-              
+                case "quit":
+                    quit = true;
                         
             }
-           
-            
-            
-            
-                 
-            
-        
         } catch (Exception e) {
            
         }
@@ -45,6 +50,7 @@ public class Main {
         
         
     }
+    
     
     
 }

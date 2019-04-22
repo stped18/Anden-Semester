@@ -24,12 +24,13 @@ public class Department {
     // BLANDET NED AD KLASSEN.
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public Department() {
-
+    public Department(String name , int id) {
+          this.name = name;
+          this.id = id;
     }
 
-    public Department(String eName, int eID, int eDepartmentID, String eTitle) {
-        employee = new Employee(eName, eID, eDepartmentID, eTitle);
+    public Employee createEmployee(String eName, int eID, String eTitle) {
+        return employee = new Employee(eName, eID,this.id, eTitle);
 
     }
 

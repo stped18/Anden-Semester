@@ -15,15 +15,10 @@ public class Secretary extends JobTitle {
     }
 
     /**
-     *
-     * @param name
-     * @param reason
+     * 
+     * @param right
+     * @return 
      */
-    public boolean createCase(String name, String reason) {
-        // TODO - implement Secretary.createCase
-        throw new UnsupportedOperationException();
-    }
-    
     @Override
     public boolean checkRights(String right) {
         if(rights.indexOf(right) > -1) {

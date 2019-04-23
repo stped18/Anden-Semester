@@ -1,20 +1,20 @@
 package mmmi.Domain;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class Case {
+
     private static int socialCount = 1;
     private static int handicapCount = 1;
 
     private final String caseNumber;
     private String caseStatus;
 
-    private final String date; // Has been changed from object Date to a String.
+    private final String date;
     private final Citizen regardingCitizen;
     private final List<Citizen> requestingCitizen = new ArrayList<>();
     private final Map<String, String> information = new HashMap<>();
@@ -26,13 +26,14 @@ public class Case {
      * @param reason
      * @param departmentID
      */
-    public Case(Citizen regardingCitizen, String reason, int departmentID) {
+    public Case(String reason, int departmentID) {
 
-        this.regardingCitizen = regardingCitizen;
+        this.regardingCitizen = new Citizen("name"); // TODO: Need alot of changes.
         this.information.put("reason", reason);
         this.departmentID = departmentID;
         this.caseNumber = setCaseNumber();
-        this.date = dateStamp();
+        this.date = dateStamp(); // Opret Date.
+        // TODO: Case changes date.
         this.caseStatus = "Created";
     }
 
@@ -59,6 +60,14 @@ public class Case {
         } else {
             return false;
         }
+    }
+
+    /**
+     *
+     * @return The case number.
+     */
+    public String getCaseNumber() {
+        return this.caseNumber;
     }
 
     /**
@@ -129,6 +138,8 @@ public class Case {
      * @return True if information is added.
      */
     public boolean addInformation(String key, String information) {
+
+        // TODO: Add date for last changes.
         System.out.println("add info");
         this.information.put(key, information);
         System.out.println("info added");
@@ -143,6 +154,7 @@ public class Case {
      */
     public boolean updateInformation(String key, String information) {
 
+        // TODO: Add date for last changes.
         this.information.replace(key, information);
 
         return this.information.containsValue(information);
@@ -153,7 +165,7 @@ public class Case {
      * @return The date of the case last work
      */
     public String getDate() {
-        return date;
+        return this.date;
     }
 
     /**
@@ -162,8 +174,11 @@ public class Case {
      * @return Closes the case and return true.
      */
     public boolean closeCase(String information) {
-        // TODO - implement Case.closeCase
-        throw new UnsupportedOperationException();
+        // TODO: Add date when case is closed.
+        this.caseStatus = "Closed";
+        this.information.put("Decision", information);
+        return true;
+
     }
 
     /**
@@ -172,15 +187,11 @@ public class Case {
      */
     private String dateStamp() {
 
-        Calendar now = GregorianCalendar.getInstance();
-        int day = now.get(Calendar.DAY_OF_MONTH);
-        int mounth = now.get(Calendar.MONTH);
-        int year = now.get(Calendar.YEAR);
-        int hour = now.get(Calendar.HOUR_OF_DAY);
-        int minute = now.get(Calendar.MINUTE);
-// should just be the date not all the texts. 
-        return "The case have been crated on: Day " + day + "/" + mounth + "-"
-                + year + " Time: " + hour + ":" + minute;
+        return GregorianCalendar.DAY_OF_MONTH + "-"
+                + GregorianCalendar.MONTH + "-"
+                + GregorianCalendar.YEAR + " "
+                + GregorianCalendar.HOUR_OF_DAY + ":"
+                + GregorianCalendar.MINUTE;
     }
 
     /**
@@ -189,15 +200,14 @@ public class Case {
      */
     private String setCaseNumber() {
 
-        
-
+        // Rapport: Check if case number has been crated, will be modifyed in #2.
         switch (this.departmentID) {
             case 1:
-                String socialNum = "Social" + socialCount;
+                String socialNum = "Social " + socialCount;
                 socialCount++;
                 return socialNum;
             case 2:
-                String handicapNum = "Handicap" + handicapCount;
+                String handicapNum = "Handicap " + handicapCount;
                 handicapCount++;
                 return handicapNum;
             default:
@@ -205,15 +215,13 @@ public class Case {
         }
     }
 
-    public String getCaseNumber() {
-        return caseNumber;
-    }
-
+    // TODO: Deletes in #2.
     @Override
     public String toString() {
-        return "Case{" + "caseNumber=" + caseNumber + ", caseStatus=" + caseStatus + ", date=" + date + ", regardingCitizen=" + regardingCitizen + ", requestingCitizen=" + requestingCitizen + ", information=" + information + ", departmentID=" + departmentID + '}';
+        
+        return "Case{" + "caseNumber=" + caseNumber + ", caseStatus="
+                + caseStatus + ", date=" + date + ", regardingCitizen="
+                + regardingCitizen + ", requestingCitizen=" + requestingCitizen
+                + ", information=" + information + ", departmentID=" + departmentID + '}';
     }
-    
-
-
 }

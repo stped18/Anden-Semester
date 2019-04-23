@@ -41,16 +41,16 @@ public class Main {
 
                 switch (text) {
                     case "secretary":
-                        Employee trine = detDepartment.createEmployee("trine", 252525, "secretary");
-                        commands(trine);
+                        //Employee trine = detDepartment.createEmployee("trine", 252525, "secretary");
+                        //commands(trine);
                         break;
                     case "caseworker":
-                        Employee mads = detDepartment.createEmployee("mads", 353535, "caseworker");
-                        commands(mads);
+                        //Employee mads = detDepartment.createEmployee("mads", 353535, "caseworker");
+                        //commands(mads);
                         break;
                     case "departmentmanager":
-                        Employee martin = detDepartment.createEmployee("martin", 262626, "departmentmanager");
-                        commands(martin);
+                        //Employee martin = detDepartment.createEmployee("martin", 262626, "departmentmanager");
+                        //commands(martin);
                         break;
 
                     case "quit":

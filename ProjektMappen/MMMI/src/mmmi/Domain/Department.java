@@ -1,39 +1,44 @@
 package mmmi.Domain;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 
 public class Department {
 
     private String name;
     private int id;
-    private Map<String, Case> caseMap; //Integer is the case number.
-    //private Map<Integer, Integer> employMap;
+    private Map<String, Case> caseMap;
+    private List<Employee> employeeList;
     private static int countSearch = 0;
-    private Employee employee;
     private DepartmentManager departmentManager;
-    private Case originalCase;
 
-    
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // DER SKAL TJEKKES PÃ… I FORHOLD TIL CASENUMBER OM DET SKAL VÃ†RE STRING ELLER INT, FORDI DET KOMMER 
-    // BLANDET NED AD KLASSEN.
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public Department(String name , int id) {
-          this.name = name;
-          this.id = id;
-          this.caseMap = new HashMap<>();
+    /**
+     *
+     * @param name
+     * @param id
+     */
+    public Department(String name, int id) {
+        this.name = name;
+        this.id = id;
+        this.caseMap = new HashMap<>();
+        this.employeeList = new ArrayList<>();
     }
 
-    public Employee createEmployee(String eName, int eID, String eTitle) {
-        return employee = new Employee(eName, eID,this.id, eTitle);
+    /**
+     *
+     * @param name
+     * @param employeeID
+     * @param title
+     * @return
+     */
+    public boolean addEmployee(String name, int employeeID, String title) {
 
+        Employee e = new Employee(name, employeeID, this.id, title);
+        this.employeeList.add(e);
+
+        return true;
     }
 
     /**
@@ -42,42 +47,42 @@ public class Department {
      * @return
      */
     public List<Case> search(String searchWord) {
-        // TODO - implement Department.search
-        // SÃ¸ge case frem baseret pÃ¥ sagsnummer, cpr nummer, navn. 
 
         List<Case> listCases = new ArrayList<>();
 
         for (Case searchCase : caseMap.values()) {
-
             if (searchCase.getRegardingCitizen().getCprNumber().equalsIgnoreCase(searchWord)
                     || searchCase.getCaseNumber().equalsIgnoreCase(String.valueOf(searchWord))
                     || searchCase.getRegardingCitizen().getName().equalsIgnoreCase(searchWord)) {
                 listCases.add(searchCase);
-                
-                //System.out.println(Arrays.asList(listCases));   // Test to find the stuff found in the array
             }
         }
-       
-         return listCases;
-    }
-    
 
-    public Employee getEmployee() {
-        return employee;
+        return listCases;
     }
 
     /**
+     *
+     * @return
+     */
+    public List<Employee> getEmployee() {
+
+        return this.employeeList;
+    }
+
+    /**
+     * If it's empty it returns null.
      *
      * @param caseNumber
      * @return
      */
     public Case openCase(String caseNumber) {
-        // TODO - implement Department.openCase
+
+        Case originalCase = null;
 
         for (String caseNo : caseMap.keySet()) {
             if (caseNumber.equalsIgnoreCase(caseNo)) {
-                this.originalCase = caseMap.get(caseNo);
-                System.out.println("case fundet");
+                originalCase = caseMap.get(caseNo);
             }
         }
         return originalCase;
@@ -86,68 +91,51 @@ public class Department {
 
     /**
      *
-     * @param name
+     * @param caseNumber
+     * @param employeeID
      * @return
      */
-    public Citizen createCitizen(String name) {
-        // TODO - implement Department.createCitizen
-        return new Citizen(name);
+    public boolean assignCase(String caseNumber, int employeeID) {
 
+        for (Employee employee : employeeList) {
+
+            if (employee.getId() == employeeID) {
+                // TODO: assign case.
+                // TODO: create a map with employee(Value) and case(Key).
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
-     * Assign case to employee
      *
      * @param caseNumber
      * @param employeeID
      * @return
      */
-    public boolean assignCase(int caseNumber, int employeeID) {
+    public boolean removeCase(String caseNumber, int employeeID) {
 
-        if (employee.getId() != employeeID) {
-            System.out.println("Employee not found!");
-            return false;
-        } else {
-            departmentManager.assignCase(caseNumber, employeeID);
-            System.out.println("Case added to employee");
-            return true;
+        for (Employee employee : employeeList) {
+            if (employee.getId() == employeeID) {
+                // TODO: remove case.
+                // TODO: create a map with employee(Value) and case(Key).
+                return false;
+            }
         }
-
-        //throw new UnsupportedOperationException();
-    }
-
-    /**
-     * Remove case from employee
-     *
-     * @param caseNumber
-     * @param employeeID
-     * @return
-     */
-    public boolean removeCase(int caseNumber, int employeeID) {
-        if (employee.getId() != employeeID) {
-            System.out.println("Employee not found");
-            return false;
-        } else {
-            departmentManager.removecase(caseNumber, employeeID);
-            System.out.println("Case removed!");
-            return true;
-        }
-        //throw new UnsupportedOperationException();
+        return false;
     }
 
     /**
      *
      * @param name
      * @param reason
-     * @param departmentID
      * @return
      */
     public boolean createCase(String name, String reason) {
-        // Skal kalde createCitizen og skal bruge det objekt for at oprette en ny case. 
-        // Skal ligges i caseMap nÃ¥r det er oprettet.       
+               
         if (!name.isEmpty() && !reason.isEmpty()) {
-            Citizen citizen = createCitizen(name);
-            Case newCase = new Case(citizen, reason, this.id);
+            Case newCase = new Case(reason, this.id); // TODO: Need changes, add correct parameters.
             caseMap.put(newCase.getCaseNumber(), newCase);
             return true;
         } else {
@@ -158,25 +146,18 @@ public class Department {
 
     /**
      *
-     * @param name
+     * @param key
+     * @param information
      * @param CaseNumber
      * @return
      */
-    public boolean addInformationToCase(String name, String caseType, String CaseNumber) {
-        // TilfÃ¸j oplysninger til specific sag. Dvs. kald pÃ¥ addinformation fra case
-        // og brug map fra case til at opdatere oplysninger
-        Boolean caseAdded = true;
+    public boolean addInformationToCase(String key, String information, String CaseNumber) {
+
         for (Case c : caseMap.values()) {
             if (c.getCaseNumber().equalsIgnoreCase(CaseNumber)) {
-
-                c.addInformation(caseType, name);   // Either caseType or other parameter. Depends on the method under Case class.
-                System.out.println("information added!");
-                return true;
-
+                return c.addInformation(key, information);
             }
-
         }
-        System.out.println("Case not found!");
         return false;
     }
 
@@ -189,18 +170,9 @@ public class Department {
     public boolean closeCase(String CaseNumber, String decision) {
         for (Case c : caseMap.values()) {
             if (CaseNumber.equals(c.getCaseNumber())) {
-                c.addInformation(decision, decision);
-                // c.setCaseStatus()
-                caseMap.values().remove(c);
-                System.out.println("Case closed");
-                return true;
+                return c.closeCase(decision);
             }
-
         }
-        System.out.println("Case not removed");
         return false;
     }
- 
-          
-
 }

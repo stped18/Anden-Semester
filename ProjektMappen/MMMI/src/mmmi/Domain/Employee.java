@@ -11,6 +11,9 @@ public class Employee {
     /**
      *
      * @param name
+     * @param id
+     * @param departmentID
+     * @param title
      */
     public Employee(String name, int id, int departmentID, String title) {
         this.name = name;
@@ -26,24 +29,43 @@ public class Employee {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public String getTitle() {
         return title;
     }
     
-
+    /**
+     *
+     * @return
+     */
     public JobTitle getJob() {
         return jobFunction;
     }
 
+    /**
+     *
+     * @param job
+     */
     public void setJob(JobTitle job) {
         this.jobFunction = job;
         
     }
 
+    /**
+     *
+     * @return
+     */
     public int getId() {
         return this.id;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getDepartmentID() {
         return departmentID;
     }
@@ -56,6 +78,10 @@ public class Employee {
         this.departmentID = departmentID;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getName() {
         return this.name;
     }

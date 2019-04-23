@@ -75,8 +75,9 @@ public class Department {
         // TODO - implement Department.openCase
 
         for (String caseNo : caseMap.keySet()) {
-            if (caseNumber == caseNo) {
+            if (caseNumber.equalsIgnoreCase(caseNo)) {
                 this.originalCase = caseMap.get(caseNo);
+                System.out.println("case fundet");
             }
         }
         return originalCase;

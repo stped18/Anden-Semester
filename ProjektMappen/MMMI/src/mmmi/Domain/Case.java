@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Map;
 
 public class Case {
+    private static int socialCount = 1;
+    private static int handicapCount = 1;
 
     private final String caseNumber;
     private String caseStatus;
@@ -127,9 +129,9 @@ public class Case {
      * @return True if information is added.
      */
     public boolean addInformation(String key, String information) {
-
+        System.out.println("add info");
         this.information.put(key, information);
-
+        System.out.println("info added");
         return this.information.containsKey(key);
     }
 
@@ -187,8 +189,7 @@ public class Case {
      */
     private String setCaseNumber() {
 
-        int socialCount = 1;
-        int handicapCount = 1;
+        
 
         switch (this.departmentID) {
             case 1:

@@ -194,7 +194,9 @@ public class Main {
                             System.out.println("Skriv keyword");
                             String key = sc.nextLine().toLowerCase();
                             System.out.println("Skriv information");
+                            
                             String info = sc.nextLine();
+                            
                             cs.addInformation(key, info);
                             System.out.println("Informationen er gemt");
                           

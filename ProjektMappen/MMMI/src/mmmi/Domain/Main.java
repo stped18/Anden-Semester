@@ -19,9 +19,9 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Employee trine = detDepartment.createEmployee("trine", 252525, "secretary");
-        Employee mads = detDepartment.createEmployee("mads", 353535, "caseworker");
-        Employee martin = detDepartment.createEmployee("martin", 262626, "departmentmanager");
+        
+        
+        
         detDepartment.createCase("jhon", "Full 8 dage om ugen");
         detDepartment.createCase("sanne", "Misbrug af penge øremærket hindes børn");
         detDepartment.createCase("Jhin", "ikke en person");
@@ -41,12 +41,15 @@ public class Main {
 
                 switch (text) {
                     case "secretary":
+                        Employee trine = detDepartment.createEmployee("trine", 252525, "secretary");
                         commands(trine);
                         break;
                     case "caseworker":
+                        Employee mads = detDepartment.createEmployee("mads", 353535, "caseworker");
                         commands(mads);
                         break;
                     case "departmentmanager":
+                        Employee martin = detDepartment.createEmployee("martin", 262626, "departmentmanager");
                         commands(martin);
                         break;
 
@@ -69,7 +72,6 @@ public class Main {
     }
 
     public static String loop() {
-        boolean start = true;
         while (true) {
             Scanner s = new Scanner(System.in);
             String t = s.nextLine().toLowerCase();

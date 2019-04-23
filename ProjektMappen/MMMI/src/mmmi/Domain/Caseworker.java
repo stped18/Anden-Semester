@@ -14,6 +14,7 @@ public class Caseworker extends JobTitle {
         rights.add("create case");
         rights.add("add information");
         rights.add("close case");
+        rights.add("back");
     }
 	/**
 	 *

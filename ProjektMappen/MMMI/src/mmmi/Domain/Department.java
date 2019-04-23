@@ -50,16 +50,17 @@ public class Department {
         for (Case searchCase : caseMap.values()) {
 
             if (searchCase.getRegardingCitizen().getCprNumber().equalsIgnoreCase(searchWord)
-                    || searchCase.getCaseNumber() == String.valueOf(searchWord)
+                    || searchCase.getCaseNumber().equalsIgnoreCase(String.valueOf(searchWord))
                     || searchCase.getRegardingCitizen().getName().equalsIgnoreCase(searchWord)) {
                 listCases.add(searchCase);
-
+                
                 //System.out.println(Arrays.asList(listCases));   // Test to find the stuff found in the array
             }
         }
-
-        return listCases;
+       
+         return listCases;
     }
+    
 
     public Employee getEmployee() {
         return employee;
@@ -142,8 +143,8 @@ public class Department {
      */
     public boolean createCase(String name, String reason) {
         // Skal kalde createCitizen og skal bruge det objekt for at oprette en ny case. 
-        // Skal ligges i caseMap nÃ¥r det er oprettet. 
-        if (!(name.isEmpty() && reason.isEmpty())) {
+        // Skal ligges i caseMap nÃ¥r det er oprettet.       
+        if (!name.isEmpty() && !reason.isEmpty()) {
             Citizen citizen = createCitizen(name);
             Case newCase = new Case(citizen, reason, this.id);
             caseMap.put(newCase.getCaseNumber(), newCase);

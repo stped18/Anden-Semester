@@ -17,6 +17,7 @@ public class DepartmentManager extends JobTitle {
         rights.add("close case");
         rights.add("assign case");
         rights.add("reassign case");
+        rights.add("back");
     }
 
     @Override

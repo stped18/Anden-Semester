@@ -6,6 +6,7 @@ public class Employee {
     private String name;
     private int departmentID;
     private JobTitle jobFunction; // Role, jobtitle, ...
+    private String title;
 
     /**
      *
@@ -15,6 +16,7 @@ public class Employee {
         this.name = name;
         this.id = id;
         this.departmentID = departmentID;
+        this.title = title;
         if(title.equalsIgnoreCase("caseworker")) {
             jobFunction = new Caseworker();
         } else if(title.equalsIgnoreCase("secretary")) {
@@ -23,6 +25,11 @@ public class Employee {
             jobFunction = new DepartmentManager();
         }
     }
+
+    public String getTitle() {
+        return title;
+    }
+    
 
     public JobTitle getJob() {
         return jobFunction;

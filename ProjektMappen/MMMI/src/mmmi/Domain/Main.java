@@ -16,17 +16,19 @@ public class Main {
     private static boolean quit = false;
     private static Department detDepartment = new Department("Social afl", 1);
 
+
     public static void main(String[] args) {
 
         Employee trine = detDepartment.createEmployee("trine", 252525, "secretary");
         Employee mads = detDepartment.createEmployee("mads", 353535, "caseworker");
-        detDepartment.createCase("Jhon", "Full 8 dage om ugen");
-        detDepartment.createCase("Sanne", "Misbrug af penge øremærket hindes børn");
+        Employee martin = detDepartment.createEmployee("martin", 262626, "departmentmanager");
+        detDepartment.createCase("jhon", "Full 8 dage om ugen");
+        detDepartment.createCase("sanne", "Misbrug af penge øremærket hindes børn");
         detDepartment.createCase("Jhin", "ikke en person");
-        detDepartment.createCase("Claus ", "Vold mod andre");
-        detDepartment.createCase("Gud", "midbrug af mennesker");
+        detDepartment.createCase("claus ", "Vold mod andre");
+        detDepartment.createCase("gud", "midbrug af mennesker");
 
-        String command;
+
         String text;
 
         System.out.println("Velkommen til MMMI");
@@ -39,12 +41,13 @@ public class Main {
 
                 switch (text) {
                     case "secretary":
-                        caseInfo(trine);
                         commands(trine);
                         break;
                     case "caseworker":
-                        caseInfo(mads);
                         commands(mads);
+                        break;
+                    case "departmentmanager":
+                        commands(martin);
                         break;
 
                     case "quit":
@@ -59,7 +62,6 @@ public class Main {
                 }
 
             }
-            System.out.println("Nyt loop");
         } catch (Exception e) {
 
         }
@@ -73,6 +75,8 @@ public class Main {
             String t = s.nextLine().toLowerCase();
 
             switch (t) {
+                case "back":
+                    return t;
                 case "create case":
                     return t;
 
@@ -88,8 +92,7 @@ public class Main {
                 case "reassign case":
 
                     return t;
-                case "back":
-                    return t;
+
                 default:
                     System.out.println(t + " Er ikke en kommando \n"
                             + "Prøv igen\n");
@@ -102,59 +105,56 @@ public class Main {
         System.out.println("Rolle informationer\n");
         System.out.println("Vælg rolle : Skriv rolle navn \n"
                 + "Secretary : \n"
+                + "Caseworker\n"
+                + "Departmentmanager\n"
                 + "Quit : for at afslutte programet \n");
     }
 
     public static void caseInfo(Employee e) {
-        if (e.getJob().equals(detDepartment.getEmployee().getJob())) {
-            System.out.println("Du er Sagsbehandler");
-            System.out.println("Case Informationer\n");
-            System.out.println("Skriv : \n"
-                    + "Create case : lav en ny sag \n"
-                    + "Close case : for at lukke en sag \n"
-                    + "Add information : for at skrive Informationer \n");
-        } else if (e.getJob().equals(detDepartment.getEmployee().getJob())) {
-            System.out.println("Du er sekretær");
-            System.out.println("Case Informationer\n");
-            System.out.println("Skriv : \n"
-                    + "Create case : lav en ny sag \n");
+        System.out.println("Navn : " + e.getName() + "\nTitle : " + convertTitleToDanish(e) + "\n"
+                + "Options");
 
-        } else if (e.getJob().equals(new DepartmentManager())) {
-            System.out.println("Du styre alt i din afdeling");
-            System.out.println("Case Informationer\n");
-            System.out.println("Skriv : \n"
-                    + "Create case : lav en ny sag \n"
+        if (e.getTitle().equalsIgnoreCase("caseworker")) {
+            System.out.println("Create case : lav en ny sag \n"
+                    + "Close case : for at lukke en sag \n"
+                    + "Add information : for at skrive Informationer \n"
+                    + "back : for at komme tilbage\n");
+        } else if (e.getTitle().equalsIgnoreCase("secretary")) {
+            System.out.println("Create case : lav en ny sag \n"
+                    + "back : for at komme tilbage\n");
+
+        } else if (e.getTitle().equalsIgnoreCase("departmentmanager")) {
+            System.out.println("Create case : lav en ny sag \n"
                     + "Close case : for at lukke en sag \n"
                     + "Add information : for at skrive Informationer \n"
                     + "Assign case : for at udgive en sag \n"
                     + "Reassign case : for at vidergive en sag \n"
-                    + "Quit : for at afslutte loop \n");
+                    + "back : for at komme tilbage \n");
         }
 
-    }
-
-    public static void secrataryCaseInfo() {
-        System.out.println("Du er sceretary");
-        System.out.println("Case Informationer\n");
-        System.out.println("Skriv : \n"
-                + "Create case : lav en ny sag \n"
-                + "back : for at komme tilbage");
     }
 
     public static void commands(Employee employee) {
         boolean start = true;
         Scanner sc = new Scanner(System.in);
-        
+        String name;
+        String reason;
+        String decision;
+        Case cs;
         while (start) {
+            caseInfo(employee);
             String command = loop();
             if (employee.getJob().checkRights(command)) {
                 switch (command) {
+                    case "back":
+                        start = false;
+                        break;
                     case "create case":
                         System.out.println("oprat sag");
                         System.out.println("Skriv navn");
-                        String name = sc.nextLine().toLowerCase();
+                        name = sc.nextLine().toLowerCase();
                         System.out.println("Skriv begrundelse");
-                        String reason = sc.nextLine().toLowerCase();
+                        reason = sc.nextLine().toLowerCase();
                         if (detDepartment.createCase(name, reason)) {
                             System.out.println("Sag oprettet");
                         } else {
@@ -162,21 +162,44 @@ public class Main {
                         }
                         break;
                     case "close case":
-                        System.out.println("Luk sag");
+                        System.out.println("Luk en sag");
                         System.out.println("find sag ");
                         String caseWord = sc.nextLine().toLowerCase();
-                        if (detDepartment.search(caseWord) != null) {
-                            System.out.println("forkert søgeord");
-                        } else {
+                        if (!detDepartment.search(caseWord).isEmpty()) {
+                            System.out.println("Alle sager");
                             System.out.println(detDepartment.search(caseWord).toString());
                             System.out.println("Skriv sags Nummber");
                             String caseNumber = sc.nextLine().toLowerCase();
                             System.out.println("Skriv begrundelse");
-                            String decision = sc.nextLine().toLowerCase();
+                            decision = sc.nextLine().toLowerCase();
                             detDepartment.closeCase(caseNumber, decision);
+                           
+                        } else {
+                           System.out.println("Ingen sager");
+                           
                         }
                         break;
                     case "add information":
+                        System.out.println("find sag ");
+                        String caseWords = sc.nextLine();
+
+                        if (!detDepartment.search(caseWords).isEmpty()) { 
+                            System.out.println("Alle sager");
+                            System.out.println(detDepartment.search(caseWords).toString());
+                            System.out.println("Skriv sags Nummber");
+                            String caseNumberString = sc.nextLine().toLowerCase();
+                            cs = detDepartment.openCase(caseNumberString);
+                            System.out.println("Skriv keyword");
+                            String key = sc.nextLine().toLowerCase();
+                            System.out.println("Skriv information");
+                            String info = sc.nextLine();
+                            cs.addInformation(key, info);
+                            System.out.println("Informationen er gemt");
+                          
+                        } else {
+                           System.out.println("Ingen sager");
+                           
+                        }
 
                         break;
                     case "assign case":
@@ -185,9 +208,7 @@ public class Main {
                     case "reassign case":
 
                         break;
-                    case "back":
-                        start = false;
-                        break;
+
                     default:
                         System.out.println(command + "Er ikke en kommando \n"
                                 + "Prøv igen\n");
@@ -197,4 +218,20 @@ public class Main {
         }
     }
 
+    public static String convertTitleToDanish(Employee e) {
+        String title = e.getTitle();
+        String danishTitle = null;
+        if (title.equalsIgnoreCase("secretary")) {
+            danishTitle = "Sekrætær";
+        }
+        if (title.equalsIgnoreCase("caseworker")) {
+            danishTitle = "Sagsbehandler";
+        }
+        if (title.equalsIgnoreCase("departmentmanager")) {
+            danishTitle = "Afdelingsleder";
+
+        }
+        return danishTitle;
+    }
+ 
 }

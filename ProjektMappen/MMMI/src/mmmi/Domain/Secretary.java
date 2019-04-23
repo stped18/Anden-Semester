@@ -11,6 +11,7 @@ public class Secretary extends JobTitle {
     public Secretary() {
         rights = new ArrayList<>();
         rights.add("create case");
+        rights.add("back");
     }
 
     /**

@@ -207,22 +207,12 @@ public class Case {
     public String getCaseNumber() {
         return caseNumber;
     }
-    
-  
-    
-
-    
 
     @Override
     public String toString() {
-        return "caseNumber : " + caseNumber + 
-                "caseStatus : " + caseStatus +
-                " date=" + date +
-                ", regardingCitizen=" + regardingCitizen +
-                ",\n requestingCitizen=" + requestingCitizen + 
-                ", information=" + information +
-                ", departmentID=" + departmentID ;
+        return "Case{" + "caseNumber=" + caseNumber + ", caseStatus=" + caseStatus + ", date=" + date + ", regardingCitizen=" + regardingCitizen + ", requestingCitizen=" + requestingCitizen + ", information=" + information + ", departmentID=" + departmentID + '}';
     }
+    
 
 
 }

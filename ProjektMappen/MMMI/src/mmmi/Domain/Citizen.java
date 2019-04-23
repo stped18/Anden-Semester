@@ -9,7 +9,7 @@ public class Citizen {
 
     public Citizen(String name) {
         this.name = name;
-        cprNumber = "Unregistered";
+        this.cprNumber = "Unregistered";
         address = "Unregistered";
         phoneNumber = 00000000;
     }
@@ -72,6 +72,11 @@ public class Citizen {
 
     public void setPhoneNumber(int phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    @Override
+    public String toString() {
+        return "Citizen{" + "name=" + name +'}';
     }
 
 }

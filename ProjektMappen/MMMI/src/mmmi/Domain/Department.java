@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 public class Department {
 
@@ -14,7 +13,8 @@ public class Department {
     private List<Employee> employeeList;
     private static int countSearch = 0;
     private DepartmentManager departmentManager;
-    private Map<Integer, List<Case>> assignedCaseMap;
+    private Map<Integer, List<String>> assignedCaseMap;
+    private List<String> employeeListCase;
 
     /**
      *
@@ -27,6 +27,7 @@ public class Department {
         this.caseMap = new HashMap<>();
         this.employeeList = new ArrayList<>();
         this.assignedCaseMap = new HashMap<>();
+        this.employeeList = new ArrayList<>();
     }
 
     /**
@@ -99,7 +100,7 @@ public class Department {
      * @return
      */
     public boolean assignCase(String caseNumber, int employeeID) {
-        List<Case> employeeListCase = new ArrayList<>();
+        assignedCaseMap.put(employeeID, employeeListCase);
         for (Employee employee : employeeList) {
 
             if (employee.getId() == employeeID) {
@@ -109,10 +110,11 @@ public class Department {
                 // employeeID(Key) and the following emplopyee can have one to many cases,
                 // which is why we create a list and then this list can be assigned to specific employeeID
 
-                for (Case assignCase : caseMap.values()) {
-                    if (assignCase.getCaseNumber().equalsIgnoreCase(caseNumber)) {
-                        employeeListCase.add(assignCase);
-                        assignedCaseMap.put(employeeID, employeeListCase);
+                /* Loop through CaseMap, to get the whole pool of cases available, and from there look on specific caseNumber
+                   to assign to the assignedCaseMap list, based on the employeeID */
+                for (String assignCase : caseMap.keySet()) {
+                    if (assignCase.equalsIgnoreCase(caseNumber)) {
+                        employeeListCase.add(caseNumber);
                         return true;
                     }
                 }
@@ -130,25 +132,15 @@ public class Department {
      */
     public boolean removeCase(String caseNumber, int employeeID) {
 
-        for (Employee employee : employeeList) {
-            if (employee.getId() == employeeID) {
+        for (Integer employee : assignedCaseMap.keySet()) {
+            if (employee == employeeID) {
                 // TODO: remove case.
-                // TODO: create a map with employee(Value) and case(Key).
-                Set<Integer> setOfID = assignedCaseMap.keySet();
-                for (Integer id : setOfID) {
-                    for (Case removeCase : assignedCaseMap.get(id)) {
-                        if (removeCase.getCaseNumber().equalsIgnoreCase(caseNumber)) {
-
-                        }
+                // TODO: create a map with employee(Value) and case(Key).                
+                for (String removeCase : employeeListCase) {
+                    if (removeCase.equalsIgnoreCase(caseNumber)) {
+                        employeeListCase.remove(caseNumber);
                     }
                 }
-
-//                for (Map.Entry<Integer, List<Case> entry : assignedCaseMap.values()) {
-//                    if (removeCase.getCaseNumber().equalsIgnoreCase(caseNumber)) {
-//                        
-//                    }
-//                }
-                return false;
             }
         }
         return false;

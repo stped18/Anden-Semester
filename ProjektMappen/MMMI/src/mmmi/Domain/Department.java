@@ -7,8 +7,8 @@ import java.util.Map;
 
 public class Department {
 
-    private String name;
-    private int id;
+    private final String name;
+    private final int id;
     private Map<String, Case> caseMap;
     private List<Employee> employeeList;
     private static int countSearch = 0;

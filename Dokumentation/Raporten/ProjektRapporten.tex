@@ -1,7 +1,7 @@
 \documentclass[12pt]{report}
 
 
-\usepackage[Danish]{babel}
+%\usepackage[Danish]{babel}
 \usepackage{microtype}
 %\usepackage[a4paper, inner = 1.7cm, outer=1.7cm, top=2cm, bottom=3cm]{geometry}
 \usepackage[a4paper,top=3cm,bottom=3cm,left=1.5cm,right=1.5cm,marginparwidth=1.75cm]{geometry}
@@ -13,13 +13,23 @@
 \usepackage{etoolbox}
 \usepackage{amsmath}
 
+\usepackage{longtable} % table
+\usepackage{hyperref} % hyperlinks
+\usepackage{xcolor}
+\hypersetup{
+	pdfborderstyle={/S/U/W 1},
+    linkbordercolor=cyan, 
+    colorlinks=true,
+    citebordercolor=green,     % color of links to bibliography
+    filebordercolor=magenta,   % color of file links
+    urlbordercolor=cyan,       % color of external links
+    linkcolor=black,
+    filecolor=magenta,      
+    urlcolor=black,
+}
 
 \usepackage[utf8x]{inputenc}
-%\usepackage[T1]{fontenc}
-\usepackage[colorlinks=true, allcolors=black]{hyperref}
 
-%\usepackage[utf8]{inputenc}
-%\usepackage{longtable}
 \usepackage{array}
 \usepackage[none]{hyphenat}
 
@@ -37,7 +47,6 @@
 \titlespacing*{\chapter}{0pt}{3.5ex plus 1ex minus .2ex}{2.3ex plus .2ex}
 \makeatletter
 \patchcmd{\chapter}{\if@openright\cleardoublepage\else\clearpage\fi}{}{}{}
-
 
 \begin{document}
 \input{frontpage}
@@ -68,8 +77,8 @@
 \chapter{Redaktionelt}
 \input{Redaktionelt}
 
-
-\chapter{Indledning \textbf{\small (30 til 40 sider til og med konklusion)} }
+\newpage
+\chapter{Indledning}
 \input{Indledning}
 \input{Metoder}
 
@@ -77,6 +86,7 @@
 \chapter{Hovedtekst}
 \input{Hovedtekst}
 \input{Analyse}
+\include{Dynamisk}
 \input{Design}
 \input{Implementering}
 \input{Test}

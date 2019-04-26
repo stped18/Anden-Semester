@@ -14,10 +14,12 @@ Omfatter den detaljerede kravspecifikation\\
 Detaljeret brugsmønsterdiagram (hvis relevant)\\
 Detaljerede brugsmønsterbeskrivelser\\
 Detaljerede beskrivelser af supplerende krav Fx organiseret efter FURPS+\\
+
 \section{Analyse}
 Omfatter afsnittet overvejelser, beslutninger og resultater vedr.\\
 Den statiske side af analysemodel\\
 Den dynamiske side af analysemodel\\
+
 \section{Design}
 Omfatter afsnittet overvejelser, beslutninger og resultater vedr.\\
 Softwarearkitektur\\
@@ -26,18 +28,24 @@ Den statiske side af designmodel\\
 Den dynamiske side af designmodel\\
 Design af persistens\\
 Databasedesign\\
+
 \section{Implementering}
 Omfatter afsnittet overvejelser, beslutninger og resultater vedr.\\  konvertering fra design til kode illustreret gennem udvalgte centrale eksempler, samt andre vigtige implementeringsbeslutninger
 Omfatter afsnittet implementering af database.
 
 
-\begin{figure}
+
+\subsection{Find sag metoden}
+Under Department.java har vi en metode 
+\subsubsection{Problem: }
+En aktør skal kunne finde en sag samt få denne sag vist. Sagen skal findes ved hjælp at enten sagsnummer, cpr-nummer eller navn. 
+\subsubsection{Løsning: }
+For at finde en sag skal der første laves en liste over sagerne der er inde for den gældende afdeling har. 
+Der bliver lavet en metode search der søger gennem alle de sager afdelingen har,
+Herefter skal der findes en match på om sagen har enten matchende sagsnummer, cpr-nummer eller navn. 
+\begin{figure}[h]
 \begin{lstlisting}
-/**
-     *
-     * @param searchWord
-     * @return
-     */
+
     public List<Case> search(String searchWord) {
 
         List<Case> listCases = new ArrayList<>();
@@ -58,6 +66,11 @@ Omfatter afsnittet implementering af database.
 \caption{kode : seartch}
 \label{kode:Search}
 \end{figure}
+
+
+
+\subsubsection{Evaluering:}
+Metoden virker når der kun er kendskab til et map men skal laves om når der skal søges i databasen efter den gældende sag.
 
 
 \section{Test}

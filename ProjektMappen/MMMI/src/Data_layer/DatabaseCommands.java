@@ -43,8 +43,8 @@ public class  DatabaseCommands {
            dbStatement = dbConnection.createStatement(); 
            dbStatement.execute(statement);
                
-        } catch (Exception e) {
-            
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
         System.out.println(statement+" was executet");
         
@@ -58,7 +58,8 @@ public class  DatabaseCommands {
             while(dbResultSet.next()){
             list.add(dbResultSet);
             }
-        } catch (Exception e) {
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
         System.out.println("List of data was executet");
         return list;

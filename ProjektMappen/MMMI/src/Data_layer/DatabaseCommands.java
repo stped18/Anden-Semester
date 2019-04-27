@@ -23,6 +23,8 @@ public class DatabaseCommands {
     Connection dbConnection = null;
     Statement dbStatement = null;
     ResultSet dbResultSet = null;
+    
+    
 
     private void connectToDB() {
         try {
@@ -85,6 +87,11 @@ public class DatabaseCommands {
         System.out.println("List of data was executet");
         disConnectet();
         return list;
+    }
+    public void testConnection(){
+        System.out.println("Testing connection to database");
+        connectToDB();
+        disConnectet();
     }
 
 }

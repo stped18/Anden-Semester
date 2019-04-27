@@ -271,3 +271,9 @@ TSWLatexianTemp*
 ProjektMappen/MMMI/nbproject/private/private\.xml
 
 Diagrammer/\.Sekvendiagram Opret sag\.vpp\.lck
+
+*.properties
+
+*.html
+
+ProjektMappen/MMMI/dist/

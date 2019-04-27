@@ -50,10 +50,11 @@ public class DatabaseCommands {
             if (dbConnection != null) {
                 dbConnection.close();
             }
+            System.out.println("Disconnectet From MMMI Database");
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        System.out.println("Disconnectet From MMMI Database");
+        
     }
 
     public void addData(String statement) {
@@ -61,12 +62,12 @@ public class DatabaseCommands {
         try {
             dbStatement = dbConnection.createStatement();
             dbStatement.execute(statement);
-
+            System.out.println(statement + " was executet");
         } catch (Exception ex) {
             ex.printStackTrace();
         }
 
-        System.out.println(statement + " was executet");
+       
         disConnectet();
     }
 
@@ -79,11 +80,12 @@ public class DatabaseCommands {
                 list.add(dbResultSet);
 
             }
+            
         } catch (Exception ex) {
             ex.printStackTrace();
         }
 
-        System.out.println("List of data was executet");
+        System.out.println("List of data was Createt");
         disConnectet();
         return list;
     }

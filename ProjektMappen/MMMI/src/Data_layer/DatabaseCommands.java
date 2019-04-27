@@ -1,7 +1,6 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Denne classe skaber kontakten mellem programet og databasen
+ * 
  */
 package Data_layer;
 
@@ -16,13 +15,13 @@ import java.util.List;
  */
 public class DatabaseCommands {
 
-    String url = "jdbc:postgresql://mmmihosting.ddns.net:3306/mmmidb";
-    String username = "pi";
-    String password = "morten1234";
-
-    Connection dbConnection = null;
-    Statement dbStatement = null;
-    ResultSet dbResultSet = null;
+    private final String url = "jdbc:postgresql://mmmihosting.ddns.net:3306/mmmidb";
+    private final String username = "pi";
+    private final String password = "morten1234";
+ 
+    private Connection dbConnection = null;
+    private Statement dbStatement = null;
+    private ResultSet dbResultSet = null;
     
     
 
@@ -88,6 +87,7 @@ public class DatabaseCommands {
         disConnectet();
         return list;
     }
+    
     public void testConnection(){
         System.out.println("Testing connection to database");
         connectToDB();

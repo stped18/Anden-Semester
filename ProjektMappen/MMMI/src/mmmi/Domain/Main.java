@@ -6,6 +6,7 @@
 package mmmi.Domain;
 
 import java.util.Scanner;
+import Data_layer.DatabaseCommands;
 
 /**
  *
@@ -18,56 +19,62 @@ public class Main {
 
 
     public static void main(String[] args) {
-
-        
-        
-        
-        detDepartment.createCase("jhon", "Full 8 dage om ugen");
-        detDepartment.createCase("sanne", "Misbrug af penge øremærket hindes børn");
-        detDepartment.createCase("Jhin", "ikke en person");
-        detDepartment.createCase("claus ", "Vold mod andre");
-        detDepartment.createCase("gud", "midbrug af mennesker");
-
-
-        String text;
-
-        System.out.println("Velkommen til MMMI");
-
-        //System.out.println("Vælg rolle: du har muligheden 'Secretary'");
-        try (Scanner sc = new Scanner(System.in)) {
-            while (!quit) {
-                rollInfor();
-                text = sc.nextLine().toLowerCase();
-
-                switch (text) {
-                    case "secretary":
-                        //Employee trine = detDepartment.createEmployee("trine", 252525, "secretary");
-                        //commands(trine);
-                        break;
-                    case "caseworker":
-                        //Employee mads = detDepartment.createEmployee("mads", 353535, "caseworker");
-                        //commands(mads);
-                        break;
-                    case "departmentmanager":
-                        //Employee martin = detDepartment.createEmployee("martin", 262626, "departmentmanager");
-                        //commands(martin);
-                        break;
-
-                    case "quit":
-                        System.out.println("Du quiter");
-                        quit = true;
-                        break;
-
-                    default:
-                        System.out.println(text + "Er ikke en kommando \n"
-                                + "Prøv igen\n");
-                        break;
-                }
-
-            }
-        } catch (Exception e) {
-
+            DatabaseCommands db = new DatabaseCommands();
+            for (int i = 0; i < 100; i++) {
+             db.connectToDB();
+             db.disConnectet();
         }
+           
+            
+        
+        
+        
+//        detDepartment.createCase("jhon", "Full 8 dage om ugen");
+//        detDepartment.createCase("sanne", "Misbrug af penge øremærket hindes børn");
+//        detDepartment.createCase("Jhin", "ikke en person");
+//        detDepartment.createCase("claus ", "Vold mod andre");
+//        detDepartment.createCase("gud", "midbrug af mennesker");
+//
+//
+//        String text;
+//
+//        System.out.println("Velkommen til MMMI");
+//
+//        //System.out.println("Vælg rolle: du har muligheden 'Secretary'");
+//        try (Scanner sc = new Scanner(System.in)) {
+//            while (!quit) {
+//                rollInfor();
+//                text = sc.nextLine().toLowerCase();
+//
+//                switch (text) {
+//                    case "secretary":
+//                        //Employee trine = detDepartment.createEmployee("trine", 252525, "secretary");
+//                        //commands(trine);
+//                        break;
+//                    case "caseworker":
+//                        //Employee mads = detDepartment.createEmployee("mads", 353535, "caseworker");
+//                        //commands(mads);
+//                        break;
+//                    case "departmentmanager":
+//                        //Employee martin = detDepartment.createEmployee("martin", 262626, "departmentmanager");
+//                        //commands(martin);
+//                        break;
+//
+//                    case "quit":
+//                        System.out.println("Du quiter");
+//                        quit = true;
+//                        break;
+//
+//                    default:
+//                        System.out.println(text + "Er ikke en kommando \n"
+//                                + "Prøv igen\n");
+//                        break;
+//                }
+//
+//            }
+//        } catch (Exception e) {
+//
+//        }
 
     }
 

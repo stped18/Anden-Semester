@@ -20,10 +20,7 @@ public class Main {
 
     public static void main(String[] args) {
             DatabaseCommands db = new DatabaseCommands();
-            for (int i = 0; i < 100; i++) {
-             db.connectToDB();
-             db.disConnectet();
-        }
+
            
             
         

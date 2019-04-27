@@ -12,6 +12,8 @@ import java.util.List;
 /**
  *
  * @author steff
+ * dette er kun en ide til hvordan man henter og sender data    
+ * 
  */
 public class  DatabaseCommands {
     String url = "jdbc:postgresql://mmmihosting.ddns.net:3306/mmmidb";
@@ -39,6 +41,7 @@ public class  DatabaseCommands {
     }
     
     public void addData(String statement){
+        connectToDB();
         try {
            dbStatement = dbConnection.createStatement(); 
            dbStatement.execute(statement);
@@ -46,23 +49,27 @@ public class  DatabaseCommands {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        System.out.println(statement+" was executet");
         
+        System.out.println(statement+" was executet");
+        disConnectet();
     }
     
     public List<ResultSet> getdataList(String resultString){
         List<ResultSet> list = new VirtualFlow.ArrayLinkedList<>();
-        
+        connectToDB();
         try {
             dbResultSet = dbStatement.executeQuery(resultString);
             while(dbResultSet.next()){
             list.add(dbResultSet);
+            
             }
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+      
         System.out.println("List of data was executet");
-        return list;
+        disConnectet();
+        return list; 
     }
     
         
@@ -82,4 +89,5 @@ public class  DatabaseCommands {
         }
         System.out.println("Disconnectet From MMMI Database");
     }
+    
 }

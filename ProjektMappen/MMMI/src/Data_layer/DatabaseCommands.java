@@ -6,6 +6,7 @@ package Data_layer;
 
 import com.sun.javafx.scene.control.skin.VirtualFlow;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -30,7 +31,6 @@ public class DatabaseCommands {
 
             Class.forName("org.postgresql.Driver");
             dbConnection = DriverManager.getConnection(url, username, password);
-
             System.out.println("Connectet to MMMI Database");
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -39,7 +39,7 @@ public class DatabaseCommands {
         }
     }
 
-    private void disConnectet() {
+    public void disConnectet() {
         try {
             if (dbStatement != null) {
                 dbStatement.close();
@@ -62,7 +62,7 @@ public class DatabaseCommands {
         try {
             dbStatement = dbConnection.createStatement();
             dbStatement.execute(statement);
-            System.out.println(statement + " was executet");
+            System.out.println(statement + " \nwas executet");
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -71,16 +71,21 @@ public class DatabaseCommands {
         disConnectet();
     }
 
-    public List<ResultSet> getdataList(String resultString) {
-        List<ResultSet> list = new VirtualFlow.ArrayLinkedList<>();
-        connectToDB();
+    public List getdataList(String resultString) {
+        List<String> list = new ArrayList<>();
+        connectToDB(); 
         try {
-            dbResultSet = dbStatement.executeQuery(resultString);
-            while (dbResultSet.next()) {
-                list.add(dbResultSet);
+            String name = null;
+            int age= 0;
+            Statement st = dbConnection.createStatement();
+            dbResultSet = st.executeQuery(resultString);
 
+            while (dbResultSet.next()) {    
+                name = dbResultSet.getString("name");
+                age = dbResultSet.getInt("age");
+                list.add("name : "+ name+" | age : "+ age );
             }
-            
+             
         } catch (Exception ex) {
             ex.printStackTrace();
         }

@@ -7,6 +7,8 @@ package mmmi.Domain;
 
 import java.util.Scanner;
 import Data_layer.DatabaseCommands;
+import java.util.List;
+import java.util.ArrayList;
 
 /**
  *
@@ -16,12 +18,18 @@ public class Main {
 
     private static boolean quit = false;
     private static Department detDepartment = new Department("Social afl", 1);
-
+    static List<String> list = new ArrayList<>();
 
     public static void main(String[] args) {
+            
             DatabaseCommands db = new DatabaseCommands();
+
             db.testConnection();
-           
+            list = db.getdataList("SELECT name, age FROM cats");
+            for(String s : list){
+                System.out.println(s);
+            }
+            
             
         
         

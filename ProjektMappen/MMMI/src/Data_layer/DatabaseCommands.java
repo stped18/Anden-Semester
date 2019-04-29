@@ -18,7 +18,7 @@ public class DatabaseCommands {
 
     private final String url = "jdbc:postgresql://mmmihosting.ddns.net:3306/mmmidb";
     private final String username = "pi";
-    private final String password = "morten1234";
+    private final String password = "MMMI_pi_server";
  
     private Connection dbConnection = null;
     private Statement dbStatement = null;

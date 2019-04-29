@@ -25,7 +25,7 @@ public class Main {
             DatabaseCommands db = new DatabaseCommands();
 
             db.testConnection();
-            list = db.getdataList("SELECT name, age FROM cats");
+            list = db.getdataList("SELECT  name, age FROM cats");
             for(String s : list){
                 System.out.println(s);
             }

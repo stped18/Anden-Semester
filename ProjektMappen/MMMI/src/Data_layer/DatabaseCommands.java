@@ -32,14 +32,13 @@ public class DatabaseCommands {
             Class.forName("org.postgresql.Driver");
             dbConnection = DriverManager.getConnection(url, username, password);
             System.out.println("Connectet to MMMI Database");
-        } catch (Exception ex) {
-            ex.printStackTrace();
+        } catch (ClassNotFoundException | SQLException ex) {
         } finally {
 
         }
     }
 
-    public void disConnectet() {
+    private void disConnectet() {
         try {
             if (dbStatement != null) {
                 dbStatement.close();
@@ -51,8 +50,7 @@ public class DatabaseCommands {
                 dbConnection.close();
             }
             System.out.println("Disconnectet From MMMI Database");
-        } catch (Exception ex) {
-            ex.printStackTrace();
+        } catch (SQLException ex) {
         }
         
     }
@@ -63,8 +61,7 @@ public class DatabaseCommands {
             dbStatement = dbConnection.createStatement();
             dbStatement.execute(statement);
             System.out.println(statement + " \nwas executet");
-        } catch (Exception ex) {
-            ex.printStackTrace();
+        } catch (SQLException ex) {
         }
 
        
@@ -86,8 +83,7 @@ public class DatabaseCommands {
                 list.add("name : "+ name+" | age : "+ age );
             }
              
-        } catch (Exception ex) {
-            ex.printStackTrace();
+        } catch (SQLException ex) {
         }
 
         System.out.println("List of data was Createt");

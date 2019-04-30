@@ -6,7 +6,7 @@
 package mmmi.Domain;
 
 import java.util.Scanner;
-import Data_layer.DatabaseCommands;
+import Data_layer.Commands;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -21,10 +21,8 @@ public class Main {
     static List<String> list = new ArrayList<>();
 
     public static void main(String[] args) {
-            
-            DatabaseCommands db = new DatabaseCommands();
+            Commands db = new Commands();
 
-            
             list = db.getdataList("SELECT  name, age FROM cats");
             for(String s : list){
                 System.out.println(s);

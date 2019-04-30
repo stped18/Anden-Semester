@@ -1,1 +1,39 @@
 \section{Implementering}
+
+
+
+\subsection{Find sag metoden}
+Under Department.java har vi en metode 
+\subsubsection{Problem: }
+En aktør skal kunne finde en sag samt få denne sag vist. Sagen skal findes ved hjælp at enten sagsnummer, cpr-nummer eller navn. 
+\subsubsection{Løsning: }
+For at finde en sag skal der første laves en liste over sagerne der er inde for den gældende afdeling har. 
+Der bliver lavet en metode search der søger gennem alle de sager afdelingen har,
+Herefter skal der findes en match på om sagen har enten matchende sagsnummer, cpr-nummer eller navn. 
+\begin{figure}[h]
+\begin{lstlisting}
+
+    public List<Case> search(String searchWord) {
+
+        List<Case> listCases = new ArrayList<>();
+
+        for (Case searchCase : caseMap.values()) {
+            if (searchCase.getRegardingCitizen().getCprNumber().equalsIgnoreCase(searchWord)
+                    || searchCase.getCaseNumber().equalsIgnoreCase(String.valueOf(searchWord))
+                    || searchCase.getRegardingCitizen().getName().equalsIgnoreCase(searchWord)) {
+                listCases.add(searchCase);
+            }
+        }
+
+        return listCases;
+    }
+
+
+\end{lstlisting}
+\caption{kode : seartch}
+\label{kode:Search}
+\end{figure}
+
+
+\subsubsection{Evaluering:}
+Metoden virker når der kun er kendskab til et map men skal laves om når der skal søges i databasen efter den gældende sag.

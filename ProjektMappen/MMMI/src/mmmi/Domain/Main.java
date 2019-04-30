@@ -17,7 +17,6 @@ public class Main {
 
     private static boolean quit = false;
     private static Department detDepartment = new Department("Social afl", 1);
-    ;
 
     public static void main(String[] args) {
             Commands db = new Commands();

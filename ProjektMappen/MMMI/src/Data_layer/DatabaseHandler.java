@@ -4,7 +4,6 @@
  */
 package Data_layer;
 
-import com.sun.javafx.scene.control.skin.VirtualFlow;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +13,7 @@ import java.util.List;
  * @author steff dette er kun en ide til hvordan man henter og sender data
  *
  */
-public class DatabaseCommands {
+public class DatabaseHandler {
 
     private final String url = "jdbc:postgresql://mmmihosting.ddns.net:3306/mmmidb";
     private final String username = "pi";
@@ -31,7 +30,7 @@ public class DatabaseCommands {
 
             Class.forName("org.postgresql.Driver");
             dbConnection = DriverManager.getConnection(url, username, password);
-            System.out.println("Connectet to MMMI Database");
+            System.out.println("Connected to MMMI Database");
         } catch (ClassNotFoundException | SQLException ex) {
         } finally {
 
@@ -49,7 +48,7 @@ public class DatabaseCommands {
             if (dbConnection != null) {
                 dbConnection.close();
             }
-            System.out.println("Disconnectet From MMMI Database");
+            System.out.println("Disconnected From MMMI Database");
         } catch (SQLException ex) {
         }
         
@@ -60,7 +59,7 @@ public class DatabaseCommands {
         try {
             dbStatement = dbConnection.createStatement();
             dbStatement.execute(statement);
-            System.out.println(statement + " \nwas executet");
+            System.out.println(statement + " \nwas executed");
         } catch (SQLException ex) {
         }
 
@@ -86,7 +85,7 @@ public class DatabaseCommands {
         } catch (SQLException ex) {
         }
 
-        System.out.println("List of data was Createt");
+        System.out.println("List of data was created");
         disConnectet();
         return list;
     }

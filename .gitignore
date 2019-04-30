@@ -268,3 +268,14 @@ TSWLatexianTemp*
 
 # standalone packages
 *.sta
+ProjektMappen/MMMI/nbproject/private/private\.xml
+
+Diagrammer/\.Sekvendiagram Opret sag\.vpp\.lck
+
+*.properties
+
+*.html
+
+ProjektMappen/MMMI/dist/
+
+ProjektMappen/MMMI/build/

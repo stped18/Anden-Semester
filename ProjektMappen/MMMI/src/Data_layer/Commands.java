@@ -32,9 +32,12 @@ public class Commands extends DatabaseConnection{
     public List getdataList(String resultString) {
         List<String> list = new ArrayList<>();
         connectToDB(); 
+        String name;
+        int age;
+        
+        
         try {
-            String name = null;
-            int age= 0;
+            
             Statement st = dbConnection.createStatement();
             dbResultSet = st.executeQuery(resultString);
 

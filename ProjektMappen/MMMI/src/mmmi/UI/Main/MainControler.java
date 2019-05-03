@@ -11,6 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.layout.AnchorPane;
 
 /**
@@ -38,6 +39,12 @@ public class MainControler implements Initializable {
     private Button fxContackt;
     @FXML
     private AnchorPane fxSubPane;
+    @FXML
+    private CheckBox checkboxTest1Main;
+    @FXML
+    private CheckBox checkboxTest2Sub;
+    @FXML
+    private CheckBox checkboxTest3Sub;
 
     /**
      * Initializes the controller class.

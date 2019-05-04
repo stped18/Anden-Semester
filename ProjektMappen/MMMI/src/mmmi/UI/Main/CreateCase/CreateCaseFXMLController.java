@@ -26,10 +26,7 @@ public class CreateCaseFXMLController  implements Initializable {
     @FXML
     private Button fxSaveBtn;
 
-    @FXML
     private AnchorPane fxCreateCase;
-    @FXML
-    private ChoiceBox<String> fxinquiryChoisBoks;
 
     /**
      * Initializes the controller class.
@@ -37,16 +34,7 @@ public class CreateCaseFXMLController  implements Initializable {
     @Override
     @SuppressWarnings("unchecked")
     public void initialize(URL url, ResourceBundle rb) {
-        //Use a stackpane for a simple layout of the controls
-
-           fxinquiryChoisBoks.getItems().add("Borger");
-           fxinquiryChoisBoks.getItems().add("Pårørende ");
-           fxinquiryChoisBoks.getItems().add("Læge ");
-           fxinquiryChoisBoks.getItems().add("Hospital");
-           fxinquiryChoisBoks.getItems().add( "Anden forvaltning ");
-           fxinquiryChoisBoks.getItems().add( "Igangværende indsats ");
-           fxinquiryChoisBoks.getItems().add("Anden kommune ");
-           fxinquiryChoisBoks.getItems().add("Andre ");
+      
         
            
           
@@ -61,15 +49,7 @@ public class CreateCaseFXMLController  implements Initializable {
         }
     }
 
-    @FXML
-    private void choisehandler(MouseEvent event) {
-        String choise = fxinquiryChoisBoks.getValue();
-        if(choise.equals("Pårørende ") || (choise.equals("Læge  ")) || (choise.equals("Hospital  ")) || (choise.equals("Anden forvaltning  ")) || (choise.equals("Igangværende indsats ")) || (choise.equals("Andre "))){
-            System.out.println("klik");
-        }
-         
-        
-    }
+
    
   
     
@@ -79,6 +59,8 @@ public class CreateCaseFXMLController  implements Initializable {
     
     
 }
+
+
 
 
 

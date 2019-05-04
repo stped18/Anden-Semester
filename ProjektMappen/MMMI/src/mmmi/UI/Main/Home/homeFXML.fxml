@@ -2,10 +2,11 @@
 
 <?import java.net.URL?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="900.0" prefWidth="1050.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mmmi.UI.Main.HomeFXMLController">
+<AnchorPane id="AnchorPane" prefHeight="900.0" prefWidth="1050.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mmmi.UI.Main.Home.HomeFXMLController">
     <stylesheets>
         <URL value="@/mmmi/UI/mainStylesheet.css" />
     </stylesheets>
@@ -17,5 +18,9 @@
       </Label>
       <Label layoutX="42.0" layoutY="120.0" text="Logget ind som" />
       <Label layoutX="42.0" layoutY="152.0" text="Antal af sager" />
+      <Label layoutX="42.0" layoutY="220.0" text="Mine sager" />
+      <ListView layoutX="42.0" layoutY="237.0" prefHeight="289.0" prefWidth="962.0" />
+      <Label layoutX="42.0" layoutY="544.0" text="Eventuelle Noter" />
+      <ListView layoutX="42.0" layoutY="561.0" prefHeight="289.0" prefWidth="962.0" />
    </children>
 </AnchorPane>

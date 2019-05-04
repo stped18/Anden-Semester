@@ -18,6 +18,8 @@ import javafx.fxml.JavaFXBuilderFactory;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -53,78 +55,30 @@ public class MainControler extends FxmlSuper implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        new Thread(){
+        new Thread() {
             @Override
             public void run() {
-               changeFxml(fxSubPane,"homeFXML.fxml");
+                changeFxml(fxSubPane, "Home/homeFXML.fxml");
             }
 
         }.start();
-    }    
-// alle fxml w 1050 h 900
+    }
+
     @FXML
     private void BtnHandler(ActionEvent event) {
-        if(event.getSource()==fxHomeBtn){
-           changeFxml(fxSubPane,"homeFXML.fxml");
+        if (event.getSource() == fxHomeBtn ) {
+            changeFxml(fxSubPane, "Home/homeFXML.fxml");
         }
-        if(event.getSource()==fxCreateCaseBtn){
-            changeFxml(fxSubPane,"createCaseFXML.fxml");
+        if (event.getSource() == fxCreateCaseBtn) {
+            changeFxml(fxSubPane, "CreateCase/createCaseFXML.fxml");
         }
-        
-        
-        
+        if (event.getSource() == fxSearchcaseBtn) {
+            changeFxml(fxSubPane, "FindeCase/findeCaseFXML.fxml");
+            
+        }
     }
-  
 
-  
-    
-    
-    
-   
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

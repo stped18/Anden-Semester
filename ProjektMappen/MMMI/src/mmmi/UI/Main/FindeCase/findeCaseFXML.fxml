@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="900.0" prefWidth="1050.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mmmi.UI.Main.FindeCase.FindeCaseFXMLController">
+    <stylesheets>
+        <URL value="@/mmmi/UI/mainStylesheet.css" />
+    </stylesheets>
+   <children>
+      <TextField layoutX="64.0" layoutY="93.0" prefHeight="30.0" prefWidth="900.0" />
+      <ListView layoutX="64.0" layoutY="134.0" orientation="HORIZONTAL" prefHeight="500.0" prefWidth="900.0" />
+      <Label layoutX="451.0" layoutY="14.0" text="Find en sag">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

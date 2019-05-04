@@ -18,9 +18,9 @@ public class DatabaseConnection {
     private final String username = "pi";
     private final String password = "MMMI_pi_server";
  
-    Connection dbConnection = null;
-    Statement dbStatement = null;
-    ResultSet dbResultSet = null;
+    protected Connection dbConnection = null;
+    protected Statement dbStatement = null;
+    protected ResultSet dbResultSet = null;
     
     
 
@@ -49,5 +49,9 @@ public class DatabaseConnection {
         } catch (SQLException ex) {
         }
     }
+
+
+    
     
 }
+

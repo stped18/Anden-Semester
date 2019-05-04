@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mmmi.UI.Main;
+package mmmi.UI.Main.caseOpening;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -12,9 +12,9 @@ import javafx.fxml.Initializable;
 /**
  * FXML Controller class
  *
- * @author steff
+ * @author PCATG
  */
-public class CreateCaseFXMLController implements Initializable {
+public class CaseOpeningFXMLController implements Initializable {
 
     /**
      * Initializes the controller class.
@@ -25,4 +25,3 @@ public class CreateCaseFXMLController implements Initializable {
     }    
     
 }
-

@@ -1,14 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.net.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mmmi.UI.caseOpening.CaseOpeningFXMLController">
-    <stylesheets>
-        <URL value="@/mmmi/UI/mainStylesheet.css"/>
-    </stylesheets>
+
+<AnchorPane fx:id="caseOpenRootpane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1500.0" prefWidth="690.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <content>
+            <AnchorPane prefHeight="726.0" prefWidth="686.0">
+               <children>
+                  <Label layoutX="14.0" layoutY="14.0" text="Hvad drejer henvendelsen sig om?" />
+                  <Label layoutX="14.0" layoutY="107.0" text="Er det klart hvad borgeren søger om?" />
+                  <TextArea layoutX="206.0" layoutY="14.0" prefHeight="77.0" prefWidth="387.0" />
+                  <CheckBox layoutX="227.0" layoutY="107.0" mnemonicParsing="false" text="Ja" />
+                  <CheckBox layoutX="327.0" layoutY="107.0" mnemonicParsing="false" text="Nej" />
+                  <Label layoutX="14.0" layoutY="137.0" text="Hvis ja, angiv ydelse [afkrydsning af ydelser/§]" />
+                  <CheckBox layoutX="14.0" layoutY="164.0" mnemonicParsing="false" text="Aktivitets- og samværsydelse (§ 104)" />
+                  <CheckBox layoutX="14.0" layoutY="191.0" mnemonicParsing="false" text="Befordring ">
+                     <contextMenu>
+                        <ContextMenu>
+                          <items>
+                            <MenuItem mnemonicParsing="false" text="Unspecified Action">
+                                 <graphic>
+                                    <CheckBox mnemonicParsing="false" text="Befordring til og fra et tilbud (§ 105)" />
+                                 </graphic>
+                              </MenuItem>
+                          </items>
+                        </ContextMenu>
+                     </contextMenu>
+                  </CheckBox>
+                  <CheckBox layoutX="35.0" layoutY="225.0" mnemonicParsing="false" text="Befordring til og fra et tilbud (Hjælpemiddelbekendtgørelsen § 25)" />
+                  <CheckBox layoutX="35.0" layoutY="242.0" mnemonicParsing="false" text="Befordring til og fra et tilbud (Lov om specialundervisning til voksne § 5)" />
+                  <CheckBox layoutX="35.0" layoutY="259.0" mnemonicParsing="false" text="Befordring til og fra et tilbud (Lov om ungdomsuddannelse for unge med særlige" />
+                  <CheckBox layoutX="35.0" layoutY="276.0" mnemonicParsing="false" text="Befordring til og fra et tilbud (SUL § 170)" />
+                  <CheckBox layoutX="35.0" layoutY="295.0" mnemonicParsing="false" text="Befordring til og fra et tilbud (SUL § 172)" />
+                  <CheckBox layoutX="35.0" layoutY="312.0" mnemonicParsing="false" text="Individuel befordring (§ 117) " />
+                  <CheckBox layoutX="14.0" layoutY="346.0" mnemonicParsing="false" text="Behandling" />
+                  <CheckBox layoutX="39.0" layoutY="369.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="170.0" text="Misbrugsbehandling (§ 101)" />
+                  <CheckBox layoutX="39.0" layoutY="386.0" mnemonicParsing="false" text="Misbrugsbehandling (SUL § 141)" />
+               </children>
+            </AnchorPane>
+         </content>
+      </ScrollPane>
+   </children>
 </AnchorPane>

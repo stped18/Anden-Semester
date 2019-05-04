@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.ContextMenu?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -11,9 +9,9 @@
 
 <AnchorPane fx:id="caseOpenRootpane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1500.0" prefWidth="690.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="690.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <content>
-            <AnchorPane prefHeight="726.0" prefWidth="686.0">
+            <AnchorPane prefHeight="858.0" prefWidth="693.0">
                <children>
                   <Label layoutX="14.0" layoutY="14.0" text="Hvad drejer henvendelsen sig om?" />
                   <Label layoutX="14.0" layoutY="107.0" text="Er det klart hvad borgeren søger om?" />
@@ -22,28 +20,31 @@
                   <CheckBox layoutX="327.0" layoutY="107.0" mnemonicParsing="false" text="Nej" />
                   <Label layoutX="14.0" layoutY="137.0" text="Hvis ja, angiv ydelse [afkrydsning af ydelser/§]" />
                   <CheckBox layoutX="14.0" layoutY="164.0" mnemonicParsing="false" text="Aktivitets- og samværsydelse (§ 104)" />
-                  <CheckBox layoutX="14.0" layoutY="191.0" mnemonicParsing="false" text="Befordring ">
-                     <contextMenu>
-                        <ContextMenu>
-                          <items>
-                            <MenuItem mnemonicParsing="false" text="Unspecified Action">
-                                 <graphic>
-                                    <CheckBox mnemonicParsing="false" text="Befordring til og fra et tilbud (§ 105)" />
-                                 </graphic>
-                              </MenuItem>
-                          </items>
-                        </ContextMenu>
-                     </contextMenu>
-                  </CheckBox>
-                  <CheckBox layoutX="35.0" layoutY="225.0" mnemonicParsing="false" text="Befordring til og fra et tilbud (Hjælpemiddelbekendtgørelsen § 25)" />
-                  <CheckBox layoutX="35.0" layoutY="242.0" mnemonicParsing="false" text="Befordring til og fra et tilbud (Lov om specialundervisning til voksne § 5)" />
-                  <CheckBox layoutX="35.0" layoutY="259.0" mnemonicParsing="false" text="Befordring til og fra et tilbud (Lov om ungdomsuddannelse for unge med særlige" />
-                  <CheckBox layoutX="35.0" layoutY="276.0" mnemonicParsing="false" text="Befordring til og fra et tilbud (SUL § 170)" />
-                  <CheckBox layoutX="35.0" layoutY="295.0" mnemonicParsing="false" text="Befordring til og fra et tilbud (SUL § 172)" />
-                  <CheckBox layoutX="35.0" layoutY="312.0" mnemonicParsing="false" text="Individuel befordring (§ 117) " />
-                  <CheckBox layoutX="14.0" layoutY="346.0" mnemonicParsing="false" text="Behandling" />
-                  <CheckBox layoutX="39.0" layoutY="369.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="170.0" text="Misbrugsbehandling (§ 101)" />
-                  <CheckBox layoutX="39.0" layoutY="386.0" mnemonicParsing="false" text="Misbrugsbehandling (SUL § 141)" />
+                  <CheckBox layoutX="14.0" layoutY="191.0" mnemonicParsing="false" text="Befordring " />
+                  <CheckBox layoutX="40.0" layoutY="208.0" mnemonicParsing="false" text="Befordring til og fra et tilbud (Hjælpemiddelbekendtgørelsen § 25)" />
+                  <CheckBox layoutX="40.0" layoutY="225.0" mnemonicParsing="false" text="Befordring til og fra et tilbud (Lov om specialundervisning til voksne § 5)" />
+                  <CheckBox layoutX="40.0" layoutY="242.0" mnemonicParsing="false" text="Befordring til og fra et tilbud (Lov om ungdomsuddannelse for unge med særlige" />
+                  <CheckBox layoutX="40.0" layoutY="259.0" mnemonicParsing="false" text="Befordring til og fra et tilbud (SUL § 170)" />
+                  <CheckBox layoutX="40.0" layoutY="278.0" mnemonicParsing="false" text="Befordring til og fra et tilbud (SUL § 172)" />
+                  <CheckBox layoutX="40.0" layoutY="295.0" mnemonicParsing="false" text="Individuel befordring (§ 117) " />
+                  <CheckBox layoutX="14.0" layoutY="312.0" mnemonicParsing="false" text="Behandling" />
+                  <CheckBox layoutX="39.0" layoutY="329.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="170.0" text="Misbrugsbehandling (§ 101)" />
+                  <CheckBox layoutX="39.0" layoutY="346.0" mnemonicParsing="false" text="Misbrugsbehandling (SUL § 141)" />
+                  <CheckBox layoutX="40.0" layoutY="381.0" mnemonicParsing="false" text="Psykologisk behandling (§ 102)" />
+                  <CheckBox layoutX="39.0" layoutY="398.0" mnemonicParsing="false" text="Speciallæge behandling (§ 102)" />
+                  <CheckBox layoutX="39.0" layoutY="363.0" mnemonicParsing="false" text="Terapi (§ 102)" />
+                  <CheckBox layoutX="20.0" layoutY="436.0" mnemonicParsing="false" text="Beskyttet beskæftigelsesydelse (§ 103)" />
+                  <CheckBox layoutX="22.0" layoutY="472.0" mnemonicParsing="false" text="Dagaflastning (§ 84)" />
+                  <CheckBox layoutX="22.0" layoutY="505.0" mnemonicParsing="false" text="Kontantydelse" />
+                  <CheckBox layoutX="40.0" layoutY="522.0" mnemonicParsing="false" text="Arbejdsvederlag (§ 105)" />
+                  <CheckBox layoutX="41.0" layoutY="539.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="202.0" text="Dækning af merudgift (§ 100)" />
+                  <CheckBox layoutX="27.0" layoutY="573.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="202.0" text="Kontrolordning" />
+                  <CheckBox layoutX="44.0" layoutY="590.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="138.0" text="Fastholdelse (§ 126) " />
+                  <CheckBox layoutX="44.0" layoutY="607.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="147.0" text="Fastholdelse (§ 127) " />
+                  <CheckBox layoutX="44.0" layoutY="624.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="147.0" text="Fastholdelse (§ 128)" />
+                  <CheckBox layoutX="43.0" layoutY="641.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="184.0" text="Kontrol med færden (§ 125) " />
+                  <CheckBox layoutX="27.0" layoutY="668.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="74.0" text="Ophold" />
+                  <CheckBox layoutX="49.0" layoutY="685.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="161.0" text="Døgnaflastning (§ 84)" />
                </children>
             </AnchorPane>
          </content>

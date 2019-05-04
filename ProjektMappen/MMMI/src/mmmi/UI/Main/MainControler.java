@@ -29,7 +29,7 @@ import javafx.stage.Stage;
  *
  * @author steff
  */
-public class MainControler extends FxmlSuper implements Initializable {
+public class MainControler extends RunFxmlLoader implements Initializable {
 
     @FXML
     private AnchorPane fxRootPane;
@@ -58,7 +58,7 @@ public class MainControler extends FxmlSuper implements Initializable {
         new Thread() {
             @Override
             public void run() {
-                changeFxml(fxSubPane, "Home/homeFXML.fxml");
+                changeFxml(fxSubPane, "home/homeFXML.fxml");
             }
 
         }.start();
@@ -67,18 +67,22 @@ public class MainControler extends FxmlSuper implements Initializable {
     @FXML
     private void BtnHandler(ActionEvent event) {
         if (event.getSource() == fxHomeBtn ) {
-            changeFxml(fxSubPane, "Home/homeFXML.fxml");
+            changeFxml(fxSubPane, "home/homeFXML.fxml");
         }
         if (event.getSource() == fxCreateCaseBtn) {
-            changeFxml(fxSubPane, "CreateCase/createCaseFXML.fxml");
+            changeFxml(fxSubPane, "createCase/createCaseFXML.fxml");
         }
         if (event.getSource() == fxSearchcaseBtn) {
-            changeFxml(fxSubPane, "FindeCase/findeCaseFXML.fxml");
+            changeFxml(fxSubPane, "findeCase/findeCaseFXML.fxml");
             
         }
     }
 
 }
+
+
+
+
 
 
 

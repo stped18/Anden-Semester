@@ -15,7 +15,7 @@ import javafx.scene.layout.AnchorPane;
  *
  * @author steff
  */
-public class FxmlSuper {
+public class RunFxmlLoader {
     
     
       public void changeFxml(AnchorPane subPane, String fxml){
@@ -32,6 +32,7 @@ public class FxmlSuper {
     
     
 }
+
 
 
 

@@ -3,19 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mmmi.UI.Main.CreateCase.Sagsudregning;
+package mmmi.UI.Main.createCase.caseInvestigation;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
-import mmmi.UI.Main.FxmlSuper;
 
 /**
  * FXML Controller class
  *
  * @author steff
  */
-public class CaseResolvingController  implements Initializable {
+public class CaseInvestigationFXMLController implements Initializable {
 
     /**
      * Initializes the controller class.
@@ -26,6 +25,4 @@ public class CaseResolvingController  implements Initializable {
     }    
     
 }
-
-
 

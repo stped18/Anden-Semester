@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mmmi.UI.Main.Home;
+package mmmi.UI.Main.home;
 
 import java.net.URL;
 import java.util.ResourceBundle;

@@ -5,6 +5,10 @@
         <group>
             <file>file:/D:/GitkrakenProjekter/Anden-semester/ProjektMappen/MMMI/src/mmmi/UI/Main/MainControler.java</file>
             <file>file:/D:/GitkrakenProjekter/Anden-semester/ProjektMappen/MMMI/src/mmmi/UI/Main/MMMI.java</file>
+            <file>file:/D:/GitkrakenProjekter/Anden-semester/ProjektMappen/MMMI/src/mmmi/UI/Main/CreateCase/caseInvestigationFXML.fxml</file>
+            <file>file:/D:/GitkrakenProjekter/Anden-semester/ProjektMappen/MMMI/src/mmmi/UI/Main/FxmlSuper.java</file>
+            <file>file:/D:/GitkrakenProjekter/Anden-semester/ProjektMappen/MMMI/src/mmmi/UI/Main/CreateCase/CaseInvestigationFXMLController.java</file>
+            <file>file:/D:/GitkrakenProjekter/Anden-semester/ProjektMappen/MMMI/src/mmmi/UI/Main/CreateCase/CreateCaseFXMLController.java</file>
         </group>
     </open-files>
 </project-private>

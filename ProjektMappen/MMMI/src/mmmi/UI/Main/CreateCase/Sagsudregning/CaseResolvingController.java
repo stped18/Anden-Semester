@@ -8,13 +8,14 @@ package mmmi.UI.Main.CreateCase.Sagsudregning;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
+import mmmi.UI.Main.FxmlSuper;
 
 /**
  * FXML Controller class
  *
  * @author steff
  */
-public class CaseResolvingController implements Initializable {
+public class CaseResolvingController  implements Initializable {
 
     /**
      * Initializes the controller class.
@@ -25,4 +26,6 @@ public class CaseResolvingController implements Initializable {
     }    
     
 }
+
+
 

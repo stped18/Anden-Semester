@@ -15,7 +15,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-public class CreateCaseFXMLController  implements Initializable {
+import mmmi.UI.Main.FxmlSuper;
+public class CreateCaseFXMLController extends FxmlSuper implements Initializable {
 
 
     @FXML
@@ -34,7 +35,7 @@ public class CreateCaseFXMLController  implements Initializable {
     @Override
     @SuppressWarnings("unchecked")
     public void initialize(URL url, ResourceBundle rb) {
-      
+        
         
            
           
@@ -45,7 +46,7 @@ public class CreateCaseFXMLController  implements Initializable {
     @FXML
     private void buttonHandler(ActionEvent event) { 
         if(event.getSource()==fxnextBtn) {
-            fxCreateCase.setVisible(true);
+            changeFxml(fxCreateCase, "CreateCase/Sagsudredning/CaseResolving.fxml");
         }
     }
 
@@ -59,6 +60,9 @@ public class CreateCaseFXMLController  implements Initializable {
     
     
 }
+
+
+
 
 
 

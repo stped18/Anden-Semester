@@ -5,7 +5,6 @@ import java.util.ArrayList;
 public class Secretary extends JobTitle {
 
     /**
-     *
      * Rights should be read from DB and saved in the list.
      */
     public Secretary() {
@@ -15,15 +14,11 @@ public class Secretary extends JobTitle {
     }
 
     /**
-     * 
      * @param right
-     * @return 
+     * @return
      */
     @Override
     public boolean checkRights(String right) {
-        if(rights.indexOf(right) > -1) {
-            return true;
-        }
-        return false;
+        return rights.indexOf(right) > -1;
     }
 }

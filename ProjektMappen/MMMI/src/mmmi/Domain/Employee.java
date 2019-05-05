@@ -9,7 +9,6 @@ public class Employee {
     private String title;
 
     /**
-     *
      * @param name
      * @param id
      * @param departmentID
@@ -20,25 +19,23 @@ public class Employee {
         this.id = id;
         this.departmentID = departmentID;
         this.title = title;
-        if(title.equalsIgnoreCase("caseworker")) {
+        if (title.equalsIgnoreCase("caseworker")) {
             jobFunction = new Caseworker();
-        } else if(title.equalsIgnoreCase("secretary")) {
+        } else if (title.equalsIgnoreCase("secretary")) {
             jobFunction = new Secretary();
-        } else if(title.equalsIgnoreCase("departmentmanager")) {
+        } else if (title.equalsIgnoreCase("departmentmanager")) {
             jobFunction = new DepartmentManager();
         }
     }
 
     /**
-     *
      * @return
      */
     public String getTitle() {
         return title;
     }
-    
+
     /**
-     *
      * @return
      */
     public JobTitle getJob() {
@@ -46,16 +43,14 @@ public class Employee {
     }
 
     /**
-     *
      * @param job
      */
     public void setJob(JobTitle job) {
         this.jobFunction = job;
-        
+
     }
 
     /**
-     *
      * @return
      */
     public int getId() {
@@ -63,7 +58,6 @@ public class Employee {
     }
 
     /**
-     *
      * @return
      */
     public int getDepartmentID() {
@@ -71,7 +65,6 @@ public class Employee {
     }
 
     /**
-     *
      * @param departmentID
      */
     public void setDepartmentID(int departmentID) {
@@ -79,7 +72,6 @@ public class Employee {
     }
 
     /**
-     *
      * @return
      */
     public String getName() {
@@ -87,7 +79,6 @@ public class Employee {
     }
 
     /**
-     *
      * @param name
      */
     public void setName(String name) {

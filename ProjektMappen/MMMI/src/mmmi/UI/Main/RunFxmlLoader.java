@@ -5,32 +5,30 @@
  */
 package mmmi.UI.Main;
 
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
- *
  * @author steff
  */
 public class RunFxmlLoader {
-    
-    
-      public void changeFxml(AnchorPane subPane, String fxml){
-              AnchorPane pane;
-            try {
-                pane = FXMLLoader.load(getClass().getResource(fxml)); 
-                subPane.getChildren().setAll(pane);
-            } catch (IOException ex) {
-                Logger.getLogger(MainControler.class.getName()).log(Level.SEVERE, null, ex);
-            }     
+
+
+    public void changeFxml(AnchorPane subPane, String fxml) {
+        AnchorPane pane;
+        try {
+            pane = FXMLLoader.load(getClass().getResource(fxml));
+            subPane.getChildren().setAll(pane);
+        } catch (IOException ex) {
+            Logger.getLogger(MainControler.class.getName()).log(Level.SEVERE, null, ex);
         }
-    
-    
-    
-    
+    }
+
+
 }
 
 

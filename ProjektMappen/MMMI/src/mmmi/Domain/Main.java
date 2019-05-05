@@ -7,24 +7,21 @@ package mmmi.Domain;
 
 
 import Data_layer.Commands;
-import java.util.List;
 
 /**
- *
  * @author steff
  */
 public class Main {
 
     public static void main(String[] args) {
-            Commands db = new Commands();
+        Commands db = new Commands();
 
-            db.connectToDB();
-            db.disConnectet();
-            
-            
+        db.connectToDB();
+        db.disConnectet();
+
 
     }
 
- 
+
 }
 

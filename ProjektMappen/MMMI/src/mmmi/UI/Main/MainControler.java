@@ -45,13 +45,8 @@ public class MainControler extends RunFxmlLoader implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        new Thread() {
-            @Override
-            public void run() {
                 changeFxml(fxSubPane, "home/homeFXML.fxml");
-            }
 
-        }.start();
     }
 
     @FXML
@@ -69,6 +64,8 @@ public class MainControler extends RunFxmlLoader implements Initializable {
     }
 
 }
+
+
 
 
 

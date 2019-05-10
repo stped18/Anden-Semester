@@ -1,10 +1,6 @@
 package mmmi.Domain;
 
-import java.util.ArrayList;
-import java.util.GregorianCalendar;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Case {
 
@@ -12,16 +8,14 @@ public class Case {
     private static int handicapCount = 1;
 
     private final String caseNumber;
-    private String caseStatus;
-
     private final String date;
     private final Citizen regardingCitizen;
     private final List<Citizen> requestingCitizen = new ArrayList<>();
     private final Map<String, String> information = new HashMap<>();
     private final int departmentID;
+    private String caseStatus;
 
     /**
-     *
      * @param regardingCitizen
      * @param reason
      * @param departmentID
@@ -38,7 +32,6 @@ public class Case {
     }
 
     /**
-     *
      * @return The status of the case.
      */
     public String getCaseStatus() {
@@ -63,7 +56,6 @@ public class Case {
     }
 
     /**
-     *
      * @return The case number.
      */
     public String getCaseNumber() {
@@ -71,7 +63,6 @@ public class Case {
     }
 
     /**
-     *
      * @return The citizen the cases is about.
      */
     public Citizen getRegardingCitizen() {
@@ -80,7 +71,6 @@ public class Case {
     }
 
     /**
-     *
      * @return A list of citizens that has requested the case.
      */
     public List<Citizen> getRequestingCitizens() {
@@ -89,7 +79,6 @@ public class Case {
     }
 
     /**
-     *
      * @param requestingCitizen
      * @return True if the requesting citizen has been added.
      */
@@ -104,7 +93,6 @@ public class Case {
     }
 
     /**
-     *
      * @return The ID of the department that have the case.
      */
     public int getDepartmentID() {
@@ -113,7 +101,6 @@ public class Case {
     }
 
     /**
-     *
      * @return The map with all the information for the case.
      */
     public Map<String, String> getAllInformation() {
@@ -122,7 +109,6 @@ public class Case {
     }
 
     /**
-     *
      * @param key
      * @return Gets the information of the key.
      */
@@ -132,7 +118,6 @@ public class Case {
     }
 
     /**
-     *
      * @param key
      * @param information
      * @return True if information is added.
@@ -147,7 +132,6 @@ public class Case {
     }
 
     /**
-     *
      * @param key
      * @param information
      * @return True if the information is updated.
@@ -161,7 +145,6 @@ public class Case {
     }
 
     /**
-     *
      * @return The date of the case last work
      */
     public String getDate() {
@@ -169,7 +152,6 @@ public class Case {
     }
 
     /**
-     *
      * @param information
      * @return Closes the case and return true.
      */
@@ -182,7 +164,6 @@ public class Case {
     }
 
     /**
-     *
      * @return The Date to tell when a case have been created.
      */
     private String dateStamp() {
@@ -195,7 +176,6 @@ public class Case {
     }
 
     /**
-     *
      * @return A new case number when the constructor is called.
      */
     private String setCaseNumber() {
@@ -218,7 +198,7 @@ public class Case {
     // TODO: Deletes in #2.
     @Override
     public String toString() {
-        
+
         return "Case{" + "caseNumber=" + caseNumber + ", caseStatus="
                 + caseStatus + ", date=" + date + ", regardingCitizen="
                 + regardingCitizen + ", requestingCitizen=" + requestingCitizen

@@ -21,7 +21,6 @@ public class SearchCase {
     }
 
     /**
-     *
      * @return
      */
     public Citizen getCitizen() {
@@ -29,7 +28,6 @@ public class SearchCase {
     }
 
     /**
-     *
      * @return
      */
     public int getCaseNumber() {
@@ -37,7 +35,6 @@ public class SearchCase {
     }
 
     /**
-     *
      * @return
      */
     public String getCaseStatus() {
@@ -45,7 +42,6 @@ public class SearchCase {
     }
 
     /**
-     *
      * @return
      */
     public Date getDate() {
@@ -53,7 +49,6 @@ public class SearchCase {
     }
 
     /**
-     *
      * @return
      */
     public String getReason() {
@@ -61,7 +56,6 @@ public class SearchCase {
     }
 
     /**
-     *
      * @return
      */
     public String getEmployeeName() {
@@ -69,7 +63,6 @@ public class SearchCase {
     }
 
     /**
-     *
      * @return
      */
     public int getEmployeeID() {

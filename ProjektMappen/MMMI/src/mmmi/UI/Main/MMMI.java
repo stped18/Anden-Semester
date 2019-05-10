@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mmmi.UI;
+package mmmi.UI.Main;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -12,20 +12,9 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
- *
  * @author steff
  */
 public class MMMI extends Application {
-    
-    @Override
-    public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("LogindSite.fxml"));
-        
-        Scene scene = new Scene(root);
-        
-        stage.setScene(scene);
-        stage.show();
-    }
 
     /**
      * @param args the command line arguments
@@ -33,5 +22,18 @@ public class MMMI extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    
+
+    @Override
+    public void start(Stage stage) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
+
+
+        Scene scene = new Scene(root);
+
+        stage.setScene(scene);
+        stage.setTitle("MMMI");
+        stage.show();
+    }
+
 }
+

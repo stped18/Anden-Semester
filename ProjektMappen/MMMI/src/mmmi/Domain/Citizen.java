@@ -8,7 +8,6 @@ public class Citizen {
     private int phoneNumber;
 
     /**
-     *
      * @param name
      */
     public Citizen(String name) {
@@ -16,16 +15,14 @@ public class Citizen {
     }
 
     /**
-     *
      * @param name
      * @param cprNumber
      */
     public Citizen(String name, String cprNumber) {
         this(name, cprNumber, "Unregistered", 0);
     }
-    
+
     /**
-     *
      * @param name
      * @param cprNumber
      * @param address
@@ -33,19 +30,17 @@ public class Citizen {
     public Citizen(String name, String cprNumber, String address) {
         this(name, cprNumber, address, 0);
     }
-    
+
     /**
-     *
-     * @param name String.
-     * @param cprNumber String.
+     * @param name        String.
+     * @param cprNumber   String.
      * @param phoneNumber int.
      */
     public Citizen(String name, String cprNumber, int phoneNumber) {
         this(name, cprNumber, "Unregistered", phoneNumber);
     }
-    
+
     /**
-     *
      * @param name
      * @param cprNumber
      * @param address
@@ -59,7 +54,6 @@ public class Citizen {
     }
 
     /**
-     *
      * @return
      */
     public String getName() {
@@ -67,7 +61,6 @@ public class Citizen {
     }
 
     /**
-     *
      * @param name
      */
     public void setName(String name) {
@@ -75,7 +68,6 @@ public class Citizen {
     }
 
     /**
-     *
      * @return
      */
     public String getCprNumber() {
@@ -83,7 +75,6 @@ public class Citizen {
     }
 
     /**
-     *
      * @param cprNumber
      */
     public void setCprNumber(String cprNumber) {
@@ -91,7 +82,6 @@ public class Citizen {
     }
 
     /**
-     *
      * @return
      */
     public String getAddress() {
@@ -99,7 +89,6 @@ public class Citizen {
     }
 
     /**
-     *
      * @param address
      */
     public void setAddress(String address) {
@@ -107,7 +96,6 @@ public class Citizen {
     }
 
     /**
-     *
      * @return
      */
     public int getPhoneNumber() {
@@ -115,7 +103,6 @@ public class Citizen {
     }
 
     /**
-     *
      * @param phoneNumber
      */
     public void setPhoneNumber(int phoneNumber) {

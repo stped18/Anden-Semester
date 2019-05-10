@@ -7,17 +7,16 @@ import java.util.Map;
 
 public class Department {
 
+    private static int countSearch = 0;
     private final String name;
     private final int id;
     private Map<String, Case> caseMap;
     private List<Employee> employeeList;
-    private static int countSearch = 0;
     private DepartmentManager departmentManager;
     private Map<Integer, List<String>> assignedCaseMap;
     private List<String> employeeListCase;
 
     /**
-     *
      * @param name
      * @param id
      */
@@ -31,7 +30,6 @@ public class Department {
     }
 
     /**
-     *
      * @param name
      * @param employeeID
      * @param title
@@ -46,7 +44,6 @@ public class Department {
     }
 
     /**
-     *
      * @param searchWord
      * @return
      */
@@ -66,7 +63,6 @@ public class Department {
     }
 
     /**
-     *
      * @return
      */
     public List<Employee> getEmployee() {
@@ -94,7 +90,6 @@ public class Department {
     }
 
     /**
-     *
      * @param caseNumber
      * @param employeeID
      * @return
@@ -125,7 +120,6 @@ public class Department {
     }
 
     /**
-     *
      * @param caseNumber
      * @param employeeID
      * @return
@@ -147,7 +141,6 @@ public class Department {
     }
 
     /**
-     *
      * @param name
      * @param reason
      * @return
@@ -165,7 +158,6 @@ public class Department {
     }
 
     /**
-     *
      * @param key
      * @param information
      * @param CaseNumber
@@ -182,7 +174,6 @@ public class Department {
     }
 
     /**
-     *
      * @param CaseNumber
      * @param decision
      * @return

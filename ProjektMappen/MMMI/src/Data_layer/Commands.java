@@ -11,12 +11,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
  * @author steff
  */
-public class Commands extends DatabaseConnection{
+public class Commands extends DatabaseConnection {
 
-    
+
     public void addData(String statement) {
         connectToDB();
         try {
@@ -26,27 +25,28 @@ public class Commands extends DatabaseConnection{
         } catch (SQLException ex) {
         }
 
-       
+
         disConnectet();
     }
+
     public List getdataList(String resultString) {
         List<String> list = new ArrayList<>();
-        connectToDB(); 
+        connectToDB();
         String name;
         int age;
-        
-        
+
+
         try {
-            
+
             Statement st = dbConnection.createStatement();
             dbResultSet = st.executeQuery(resultString);
 
-            while (dbResultSet.next()) {    
+            while (dbResultSet.next()) {
                 name = dbResultSet.getString("name");
                 age = dbResultSet.getInt("age");
-                list.add("name : "+ name+" | age : "+ age );
+                list.add("name : " + name + " | age : " + age);
             }
-             
+
         } catch (SQLException ex) {
         }
 
@@ -54,8 +54,8 @@ public class Commands extends DatabaseConnection{
         disConnectet();
         return list;
     }
-    
-    public void testConnection(){
+
+    public void testConnection() {
         System.out.println("Testing connection to database");
         connectToDB();
         disConnectet();

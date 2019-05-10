@@ -5,7 +5,6 @@ import java.util.ArrayList;
 public class DepartmentManager extends JobTitle {
 
     /**
-     *
      * Rights should be read from DB and saved in the list.
      */
     public DepartmentManager() {
@@ -19,15 +18,11 @@ public class DepartmentManager extends JobTitle {
     }
 
     /**
-     *
      * @param right
      * @return
      */
     @Override
     public boolean checkRights(String right) {
-        if(rights.indexOf(right) > -1) {
-            return true;
-        }
-        return false;
+        return rights.indexOf(right) > -1;
     }
 }

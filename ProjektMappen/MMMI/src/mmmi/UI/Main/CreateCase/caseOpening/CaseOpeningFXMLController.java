@@ -12,7 +12,6 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.ToggleGroup;
@@ -35,137 +34,137 @@ public class CaseOpeningFXMLController implements Initializable {
     @FXML
     private AnchorPane caseOpenRootpane;
     @FXML
-    private CheckBox fxCB_Activity104;
+    private TextArea fxTA_RegardingInquiry;
     @FXML
     private VBox fxVBox_carriage;
+    @FXML
+    private RadioButton fxRB_carriage1;
+    @FXML
+    private RadioButton fxRB_carriage2;
+    @FXML
+    private RadioButton fxRB_carriage3;
+    @FXML
+    private RadioButton fxRB_carriage4;
+    @FXML
+    private RadioButton fxRB_carriage5;
+    @FXML
+    private RadioButton fxRB_carriage6;
+    @FXML
+    private VBox fxVbox_treatment;
+    @FXML
+    private RadioButton fxRB_treatment1;
+    @FXML
+    private RadioButton fxRB_treatment2;
+    @FXML
+    private RadioButton fxRB_treatment3;
+    @FXML
+    private RadioButton fxRB_treatment4;
+    @FXML
+    private RadioButton fxRB_treatment5;
+    @FXML
+    private RadioButton fxRB_protectedEmploymentBenefit;
+    @FXML
+    private RadioButton fxRB_dayRelief;
+    @FXML
+    private RadioButton fxRB_cashBenefit1;
+    @FXML
+    private RadioButton fxRB_cashBenefit2;
+    @FXML
+    private VBox fxVbox_control;
+    @FXML
+    private RadioButton fxRB_control1;
+    @FXML
+    private RadioButton fxRB_control2;
+    @FXML
+    private RadioButton fxRB_control3;
+    @FXML
+    private RadioButton fxRB_control4;
+    @FXML
+    private VBox fxVbox_stay;
+    @FXML
+    private RadioButton fxRB_stay1;
+    @FXML
+    private RadioButton fxRB_stay2;
+    @FXML
+    private RadioButton fxRB_stay3;
+    @FXML
+    private RadioButton fxRB_stay4;
+    @FXML
+    private RadioButton fxRB_stay5;
+    @FXML
+    private RadioButton fxRB_personalHelp83;
+    @FXML
+    private RadioButton fxRB_personalHelp95;
+    @FXML
+    private RadioButton fxRB_practicalHelp83;
+    @FXML
+    private RadioButton fxRB_praticalHelp95;
+    @FXML
+    private VBox fxVbox_socialPedagogicalHelp;
+    @FXML
+    private RadioButton fxRB_socialPedagogicalHelp1;
+    @FXML
+    private RadioButton fxRB_socialPedagogicalHelp2;
+    @FXML
+    private RadioButton fxRB_socialPedagogicalHelp3;
+    @FXML
+    private RadioButton fxRB_socialPedagogicalHelp4;
+    @FXML
+    private RadioButton fxRB_socialPedagogicalHelp5;
+    @FXML
+    private RadioButton fxRB_socialPedagogicalHelp6;
+    @FXML
+    private RadioButton fxRB_socialPedagogicalHelp7;
+    @FXML
+    private RadioButton fxRB_socialPedagogicalHelp8;
+    @FXML
+    private VBox fxVbox_personHelpScheme;
+    @FXML
+    private RadioButton fxRB_personHelpScheme1;
+    @FXML
+    private RadioButton fxRB_personHelpScheme2;
+    @FXML
+    private RadioButton fxRB_personHelpScheme3;
+    @FXML
+    private RadioButton fxRB_personHelpScheme4;
+    @FXML
+    private RadioButton fxRB_personHelpScheme5;
+    @FXML
+    private RadioButton fxRB_personHelpScheme6;
+    @FXML
+    private RadioButton fxRB_personHelpScheme7;
+    @FXML
+    private RadioButton fxRB_housingGeneralCareHome;
+    @FXML
+    private RadioButton fxRB_housingElderlyOrHandicapFriendly;
+    @FXML
+    private RadioButton fxRB_housingShared;
+    @FXML
+    private RadioButton fxRB_housingDayTreatmentOffer;
+    @FXML
+    private RadioButton fxRB_housingCareHome;
+    @FXML
+    private RadioButton fxRB_housingCrisisCenter;
+    @FXML
+    private RadioButton fxRB_housingTemporary;
+    @FXML
+    private RadioButton fxRB_housingNursingHome;
+    @FXML
+    private RadioButton fxRB_housingRehabilitation;
+    @FXML
+    private RadioButton fxRB_securedHousing;
+    @FXML
+    private RadioButton fxRB_otherLengthyHousing;
+    @FXML
+    private RadioButton fxRB_outgoingOffer;
+    @FXML
+    private RadioButton fxRB_offerWithAuthority;
     @FXML
     private RadioButton fxRB_clearLookingForYes;
     @FXML
     private RadioButton fxRB_clearLookingForNo;
     @FXML
-    private TextArea fxTA_RegardingInquiry;
-    @FXML
     private RadioButton fxRB_carriage;
-    @FXML
-    private CheckBox fxCB_carriage1;
-    @FXML
-    private CheckBox fxCB_carriage2;
-    @FXML
-    private CheckBox fxCB_carriage3;
-    @FXML
-    private CheckBox fxCB_carriage4;
-    @FXML
-    private CheckBox fxCB_carriage5;
-    @FXML
-    private CheckBox fxCB_carriage6;
-    @FXML
-    private VBox fxVbox_treatment;
-    @FXML
-    private CheckBox fxCB_treatment1;
-    @FXML
-    private CheckBox fxCB_treatment2;
-    @FXML
-    private CheckBox fxCB_treatment3;
-    @FXML
-    private CheckBox fxCB_treatment4;
-    @FXML
-    private CheckBox fxCB_treatment5;
-    @FXML
-    private CheckBox fxCB_protectedEmploymentBenefit;
-    @FXML
-    private CheckBox fxCB_dayRelief;
-    @FXML
-    private CheckBox fxRB_cashBenefit1;
-    @FXML
-    private CheckBox fxRB_cashBenefit2;
-    @FXML
-    private VBox fxVbox_control;
-    @FXML
-    private CheckBox fxCB_control1;
-    @FXML
-    private CheckBox fxCB_control2;
-    @FXML
-    private CheckBox fxCB_control3;
-    @FXML
-    private CheckBox fxCB_control4;
-    @FXML
-    private VBox fxVbox_stay;
-    @FXML
-    private CheckBox fxCB_stay1;
-    @FXML
-    private CheckBox fxCB_stay2;
-    @FXML
-    private CheckBox fxCB_stay3;
-    @FXML
-    private CheckBox fxCB_stay4;
-    @FXML
-    private CheckBox fxCB_stay5;
-    @FXML
-    private CheckBox fxCB_personalHelp83;
-    @FXML
-    private CheckBox fxCB_personalHelp95;
-    @FXML
-    private CheckBox fxCB_practicalHelp83;
-    @FXML
-    private CheckBox fxCB_praticalHelp95;
-    @FXML
-    private VBox fxVbox_socialPedagogicalHelp;
-    @FXML
-    private CheckBox fxCB_socialPedagogicalHelp1;
-    @FXML
-    private CheckBox fxCB_socialPedagogicalHelp2;
-    @FXML
-    private CheckBox fxCB_socialPedagogicalHelp3;
-    @FXML
-    private CheckBox fxCB_socialPedagogicalHelp4;
-    @FXML
-    private CheckBox fxCB_socialPedagogicalHelp5;
-    @FXML
-    private CheckBox fxCB_socialPedagogicalHelp6;
-    @FXML
-    private CheckBox fxCB_socialPedagogicalHelp7;
-    @FXML
-    private CheckBox fxCB_socialPedagogicalHelp8;
-    @FXML
-    private VBox fxVbox_personHelpScheme;
-    @FXML
-    private CheckBox fxCB_personHelpScheme1;
-    @FXML
-    private CheckBox fxCB_personHelpScheme2;
-    @FXML
-    private CheckBox fxCB_personHelpScheme3;
-    @FXML
-    private CheckBox fxCB_personHelpScheme4;
-    @FXML
-    private CheckBox fxCB_personHelpScheme5;
-    @FXML
-    private CheckBox fxCB_personHelpScheme6;
-    @FXML
-    private CheckBox fxCB_personHelpScheme7;
-    @FXML
-    private CheckBox fxCB_ambulantTreatment;
-    @FXML
-    private CheckBox fxCB_housingGeneralCareHome;
-    @FXML
-    private CheckBox fxCB_housingElderlyOrHandicapFriendly;
-    @FXML
-    private CheckBox fxCB_housingShared;
-    @FXML
-    private CheckBox fx_housingDayTreatmentOffer;
-    @FXML
-    private CheckBox fxCB_housingCareHome;
-    @FXML
-    private CheckBox fxCB_housingCrisisCenter;
-    @FXML
-    private CheckBox fxCB_housingTemporary;
-    @FXML
-    private CheckBox fxCB_housingNursingHome;
-    @FXML
-    private CheckBox fxCB_housingRehabilitation;
-    @FXML
-    private CheckBox fxCB_outgoingOffer;
-    @FXML
-    private CheckBox fxCB_offerWithAuthority;
     @FXML
     private RadioButton fxRB_treatment;
     @FXML
@@ -179,51 +178,53 @@ public class CaseOpeningFXMLController implements Initializable {
     @FXML
     private RadioButton fxRB_personHelpScheme;
     @FXML
-    private CheckBox fxCB_regardingCitizen;
+    private RadioButton fxRB_regardingCitizen;
     @FXML
-    private CheckBox fxCB_regardingRelatives;
+    private RadioButton fxRB_regardingRelatives;
     @FXML
-    private CheckBox fxCB_regardingDoctor;
+    private RadioButton fxRB_regardingDoctor;
     @FXML
-    private CheckBox fxCB_regardingHospital;
+    private RadioButton fxRB_regardingHospital;
     @FXML
-    private CheckBox fxCB_regardingOtherAdministration;
+    private RadioButton fxRB_regardingOtherAdministration;
     @FXML
-    private CheckBox fxCB_regardingInProgressEffort;
+    private RadioButton fxRB_regardingInProgressEffort;
     @FXML
-    private CheckBox fxCB_regardingOtherCommune;
+    private RadioButton fxRB_regardingOtherCommune;
     @FXML
-    private CheckBox fxCB_regardingOthers;
+    private RadioButton fxRB_regardingOthers;
     @FXML
     private RadioButton fxRB_agreeToInquiryYes;
     @FXML
     private RadioButton fxRB_agreeToInquiryNo;
     @FXML
-    private CheckBox fxCB_activityAndSocialInteractionOffer;
+    private RadioButton fxRB_activityAndSocialInteractionOffer;
     @FXML
-    private CheckBox fxCB_protectedEmploymentOffer;
+    private RadioButton fxRB_protectedEmploymentOffer;
     @FXML
-    private CheckBox fxCB_dayCareOffer;
+    private RadioButton fxRB_dayCareOffer;
     @FXML
-    private CheckBox fxCB_educationOffer;
+    private RadioButton fxRB_educationOffer;
     @FXML
-    private CheckBox fxCB_guadianship;
+    private RadioButton fxRB_guadianship;
     @FXML
-    private CheckBox fxCB_guadianshipWithRevokedCapacity;
+    private RadioButton fxRB_guadianshipWithRevokedCapacity;
     @FXML
-    private CheckBox fxCB_curatorship;
+    private RadioButton fxRB_curatorship;
     @FXML
-    private CheckBox fxCB_guardian;
+    private RadioButton fxRB_guardian;
     @FXML
-    private CheckBox fx_layRepresentative;
+    private TextArea fxTA_guardianContact;
     @FXML
-    private CheckBox fxCB_partRepresentative;
+    private RadioButton fxRB_layRepresentative;
     @FXML
-    private CheckBox fxCB_powerOfAttorney;
+    private RadioButton fxRB_partRepresentative;
+    @FXML
+    private RadioButton fxRB_powerOfAttorney;
     @FXML
     private TextArea fxTA_powerOfAttorney;
     @FXML
-    private CheckBox fxCB_rightsAndDuties;
+    private RadioButton fxRB_rightsAndDuties;
     @FXML
     private TextArea fxTA_rightsAndDuties;
     @FXML
@@ -237,37 +238,49 @@ public class CaseOpeningFXMLController implements Initializable {
     @FXML
     private RadioButton fxRB_consentNo;
     @FXML
-    private CheckBox fxCB_consentOral;
+    private RadioButton fxRB_consentOral;
     @FXML
-    private CheckBox fxCB_consentWritten;
+    private RadioButton fxRB_consentWritten;
     @FXML
-    private CheckBox fxCB_getInfoDoctor;
+    private RadioButton fxRB_getInfoDoctor;
     @FXML
-    private CheckBox fxCB_getInfoSpecialDoctor;
+    private RadioButton fxRB_getInfoSpecialDoctor;
     @FXML
-    private CheckBox fxCB_getInfoHospital;
+    private RadioButton fxRB_getInfoHospital;
     @FXML
-    private CheckBox fxCB_getInfoAKasse;
+    private RadioButton fxRB_getInfoAKasse;
     @FXML
-    private CheckBox fxCB_getInfoOffer;
+    private RadioButton fxRB_getInfoOffer;
     @FXML
-    private CheckBox fxCB_getInfoEmployer;
+    private RadioButton fxRB_getInfoEmployer;
     @FXML
-    private CheckBox fxCB_getInfoPreviousCommune;
+    private RadioButton fxRB_getInfoPreviousCommune;
     @FXML
-    private CheckBox fxCB_getInfoOtherAdministrations;
+    private RadioButton fxRB_getInfoOtherAdministrations;
     @FXML
-    private TextArea fxTA_getInfo;
+    private TextArea fxTA_obtainOfInformation;
     @FXML
     private TextArea fxTA_citizenSpecialCircumstances;
     @FXML
-    private CheckBox fxCB_OtherActingCommune;
+    private RadioButton fxRB_OtherActingCommune;
     @FXML
-    private CheckBox fxCB_otherPayingCommune;
+    private RadioButton fxRB_otherPayingCommune;
     @FXML
     private TextArea fxTA_CommunePayingOrActing;
+    @FXML
+    private RadioButton fxRB_Activity104;
+    @FXML
+    private RadioButton fxRB_ambulantTreatment;
+
     // Other attributes
-    private ObservableList<CheckBox> carriageCheckboxes;
+    private ObservableList<RadioButton> carriageList,
+            treatmentList,
+            otherElementsList,
+            controlList,
+            controlBenefitList,
+            stayList,
+            socialPedagogicalHelpList,
+            personHelpSchemeList;
 
     /**
      * Initializes the controller class.
@@ -275,38 +288,90 @@ public class CaseOpeningFXMLController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         ToggleGroup tgLookingForGroup = new ToggleGroup();
-        this.carriageCheckboxes = FXCollections.observableArrayList();
+
+        this.carriageList = FXCollections.observableArrayList();
+        this.treatmentList = FXCollections.observableArrayList();
+        this.otherElementsList = FXCollections.observableArrayList();
+        this.controlList = FXCollections.observableArrayList();
+        this.controlBenefitList = FXCollections.observableArrayList();
+        this.stayList = FXCollections.observableArrayList();
+        this.socialPedagogicalHelpList = FXCollections.observableArrayList();
+        this.personHelpSchemeList = FXCollections.observableArrayList();
+
         fxRB_clearLookingForYes.setToggleGroup(tgLookingForGroup);
         fxRB_clearLookingForNo.setToggleGroup(tgLookingForGroup);
 
-        carriageCheckboxes.add(fxCB_carriage1);
-        carriageCheckboxes.add(fxCB_carriage2);
-        carriageCheckboxes.add(fxCB_carriage3);
-        carriageCheckboxes.add(fxCB_carriage4);
-        carriageCheckboxes.add(fxCB_carriage5);
-        carriageCheckboxes.add(fxCB_carriage6);
+        carriageList.add(fxRB_carriage1);
+        carriageList.add(fxRB_carriage2);
+        carriageList.add(fxRB_carriage3);
+        carriageList.add(fxRB_carriage4);
+        carriageList.add(fxRB_carriage5);
+        carriageList.add(fxRB_carriage6);
 
-        for (CheckBox c : carriageCheckboxes) {
-            c.setVisible(false);
-        }
+        treatmentList.add(fxRB_treatment1);
+        treatmentList.add(fxRB_treatment2);
+        treatmentList.add(fxRB_treatment3);
+        treatmentList.add(fxRB_treatment4);
+        treatmentList.add(fxRB_treatment5);
+
+        controlBenefitList.add(fxRB_cashBenefit1);
+        controlBenefitList.add(fxRB_cashBenefit2);
+
+        controlList.add(fxRB_control1);
+        controlList.add(fxRB_control2);
+        controlList.add(fxRB_control3);
+        controlList.add(fxRB_control4);
+
+        stayList.add(fxRB_stay1);
+        stayList.add(fxRB_stay2);
+        stayList.add(fxRB_stay3);
+        stayList.add(fxRB_stay4);
+        stayList.add(fxRB_stay5);
+
+        socialPedagogicalHelpList.add(fxRB_socialPedagogicalHelp1);
+        socialPedagogicalHelpList.add(fxRB_socialPedagogicalHelp2);
+        socialPedagogicalHelpList.add(fxRB_socialPedagogicalHelp3);
+        socialPedagogicalHelpList.add(fxRB_socialPedagogicalHelp4);
+        socialPedagogicalHelpList.add(fxRB_socialPedagogicalHelp5);
+        socialPedagogicalHelpList.add(fxRB_socialPedagogicalHelp6);
+        socialPedagogicalHelpList.add(fxRB_socialPedagogicalHelp7);
+        socialPedagogicalHelpList.add(fxRB_socialPedagogicalHelp8);
+
+        personHelpSchemeList.add(fxRB_personHelpScheme1);
+        personHelpSchemeList.add(fxRB_personHelpScheme2);
+        personHelpSchemeList.add(fxRB_personHelpScheme3);
+        personHelpSchemeList.add(fxRB_personHelpScheme4);
+        personHelpSchemeList.add(fxRB_personHelpScheme5);
+        personHelpSchemeList.add(fxRB_personHelpScheme6);
+        personHelpSchemeList.add(fxRB_personHelpScheme7);
+        
+        // Eventual implementation:
+        otherElementsList.add(fxRB_Activity104);
+        otherElementsList.add(fxRB_protectedEmploymentBenefit);
+        otherElementsList.add(fxRB_personalHelp83);
+        otherElementsList.add(fxRB_personalHelp95);
+
+        carriageList.forEach((RadioButton) -> {
+            RadioButton.setVisible(false);
+            RadioButton.setToggleGroup(tgLookingForGroup);
+        });
 
     }
 
     @FXML
     private void rbCarriageOnAction(ActionEvent event) {
         if (event.getSource() == fxRB_carriage) {
-            carriageCheckboxes.forEach((CheckBox) -> {
-                CheckBox.setVisible(true);
+            carriageList.forEach((RadioButton) -> {
+                RadioButton.setVisible(true);
             });
 
             if (fxRB_carriage.isSelected() == false) {
-                carriageCheckboxes.forEach((CheckBox) -> {
-                    CheckBox.setVisible(false);
+                carriageList.forEach((RadioButton) -> {
+                    RadioButton.setVisible(false);
                 });
             }
 
         }
-
     }
 
 }

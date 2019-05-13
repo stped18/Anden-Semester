@@ -33,15 +33,15 @@
 \usepackage{array}
 \usepackage[none]{hyphenat}
 
-\makeindex
-\pagestyle{fancy}
-\fancypagestyle{plain}{
 
-	\fancyhead[c]{hallo}
-	\fancyfoot[C]
-	}
-\renewcommand{\headrulewidth}{0pt}
-\renewcommand{\footrulewidth}{0pt}
+\pagestyle{fancyplain}
+\fancyhf{
+	\fancyfoot[c]{\thepage \space of \pageref{page:last}}
+	%\fancyhead[c]
+}
+
+ 
+
 
 
 
@@ -127,9 +127,12 @@
 \input{Brugervejledning}
 
 \input{Projektlog}
+\label{page:last}
 \clearpage
-\thispagestyle{plain}{
-\fancyhead{} }
+\fancyhf{
+	\fancyhead{} 
+	\fancyfoot[c]{\thepage}
+}
 \input{Interne_bilag}
 
 %\input{Eksterne_bilag}

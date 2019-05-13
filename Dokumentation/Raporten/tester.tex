@@ -9,8 +9,6 @@
 \usepackage{titlesec}
 \usepackage{etoolbox}
 \usepackage{amsmath}
-\usepackage{titletoc}
-\usepackage{lastpage}
 
 \usepackage{lscape} % lig siden ned. 
 \usepackage{longtable} % table
@@ -36,9 +34,10 @@
 \makeindex
 \pagestyle{fancy}
 \fancypagestyle{plain}{
-
+	\pagestyle{empty}
 	\fancyhead[c]{hallo}
-	\fancyfoot[C]
+	\fancyfoot[c]{\raisebox{-6\baselineskip}{\thepage}}
+	\fancyfoot[C]{\iffloatpage{}{\thepage}}
 	}
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
@@ -76,11 +75,8 @@
   breakatwhitespace=true,
   tabsize=1
 }
-
-
-
 \renewcommand{\thechapter}{\Roman{chapter}}
-\renewcommand{\thesection}{}
+
 
 
 
@@ -100,9 +96,6 @@
 
 \input{Redaktionelt}
 \newpage
-\setcounter{chapter}{0}
-\renewcommand{\thechapter}{\arabic{chapter}}
-\renewcommand{\thesection}{\arabic{chapter}.\arabic{section}}
 \input{Indledning}
 
 \input{Metoder}
@@ -117,9 +110,7 @@
 
 \input{Litteraturliste}
 \newpage
-\setcounter{chapter}{1}
-\renewcommand{\thechapter}{\Alph{chapter}}
-\renewcommand{\thesection}{\arabic{section}}
+
 \input{Procesrapport}
 
 \input{Kildekode}
@@ -132,7 +123,7 @@
 \fancyhead{} }
 \input{Interne_bilag}
 
-%\input{Eksterne_bilag}
+\input{Eksterne_bilag}
 
 
 

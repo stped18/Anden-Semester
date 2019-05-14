@@ -23,7 +23,7 @@ import javafx.scene.layout.VBox;
  *
  * @author PCATG
  */
-public class CaseOpeningFXMLController implements Initializable {
+public class CaseOpeningController implements Initializable {
 
     // FXML fx:ids
     // CB = CheckBox

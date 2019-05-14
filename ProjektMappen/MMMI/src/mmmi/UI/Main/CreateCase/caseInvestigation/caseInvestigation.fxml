@@ -18,7 +18,8 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="900.0" prefWidth="1050.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mmmi.UI.Main.createCase.caseInvestigation.CaseInvestigationFXMLController">
+<AnchorPane id="AnchorPane" prefHeight="900.0" prefWidth="1050.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" 
+            fx:controller="mmmi.UI.Main.createCase.caseInvestigation.CaseInvestigationController">
     <stylesheets>
         <URL value="@/mmmi/UI/mainStylesheet.css" />
     </stylesheets>

@@ -3,19 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mmmi.UI.Main.findeCase;
-
-import javafx.fxml.Initializable;
+package mmmi.UI.Main.createCase.caseInvestigation;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.Initializable;
 
 /**
  * FXML Controller class
  *
  * @author steff
  */
-public class FindeCaseFXMLController implements Initializable {
+public class CaseInvestigationController implements Initializable {
 
     /**
      * Initializes the controller class.
@@ -23,7 +22,6 @@ public class FindeCaseFXMLController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }
-
+    }    
+    
 }
-

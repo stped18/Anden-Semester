@@ -19,7 +19,7 @@ import java.util.ResourceBundle;
  *
  * @author steff
  */
-public class MainControler extends RunFxmlLoader implements Initializable {
+public class MainController extends RunFxmlLoader implements Initializable {
 
     @FXML
     private AnchorPane fxRootPane;
@@ -45,20 +45,20 @@ public class MainControler extends RunFxmlLoader implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-                changeFxml(fxSubPane, "home/homeFXML.fxml");
+                changeFxml(fxSubPane, "home/home.fxml");
 
     }
 
     @FXML
     private void BtnHandler(ActionEvent event) {
         if (event.getSource() == fxHomeBtn) {
-            changeFxml(fxSubPane, "home/homeFXML.fxml");
+            changeFxml(fxSubPane, "home/home.fxml");
         }
         if (event.getSource() == fxCreateCaseBtn) {
-            changeFxml(fxSubPane, "createCase/createCaseFXML.fxml");
+            changeFxml(fxSubPane, "createCase/createCase.fxml");
         }
         if (event.getSource() == fxSearchcaseBtn) {
-            changeFxml(fxSubPane, "findeCase/findeCaseFXML.fxml");
+            changeFxml(fxSubPane, "findCase/findCase.fxml");
 
         }
     }

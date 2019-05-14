@@ -15,7 +15,7 @@ import java.util.ResourceBundle;
  *
  * @author steff
  */
-public class HomeFXMLController implements Initializable {
+public class HomeController implements Initializable {
 
     /**
      * Initializes the controller class.

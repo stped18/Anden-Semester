@@ -16,9 +16,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.ScrollPane;
 
-public class CreateCaseFXMLController extends RunFxmlLoader implements Initializable {
+public class CreateCaseController extends RunFxmlLoader implements Initializable {
 
 
     @FXML
@@ -42,9 +41,9 @@ public class CreateCaseFXMLController extends RunFxmlLoader implements Initializ
         
         
                 this.list = FXCollections.observableArrayList();
-                list.add(0, "caseOpening/caseOpeningFXML.fxml");
-                list.add(1, "caseInvestigation/caseInvestigationFXML.fxml"); 
-                list.add(2, "caseOpening/caseOpeningFXML.fxml");
+                list.add(0, "caseOpening/caseOpening.fxml");
+                list.add(1, "caseInvestigation/caseInvestigation.fxml"); 
+                list.add(2, "caseOpening/caseOpening.fxml");
                 changeFxml(fxSubSubpane, list.get(0));
 
 

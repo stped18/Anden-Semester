@@ -37,5 +37,9 @@ public class DatabaseHandler {
                     + "database access error occured" + e.getLocalizedMessage());
             return false;
         }
+        return false;
+    
+
     }
 }
+

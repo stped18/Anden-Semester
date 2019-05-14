@@ -2,7 +2,7 @@
  * Denne classe skaber kontakten mellem programet og databasen
  *
  */
-package Data_layer;
+package Data_layer.Connection;
 
 import java.sql.*;
 

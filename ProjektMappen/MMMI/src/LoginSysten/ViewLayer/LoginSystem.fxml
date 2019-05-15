@@ -9,27 +9,26 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="LoginSysten.ViewLayer.LoginSystemController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LoginSysten.ViewLayer.LoginSystemController">
     <stylesheets>
         <URL value="@loginsystemfxml.css" />
     </stylesheets>
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0f4f83" height="400.0" layoutX="162.0" stroke="BLACK" strokeType="INSIDE" width="439.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0f4f83" height="400.0" layoutX="162.0" stroke="BLACK" strokeType="INSIDE" width="440.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#4e667c" height="400.0" layoutX="-22.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
       <Text layoutX="240.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MMMI" textAlignment="CENTER" wrappingWidth="237.767578125">
          <font>
             <Font name="System Bold" size="36.0" />
          </font>
       </Text>
-      <Label layoutX="93.0" layoutY="93.0" text="Username" textFill="#0f4f83">
+      <Label layoutX="44.0" layoutY="89.0" text="Username" textFill="#0f4f83">
          <font>
-            <Font size="18.0" />
+            <Font name="System Bold" size="25.0" />
          </font>
       </Label>
-      <Label layoutX="93.0" layoutY="187.0" text="PassWord" textFill="#0f4f83">
+      <Label layoutX="53.0" layoutY="182.0" text="Password" textFill="#0f4f83">
          <font>
-            <Font size="18.0" />
+            <Font name="System Bold" size="25.0" />
          </font>
       </Label>
       <TextField fx:id="fxUsername" layoutX="190.0" layoutY="94.0" style="-fx-background-color: #4e667c;" />
@@ -37,4 +36,3 @@
       <Button fx:id="fxLoginBTM" layoutX="202.0" layoutY="278.0" mnemonicParsing="false" onAction="#logindHandler" prefHeight="15.0" prefWidth="229.0" style="-fx-background-color: #4e667c;" text="Login" textFill="#0f4f83" />
    </children>
 </AnchorPane>
-

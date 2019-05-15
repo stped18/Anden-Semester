@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="caseOpenRootpane" prefHeight="500.0" prefWidth="891.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" 
-            fx:controller="mmmi.UI.Main.createCase.caseOpening.CaseOpeningFXMLController">
+            fx:controller="mmmi.UI.Main.createCase.caseOpening.CaseOpeningController">
     <children>
         <ScrollPane maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="2800.0" prefWidth="1100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <content>
@@ -284,3 +284,4 @@
         </ScrollPane>
     </children>
 </AnchorPane>
+

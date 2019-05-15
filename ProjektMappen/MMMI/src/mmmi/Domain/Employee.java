@@ -1,5 +1,7 @@
 package mmmi.Domain;
 
+import LoginSystem.Domain.IEmployee;
+
 public class Employee {
 
     private int id;
@@ -8,6 +10,8 @@ public class Employee {
     private int departmentID;
     //TODO: needs rights and a way to check them. 
 
+    IEmployee getEmployee;
+    
     /**
      * @param name
      * @param id

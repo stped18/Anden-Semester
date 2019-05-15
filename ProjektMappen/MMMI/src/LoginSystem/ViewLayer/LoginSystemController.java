@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package LoginSysten.ViewLayer;
+package LoginSystem.ViewLayer;
 
+import LoginSystem.Domain.LoginSystem;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -26,23 +27,30 @@ public class LoginSystemController implements Initializable {
     private TextField fxPassWord;
     @FXML
     private Button fxLoginBTM;
+       LoginSystem loginSystem ;
+   
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+      
     }    
 
     @FXML
     private void logindHandler(ActionEvent event) {
-        
-        
-        
+        loginSystem.setUsername(fxUsername.getText().toString());
+        loginSystem.setPassword(fxPassWord.getText().toString());
+        System.out.println(loginSystem.getPassword()+"   "+ loginSystem.getUsername());
     }
     
 }
+
+
+
+
+
 
 
 

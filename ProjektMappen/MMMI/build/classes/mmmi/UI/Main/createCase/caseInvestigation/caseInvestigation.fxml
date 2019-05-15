@@ -1,0 +1,693 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXTextField?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="900.0" prefWidth="1050.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" 
+            fx:controller="mmmi.UI.Main.createCase.caseInvestigation.CaseInvestigationController">
+    <stylesheets>
+        <URL value="@/mmmi/UI/mainStylesheet.css" />
+    </stylesheets>
+   <children>
+      <ScrollPane layoutX="57.0" layoutY="14.0" prefHeight="900.0" prefWidth="1050.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <content>
+            <AnchorPane prefHeight="900.0" prefWidth="1050.0">
+               <children>
+                  <SplitPane dividerPositions="0.05902004454342984" layoutX="193.0" layoutY="69.0" orientation="VERTICAL" prefHeight="900.0" prefWidth="1050.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <items>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="126.0" prefWidth="1048.0">
+                           <children>
+                              <Label layoutX="404.0" layoutY="12.0" text="Udredning - sagsoplysning">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="900.0" prefWidth="1050.0">
+                           <children>
+                              <VBox prefHeight="842.0" prefWidth="1048.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <TitledPane expanded="false" prefHeight="6.0" prefWidth="1048.0" stylesheets="@../../../mainStylesheet.css" text="Fysisk funktionsnedsættelse " textAlignment="CENTER">
+                                       <content>
+                                          <VBox prefHeight="200.0" prefWidth="100.0">
+                                             <children>
+                                                <Label text="Eksempelvis: Hørenedsættelse, kommunikationsnedsættelse, mobilitetsnedsættelse, synsnedsættelse og døvblindhed" />
+                                                <Label text="Oplysninger fra borgeren ">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextArea prefHeight="100.0" prefWidth="1026.0" promptText="(Udfordringer, ønsker og prioriteringer)" />
+                                                <Label text="Oplysninger fra andre">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextArea prefHeight="100.0" prefWidth="1026.0" promptText="(Fx læge, pårørende,tilbud)" />
+                                                <Label text="Sagsbehandlersbemærkninger">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextArea prefHeight="100.0" prefWidth="1026.0" promptText="(Observationer, analyse)" />
+                                                <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                                                   <children>
+                                                      <Label text="Funktionsniveau">
+                                                         <font>
+                                                            <Font name="System Bold" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <CheckBox mnemonicParsing="false" text="0" />
+                                                      <CheckBox mnemonicParsing="false" text="1" />
+                                                      <CheckBox mnemonicParsing="false" text="2" />
+                                                      <CheckBox mnemonicParsing="false" text="3" />
+                                                      <CheckBox mnemonicParsing="false" text="4" />
+                                                      <Label text="Behandlede temaer:">
+                                                         <font>
+                                                            <Font name="System Bold" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <JFXTextField prefHeight="25.0" prefWidth="249.0" />
+                                                   </children>
+                                                   <opaqueInsets>
+                                                      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                   </opaqueInsets>
+                                                   <VBox.margin>
+                                                      <Insets />
+                                                   </VBox.margin>
+                                                   <padding>
+                                                      <Insets right="20.0" top="20.0" />
+                                                   </padding>
+                                                </HBox>
+                                             </children>
+                                          </VBox>
+                                       </content>
+                                    </TitledPane>
+                                    <TitledPane expanded="false" prefHeight="6.0" prefWidth="1048.0" stylesheets="@../../../mainStylesheet.css" text="Psykisk funktionsnedsættelse" textAlignment="CENTER">
+                                       <content>
+                                          <VBox prefHeight="200.0" prefWidth="100.0">
+                                             <children>
+                                                <Label text="Eksempelvis: Sindslidelse som angst, depression, forandret virkelighedsopfattelse, personlighedsforstyrrelse, spiseforstyrrelse, stressbelastning og tilknytningsforstyrrelse. " />
+                                                <Label text="Intellektuel/kognitiv forstyrrelse som demens, hjerneskade, udviklingshæmning og udviklingsforstyrrelse, herunder opmærksomhedsforstyrrelse og autismespektrum. " />
+                                                <Label text="Oplysninger fra borgeren ">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextArea prefHeight="100.0" prefWidth="1026.0" promptText="(Udfordringer, ønsker og prioriteringer)" />
+                                                <Label text="Oplysninger fra andre">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextArea prefHeight="100.0" prefWidth="1026.0" promptText="(Fx læge, pårørende,tilbud)" />
+                                                <Label text="Sagsbehandlersbemærkninger">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextArea prefHeight="100.0" prefWidth="1026.0" promptText="(Observationer, analyse)" />
+                                                <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                                                   <children>
+                                                      <Label text="Funktionsniveau">
+                                                         <font>
+                                                            <Font name="System Bold" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <CheckBox mnemonicParsing="false" text="0" />
+                                                      <CheckBox mnemonicParsing="false" text="1" />
+                                                      <CheckBox mnemonicParsing="false" text="2" />
+                                                      <CheckBox mnemonicParsing="false" text="3" />
+                                                      <CheckBox mnemonicParsing="false" text="4" />
+                                                      <Label text="Behandlede temaer:">
+                                                         <font>
+                                                            <Font name="System Bold" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <JFXTextField prefHeight="25.0" prefWidth="249.0" />
+                                                   </children>
+                                                   <opaqueInsets>
+                                                      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                   </opaqueInsets>
+                                                   <VBox.margin>
+                                                      <Insets />
+                                                   </VBox.margin>
+                                                   <padding>
+                                                      <Insets right="20.0" top="20.0" />
+                                                   </padding>
+                                                </HBox>
+                                             </children>
+                                          </VBox>
+                                       </content>
+                                    </TitledPane>
+                                    <TitledPane expanded="false" prefHeight="6.0" prefWidth="1048.0" stylesheets="@../../../mainStylesheet.css" text="Socialt problem " textAlignment="CENTER">
+                                       <content>
+                                          <VBox prefHeight="200.0" prefWidth="100.0">
+                                             <children>
+                                                <Label text="Eksempelvis: Hjemløshed, ind- og udadreagerende adfærd, kriminalitet, misbrug, omsorgssvigt, overgreb, prostitution," />
+                                                <Label text=" seksuelt krænkende adfærd, selvskadende adfærd, selvmordstanker eller –forsøg og social isolation." />
+                                                <Label text="Oplysninger fra borgeren ">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextArea prefHeight="100.0" prefWidth="1026.0" promptText="(Udfordringer, ønsker og prioriteringer)" />
+                                                <Label text="Oplysninger fra andre">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextArea prefHeight="100.0" prefWidth="1026.0" promptText="(Fx læge, pårørende,tilbud)" />
+                                                <Label text="Sagsbehandlersbemærkninger">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextArea prefHeight="100.0" prefWidth="1026.0" promptText="(Observationer, analyse)" />
+                                                <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                                                   <children>
+                                                      <Label text="Funktionsniveau">
+                                                         <font>
+                                                            <Font name="System Bold" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <CheckBox mnemonicParsing="false" text="0" />
+                                                      <CheckBox mnemonicParsing="false" text="1" />
+                                                      <CheckBox mnemonicParsing="false" text="2" />
+                                                      <CheckBox mnemonicParsing="false" text="3" />
+                                                      <CheckBox mnemonicParsing="false" text="4" />
+                                                      <Label text="Behandlede temaer:">
+                                                         <font>
+                                                            <Font name="System Bold" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <JFXTextField prefHeight="25.0" prefWidth="249.0" />
+                                                   </children>
+                                                   <opaqueInsets>
+                                                      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                   </opaqueInsets>
+                                                   <VBox.margin>
+                                                      <Insets />
+                                                   </VBox.margin>
+                                                   <padding>
+                                                      <Insets right="20.0" top="20.0" />
+                                                   </padding>
+                                                </HBox>
+                                             </children>
+                                          </VBox>
+                                       </content>
+                                    </TitledPane>
+                                    <TitledPane expanded="false" prefHeight="6.0" prefWidth="1048.0" stylesheets="@../../../mainStylesheet.css" text="Praktiske opgaver i hjemmet " textAlignment="CENTER">
+                                       <content>
+                                          <VBox prefHeight="200.0" prefWidth="100.0">
+                                             <children>
+                                                <Label text="Eksempelvis: Hjælp og omsorg for andre, praktiske opgaver, indkøb, madlavning, rengøring og tøjvask" />
+                                                <Label text="Oplysninger fra borgeren ">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextArea prefHeight="100.0" prefWidth="1026.0" promptText="(Udfordringer, ønsker og prioriteringer)" />
+                                                <Label text="Oplysninger fra andre">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextArea prefHeight="100.0" prefWidth="1026.0" promptText="(Fx læge, pårørende,tilbud)" />
+                                                <Label text="Sagsbehandlersbemærkninger">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextArea prefHeight="100.0" prefWidth="1026.0" promptText="(Observationer, analyse)" />
+                                                <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                                                   <children>
+                                                      <Label text="Funktionsniveau">
+                                                         <font>
+                                                            <Font name="System Bold" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <CheckBox mnemonicParsing="false" text="0" />
+                                                      <CheckBox mnemonicParsing="false" text="1" />
+                                                      <CheckBox mnemonicParsing="false" text="2" />
+                                                      <CheckBox mnemonicParsing="false" text="3" />
+                                                      <CheckBox mnemonicParsing="false" text="4" />
+                                                      <Label text="Behandlede temaer:">
+                                                         <font>
+                                                            <Font name="System Bold" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <JFXTextField prefHeight="25.0" prefWidth="249.0" />
+                                                   </children>
+                                                   <opaqueInsets>
+                                                      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                   </opaqueInsets>
+                                                   <VBox.margin>
+                                                      <Insets />
+                                                   </VBox.margin>
+                                                   <padding>
+                                                      <Insets right="20.0" top="20.0" />
+                                                   </padding>
+                                                </HBox>
+                                             </children>
+                                          </VBox>
+                                       </content>
+                                    </TitledPane>
+                                    <TitledPane expanded="false" prefHeight="6.0" prefWidth="1048.0" stylesheets="@../../../mainStylesheet.css" text="Egenomsorg" textAlignment="CENTER">
+                                       <content>
+                                          <VBox prefHeight="200.0" prefWidth="100.0">
+                                             <children>
+                                                <Label text="Eksempelvis: Af- og påklædning, vask, kropspleje, toiletbesøg, drikke og spise" />
+                                                <Label text="Oplysninger fra borgeren ">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextArea prefHeight="100.0" prefWidth="1026.0" promptText="(Udfordringer, ønsker og prioriteringer)" />
+                                                <Label text="Oplysninger fra andre">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextArea prefHeight="100.0" prefWidth="1026.0" promptText="(Fx læge, pårørende,tilbud)" />
+                                                <Label text="Sagsbehandlersbemærkninger">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextArea prefHeight="100.0" prefWidth="1026.0" promptText="(Observationer, analyse)" />
+                                                <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                                                   <children>
+                                                      <Label text="Funktionsniveau">
+                                                         <font>
+                                                            <Font name="System Bold" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <CheckBox mnemonicParsing="false" text="0" />
+                                                      <CheckBox mnemonicParsing="false" text="1" />
+                                                      <CheckBox mnemonicParsing="false" text="2" />
+                                                      <CheckBox mnemonicParsing="false" text="3" />
+                                                      <CheckBox mnemonicParsing="false" text="4" />
+                                                      <Label text="Behandlede temaer:">
+                                                         <font>
+                                                            <Font name="System Bold" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <JFXTextField prefHeight="25.0" prefWidth="249.0" />
+                                                   </children>
+                                                   <opaqueInsets>
+                                                      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                   </opaqueInsets>
+                                                   <VBox.margin>
+                                                      <Insets />
+                                                   </VBox.margin>
+                                                   <padding>
+                                                      <Insets right="20.0" top="20.0" />
+                                                   </padding>
+                                                </HBox>
+                                             </children>
+                                          </VBox>
+                                       </content>
+                                    </TitledPane>
+                                    <TitledPane expanded="false" prefHeight="6.0" prefWidth="1048.0" stylesheets="@../../../mainStylesheet.css" text="Mobilitet" textAlignment="CENTER">
+                                       <content>
+                                          <VBox prefHeight="200.0" prefWidth="100.0">
+                                             <children>
+                                                <Label text="Eksempelvis: Gang og bevægelse, ændre og opretholde kropsstilling, bære, flytte og håndtere genstande og færden med transportmidler" />
+                                                <Label text="Oplysninger fra borgeren ">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextArea prefHeight="100.0" prefWidth="1026.0" promptText="(Udfordringer, ønsker og prioriteringer)" />
+                                                <Label text="Oplysninger fra andre">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextArea prefHeight="100.0" prefWidth="1026.0" promptText="(Fx læge, pårørende,tilbud)" />
+                                                <Label text="Sagsbehandlersbemærkninger">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextArea prefHeight="100.0" prefWidth="1026.0" promptText="(Observationer, analyse)" />
+                                                <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                                                   <children>
+                                                      <Label text="Funktionsniveau">
+                                                         <font>
+                                                            <Font name="System Bold" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <CheckBox mnemonicParsing="false" text="0" />
+                                                      <CheckBox mnemonicParsing="false" text="1" />
+                                                      <CheckBox mnemonicParsing="false" text="2" />
+                                                      <CheckBox mnemonicParsing="false" text="3" />
+                                                      <CheckBox mnemonicParsing="false" text="4" />
+                                                      <Label text="Behandlede temaer:">
+                                                         <font>
+                                                            <Font name="System Bold" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <JFXTextField prefHeight="25.0" prefWidth="249.0" />
+                                                   </children>
+                                                   <opaqueInsets>
+                                                      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                   </opaqueInsets>
+                                                   <VBox.margin>
+                                                      <Insets />
+                                                   </VBox.margin>
+                                                   <padding>
+                                                      <Insets right="20.0" top="20.0" />
+                                                   </padding>
+                                                </HBox>
+                                             </children>
+                                          </VBox>
+                                       </content>
+                                    </TitledPane>
+                                    <TitledPane expanded="false" prefHeight="6.0" prefWidth="1048.0" stylesheets="@../../../mainStylesheet.css" text="Kommunikation" textAlignment="CENTER">
+                                       <content>
+                                          <VBox prefHeight="200.0" prefWidth="100.0">
+                                             <children>
+                                                <Label text="Eksempelvis: Forstå meddelelser, fremstille meddelelser, samtale, anvendelse af kommunikationshjælpemidler og – teknikker og kommunikationsmiddel" />
+                                                <Label text="Oplysninger fra borgeren ">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextArea prefHeight="100.0" prefWidth="1026.0" promptText="(Udfordringer, ønsker og prioriteringer)" />
+                                                <Label text="Oplysninger fra andre">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextArea prefHeight="100.0" prefWidth="1026.0" promptText="(Fx læge, pårørende,tilbud)" />
+                                                <Label text="Sagsbehandlersbemærkninger">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextArea prefHeight="100.0" prefWidth="1026.0" promptText="(Observationer, analyse)" />
+                                                <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                                                   <children>
+                                                      <Label text="Funktionsniveau">
+                                                         <font>
+                                                            <Font name="System Bold" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <CheckBox mnemonicParsing="false" text="0" />
+                                                      <CheckBox mnemonicParsing="false" text="1" />
+                                                      <CheckBox mnemonicParsing="false" text="2" />
+                                                      <CheckBox mnemonicParsing="false" text="3" />
+                                                      <CheckBox mnemonicParsing="false" text="4" />
+                                                      <Label text="Behandlede temaer:">
+                                                         <font>
+                                                            <Font name="System Bold" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <JFXTextField prefHeight="25.0" prefWidth="249.0" />
+                                                   </children>
+                                                   <opaqueInsets>
+                                                      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                   </opaqueInsets>
+                                                   <VBox.margin>
+                                                      <Insets />
+                                                   </VBox.margin>
+                                                   <padding>
+                                                      <Insets right="20.0" top="20.0" />
+                                                   </padding>
+                                                </HBox>
+                                             </children>
+                                          </VBox>
+                                       </content>
+                                    </TitledPane>
+                                    <TitledPane expanded="false" prefHeight="6.0" prefWidth="1048.0" stylesheets="@../../../mainStylesheet.css" text="Samfundsliv" textAlignment="CENTER">
+                                       <content>
+                                          <VBox prefHeight="200.0" prefWidth="100.0">
+                                             <children>
+                                                <Label text="Eksempelvis: Beskæftigelse, bolig, uddannelse og privatøkonomi" />
+                                                <Label text="Oplysninger fra borgeren ">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextArea prefHeight="100.0" prefWidth="1026.0" promptText="(Udfordringer, ønsker og prioriteringer)" />
+                                                <Label text="Oplysninger fra andre">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextArea prefHeight="100.0" prefWidth="1026.0" promptText="(Fx læge, pårørende,tilbud)" />
+                                                <Label text="Sagsbehandlersbemærkninger">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextArea prefHeight="100.0" prefWidth="1026.0" promptText="(Observationer, analyse)" />
+                                                <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                                                   <children>
+                                                      <Label text="Funktionsniveau">
+                                                         <font>
+                                                            <Font name="System Bold" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <CheckBox mnemonicParsing="false" text="0" />
+                                                      <CheckBox mnemonicParsing="false" text="1" />
+                                                      <CheckBox mnemonicParsing="false" text="2" />
+                                                      <CheckBox mnemonicParsing="false" text="3" />
+                                                      <CheckBox mnemonicParsing="false" text="4" />
+                                                      <Label text="Behandlede temaer:">
+                                                         <font>
+                                                            <Font name="System Bold" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <JFXTextField prefHeight="25.0" prefWidth="249.0" />
+                                                   </children>
+                                                   <opaqueInsets>
+                                                      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                   </opaqueInsets>
+                                                   <VBox.margin>
+                                                      <Insets />
+                                                   </VBox.margin>
+                                                   <padding>
+                                                      <Insets right="20.0" top="20.0" />
+                                                   </padding>
+                                                </HBox>
+                                             </children>
+                                          </VBox>
+                                       </content>
+                                    </TitledPane>
+                                    <TitledPane expanded="false" prefHeight="6.0" prefWidth="1048.0" stylesheets="@../../../mainStylesheet.css" text="Socialt liv " textAlignment="CENTER">
+                                       <content>
+                                          <VBox prefHeight="200.0" prefWidth="100.0">
+                                             <children>
+                                                <Label text="Eksempelvis: Samspil og kontakt, relationer, sociale fællesskaber og netværk" />
+                                                <Label text="Oplysninger fra borgeren ">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextArea prefHeight="100.0" prefWidth="1026.0" promptText="(Udfordringer, ønsker og prioriteringer)" />
+                                                <Label text="Oplysninger fra andre">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextArea prefHeight="100.0" prefWidth="1026.0" promptText="(Fx læge, pårørende,tilbud)" />
+                                                <Label text="Sagsbehandlersbemærkninger">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextArea prefHeight="100.0" prefWidth="1026.0" promptText="(Observationer, analyse)" />
+                                                <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                                                   <children>
+                                                      <Label text="Funktionsniveau">
+                                                         <font>
+                                                            <Font name="System Bold" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <CheckBox mnemonicParsing="false" text="0" />
+                                                      <CheckBox mnemonicParsing="false" text="1" />
+                                                      <CheckBox mnemonicParsing="false" text="2" />
+                                                      <CheckBox mnemonicParsing="false" text="3" />
+                                                      <CheckBox mnemonicParsing="false" text="4" />
+                                                      <Label text="Behandlede temaer:">
+                                                         <font>
+                                                            <Font name="System Bold" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <JFXTextField prefHeight="25.0" prefWidth="249.0" />
+                                                   </children>
+                                                   <opaqueInsets>
+                                                      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                   </opaqueInsets>
+                                                   <VBox.margin>
+                                                      <Insets />
+                                                   </VBox.margin>
+                                                   <padding>
+                                                      <Insets right="20.0" top="20.0" />
+                                                   </padding>
+                                                </HBox>
+                                             </children>
+                                          </VBox>
+                                       </content>
+                                    </TitledPane>
+                                    <TitledPane expanded="false" prefHeight="6.0" prefWidth="1048.0" stylesheets="@../../../mainStylesheet.css" text="Sundhed" textAlignment="CENTER">
+                                       <content>
+                                          <VBox prefHeight="200.0" prefWidth="100.0">
+                                             <children>
+                                                <Label text="Eksempelvis: Helbredsforhold, kostvaner og livsførelse og medicinsk behandling" />
+                                                <Label text="Oplysninger fra borgeren ">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextArea prefHeight="100.0" prefWidth="1026.0" promptText="(Udfordringer, ønsker og prioriteringer)" />
+                                                <Label text="Oplysninger fra andre">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextArea prefHeight="100.0" prefWidth="1026.0" promptText="(Fx læge, pårørende,tilbud)" />
+                                                <Label text="Sagsbehandlersbemærkninger">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextArea prefHeight="100.0" prefWidth="1026.0" promptText="(Observationer, analyse)" />
+                                                <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                                                   <children>
+                                                      <Label text="Funktionsniveau">
+                                                         <font>
+                                                            <Font name="System Bold" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <CheckBox mnemonicParsing="false" text="0" />
+                                                      <CheckBox mnemonicParsing="false" text="1" />
+                                                      <CheckBox mnemonicParsing="false" text="2" />
+                                                      <CheckBox mnemonicParsing="false" text="3" />
+                                                      <CheckBox mnemonicParsing="false" text="4" />
+                                                      <Label text="Behandlede temaer:">
+                                                         <font>
+                                                            <Font name="System Bold" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <JFXTextField prefHeight="25.0" prefWidth="249.0" />
+                                                   </children>
+                                                   <opaqueInsets>
+                                                      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                   </opaqueInsets>
+                                                   <VBox.margin>
+                                                      <Insets />
+                                                   </VBox.margin>
+                                                   <padding>
+                                                      <Insets right="20.0" top="20.0" />
+                                                   </padding>
+                                                </HBox>
+                                             </children>
+                                          </VBox>
+                                       </content>
+                                    </TitledPane>
+                                    <TitledPane expanded="false" prefHeight="6.0" prefWidth="1048.0" stylesheets="@../../../mainStylesheet.css" text="Omgivelser " textAlignment="CENTER">
+                                       <content>
+                                          <VBox prefHeight="200.0" prefWidth="100.0">
+                                             <children>
+                                                <Label text="Eksempelvis: Holdninger i omgivelserne og boligområde" />
+                                                <Label text="Oplysninger fra borgeren ">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextArea prefHeight="100.0" prefWidth="1026.0" promptText="(Udfordringer, ønsker og prioriteringer)" />
+                                                <Label text="Oplysninger fra andre">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextArea prefHeight="100.0" prefWidth="1026.0" promptText="(Fx læge, pårørende,tilbud)" />
+                                                <Label text="Sagsbehandlersbemærkninger">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextArea prefHeight="100.0" prefWidth="1026.0" promptText="(Observationer, analyse)" />
+                                                <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                                                   <children>
+                                                      <Label text="Funktionsniveau">
+                                                         <font>
+                                                            <Font name="System Bold" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <CheckBox mnemonicParsing="false" text="0" />
+                                                      <CheckBox mnemonicParsing="false" text="1" />
+                                                      <CheckBox mnemonicParsing="false" text="2" />
+                                                      <CheckBox mnemonicParsing="false" text="3" />
+                                                      <CheckBox mnemonicParsing="false" text="4" />
+                                                      <Label text="Behandlede temaer:">
+                                                         <font>
+                                                            <Font name="System Bold" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <JFXTextField prefHeight="25.0" prefWidth="249.0" />
+                                                   </children>
+                                                   <opaqueInsets>
+                                                      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                   </opaqueInsets>
+                                                   <VBox.margin>
+                                                      <Insets />
+                                                   </VBox.margin>
+                                                   <padding>
+                                                      <Insets right="20.0" top="20.0" />
+                                                   </padding>
+                                                </HBox>
+                                             </children>
+                                          </VBox>
+                                       </content>
+                                    </TitledPane>
+                                    <AnchorPane prefHeight="325.0" prefWidth="1048.0">
+                                       <children>
+                                          <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#015eb5" height="272.0" layoutX="231.0" layoutY="14.0" stroke="BLACK" strokeType="INSIDE" width="628.0" />
+                                          <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#fcfcfc" height="256.0" layoutX="240.0" layoutY="22.0" stroke="BLACK" strokeType="INSIDE" width="610.0" />
+                                          <Label layoutX="332.0" layoutY="64.0" text="Ud fra ovenstående udredning angives en samlet vurdering af borgerens behov: " />
+                                          <Text fontSmoothingType="LCD" layoutX="470.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Samlet vurdering">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Text>
+                                          <Line endX="509.0" layoutX="341.0" layoutY="81.0" startX="-100.0" stroke="#015eb5" />
+                                          <RadioButton layoutX="258.0" layoutY="99.0" mnemonicParsing="false" text="Intet problem (ingen, fraværende, ubetydeligt)" />
+                                          <RadioButton layoutX="258.0" layoutY="126.0" mnemonicParsing="false" text="Let problem (en smule, lidt)" />
+                                          <RadioButton layoutX="258.0" layoutY="154.0" mnemonicParsing="false" text="Moderat problem (middel, noget)" />
+                                          <RadioButton layoutX="258.0" layoutY="183.0" mnemonicParsing="false" text="Svært problem (omfattende, meget)" />
+                                          <RadioButton layoutX="258.0" layoutY="212.0" mnemonicParsing="false" text="Fuldstændigt problem (totalt, kan ikke) " />
+                                       </children>
+                                    </AnchorPane>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                    </items>
+                  </SplitPane>
+               </children>
+            </AnchorPane>
+         </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>

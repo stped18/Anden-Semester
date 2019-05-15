@@ -46,11 +46,19 @@ public class Case {
     }
 
     public String columnStrings(Map<String, String> caseContenst) {
-        // List<String> stringColoumnBuilder = new ArrayList<>();
-        StringBuilder sb = new StringBuilder();
+        List<String> stringColoumnBuilder = new ArrayList<>();
+        // put keys into map
         for (String mapKey : caseContenst.keySet()) {
-            sb.append(mapKey).append(",");
+            stringColoumnBuilder.add(mapKey);
         }
+        // build string, seperated with ","
+        StringBuilder sb = new StringBuilder();
+        for (String s : stringColoumnBuilder) {
+
+            sb.append(s).append(",");
+        }
+        
+        sb.setLength(sb.length() - 1);  // To remove "," on the last part of the string when it gets appended.
 
         return sb.toString();
 

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mmmi.UI.Main.home;
+package mmmi.UI.Main.FindCase;
 
 import javafx.fxml.Initializable;
 
@@ -15,7 +15,7 @@ import java.util.ResourceBundle;
  *
  * @author steff
  */
-public class HomeFXMLController implements Initializable {
+public class FindCaseController implements Initializable {
 
     /**
      * Initializes the controller class.

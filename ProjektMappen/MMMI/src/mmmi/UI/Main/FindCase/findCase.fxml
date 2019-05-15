@@ -8,7 +8,7 @@
 <?import java.net.URL?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" id="AnchorPane" prefHeight="900.0" prefWidth="1050.0"
             styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171"
-            fx:controller="mmmi.UI.Main.findeCase.FindeCaseFXMLController">
+            fx:controller="mmmi.UI.Main.FindCase.FindCaseController">
     <stylesheets>
         <URL value="@/mmmi/UI/mainStylesheet.css"/>
     </stylesheets>

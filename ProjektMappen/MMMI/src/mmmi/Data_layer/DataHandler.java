@@ -1,12 +1,8 @@
 package MMMI.Data_layer;
 
 import Data_layer.Connection.DatabaseConnection;
-<<<<<<< HEAD:ProjektMappen/MMMI/src/Data_layer/DataHandler.java
-import Data_layer.Interfaces.IDataHandler;
-import java.sql.SQLException;
-=======
 import MMMI.Data_layer.Interfaces.IDataHandler;
->>>>>>> master:ProjektMappen/MMMI/src/mmmi/Data_layer/DataHandler.java
+import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;

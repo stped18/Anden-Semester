@@ -2,7 +2,10 @@ package MMMI.Data_layer;
 
 import Data_layer.Connection.DatabaseConnection;
 import MMMI.Data_layer.Interfaces.IDataHandler;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class DataHandler extends DatabaseConnection implements IDataHandler{
 
@@ -43,7 +46,11 @@ public class DataHandler extends DatabaseConnection implements IDataHandler{
 
     @Override
     public Case createCase() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        List<Integer> requestingCitizen = new ArrayList<>();
+        Map<String, String> caseContent = new HashMap<>();
+        
+        return new Case("", 0, requestingCitizen, caseContent);
     }
     
     @Override

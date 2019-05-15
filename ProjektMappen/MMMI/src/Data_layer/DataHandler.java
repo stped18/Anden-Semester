@@ -2,9 +2,12 @@ package Data_layer;
 
 import Data_layer.Connection.DatabaseConnection;
 import Data_layer.Interfaces.IDataHandler;
+import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-public class DataHandler extends DatabaseConnection implements IDataHandler{
+public class DataHandler extends DatabaseConnection implements IDataHandler {
 
     @Override
     public Case readCase(String caseID) {
@@ -18,7 +21,36 @@ public class DataHandler extends DatabaseConnection implements IDataHandler{
 
     @Override
     public Employee readEmployee(int employeeID) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        DatabaseConnection dbc = new DatabaseConnection();
+
+        int id = employeeID;
+        String firstName = "";
+        String lastName = "";
+        int roleID = 0;
+        int departmentID = 0;
+
+        try {
+            dbc.connectToDB();
+
+            String query = "SELECT * FORM employee WHERE employeeid = " + employeeID;
+            dbStatement = dbConnection.createStatement();
+            dbResultSet = dbStatement.executeQuery(query);
+
+            while (dbResultSet.next()) {
+                id = dbResultSet.getInt("employeeID");
+                firstName = dbResultSet.getString("firstname");
+                lastName = dbResultSet.getString("lastname");
+                roleID = dbResultSet.getInt("roleroleid");
+                departmentID = dbResultSet.getInt("departmentdepartmentid");
+            }
+            
+            dbc.disConnectet();
+        } catch (SQLException ex) {
+            Logger.getLogger(DataHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return new Employee(employeeID, firstName, lastName, roleID, departmentID);
     }
 
     @Override

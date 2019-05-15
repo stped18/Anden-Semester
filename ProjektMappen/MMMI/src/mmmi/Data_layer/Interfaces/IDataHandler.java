@@ -1,9 +1,9 @@
-package Data_layer.Interfaces;
+package MMMI.Data_layer.Interfaces;
 
-import Data_layer.Case;
-import Data_layer.Citizen;
-import Data_layer.Employee;
-import Data_layer.SearchCase;
+import MMMI.Data_layer.Case;
+import MMMI.Data_layer.Citizen;
+import MMMI.Data_layer.Employee;
+import MMMI.Data_layer.SearchCase;
 import java.util.List;
 
 public interface IDataHandler {
@@ -19,6 +19,7 @@ public interface IDataHandler {
     public boolean updateCitizen(Citizen citizen);
     
     public Case createCase();
+    public Citizen createCitizen(); //always called before createCase()
     
     public List<SearchCase> search(String searchKey, String searchValue); // searchKey = Where to look, searchValue = What to look for.
     

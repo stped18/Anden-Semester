@@ -1,7 +1,7 @@
-package Data_layer;
+package MMMI.Data_layer;
 
 import Data_layer.Connection.DatabaseConnection;
-import Data_layer.Interfaces.IDataHandler;
+import MMMI.Data_layer.Interfaces.IDataHandler;
 import java.util.List;
 
 public class DataHandler extends DatabaseConnection implements IDataHandler{
@@ -45,7 +45,12 @@ public class DataHandler extends DatabaseConnection implements IDataHandler{
     public Case createCase() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    
+    @Override
+    public Citizen createCitizen() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
     @Override
     public List<SearchCase> search(String searchKey, String searchValue) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

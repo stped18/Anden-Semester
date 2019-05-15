@@ -4,89 +4,17 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import mmmi.Domain.Interfaces.IDomain;
 
-public class Department {
+public class Department implements IDomain{
 
-    private static int countSearch = 0;
-    private final String name;
     private final int id;
-    private Map<String, Case> caseMap;
-    private List<Employee> employeeList;
-    private DepartmentManager departmentManager;
-    private Map<Integer, List<String>> assignedCaseMap;
-    private List<String> employeeListCase;
 
     /**
-     * @param name
      * @param id
      */
-    public Department(String name, int id) {
-        this.name = name;
+    public Department(int id) {
         this.id = id;
-        this.caseMap = new HashMap<>();
-        this.employeeList = new ArrayList<>();
-        this.assignedCaseMap = new HashMap<>();
-        this.employeeList = new ArrayList<>();
-    }
-
-    /**
-     * @param name
-     * @param employeeID
-     * @param title
-     * @return
-     */
-    public boolean addEmployee(String name, int employeeID, String title) {
-
-        Employee e = new Employee(name, employeeID, this.id, title);
-        this.employeeList.add(e);
-
-        return true;
-    }
-
-    /**
-     * @param searchWord
-     * @return
-     */
-    public List<Case> search(String searchWord) {
-
-        List<Case> listCases = new ArrayList<>();
-
-        for (Case searchCase : caseMap.values()) {
-            if (searchCase.getRegardingCitizen().getCprNumber().equalsIgnoreCase(searchWord)
-                    || searchCase.getCaseNumber().equalsIgnoreCase(String.valueOf(searchWord))
-                    || searchCase.getRegardingCitizen().getName().equalsIgnoreCase(searchWord)) {
-                listCases.add(searchCase);
-            }
-        }
-
-        return listCases;
-    }
-
-    /**
-     * @return
-     */
-    public List<Employee> getEmployee() {
-
-        return this.employeeList;
-    }
-
-    /**
-     * If it's empty it returns null.
-     *
-     * @param caseNumber
-     * @return
-     */
-    public Case openCase(String caseNumber) {
-
-        Case originalCase = null;
-
-        for (String caseNo : caseMap.keySet()) {
-            if (caseNumber.equalsIgnoreCase(caseNo)) {
-                originalCase = caseMap.get(caseNo);
-            }
-        }
-        return originalCase;
-
     }
 
     /**
@@ -95,28 +23,9 @@ public class Department {
      * @return
      */
     public boolean assignCase(String caseNumber, int employeeID) {
-        assignedCaseMap.put(employeeID, employeeListCase);
-        for (Employee employee : employeeList) {
 
-            if (employee.getId() == employeeID) {
-                // TODO: assign case.
-                // TODO: create a map with employee(Value) and case(Key).
-                // CHANGE: Instead of employee(Value) and case(Key), its going to be
-                // employeeID(Key) and the following emplopyee can have one to many cases,
-                // which is why we create a list and then this list can be assigned to specific employeeID
+        throw new UnsupportedOperationException();
 
-                /* Loop through CaseMap, to get the whole pool of cases available, and from there look on specific caseNumber
-                   to assign to the assignedCaseMap list, based on the employeeID */
-                for (String assignCase : caseMap.keySet()) {
-                    if (assignCase.equalsIgnoreCase(caseNumber)) {
-                        employeeListCase.add(caseNumber);
-                        return true;
-                    }
-                }
-
-            }
-        }
-        return false;
     }
 
     /**
@@ -126,18 +35,7 @@ public class Department {
      */
     public boolean removeCase(String caseNumber, int employeeID) {
 
-        for (Integer employee : assignedCaseMap.keySet()) {
-            if (employee == employeeID) {
-                // TODO: remove case.
-                // TODO: create a map with employee(Value) and case(Key).                
-                for (String removeCase : employeeListCase) {
-                    if (removeCase.equalsIgnoreCase(caseNumber)) {
-                        employeeListCase.remove(caseNumber);
-                    }
-                }
-            }
-        }
-        return false;
+        throw new UnsupportedOperationException();
     }
 
     /**
@@ -147,43 +45,35 @@ public class Department {
      */
     public boolean createCase(String name, String reason) {
 
-        if (!name.isEmpty() && !reason.isEmpty()) {
-            Case newCase = new Case(reason, this.id); // TODO: Need changes, add correct parameters. No constructor for extra parameters!
-            caseMap.put(newCase.getCaseNumber(), newCase);
-            return true;
-        } else {
-            return false;
-        }
+        throw new UnsupportedOperationException();
 
     }
-
-    /**
-     * @param key
-     * @param information
-     * @param CaseNumber
-     * @return
-     */
-    public boolean addInformationToCase(String key, String information, String CaseNumber) {
-
-        for (Case c : caseMap.values()) {
-            if (c.getCaseNumber().equalsIgnoreCase(CaseNumber)) {
-                return c.addInformation(key, information);
-            }
-        }
-        return false;
+    //REMEMBER: to use the correct names from the IDataHandler interface.
+    //REMEMBER: check rights ask the people and dont just do some random stuff.
+    @Override
+    public List<Map<String, String>> Search(String key, String value) {
+        //TODO: needs to be able to send all info from a searchcase to the GUI in the form of list with a map
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    /**
-     * @param CaseNumber
-     * @param decision
-     * @return
-     */
-    public boolean closeCase(String CaseNumber, String decision) {
-        for (Case c : caseMap.values()) {
-            if (CaseNumber.equals(c.getCaseNumber())) {
-                return c.closeCase(decision);
-            }
-        }
-        return false;
+    @Override
+    public Map<String, String> openCase(String caseID) {
+        //TODO: Opens a case with all the info into a map that are sendt to the GUI
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public boolean saveCase(Map<String, String> caseInfo) {
+        //TODO: Gets a map with both case info and citizen and needs to make it into the right data
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Employee getEmployee() {
+        //TODO: Sends the data of employee with rights 
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    
+
 }

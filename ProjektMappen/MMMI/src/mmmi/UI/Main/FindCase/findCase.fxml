@@ -1,25 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
-<?import java.net.URL?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" id="AnchorPane" prefHeight="900.0" prefWidth="1050.0"
-            styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171"
-            fx:controller="mmmi.UI.Main.FindCase.FindCaseController">
+
+<AnchorPane id="AnchorPane" prefHeight="900.0" prefWidth="1050.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mmmi.UI.Main.FindCase.FindCaseController">
     <stylesheets>
-        <URL value="@/mmmi/UI/mainStylesheet.css"/>
+        <URL value="@/mmmi/UI/mainStylesheet.css" />
     </stylesheets>
     <children>
-        <TextField layoutX="64.0" layoutY="93.0" prefHeight="30.0" prefWidth="900.0"/>
-        <ListView layoutX="64.0" layoutY="134.0" orientation="HORIZONTAL" prefHeight="500.0" prefWidth="900.0"/>
+        <TextField fx:id="TF_searchText" layoutX="65.0" layoutY="200.0" prefHeight="30.0" prefWidth="856.0" />
+        <ListView fx:id="LV_searchCaseList" layoutX="65.0" layoutY="243.0" orientation="HORIZONTAL" prefHeight="500.0" prefWidth="900.0" />
         <Label layoutX="451.0" layoutY="14.0" text="Find en sag">
             <font>
-                <Font size="25.0"/>
+                <Font size="25.0" />
             </font>
         </Label>
+      <Button fx:id="BTN_search" layoutX="928.0" layoutY="203.0" mnemonicParsing="false" onAction="#actionEventHandler" text="Søg" />
+      <RadioButton fx:id="RB_searchOptionCitizen" layoutX="65.0" layoutY="162.0" mnemonicParsing="false" selected="true" text="Borger">
+         <toggleGroup>
+            <ToggleGroup fx:id="searchOption" />
+         </toggleGroup></RadioButton>
+      <RadioButton fx:id="RB_searchOptionCaseNo" layoutX="198.0" layoutY="162.0" mnemonicParsing="false" text="Sagsnummer" toggleGroup="$searchOption" />
     </children>
 </AnchorPane>
-

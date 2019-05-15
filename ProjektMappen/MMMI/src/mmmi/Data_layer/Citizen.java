@@ -1,4 +1,7 @@
+
 package MMMI.Data_layer;
+
+import java.util.List;
 
 public class Citizen {
     
@@ -14,6 +17,7 @@ public class Citizen {
     private String cityname;
     private boolean regardingCitizen;
     private boolean requestingCitizen;
+    private List<Case> Cases;
 
     public Citizen(int citizenID, String firstName, String lastName, String cprNo, boolean regardingCitizen, boolean requestingCitizen) {
         this.citizenID = citizenID;
@@ -37,6 +41,10 @@ public class Citizen {
         this.cityname = cityname;
         this.regardingCitizen = regardingCitizen;
         this.requestingCitizen = requestingCitizen;
+    }
+
+    public List<Case> getCases() {
+        return Cases;
     }
 
     public int getCitizenID() {
@@ -87,6 +95,10 @@ public class Citizen {
         return requestingCitizen;
     }
 
+    public void setCases(List<Case> Cases) {
+        this.Cases = Cases;
+    }
+    
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }

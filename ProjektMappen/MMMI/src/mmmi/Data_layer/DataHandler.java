@@ -34,9 +34,10 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
 
             statement = dbConnection.prepareStatement("INSERT INTO case_contents"
                     + "VALUES"
-                    + "(?,?,?,?,?)");
+                    + "('?','?','?',?,?)");
             statement.setString(1, getCaseContent);
-
+            
+            
         } catch (SQLException e) {
 
             System.out.println("Exception at writeCase:mmmi.Data_layer.DataHandler"

@@ -8,15 +8,25 @@ import java.util.TreeMap;
 public class Case {
 
     private final String caseID;
+    private String caseStatus;
     private final int reguardingCitizenID;
     private List<Integer> requestingCitizens;
     private final Map<String, String> caseContent;
 
-    public Case(String caseID, int reguardingCitizenID, List<Integer> requestingCitizens, Map<String, String> caseContent) {
+    public Case(String caseID, String caseStatus, int reguardingCitizenID, List<Integer> requestingCitizens, Map<String, String> caseContent) {
         this.caseID = caseID;
+        this.caseStatus = caseStatus;
         this.reguardingCitizenID = reguardingCitizenID;
         this.requestingCitizens = requestingCitizens;
         this.caseContent = caseContent;
+    }
+
+    public String getCaseStatus() {
+        return caseStatus;
+    }
+
+    public void setCaseStatus(String caseStatus) {
+        this.caseStatus = caseStatus;
     }
 
     public String getCaseID() {
@@ -44,10 +54,14 @@ public class Case {
     public void addContents(String key, String value) {
         caseContent.put(key, value);
     }
-
-    public String columnStrings(Map<String, String> caseContenst) {
+    /**
+     * 
+     * @param caseContenst
+     * @return 
+     */
+    public String columnStringBuilder(Map<String, String> caseContenst) {
         List<String> stringColoumnBuilder = new ArrayList<>();
-        // put keys into map
+        // put mapKeys to list
         for (String mapKey : caseContenst.keySet()) {
             stringColoumnBuilder.add(mapKey);
         }
@@ -71,7 +85,7 @@ public class Case {
         listTest.add(1);
         listTest.add(2);
 
-        Case caze = new Case("1", 1, listTest, mapTestValues);
+        Case caze = new Case("1", "Afventer", 1, listTest, mapTestValues);
         caze.addContents("Test1", "Test1");
         caze.addContents("Test2", "Test2");
         caze.addContents("Test3", "Test3");

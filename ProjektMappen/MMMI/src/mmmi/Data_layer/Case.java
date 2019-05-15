@@ -1,19 +1,21 @@
 package MMMI.Data_layer;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class Case {
-    
+
     private final String caseID;
     private final int reguardingCitizenID;
-    private List<Integer> requestingCitizen;
+    private List<Integer> requestingCitizens;
     private final Map<String, String> caseContent;
 
-    public Case(String caseID, int reguardingCitizenID, List<Integer> requestingCitizen, Map<String, String> caseContent) {
+    public Case(String caseID, int reguardingCitizenID, List<Integer> requestingCitizens, Map<String, String> caseContent) {
         this.caseID = caseID;
         this.reguardingCitizenID = reguardingCitizenID;
-        this.requestingCitizen = requestingCitizen;
+        this.requestingCitizens = requestingCitizens;
         this.caseContent = caseContent;
     }
 
@@ -26,17 +28,47 @@ public class Case {
     }
 
     public List<Integer> getRequestingCitizen() {
-        return requestingCitizen;
+        return requestingCitizens;
     }
 
     public void addRequestingCitizen(Integer requestingCitizenID) {
-        
-        // TODO: Add a new requesting citizen to the list. Insteed of overridding.
-        this.requestingCitizen = requestingCitizen;
+
+        // TODO: Add a new requesting citizen to the list. Instead of overridding.
+        requestingCitizens.add(requestingCitizenID);
     }
-    
+
     public Map<String, String> getCaseContent() {
         return caseContent;
+    }
+
+    public void addContents(String key, String value) {
+        caseContent.put(key, value);
+    }
+
+    public String columnStrings(Map<String, String> caseContenst) {
+        // List<String> stringColoumnBuilder = new ArrayList<>();
+        StringBuilder sb = new StringBuilder();
+        for (String mapKey : caseContenst.keySet()) {
+            sb.append(mapKey).append(",");
+        }
+
+        return sb.toString();
+
+    }
+
+    public static void main(String[] args) {
+        Map<String, String> mapTestValues = new TreeMap<>();
+
+        List<Integer> listTest = new ArrayList<>();
+        listTest.add(1);
+        listTest.add(2);
+
+        Case caze = new Case("1", 1, listTest, mapTestValues);
+        caze.addContents("Test1", "Test1");
+        caze.addContents("Test2", "Test2");
+        caze.addContents("Test3", "Test3");
+
+        System.out.println(caze.columnStrings(mapTestValues));
     }
 
 }

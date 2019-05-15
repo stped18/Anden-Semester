@@ -2,7 +2,7 @@
  * Denne classe skaber kontakten mellem programet og databasen
  *
  */
-package Data_layer.Connection;
+package mmmi.Data_layer.Connection;
 
 import java.sql.*;
 
@@ -31,7 +31,7 @@ public class DatabaseConnection {
         }
     }
 
-    public void disConnectet() {
+    public void disconnectDB() {
         try {
             if (dbStatement != null) {
                 dbStatement.close();

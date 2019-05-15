@@ -1,5 +1,7 @@
 package mmmi.Domain;
 
+import MMMI.Data_layer.DataHandler;
+import MMMI.Data_layer.Interfaces.IDataHandler;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -53,7 +55,8 @@ public class Department implements IDomain{
     @Override
     public List<Map<String, String>> Search(String key, String value) {
         //TODO: needs to be able to send all info from a searchcase to the GUI in the form of list with a map
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        IDataHandler searchHandler = new DataHandler();
+        List searchCases = searchHandler.search(key, value);
     }
 
     @Override

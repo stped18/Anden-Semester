@@ -19,12 +19,17 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     *
+     * @param employeeID
+     * @return
+     */
     @Override
     public Employee readEmployee(int employeeID) {
 
         DatabaseConnection dbc = new DatabaseConnection();
 
-        int id = employeeID;
+        int id = 0;
         String firstName = "";
         String lastName = "";
         int roleID = 0;
@@ -50,7 +55,7 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
             Logger.getLogger(DataHandler.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        return new Employee(employeeID, firstName, lastName, roleID, departmentID);
+        return new Employee(id, firstName, lastName, roleID, departmentID);
     }
 
     @Override

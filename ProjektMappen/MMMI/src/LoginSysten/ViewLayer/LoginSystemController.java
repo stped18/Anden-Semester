@@ -18,7 +18,7 @@ import javafx.scene.control.TextField;
  *
  * @author steff
  */
-public class LoginSystemFXMLController implements Initializable {
+public class LoginSystemController implements Initializable {
 
     @FXML
     private TextField fxUsername;

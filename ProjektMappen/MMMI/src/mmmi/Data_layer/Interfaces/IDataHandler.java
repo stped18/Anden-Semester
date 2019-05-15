@@ -1,9 +1,9 @@
-package Data_layer.Interfaces;
+package MMMI.Data_layer.Interfaces;
 
-import Data_layer.Case;
-import Data_layer.Citizen;
-import Data_layer.Employee;
-import Data_layer.SearchCase;
+import MMMI.Data_layer.Case;
+import MMMI.Data_layer.Citizen;
+import MMMI.Data_layer.Employee;
+import MMMI.Data_layer.SearchCase;
 import java.util.List;
 
 public interface IDataHandler {

@@ -1,7 +1,7 @@
-package Data_layer;
+package MMMI.Data_layer;
 
 import Data_layer.Connection.DatabaseConnection;
-import Data_layer.Interfaces.IDataHandler;
+import MMMI.Data_layer.Interfaces.IDataHandler;
 import java.util.List;
 
 public class DataHandler extends DatabaseConnection implements IDataHandler{

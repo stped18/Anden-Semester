@@ -19,6 +19,7 @@ public interface IDataHandler {
     public boolean updateCitizen(Citizen citizen);
     
     public Case createCase();
+    public Citizen createCitizen(); //always called before createCase()
     
     public List<SearchCase> search(String searchKey, String searchValue); // searchKey = Where to look, searchValue = What to look for.
     

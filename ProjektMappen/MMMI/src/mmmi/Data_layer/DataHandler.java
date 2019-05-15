@@ -45,7 +45,12 @@ public class DataHandler extends DatabaseConnection implements IDataHandler{
     public Case createCase() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    
+    @Override
+    public Citizen createCitizen() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
     @Override
     public List<SearchCase> search(String searchKey, String searchValue) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

@@ -3,7 +3,8 @@ package mmmi.Domain;
 public class Employee {
 
     private int id;
-    private String name;
+    private String firstName;
+    private String lastname;
     private int departmentID;
     //TODO: needs rights and a way to check them. 
 
@@ -12,32 +13,29 @@ public class Employee {
      * @param id
      * @param departmentID
      */
-    public Employee(String name, int id, int departmentID) {
-        this.name = name;
+    public Employee(int id, String firstName, String lastname, int departmentID) {
         this.id = id;
+        this.firstName = firstName;
+        this.lastname = lastname;
         this.departmentID = departmentID;
-        
     }
 
-    /**
-     * @return
-     */
     public int getId() {
-        return this.id;
+        return id;
     }
 
-    /**
-     * @return
-     */
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
     public int getDepartmentID() {
         return departmentID;
     }
 
-    /**
-     * @return
-     */
-    public String getName() {
-        return this.name;
-    }
 
 }
+

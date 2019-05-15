@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package LoginSysten.Domain;
+package LoginSystem.Domain;
 
+import LoginSystem.DataLayer.DatabaseHandler;
 import mmmi.Domain.Employee;
 
 
@@ -21,6 +22,12 @@ public class LoginSystem {
     
     private String username;
     private String password;
+    DatabaseHandler databaseHandler;
+
+    public LoginSystem(String username, String password) {
+       databaseHandler.getEmployee(username, password);
+    }
+    
 
     public String getUsername() {
         return username;
@@ -37,10 +44,17 @@ public class LoginSystem {
     public void setPassword(String password) {
         this.password = password;
     }
+
+ 
+
+
     
     
+  
     
 }
+
+
 
 
 

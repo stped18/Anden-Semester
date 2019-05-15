@@ -28,21 +28,22 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
     public boolean writeCase(Case theCase) {
 
         connectToDB();
-        PreparedStatement statement;
-        String getCaseContent = theCase.columnStrings(theCase.getCaseContent());
-
         try {
+            PreparedStatement statement;
+            String getCaseContent = theCase.columnStrings(theCase.getCaseContent());
 
             statement = dbConnection.prepareStatement("INSERT INTO case_contents"
                     + "VALUES"
                     + "(?,?,?,?,?)");
             statement.setString(1, getCaseContent);
-            
+
         } catch (SQLException e) {
 
             System.out.println("Exception at writeCase:mmmi.Data_layer.DataHandler"
                     + " a database access error occured "
-                    + " or this method is called on a closed connection " + e.getLocalizedMessage());
+                    + " or this method is called on a closed connection "
+                    + "(setString) parameterIndex does not correspond to a parameter marker in the SQL statement"
+                    + e.getLocalizedMessage());
         }
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

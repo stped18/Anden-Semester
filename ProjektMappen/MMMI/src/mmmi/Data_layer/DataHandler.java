@@ -3,6 +3,7 @@ package MMMI.Data_layer;
 import Data_layer.Connection.DatabaseConnection;
 import MMMI.Data_layer.Interfaces.IDataHandler;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,20 +28,19 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
     @Override
     public Employee readEmployee(int employeeID) {
 
-        DatabaseConnection dbc = new DatabaseConnection();
-
         int id = 0;
         String firstName = "";
         String lastName = "";
         int roleID = 0;
         int departmentID = 0;
+        List<Integer> employeeCases = new ArrayList<>();
 
         try {
-            dbc.connectToDB();
+            connectToDB();
 
-            String query = "SELECT * FORM employee WHERE employeeid = " + employeeID;
+            String getEmployee = "SELECT * FORM employee WHERE employeeid = " + employeeID;
             dbStatement = dbConnection.createStatement();
-            dbResultSet = dbStatement.executeQuery(query);
+            dbResultSet = dbStatement.executeQuery(getEmployee);
 
             while (dbResultSet.next()) {
                 id = dbResultSet.getInt("employeeID");
@@ -49,13 +49,21 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
                 roleID = dbResultSet.getInt("roleroleid");
                 departmentID = dbResultSet.getInt("departmentdepartmentid");
             }
-            
-            dbc.disConnectet();
+
+            String getCaseID = "SELECT casecaseid FROM case_employee WHERE employeeemployeeid = " + employeeID;
+            dbStatement = dbConnection.createStatement();
+            dbResultSet = dbStatement.executeQuery(getCaseID);
+
+            while (dbResultSet.next()) {
+                employeeCases.add(dbResultSet.getInt("casecaseid"));
+            }
+
+            disConnectet();
         } catch (SQLException ex) {
             Logger.getLogger(DataHandler.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        return new Employee(id, firstName, lastName, roleID, departmentID);
+
+        return new Employee(id, firstName, lastName, roleID, departmentID, employeeCases);
     }
 
     @Override
@@ -69,11 +77,6 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
     }
 
     @Override
-    public boolean writeEmployee(Employee employee) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public boolean updateCitizen(Citizen citizen) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
@@ -82,12 +85,12 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
     public Case createCase() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
     @Override
     public Citizen createCitizen() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
     @Override
     public List<SearchCase> search(String searchKey, String searchValue) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

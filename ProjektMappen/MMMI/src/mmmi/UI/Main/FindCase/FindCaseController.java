@@ -8,9 +8,11 @@ package mmmi.UI.Main.FindCase;
 import javafx.fxml.Initializable;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.Set;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -21,6 +23,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.input.MouseEvent;
 import mmmi.Domain.Department;
 import mmmi.Domain.Interfaces.IDomain;
 
@@ -45,7 +48,8 @@ public class FindCaseController implements Initializable {
     private RadioButton RB_searchOptionCaseNo;
 
     IDomain domain; // Singleton?
-    ObservableList<Map<String, String>> obslistResult;
+    ObservableList<String> obslistResult;
+    List<Map<String, String>> result;
     
     /**
      * Initializes the controller class.
@@ -58,14 +62,35 @@ public class FindCaseController implements Initializable {
         RB_searchOptionCitizen.setUserData("Citizen");
 
     }
-
+//String nextRoom = lvAvailableExits.getSelectionModel().getSelectedItem(); // save selected item in String
+//        if (event.getClickCount() == 2) {
+//            moveRoom(nextRoom);
+//        }
     @FXML
     private void actionEventHandler(ActionEvent event) {
         if(event.getSource() == BTN_search) {
             String searchKey = searchOption.getSelectedToggle().getUserData().toString();
             String searchValue = TF_searchText.getText();
-            List<Map<String, String>> result = domain.Search(searchKey, searchValue);
-            obslistResult = FXCollections.observableArrayList(result);
+            result = domain.Search(searchKey, searchValue);
+            List<String> listViewStrings = new ArrayList();
+            for (Map<String, String> map : result) {
+                String info = map.values().toString();
+                listViewStrings.add(info);
+            }
+            obslistResult = FXCollections.observableArrayList(listViewStrings);
+        }
+    }
+    
+    @FXML
+    private void mouseEventHandler(MouseEvent event) {
+        
+        if(event.getSource() == LV_searchCaseList) {
+            if (event.getClickCount() == 2) {
+                int listviewIndex = LV_searchCaseList.getFocusModel().getFocusedIndex();
+                Map<String, String> m = result.get(listviewIndex);
+                String caseID = m.keySet().toString();
+                // Open case
+            }
         }
     }
 

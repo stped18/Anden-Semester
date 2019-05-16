@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package mmmi.UI.Main.FindCase;
 
 import javafx.fxml.Initializable;
@@ -28,9 +23,8 @@ import mmmi.Domain.Department;
 import mmmi.Domain.Interfaces.IDomain;
 
 /**
- * FXML Controller class
- *
- * @author steff
+ * 
+ * @author Gruppe 2
  */
 public class FindCaseController implements Initializable {
 
@@ -46,13 +40,19 @@ public class FindCaseController implements Initializable {
     private ToggleGroup searchOption;
     @FXML
     private RadioButton RB_searchOptionCaseNo;
-
+    @FXML
+    private Button BTN_openCase;
+    
     IDomain domain; // Singleton?
     ObservableList<String> obslistResult;
     List<Map<String, String>> result;
     
+    
     /**
      * Initializes the controller class.
+     * 
+     * @param url
+     * @param rb 
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -62,10 +62,11 @@ public class FindCaseController implements Initializable {
         RB_searchOptionCitizen.setUserData("Citizen");
 
     }
-//String nextRoom = lvAvailableExits.getSelectionModel().getSelectedItem(); // save selected item in String
-//        if (event.getClickCount() == 2) {
-//            moveRoom(nextRoom);
-//        }
+
+    /**
+     * 
+     * @param event 
+     */
     @FXML
     private void actionEventHandler(ActionEvent event) {
         if(event.getSource() == BTN_search) {
@@ -78,18 +79,27 @@ public class FindCaseController implements Initializable {
                 listViewStrings.add(info);
             }
             obslistResult = FXCollections.observableArrayList(listViewStrings);
+        } else if(event.getSource() == BTN_openCase) {
+            openCase();
         }
     }
     
-    @FXML
+    private void openCase() {
+        int listviewIndex = LV_searchCaseList.getFocusModel().getFocusedIndex();
+        Map<String, String> m = result.get(listviewIndex);
+        String caseID = m.keySet().toString();
+        // Open case
+    }
+    
+    /**
+     * 
+     * @param event 
+     */
     private void mouseEventHandler(MouseEvent event) {
         
         if(event.getSource() == LV_searchCaseList) {
             if (event.getClickCount() == 2) {
-                int listviewIndex = LV_searchCaseList.getFocusModel().getFocusedIndex();
-                Map<String, String> m = result.get(listviewIndex);
-                String caseID = m.keySet().toString();
-                // Open case
+                openCase();
             }
         }
     }

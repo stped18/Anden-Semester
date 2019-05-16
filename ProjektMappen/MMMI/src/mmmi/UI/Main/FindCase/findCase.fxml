@@ -28,5 +28,6 @@
             <ToggleGroup fx:id="searchOption" />
          </toggleGroup></RadioButton>
       <RadioButton fx:id="RB_searchOptionCaseNo" layoutX="198.0" layoutY="162.0" mnemonicParsing="false" text="Sagsnummer" toggleGroup="$searchOption" />
+      <Button fx:id="BTN_openCase" layoutX="68.0" layoutY="765.0" mnemonicParsing="false" onAction="#actionEventHandler" text="Åben sag" />
     </children>
 </AnchorPane>

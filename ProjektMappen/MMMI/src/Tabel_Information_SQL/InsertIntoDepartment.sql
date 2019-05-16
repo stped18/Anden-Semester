@@ -1,5 +1,5 @@
 INSERT INTO department (departmentid, departmentname)
-VALUES (1, 'Socialområdet');
+VALUES (1, 'Social Services');
 
 INSERT INTO department (departmentid, departmentname)
-VALUES (2, 'Handicapområdet');
+VALUES (2, 'Disability');

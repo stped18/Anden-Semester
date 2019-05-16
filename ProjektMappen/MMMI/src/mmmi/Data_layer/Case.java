@@ -9,14 +9,14 @@ public class Case {
 
     private final String caseID;
     private String caseStatus;
-    private final int reguardingCitizenID;
+    private final int regardingCitizenID;
     private List<Integer> requestingCitizens;
     private final Map<String, String> caseContent;
 
-    public Case(String caseID, String caseStatus, int reguardingCitizenID, List<Integer> requestingCitizens, Map<String, String> caseContent) {
+    public Case(String caseID, String caseStatus, int regardingCitizenID, List<Integer> requestingCitizens, Map<String, String> caseContent) {
         this.caseID = caseID;
         this.caseStatus = caseStatus;
-        this.reguardingCitizenID = reguardingCitizenID;
+        this.regardingCitizenID = regardingCitizenID;
         this.requestingCitizens = requestingCitizens;
         this.caseContent = caseContent;
     }
@@ -33,8 +33,8 @@ public class Case {
         return caseID;
     }
 
-    public int getReguardingCitizenID() {
-        return reguardingCitizenID;
+    public int getRegardingCitizenID() {
+        return regardingCitizenID;
     }
 
     public List<Integer> getRequestingCitizen() {
@@ -90,7 +90,7 @@ public class Case {
         caze.addContents("Test2", "Test2");
         caze.addContents("Test3", "Test3");
 
-        System.out.println(caze.columnStrings(mapTestValues));
+        System.out.println(caze.columnStringBuilder(mapTestValues));
     }
 
 }

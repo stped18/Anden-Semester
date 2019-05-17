@@ -38,7 +38,7 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
         try {
             connectToDB();
 
-            String getEmployee = "SELECT * FORM employee WHERE employeeid = " + employeeID;
+            String getEmployee = "SELECT * FROM employee WHERE employeeid = " + employeeID;
             dbStatement = dbConnection.createStatement();
             dbResultSet = dbStatement.executeQuery(getEmployee);
 

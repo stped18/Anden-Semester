@@ -30,8 +30,8 @@ public class DataHandler extends DatabaseConnection implements IDataHandler{
         Citizen citizen = null;
         PreparedStatement fetchCitizen = null, fetchCase = null, fetchCaseContentKeys = null, fetchCaseContent = null, fetchRequestingCitizen = null;
         ResultSet caseContentSet, requestingCitizenSet;
-        connectToDB();
         try {
+            connectToDB();
             String query = "SELECT c.*, zipcode.cityname FROM citizen c JOIN zipcode ON zipcode = zipcodezipcode WHERE citizenID = ?";
             fetchCitizen = dbConnection.prepareStatement(query);
             fetchCitizen.setInt(1, citizenID);
@@ -80,6 +80,7 @@ public class DataHandler extends DatabaseConnection implements IDataHandler{
                 citizen.setCases(cases);
             }
         } catch (SQLException ex) {
+            Logger.getLogger(DataHandler.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("readCitizen:\nSQLState: " + ex.getSQLState() + "\nmessage: " + ex.getMessage());
             disConnectet();
         } finally {
@@ -123,8 +124,8 @@ public class DataHandler extends DatabaseConnection implements IDataHandler{
         int citizenID = citizen.getCitizenID();
         PreparedStatement insertCitizen = null;
         try {
-            String query = "INSERT INTO citizen(zipcodezipcode, firstname, lastname, \"CPR-nr\", streetname, houseno, floor, floordirection, regardingCitizen, requestingcitizen) VALUES(?,?,?,?,?,?,?,?,?,?)";
             connectToDB();
+            String query = "INSERT INTO citizen(zipcodezipcode, firstname, lastname, \"CPR-nr\", streetname, houseno, floor, floordirection, regardingCitizen, requestingcitizen) VALUES(?,?,?,?,?,?,?,?,?,?)";
             insertCitizen = dbConnection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             insertCitizen.setInt(1, citizen.getZipcode());
             insertCitizen.setString(2, citizen.getFirstName());
@@ -142,13 +143,15 @@ public class DataHandler extends DatabaseConnection implements IDataHandler{
             if(rs.next()) {
                 citizenID = rs.getInt(1);
             }
-            disConnectet();
         } catch (SQLException ex) {
             Logger.getLogger(DataHandler.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("writeCitizen:\nSQLState: " + ex.getSQLState() + "\nmessage: " + ex.getMessage());
+            disConnectet();
         } finally {
             if(insertCitizen != null) {
                 insertCitizen = null;
             }
+            disConnectet();
         }
         return citizenID;
     }
@@ -160,7 +163,42 @@ public class DataHandler extends DatabaseConnection implements IDataHandler{
 
     @Override
     public boolean updateCitizen(Citizen citizen) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        boolean citizen_updated = false;
+        PreparedStatement updateCitizen = null;
+        try {
+            connectToDB();
+            String updateQuery = "UPDATE citizen";
+            String setQuery = "SET zipcodezipcode = ?, firstname = ?, lastname = ?, \"CPR-nr\" = ?, streetname = ?, houseno = ?, floor = ?, floordirection = ?, regardingCitizen = ?, requestingcitizen = ?";
+            String whereQuery = "WHERE citizenid = ?;";
+            String query = updateQuery + setQuery + whereQuery;
+            
+            updateCitizen = dbConnection.prepareStatement(query);
+            updateCitizen.setInt(1, citizen.getZipcode());
+            updateCitizen.setString(2, citizen.getFirstName());
+            updateCitizen.setString(3, citizen.getLastName());
+            updateCitizen.setString(4, citizen.getCprNo());
+            updateCitizen.setString(5, citizen.getStreetName());
+            updateCitizen.setString(6, citizen.getHouseNo());
+            updateCitizen.setString(7, citizen.getFloor());
+            updateCitizen.setString(8, citizen.getFloorDirection());
+            updateCitizen.setBoolean(9, citizen.isRegardingCitizen());
+            updateCitizen.setBoolean(10, citizen.isRequestingCitizen());
+            updateCitizen.setInt(11, citizen.getCitizenID());
+            int result = updateCitizen.executeUpdate();
+            if(result > 0) {
+                citizen_updated = true;
+            }
+            
+        } catch (SQLException ex) {
+            System.out.println("updateCitizen:\nSQLState: " + ex.getSQLState() + "\nmessage: " + ex.getMessage());
+            disConnectet();
+        } finally {
+            if(updateCitizen != null) {
+                updateCitizen = null;
+            }
+            disConnectet();
+        }
+        return citizen_updated;
     }
 
     @Override

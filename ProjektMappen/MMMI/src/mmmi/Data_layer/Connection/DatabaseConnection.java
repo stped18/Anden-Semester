@@ -17,6 +17,7 @@ public class DatabaseConnection {
 
     protected Connection dbConnection = null;
     protected Statement dbStatement = null;
+    protected PreparedStatement dbPreparedStatement = null;
     protected ResultSet dbResultSet = null;
 
     public void connectToDB() {
@@ -34,12 +35,16 @@ public class DatabaseConnection {
             if (dbStatement != null) {
                 dbStatement.close();
             }
+            if (dbPreparedStatement != null) {
+                dbPreparedStatement.close();
+            }
             if (dbResultSet != null) {
                 dbResultSet.close();
             }
             if (dbConnection != null) {
                 dbConnection.close();
             }
+
             System.out.println("Disconnectet From MMMI Database");
         } catch (SQLException ex) {
         }

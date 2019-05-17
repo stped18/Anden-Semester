@@ -2,7 +2,6 @@ package MMMI.Data_layer;
 
 import mmmi.Data_layer.Connection.DatabaseConnection;
 import MMMI.Data_layer.Interfaces.IDataHandler;
-import java.sql.PreparedStatement;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -69,7 +68,6 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
                     //add the updated list of column data to the map now
                     columnToValuesMap.put(columnName, columnDataList);
 
-                    
                 }
 
             }
@@ -96,29 +94,36 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
 
     @Override
     public boolean writeCase(Case theCase) {
-
+        List<String> valueOfMap = new ArrayList<>();
         connectToDB();
         try {
-            PreparedStatement statement;
 
-            String count = "'?'";
-            String[] e = null;
-            String[] list = {"null", theCase.columnStringBuilder(theCase.getCaseContent())};
-            for (int i = 1; i < list.length; i++) {
-                e[i] = count;
+//            String count = "'?'";
+            String[] list = {theCase.columnStringBuilder(theCase.getCaseContent())};
+            String[] e = new String[theCase.columnStringBuilder(theCase.getCaseContent()).length()];
+            for (int i = 0; i < theCase.columnStringBuilder(theCase.getCaseContent()).length(); i++) {
+
+                e[i] = "?";
 
             }
-
-            statement = dbConnection.prepareStatement("INSERT INTO case_contents"
+            System.out.println(Arrays.toString(e));
+            String query = "INSERT INTO case_contents"
                     + "(" + theCase.getCaseID() + "," + theCase.columnStringBuilder(theCase.getCaseContent()) + ")"
                     + "VALUES"
-                    + "(" + Arrays.toString(e).substring(1, e.length - 1) + ")");
+                    + "(" + Arrays.toString(e).substring(1, e.length) + ")";
+            dbPreparedStatement = dbConnection.prepareStatement(query);
 
-            for (int i = 1; i < list.length; i++) {
-
-                statement.setString(i, list[i]);
+//            theCase.getCaseContent().values().forEach((String) -> {
+//            valueOfMap.add(String);
+//            });
+//            theCase.getCaseContent();
+            for (int i = 0; i < list.length; i++) {
+                int j = i;
+                dbPreparedStatement.setString(j + 1, theCase.getCaseContent().get(list[i]));
 
             }
+            dbPreparedStatement.executeUpdate();
+
             disconnectDB();
             return true;
         } catch (SQLException ex) {
@@ -163,16 +168,20 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-//    public static void main(String[] args) {
-//        DataHandler dataHandler = new DataHandler();
-//        List<Integer> listTest = new ArrayList<>();
-//        listTest.add(1);
-//
-//        Map<String, String> mapTestValues = new HashMap<>();
-//        Case caze = new Case("123", "Igang", 1, listTest, mapTestValues);
-//
+    public static void main(String[] args) {
+        DataHandler dataHandler = new DataHandler();
+        List<Integer> listTest = new ArrayList<>();
+        listTest.add(3);
+        listTest.add(2);
+        Map<String, String> mapTestValues = new HashMap<>();
+        mapTestValues.put("Test1", "Test1");
+        mapTestValues.put("Test2", "Test2");
+
+        Case caze = new Case("123", "Igang", 3, listTest, mapTestValues);
+
 //        dataHandler.readCase(caze.getCaseID());
 //        System.out.println("l178: " + dataHandler.readCase(caze.getCaseID()));
-//
-//    }
+        System.out.println(dataHandler.writeCase(caze));
+
+    }
 }

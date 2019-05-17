@@ -10,6 +10,7 @@ public class Employee {
     private final int roleID;
     private final int departmentID;
     private List<Integer> employeeCases;
+    // TODO: Needs something to contain rights.
 
     public Employee(int employeeID, String firstName, String lastName, int roleID, int departmentID, List<Integer> employeeCases) {
         this.employeeID = employeeID;

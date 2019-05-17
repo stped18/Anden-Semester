@@ -27,7 +27,9 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
      */
     @Override
     public Employee readEmployee(int employeeID) {
-
+        
+        // TODO: Need to return rights.
+        
         int id = 0;
         String firstName = "";
         String lastName = "";

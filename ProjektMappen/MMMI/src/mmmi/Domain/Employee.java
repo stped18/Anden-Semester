@@ -1,43 +1,53 @@
 package mmmi.Domain;
 
+import java.util.Map;
+
 public class Employee {
 
     private int id;
-    private String name;
+    private String firstName;
+    private String lastname;
     private int departmentID;
-    //TODO: needs rights and a way to check them. 
+    private int roleID;
+    private Map<Integer, String> rightsMap;
 
-    /**
-     * @param name
-     * @param id
-     * @param departmentID
-     */
-    public Employee(String name, int id, int departmentID) {
-        this.name = name;
-        this.id = id;
-        this.departmentID = departmentID;
-        
+    public Employee() {
     }
 
-    /**
-     * @return
-     */
+    public Employee(int id, String firstName, String lastname, int departmentID, int roleID, Map<Integer, String> rightsMap) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastname = lastname;
+        this.departmentID = departmentID;
+        this.roleID = roleID;
+        this.rightsMap = rightsMap;
+    }
+
     public int getId() {
         return this.id;
     }
 
-    /**
-     * @return
-     */
+    public String getFirstName() {
+        return this.firstName;
+    }
+
+    public String getLastname() {
+        return this.lastname;
+    }
+
     public int getDepartmentID() {
-        return departmentID;
+        return this.departmentID;
     }
 
-    /**
-     * @return
-     */
-    public String getName() {
-        return this.name;
+    public int getRoleID() {
+        return this.roleID;
     }
 
+    public Map<Integer, String> getRightsMap() {
+        return this.rightsMap;
+    }
+
+    public boolean checkRight(int rightID) {
+        return this.rightsMap.containsKey(rightID);
+    }
 }

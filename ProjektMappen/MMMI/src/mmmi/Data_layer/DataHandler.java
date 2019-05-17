@@ -3,7 +3,6 @@ package MMMI.Data_layer;
 import mmmi.Data_layer.Connection.DatabaseConnection;
 import MMMI.Data_layer.Interfaces.IDataHandler;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -19,10 +18,10 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
     @Override
     public Case readCase(String caseID) {
 
-        String getCaseQuery = "SELECT *"
-                + "FROM Case AS c"
-                + "RIGHT JOIN Case_contents ON (c." + caseID + " = Case_contents.casecaseid)"
-                + "RIGHT JOIN Case_requestingcitizen ON (c." + caseID + " = Case_requestingcitizen.casecaseid)";
+        String getCaseQuery = "SELECT * "
+                + "FROM \"case\" AS c "
+                + "RIGHT JOIN case_contents AS cc ON (c.caseid = cc.casecaseid) "
+                + "RIGHT JOIN case_requestingcitizen AS cr ON (c.caseid = cr.casecaseid)";
 //        String getCaseQuery = "SELECT *\n"
 //                + "FROM mmmidb.\"public\".\"Case\" AS c"
 //                + "RIGHT JOIN mmmidb.\"public\".\"Case_contents\" ON (c.caseID = mmmidb.\"public\".\"Case_contents\".casecaseid)"
@@ -37,13 +36,12 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
 
         try {
 
-            PreparedStatement statement;
+            dbStatement = dbConnection.createStatement();
 
-            statement = getDbConnection().prepareStatement(getCaseQuery);
+            dbResultSet = dbStatement.executeQuery(getCaseQuery);
 
-            ResultSet rs = statement.executeQuery(getCaseQuery);
+            ResultSetMetaData rsmd = dbResultSet.getMetaData();
 
-            ResultSetMetaData rsmd = rs.getMetaData();
             int columnCount = rsmd.getColumnCount();
 
             for (int i = 1; i <= columnCount; i++) {
@@ -53,31 +51,32 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
                 //Load the Map initially with keys(columnnames) and empty value
                 columnToValuesMap.put(columnName, "");
             }
-            while (rs.next()) {
+            //System.out.println(Arrays.asList(columnNames));
+
+            while (dbResultSet.next()) {
 
                 for (String columnName : columnNames) {
                     if (columnName.equalsIgnoreCase("citizenrequestingcitizenid")) {
-                        requstingCitizenIDs.add(rs.getInt(Integer.parseInt(columnName)));
+                        requstingCitizenIDs.add(dbResultSet.getInt(String.valueOf(columnName)));
                     } else if (columnName.equalsIgnoreCase("citizenregardingcitizenid")) {
-                        regardingCitizenID = rs.getInt(Integer.parseInt(columnName));
+                        regardingCitizenID = dbResultSet.getInt(String.valueOf(columnName));
                     }
 
                     //Get the list mapped to column name
-                    //String columnDataList = columnToValuesMap.get(columnName);
-                    String getColoumnData = rs.getString(columnName);
+//                    String columnDataList = columnToValuesMap.get(columnName);
+                    String columnDataList = dbResultSet.getString(columnName);
 
                     //add the updated list of column data to the map now
-                    columnToValuesMap.put(columnName, getColoumnData);
+                    columnToValuesMap.put(columnName, columnDataList);
 
+                    
                 }
-                for (String key : columnToValuesMap.keySet()) {
-			System.out.println(key);
-		}
 
             }
 
             // String caseID, String caseStatus, int regardingCitizenID, List<Integer> requestingCitizens, Map<String, String> caseContent
         } catch (SQLException e) {
+            System.out.println(e.getMessage());
         }
         //List<Integer> rc = caze.getRequestingCitizen();
         disconnectDB();
@@ -164,16 +163,16 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public static void main(String[] args) {
-        DataHandler dataHandler = new DataHandler();
-        List<Integer> listTest = new ArrayList<>();
-        listTest.add(1);
-        listTest.add(2);
-        Map<String, String> mapTestValues = new HashMap<>();
-        Case caze = new Case("123", "Igang", 1, listTest, mapTestValues);
-
-        dataHandler.readCase(caze.getCaseID());
-        System.out.println(dataHandler.readCase(caze.getCaseID()));
-
-    }
+//    public static void main(String[] args) {
+//        DataHandler dataHandler = new DataHandler();
+//        List<Integer> listTest = new ArrayList<>();
+//        listTest.add(1);
+//
+//        Map<String, String> mapTestValues = new HashMap<>();
+//        Case caze = new Case("123", "Igang", 1, listTest, mapTestValues);
+//
+//        dataHandler.readCase(caze.getCaseID());
+//        System.out.println("l178: " + dataHandler.readCase(caze.getCaseID()));
+//
+//    }
 }

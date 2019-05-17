@@ -6,7 +6,6 @@ package mmmi.Data_layer.Connection;
 
 import java.sql.*;
 
-
 /**
  * @author steff dette er kun en ide til hvordan man henter og sender data
  */
@@ -20,29 +19,15 @@ public class DatabaseConnection {
     protected Statement dbStatement = null;
     protected ResultSet dbResultSet = null;
 
-
     public void connectToDB() {
         try {
-            
+
             Class.forName("org.postgresql.Driver");
             dbConnection = DriverManager.getConnection(url, username, password);
             System.out.println("Connectet to MMMI Database");
         } catch (ClassNotFoundException | SQLException ex) {
         }
     }
-
-    public Connection getDbConnection() {
-        return dbConnection;
-    }
-
-    public Statement getDbStatement() {
-        return dbStatement;
-    }
-
-    public ResultSet getDbResultSet() {
-        return dbResultSet;
-    }
-    
 
     public void disconnectDB() {
         try {
@@ -60,6 +45,4 @@ public class DatabaseConnection {
         }
     }
 
-
 }
-

@@ -3,7 +3,6 @@ package MMMI.Data_layer;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
 
 public class Case {
 
@@ -54,10 +53,11 @@ public class Case {
     public void addContents(String key, String value) {
         caseContent.put(key, value);
     }
+
     /**
-     * 
+     *
      * @param caseContenst
-     * @return 
+     * @return
      */
     public String columnStringBuilder(Map<String, String> caseContenst) {
         List<String> stringColoumnBuilder = new ArrayList<>();
@@ -71,30 +71,39 @@ public class Case {
 
             sb.append(s).append(",");
         }
-        
+
         sb.setLength(sb.length() - 1);  // To remove "," on the last part of the string when it gets appended.
 
         return sb.toString();
 
     }
+
     @Override
     public String toString() {
-        return "test";
+        String total = "";
+        String totallll = "";
+        for (Map.Entry<String, String> entry : getCaseContent().entrySet()) {
+            String key = entry.getKey();
+            String value = entry.getValue();
+            total = "Key : "+key + " : Value = " + value+"  ";
+            totallll+=total;
+        }
+        return totallll;
     }
 
-    public static void main(String[] args) {
-        Map<String, String> mapTestValues = new TreeMap<>();
-
-        List<Integer> listTest = new ArrayList<>();
-        listTest.add(1);
-        listTest.add(2);
-
-        Case caze = new Case("1", "Afventer", 1, listTest, mapTestValues);
-        caze.addContents("Test1", "Test1");
-        caze.addContents("Test2", "Test2");
-        caze.addContents("Test3", "Test3");
-
-        System.out.println(caze.columnStringBuilder(mapTestValues));
-    }
+//    public static void main(String[] args) {
+//        Map<String, String> mapTestValues = new TreeMap<>();
+//
+//        List<Integer> listTest = new ArrayList<>();
+//        listTest.add(1);
+//        listTest.add(2);
+//
+//        Case caze = new Case("1", "Afventer", 1, listTest, mapTestValues);
+//        caze.addContents("Test1", "Test1");
+//        caze.addContents("Test2", "Test2");
+//        caze.addContents("Test3", "Test3");
+//
+//        System.out.println(caze.columnStringBuilder(mapTestValues));
+//    }
 
 }

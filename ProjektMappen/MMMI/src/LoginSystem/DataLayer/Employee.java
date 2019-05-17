@@ -50,7 +50,9 @@ public class Employee {
         return departmentID;
     }
     
-    
+    public Map<Integer, String> getRights() {
+        return rigths;
+    }
 
 }
     

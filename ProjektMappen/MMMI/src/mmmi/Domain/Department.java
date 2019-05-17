@@ -1,12 +1,10 @@
 package mmmi.Domain;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import mmmi.Domain.Interfaces.IDomain;
 
-public class Department implements IDomain{
+public class Department implements IDomain {
 
     private final int id;
 
@@ -48,6 +46,7 @@ public class Department implements IDomain{
         throw new UnsupportedOperationException();
 
     }
+
     //REMEMBER: to use the correct names from the IDataHandler interface.
     //REMEMBER: check rights ask the people and dont just do some random stuff.
     @Override
@@ -73,7 +72,5 @@ public class Department implements IDomain{
         //TODO: Sends the data of employee with rights 
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    
 
 }

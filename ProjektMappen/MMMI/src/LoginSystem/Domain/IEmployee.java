@@ -1,12 +1,7 @@
-
 package LoginSystem.Domain;
 
-import MMMI.Data_layer.Employee;
+import LoginSystem.DataLayer.Employee;
 
-/**
- *
- * @author steff
- */
 public interface IEmployee {
     
     /**

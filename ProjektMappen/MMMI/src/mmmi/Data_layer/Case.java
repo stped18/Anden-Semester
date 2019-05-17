@@ -77,6 +77,10 @@ public class Case {
         return sb.toString();
 
     }
+    @Override
+    public String toString() {
+        return "test";
+    }
 
     public static void main(String[] args) {
         Map<String, String> mapTestValues = new TreeMap<>();

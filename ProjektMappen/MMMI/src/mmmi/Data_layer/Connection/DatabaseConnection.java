@@ -23,13 +23,26 @@ public class DatabaseConnection {
 
     public void connectToDB() {
         try {
-
+            
             Class.forName("org.postgresql.Driver");
             dbConnection = DriverManager.getConnection(url, username, password);
             System.out.println("Connectet to MMMI Database");
         } catch (ClassNotFoundException | SQLException ex) {
         }
     }
+
+    public Connection getDbConnection() {
+        return dbConnection;
+    }
+
+    public Statement getDbStatement() {
+        return dbStatement;
+    }
+
+    public ResultSet getDbResultSet() {
+        return dbResultSet;
+    }
+    
 
     public void disconnectDB() {
         try {

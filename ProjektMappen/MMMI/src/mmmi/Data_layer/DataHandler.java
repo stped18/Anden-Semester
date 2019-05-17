@@ -7,9 +7,12 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class DataHandler extends DatabaseConnection implements IDataHandler {
 
@@ -17,19 +20,27 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
     public Case readCase(String caseID) {
 
         String getCaseQuery = "SELECT *"
-                + "FROM Case = c"
-                + "RIGHT JOIN cc1 ON (c." + caseID + " = cc1.casecaseid)"
-                + "RIGHT JOIN cc1 ON (c." + caseID + " = cc2.casecaseid)";
+                + "FROM Case AS c"
+                + "RIGHT JOIN Case_contents ON (c." + caseID + " = Case_contents.casecaseid)"
+                + "RIGHT JOIN Case_requestingcitizen ON (c." + caseID + " = Case_requestingcitizen.casecaseid)";
+//        String getCaseQuery = "SELECT *\n"
+//                + "FROM mmmidb.\"public\".\"Case\" AS c"
+//                + "RIGHT JOIN mmmidb.\"public\".\"Case_contents\" ON (c.caseID = mmmidb.\"public\".\"Case_contents\".casecaseid)"
+//                + "RIGHT JOIN mmmidb.\"public\".\"Case_requestingcitizen\" ON (c.caseID = mmmidb.\"public\".\"Case_requestingcitizen\".casecaseid);";
         List<String> columnNames = new ArrayList<>();
         List<Integer> requstingCitizenIDs = new ArrayList<>();
         Map<String, String> columnToValuesMap = new HashMap<>();
 
         Integer regardingCitizenID = 0;
+
+        connectToDB();
+
         try {
 
-            connectToDB();
             PreparedStatement statement;
-            statement = dbConnection.prepareStatement(getCaseQuery);
+
+            statement = getDbConnection().prepareStatement(getCaseQuery);
+
             ResultSet rs = statement.executeQuery(getCaseQuery);
 
             ResultSetMetaData rsmd = rs.getMetaData();
@@ -47,15 +58,21 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
                 for (String columnName : columnNames) {
                     if (columnName.equalsIgnoreCase("citizenrequestingcitizenid")) {
                         requstingCitizenIDs.add(rs.getInt(Integer.parseInt(columnName)));
-                    } else if (columnName.equalsIgnoreCase("citizenid")) {
+                    } else if (columnName.equalsIgnoreCase("citizenregardingcitizenid")) {
                         regardingCitizenID = rs.getInt(Integer.parseInt(columnName));
                     }
+
                     //Get the list mapped to column name
-                    String columnDataList = columnToValuesMap.get(columnName);
+                    //String columnDataList = columnToValuesMap.get(columnName);
+                    String getColoumnData = rs.getString(columnName);
 
                     //add the updated list of column data to the map now
-                    columnToValuesMap.put(columnName, columnDataList);
+                    columnToValuesMap.put(columnName, getColoumnData);
+
                 }
+                for (String key : columnToValuesMap.keySet()) {
+			System.out.println(key);
+		}
 
             }
 
@@ -63,7 +80,7 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
         } catch (SQLException e) {
         }
         //List<Integer> rc = caze.getRequestingCitizen();
-
+        disconnectDB();
         return new Case(caseID, "Igang", regardingCitizenID, requstingCitizenIDs, columnToValuesMap);
 
     }
@@ -80,54 +97,38 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
 
     @Override
     public boolean writeCase(Case theCase) {
-        //casecontentidInfo, , casecaseidInfo, datestampInfo,
-        String carriageInfo, treamentcarriageInfo, treamentInfo, cashbenefitInfo, controlInfo, stayInfo, practicalhelpInfo, personalhelpInfo,
-                protectedemploymentbenefitInfo,
-                dayreliefInfo, socialpedogogicalhelpInfo, personalhelpschemeInfo, ambulanttreatmentInfo, outpatientoffersInfo, housingofferforadultsInfo,
-                extendedhousingofferforadultsInfo, inquiryfromInfo, inquiryfromtextInfo, guardianshipInfo, guardianshiptextInfo, representationInfo,
-                representationtextInfo, rightsanddutiesInfo, rightsanddutiestextInfo, agreementswithcitizentextInfo, consentInfo, getinfoInfo, getinfotextInfo,
-                citizenspecialcircumstancestextInfo, otheractingcommuneInfo, otheractingcommunetextInfo;
-        carriageInfo = treamentcarriageInfo = treamentInfo = cashbenefitInfo = controlInfo = stayInfo = practicalhelpInfo = personalhelpInfo
-                = protectedemploymentbenefitInfo
-                = dayreliefInfo = socialpedogogicalhelpInfo = personalhelpschemeInfo = ambulanttreatmentInfo = outpatientoffersInfo = housingofferforadultsInfo
-                = extendedhousingofferforadultsInfo = inquiryfromInfo = inquiryfromtextInfo = guardianshipInfo = guardianshiptextInfo = representationInfo
-                = representationtextInfo = rightsanddutiesInfo = rightsanddutiestextInfo = agreementswithcitizentextInfo = consentInfo = getinfoInfo = getinfotextInfo
-                = citizenspecialcircumstancestextInfo = otheractingcommuneInfo = otheractingcommunetextInfo = "";
 
         connectToDB();
         try {
             PreparedStatement statement;
 
-            for (Map.Entry<String, String> entry : theCase.getCaseContent().entrySet()) {
-                if (entry.getKey().equalsIgnoreCase("carriage")) {
-                    carriageInfo = entry.getValue();
-                } else if (entry.getKey().equalsIgnoreCase("treament")) {
-                    treamentInfo = entry.getValue();
-                } else if (entry.getKey().equalsIgnoreCase("cashbenefit")) {
-                    cashbenefitInfo = entry.getValue();
-                }
+            String count = "'?'";
+            String[] e = null;
+            String[] list = {"null", theCase.columnStringBuilder(theCase.getCaseContent())};
+            for (int i = 1; i < list.length; i++) {
+                e[i] = count;
+
             }
+
             statement = dbConnection.prepareStatement("INSERT INTO case_contents"
-                    + "(casecontentid, , casecaseid, datestamp, carriage, treament, cashbenefit, control, stay, practicalhelp, personalhelp, protectedemploymentbenefit,"
-                    + "dayrelief, socialpedogogicalhelp, personalhelpscheme, ambulanttreatment, outpatientoffers, housingofferforadults,"
-                    + "extendedhousingofferforadults, inquiryfrom, inquiryfromtext, guardianship, guardianshiptext, representation,"
-                    + "representationtext, rightsandduties, rightsanddutiestext, agreementswithcitizentext, consent, getinfo, getinfotext,"
-                    + "citizenspecialcircumstancestext, otheractingcommune, otheractingcommunetext)"
+                    + "(" + theCase.getCaseID() + "," + theCase.columnStringBuilder(theCase.getCaseContent()) + ")"
                     + "VALUES"
-                    + "('?','?','?'"
-                    + "'?', '?', '?')");
+                    + "(" + Arrays.toString(e).substring(1, e.length - 1) + ")");
 
-            statement.setString(4, carriageInfo);
+            for (int i = 1; i < list.length; i++) {
 
-        } catch (SQLException e) {
+                statement.setString(i, list[i]);
 
-            System.out.println("Exception at writeCase:mmmi.Data_layer.DataHandler"
-                    + " a database access error occured "
-                    + " or this method is called on a closed connection "
-                    + "(setString) parameterIndex does not correspond to a parameter marker in the SQL statement"
-                    + e.getLocalizedMessage());
+            }
+            disconnectDB();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(DataHandler.class.getName()).log(Level.SEVERE, null, ex);
+            disconnectDB();
+            return false;
         }
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -163,4 +164,16 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    public static void main(String[] args) {
+        DataHandler dataHandler = new DataHandler();
+        List<Integer> listTest = new ArrayList<>();
+        listTest.add(1);
+        listTest.add(2);
+        Map<String, String> mapTestValues = new HashMap<>();
+        Case caze = new Case("123", "Igang", 1, listTest, mapTestValues);
+
+        dataHandler.readCase(caze.getCaseID());
+        System.out.println(dataHandler.readCase(caze.getCaseID()));
+
+    }
 }

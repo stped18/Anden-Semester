@@ -1,6 +1,7 @@
 package MMMI.Data_layer;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -60,6 +61,7 @@ public class Case {
      * @return
      */
     public String columnStringBuilder(Map<String, String> caseContenst) {
+       
         List<String> stringColoumnBuilder = new ArrayList<>();
         // put mapKeys to list
         for (String mapKey : caseContenst.keySet()) {
@@ -85,25 +87,29 @@ public class Case {
         for (Map.Entry<String, String> entry : getCaseContent().entrySet()) {
             String key = entry.getKey();
             String value = entry.getValue();
-            total = "Key : "+key + " : Value = " + value+"  ";
-            totallll+=total;
+            total = "Key : " + key + " : Value = " + value + "  ";
+            totallll += total;
         }
         return totallll;
     }
 
-//    public static void main(String[] args) {
-//        Map<String, String> mapTestValues = new TreeMap<>();
-//
-//        List<Integer> listTest = new ArrayList<>();
-//        listTest.add(1);
-//        listTest.add(2);
-//
-//        Case caze = new Case("1", "Afventer", 1, listTest, mapTestValues);
-//        caze.addContents("Test1", "Test1");
-//        caze.addContents("Test2", "Test2");
-//        caze.addContents("Test3", "Test3");
-//
-//        System.out.println(caze.columnStringBuilder(mapTestValues));
-//    }
+    public static void main(String[] args) {
+        Map<String, String> mapTestValues = new HashMap<>();
+
+        List<Integer> listTest = new ArrayList<>();
+        listTest.add(1);
+        listTest.add(2);
+
+        Case caze = new Case("1", "Afventer", 1, listTest, mapTestValues);
+
+        caze.addContents("Test1", "Test1");
+        caze.addContents("Test2", "Test2");
+        caze.addContents("Test3", "Test3");
+        caze.addContents("Test4", "Test4");
+        caze.addContents("Test5", "Test5");
+        caze.addContents("Test6", "Test6");
+   
+        System.out.println(caze.columnStringBuilder(mapTestValues));
+    }
 
 }

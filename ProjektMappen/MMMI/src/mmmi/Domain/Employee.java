@@ -50,4 +50,6 @@ public class Employee {
     public boolean checkRight(int rightID) {
         return this.rightsMap.containsKey(rightID);
     }
+    
+    // TODO: Need something to store employee cases in.
 }

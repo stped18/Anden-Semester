@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package mmmi.UI.Main.home;
 
 import javafx.fxml.Initializable;
@@ -17,11 +12,6 @@ import javafx.scene.control.TextField;
 import mmmi.Domain.Department;
 import mmmi.Domain.Interfaces.IDomain;
 
-/**
- * FXML Controller class
- *
- * @author steff
- */
 public class HomeController implements Initializable {
 
     @FXML
@@ -33,7 +23,7 @@ public class HomeController implements Initializable {
     @FXML
     private TextField numberOfCases;
 
-    IDomain department = new Department(0); // TODO: need a constructor with out any parameters.
+    IDomain department = new Department(); // TODO: need a constructor with out any parameters.
 
     /**
      * Initializes the controller class.

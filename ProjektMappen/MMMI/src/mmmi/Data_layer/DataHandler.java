@@ -61,18 +61,19 @@ public class DataHandler extends DatabaseConnection implements IDataHandler{
         List<SearchCase> sc = new ArrayList();
         PreparedStatement searchCaseStmt = null;
         String selectQuery, fromQuery, whereQuery, query;
-        if(searchKey == "case") {
+        if(searchKey.equals("case")) {
             try {
+                String[] search = searchValue.split("%");
                 selectQuery = "SELECT c.caseid, c.status, ci.citizenid, CONCAT(ci.firstname, ' ', ci.lastname) AS citizenName, cc.datestamp, cc.regardingInquiry, CONCAT(e.firstname, ' ', e.lastname) AS employeeName, e.employeeid";
                 fromQuery = "FROM \"case\" as c, citizen AS ci, (SELECT casecaseid, datestamp, regardingInquiry FROM case_contents WHERE casecaseid = ? ORDER BY datestamp DESC LIMIT 1) AS cc, (SELECT casecaseid, employeeemployeeid FROM case_employee WHERE casecaseid = ?) AS ce, employee AS e";
                 whereQuery = "WHERE ce.casecaseid = c.caseid AND e.employeeid = ce.employeeemployeeid AND cc.casecaseid = c.caseid AND ci.citizenid = c.citizenregardingcitizenid AND c.caseid = ? AND c.departmentdepartmentid = ?;";
                 query = selectQuery + fromQuery + whereQuery;
                 
                 searchCaseStmt = dbConnection.prepareStatement(query);
-                searchCaseStmt.setString(1, searchValue);
-                searchCaseStmt.setString(2, searchValue);
-                searchCaseStmt.setString(3, searchValue);
-                searchCaseStmt.setString(4, ""); // departmentID from somewhere..
+                searchCaseStmt.setString(1, search[0]);
+                searchCaseStmt.setString(2, search[0]);
+                searchCaseStmt.setString(3, search[0]);
+                searchCaseStmt.setString(4, search[1]);
                 dbResultSet = searchCaseStmt.executeQuery();
                 while(dbResultSet.next()) {
                     sc.add(new SearchCase(dbResultSet.getInt(3), dbResultSet.getString(4), dbResultSet.getString(1), dbResultSet.getString(2), dbResultSet.getString(5), dbResultSet.getString(6), dbResultSet.getInt(8), dbResultSet.getString(7)));
@@ -87,8 +88,9 @@ public class DataHandler extends DatabaseConnection implements IDataHandler{
                 }
                 disConnectet();
             }
-        } else if(searchKey == "citizen") {
+        } else if(searchKey.equals("citizen")) {
             try {
+                String[] search = searchValue.split("%");
                 selectQuery = "SELECT c.caseid, c.status, ci.citizenid, CONCAT(ci.firstname, ' ', ci.lastname) AS citizenName, cc.datestamp, cc.regardingInquiry, "
                             + "CONCAT(e.firstname, ' ', e.lastname) AS employeeName, e.employeeid";
                 fromQuery = "FROM citizen AS ci, \"case\" AS c, zipcode AS z, employee AS e, "
@@ -102,7 +104,12 @@ public class DataHandler extends DatabaseConnection implements IDataHandler{
                            + "AND (CONCAT(ci.firstname, ' ', ci.lastname) LIKE ? OR (CONCAT(ci.streetname, ' ', ci.houseno) LIKE ? AND CONCAT(ci.zipcodezipcode, ' ', z.cityname) LIKE ?)) "
                            + "AND ci.citizenid = c.citizenregardingcitizenid AND c.departmentdepartmentid = ?";
                 query = selectQuery + fromQuery + whereQuery;
-                dbResultSet = searchCaseStmt.executeQuery(query);
+                searchCaseStmt = dbConnection.prepareStatement(query);
+                searchCaseStmt.setString(1, "%" + search[0] + "%");
+                searchCaseStmt.setString(2, "%" + search[1] + "%");
+                searchCaseStmt.setString(3, "%" + search[2] + "%");
+                searchCaseStmt.setString(4, search[3]);
+                dbResultSet = searchCaseStmt.executeQuery();
                 while(dbResultSet.next()) {
                     sc.add(new SearchCase(dbResultSet.getInt(3), dbResultSet.getString(4), dbResultSet.getString(1), dbResultSet.getString(2), dbResultSet.getString(5), dbResultSet.getString(6), dbResultSet.getInt(8), dbResultSet.getString(7)));
                 }

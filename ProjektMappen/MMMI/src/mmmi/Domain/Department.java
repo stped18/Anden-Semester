@@ -2,6 +2,9 @@ package mmmi.Domain;
 
 import LoginSystem.Domain.IEmployee;
 import LoginSystem.Domain.LoginSystem;
+import MMMI.Data_layer.DataHandler;
+import MMMI.Data_layer.Interfaces.IDataHandler;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import mmmi.Domain.Interfaces.IDomain;
@@ -10,7 +13,8 @@ public class Department implements IDomain {
 
     private final int id;
 
-    private final IEmployee loginEmployee = new LoginSystem();
+    private IDataHandler dataHandler = new DataHandler();
+    private IEmployee loginEmployee = new LoginSystem();
     private Employee mmmiEmployee;
 
     /**
@@ -80,12 +84,22 @@ public class Department implements IDomain {
     private Employee receiveEmployee() {
 
         int employeeid = loginEmployee.sendEmployee().getEmployeeID();
-        int roleID = loginEmployee.sendEmployee().getRoleID();
-        int departmentID = loginEmployee.sendEmployee().getDepartmentID();
-        String firstName = loginEmployee.sendEmployee().getFirstName();
-        String lastname = loginEmployee.sendEmployee().getLastName();
-        Map<Integer, String> rightsMap = loginEmployee.sendEmployee().getRights();
-        
-        return mmmiEmployee = new Employee(employeeid, firstName, lastname, departmentID, roleID, rightsMap);
+        String firstName;
+        String lastName;
+        int departmentID;
+        int roleID;
+        Map<Integer, String> rightsMap;
+
+        MMMI.Data_layer.Employee newEmployee = dataHandler.readEmployee(employeeid);
+        String[] split = newEmployee.toString().split(",");
+
+        firstName = split[0];
+        lastName = split[1];
+        roleID = Integer.parseInt(split[2]);
+        departmentID = Integer.parseInt(split[3]);
+        // TODO: Add rights and cases.
+
+        return mmmiEmployee = new Employee();
+//        return mmmiEmployee = new Employee(employeeid, firstName, lastName, departmentID, roleID, rightsMap);
     }
 }

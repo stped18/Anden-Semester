@@ -10,6 +10,7 @@ public class Employee {
     private int departmentID;
     private int roleID;
     private Map<Integer, String> rightsMap;
+    private Map<Integer, String> caseMap;
 
     public Employee() {
     }
@@ -45,6 +46,10 @@ public class Employee {
 
     public Map<Integer, String> getRightsMap() {
         return this.rightsMap;
+    }
+    
+    public Map<Integer,String> getCaseMap() {
+        return this.caseMap;
     }
 
     public boolean checkRight(int rightID) {

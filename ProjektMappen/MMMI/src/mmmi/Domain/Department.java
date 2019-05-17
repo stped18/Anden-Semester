@@ -1,5 +1,7 @@
 package mmmi.Domain;
 
+import LoginSystem.Domain.IEmployee;
+import LoginSystem.Domain.LoginSystem;
 import java.util.List;
 import java.util.Map;
 import mmmi.Domain.Interfaces.IDomain;
@@ -7,6 +9,9 @@ import mmmi.Domain.Interfaces.IDomain;
 public class Department implements IDomain {
 
     private final int id;
+
+    private final IEmployee loginEmployee = new LoginSystem();
+    private Employee mmmiEmployee;
 
     /**
      * @param id
@@ -69,8 +74,18 @@ public class Department implements IDomain {
 
     @Override
     public Employee getEmployee() {
-        //TODO: Sends the data of employee with rights 
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return receiveEmployee();
     }
 
+    private Employee receiveEmployee() {
+
+        int employeeid = loginEmployee.sendEmployee().getEmployeeID();
+        int roleID = loginEmployee.sendEmployee().getRoleID();
+        int departmentID = loginEmployee.sendEmployee().getDepartmentID();
+        String firstName = loginEmployee.sendEmployee().getFirstName();
+        String lastname = loginEmployee.sendEmployee().getLastName();
+        Map<Integer, String> rightsMap = loginEmployee.sendEmployee().getRights();
+        
+        return mmmiEmployee = new Employee(employeeid, firstName, lastname, departmentID, roleID, rightsMap);
+    }
 }

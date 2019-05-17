@@ -1,8 +1,5 @@
 package mmmi.Domain;
 
-import LoginSystem.Domain.IEmployee;
-import LoginSystem.Domain.LoginSystem;
-import java.util.HashMap;
 import java.util.Map;
 
 public class Employee {
@@ -12,11 +9,18 @@ public class Employee {
     private String lastname;
     private int departmentID;
     private int roleID;
-    private Map<Integer, String> rightsMap = new HashMap<>();
-
-    private final IEmployee employee = new LoginSystem();
+    private Map<Integer, String> rightsMap;
 
     public Employee() {
+    }
+
+    public Employee(int id, String firstName, String lastname, int departmentID, int roleID, Map<Integer, String> rightsMap) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastname = lastname;
+        this.departmentID = departmentID;
+        this.roleID = roleID;
+        this.rightsMap = rightsMap;
     }
 
     public int getId() {
@@ -34,27 +38,16 @@ public class Employee {
     public int getDepartmentID() {
         return this.departmentID;
     }
-    
+
     public int getRoleID() {
         return this.roleID;
     }
-    
+
     public Map<Integer, String> getRightsMap() {
         return this.rightsMap;
     }
-    
+
     public boolean checkRight(int rightID) {
         return this.rightsMap.containsKey(rightID);
     }
-
-    private void receiveEmployee() {
-
-        this.id = employee.sendEmployee().getEmployeeID();
-        this.roleID = employee.sendEmployee().getRoleID();
-        this.departmentID = employee.sendEmployee().getDepartmentID();
-        this.firstName = employee.sendEmployee().getFirstName();
-        this.lastname = employee.sendEmployee().getLastName();
-        this.rightsMap = employee.sendEmployee().getRights();
-    }
-
 }

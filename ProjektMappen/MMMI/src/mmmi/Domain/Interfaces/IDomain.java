@@ -1,7 +1,5 @@
 package mmmi.Domain.Interfaces;
 
-import MMMI.Data_layer.Case;
-import MMMI.Data_layer.Citizen;
 import java.util.List;
 import java.util.Map;
 import mmmi.Domain.Employee;

@@ -57,6 +57,7 @@ public class Department implements IDomain {
     @Override
     public List<Map<String, String>> Search(String key, String value) {
         //TODO: needs to be able to send all info from a searchcase to the GUI in the form of list with a map
+        value += "%" + String.valueOf(id);
         IDataHandler searchHandler = new DataHandler();
         List<SearchCase> searchCases = searchHandler.search(key, value);
         int length = searchCases.size();

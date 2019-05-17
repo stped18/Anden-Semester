@@ -142,5 +142,16 @@ public class Citizen {
     public void setRequestingCitizen(boolean requestingCitizen) {
         this.requestingCitizen = requestingCitizen;
     }
+
+    @Override
+    public String toString() {
+        String casestring = "";
+        for (Case Case1 : Cases) {
+            casestring += Case1.toString() + "\n";
+        }
+        
+        return "Citizen{" + "citizenID=" + citizenID + ", firstName=" + firstName + ", lastName=" + lastName + ", cprNo=" + cprNo + ", streetName=" + streetName + ", houseNo=" + houseNo + ", floor=" + floor + ", floorDirection=" + floorDirection + ", zipcode=" + zipcode + ", cityname=" + cityname + ", regardingCitizen=" + regardingCitizen + ", requestingCitizen=" + requestingCitizen + ", Cases=" + casestring + '}';
+    }
+    
     
 }

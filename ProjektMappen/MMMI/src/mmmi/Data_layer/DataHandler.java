@@ -5,6 +5,7 @@ import MMMI.Data_layer.Interfaces.IDataHandler;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -28,15 +29,24 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
     @Override
     public Employee readEmployee(int employeeID) {
         
-        // TODO: Need to return rights.
-        
-        int id = 0;
+        int id = employeeID;
         String firstName = "";
         String lastName = "";
         int roleID = 0;
         int departmentID = 0;
-        List<Integer> employeeCases = new ArrayList<>();
+        Map<Integer, String> employeeCases;
+        Map<Integer, String> rights;
 
+        // TODO: Create variable for caseid.
+        
+        int citizenID;
+        String citizenFirstName;
+        String citizenLastName;
+        
+        // TODO: Get Citizen name from caseid, it has to go througt case and get citizenID.
+        
+        // TODO: Get rights from database and set in map.
+        
         try {
             connectToDB();
 
@@ -45,7 +55,6 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
             dbResultSet = dbStatement.executeQuery(getEmployee);
 
             while (dbResultSet.next()) {
-                id = dbResultSet.getInt("employeeID");
                 firstName = dbResultSet.getString("firstname");
                 lastName = dbResultSet.getString("lastname");
                 roleID = dbResultSet.getInt("roleroleid");
@@ -57,7 +66,7 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
             dbResultSet = dbStatement.executeQuery(getCaseID);
 
             while (dbResultSet.next()) {
-                employeeCases.add(dbResultSet.getInt("casecaseid"));
+                employeeCases.put(dbResultSet.getInt("casecaseid"), citizen.getFirstName() + " " + citizen.getLastName());
             }
 
             disConnectet();
@@ -65,7 +74,7 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
             Logger.getLogger(DataHandler.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        return new Employee(id, firstName, lastName, roleID, departmentID, employeeCases);
+        return new Employee(int employeeID, String firstName, String lastName, int roleID, int departmentID, Map<Integer, String> employeeCases, Map<Integer, String> rights);
     }
 
     @Override

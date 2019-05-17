@@ -1,24 +1,25 @@
 package MMMI.Data_layer;
 
-import java.util.List;
+import java.util.Map;
 
 public class Employee {
-    
+
     private final int employeeID;
     private final String firstName;
     private final String lastName;
     private final int roleID;
     private final int departmentID;
-    private List<Integer> employeeCases;
-    // TODO: Needs something to contain rights.
+    private Map<Integer, String> employeeCases;
+    private Map<Integer, String> rights;
 
-    public Employee(int employeeID, String firstName, String lastName, int roleID, int departmentID, List<Integer> employeeCases) {
+    public Employee(int employeeID, String firstName, String lastName, int roleID, int departmentID, Map<Integer, String> employeeCases, Map<Integer, String> rights) {
         this.employeeID = employeeID;
         this.firstName = firstName;
         this.lastName = lastName;
         this.roleID = roleID;
         this.departmentID = departmentID;
         this.employeeCases = employeeCases;
+        this.rights = rights;
     }
 
     public int getEmployeeID() {
@@ -40,9 +41,12 @@ public class Employee {
     public int getDepartmentID() {
         return this.departmentID;
     }
-    
-    public List<Integer> getEmployeeCases() {
+
+    public Map<Integer, String> getEmployeeCases() {
         return this.employeeCases;
     }
-    
+
+    public Map<Integer, String> getrights() {
+        return this.rights;
+    }
 }

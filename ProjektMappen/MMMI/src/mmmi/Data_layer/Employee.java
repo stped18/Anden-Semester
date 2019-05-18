@@ -5,17 +5,15 @@ import java.util.Map;
 public class Employee {
 
     private final int employeeID;
-    private final String firstName;
-    private final String lastName;
+    private final String name;
     private final int roleID;
     private final int departmentID;
-    private Map<Integer, String> employeeCases;
+    private Map<String, String> employeeCases;
     private Map<Integer, String> rights;
 
-    public Employee(int employeeID, String firstName, String lastName, int roleID, int departmentID, Map<Integer, String> employeeCases, Map<Integer, String> rights) {
+    public Employee(int employeeID, String name, int roleID, int departmentID, Map<String, String> employeeCases, Map<Integer, String> rights) {
         this.employeeID = employeeID;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.name = name;
         this.roleID = roleID;
         this.departmentID = departmentID;
         this.employeeCases = employeeCases;
@@ -26,12 +24,8 @@ public class Employee {
         return this.employeeID;
     }
 
-    public String getFirstName() {
-        return this.firstName;
-    }
-
-    public String getLastName() {
-        return this.lastName;
+    public String getName() {
+        return this.name;
     }
 
     public int getRoleID() {
@@ -42,7 +36,7 @@ public class Employee {
         return this.departmentID;
     }
 
-    public Map<Integer, String> getEmployeeCases() {
+    public Map<String, String> getEmployeeCases() {
         return this.employeeCases;
     }
 

@@ -30,18 +30,13 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
     public Employee readEmployee(int employeeID) {
 
         int id = employeeID;
-        String firstName = "";
-        String lastName = "";
+        String empolyeeName = "";
         int roleID = -1;
         int departmentID = -1;
-        int caseID = -1;
-        Map<Integer, String> employeeCases = new HashMap<>();
+        Map<String, String> employeeCases = new HashMap<>();
         Map<Integer, String> rights = new HashMap<>();
 
-        int citizenID = -1;
-
         // TODO: Get rights from database and set in map.
-        int rightsid = -1;
 
         try {
             connectToDB();
@@ -53,29 +48,32 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
                     + "ce.casecaseid AS caseid,"
                     + "CONCAT(ci.firstname, ' ', ci.lastname) AS citizenname";
             String fromQuery = "FROM employee AS em, case_employee AS ce, \"case\" AS c, citizen AS ci";
-            String whereQuery = "WHERE em.employeeid = 7"
-                    + "AND ce.employeeemployeeid = 7 AND c.caseid = ce.casecaseid"
+            String whereQuery = "WHERE em.employeeid = ?"
+                    + "AND ce.employeeemployeeid = ? AND c.caseid = ce.casecaseid"
                     + "AND ci.citizenid = c.citizenregardingcitizenid;";
             String query = selectQuery + fromQuery + whereQuery; 
 
             dbResultSet = dbStatement.executeQuery(query);
             
             while(dbResultSet.next()) {
-                
+                departmentID = dbResultSet.getInt("departmentid");
+                roleID = dbResultSet.getInt("roleid");
+                empolyeeName = dbResultSet.getString("employeename");
+                employeeCases.put(dbResultSet.getString("caseid"), dbResultSet.getString("citizenname"));
             }
             
-            String getRightsID = "SELECT rightsrightsid from role_rights WHERE roleroleid = " + roleID;
-            dbResultSet = dbStatement.executeQuery(getRightsID);
+            String selectQuery2, fromQuery2, whereQuery2;
+            
+            selectQuery2 = "SELECT r.rightsid AS rightsid, r,rightsname AS rightsname";
+            fromQuery2 = "FROM role_rights AS rr, rights AS r";
+            whereQuery2 = "WHERE rr.roleroleid = " + roleID + "AND r.rightsid = rr.rightsrightsid";
+            
+            String query2 = selectQuery2 + fromQuery2 + whereQuery2; 
+            
+            dbResultSet = dbStatement.executeQuery(query2);
 
-            while (dbResultSet.next()) {
-                rightsid = dbResultSet.getInt("rightsrighstid");
-            }
-
-            String getRights = "SELECT * FORM rights WHERE rightsid = " + rightsid;
-            dbResultSet = dbStatement.executeQuery(getRights);
-
-            while (dbResultSet.next()) {
-                rights.put(rightsid, dbResultSet.getString("rightsname"));
+            while(dbResultSet.next()) {
+                rights.put(dbResultSet.getInt("rightsid"), dbResultSet.getString("rightsname"));
             }
 
             disConnectet();
@@ -83,7 +81,7 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
             Logger.getLogger(DataHandler.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        return new Employee(employeeID, firstName, lastName, roleID, departmentID, employeeCases, rights);
+        return new Employee(employeeID, empolyeeName, roleID, departmentID, employeeCases, rights);
     }
 
     @Override

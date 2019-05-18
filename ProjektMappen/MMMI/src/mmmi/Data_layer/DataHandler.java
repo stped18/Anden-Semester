@@ -61,19 +61,20 @@ public class DataHandler extends DatabaseConnection implements IDataHandler{
         List<SearchCase> sc = new ArrayList();
         PreparedStatement searchCaseStmt = null;
         String selectQuery, fromQuery, whereQuery, query;
-        if(searchKey.equals("case")) {
+        if(searchKey.equals("Case")) {
             try {
+                connectToDB();
                 String[] search = searchValue.split("%");
-                selectQuery = "SELECT c.caseid, c.status, ci.citizenid, CONCAT(ci.firstname, ' ', ci.lastname) AS citizenName, cc.datestamp, cc.regardingInquiry, CONCAT(e.firstname, ' ', e.lastname) AS employeeName, e.employeeid";
-                fromQuery = "FROM \"case\" as c, citizen AS ci, (SELECT casecaseid, datestamp, regardingInquiry FROM case_contents WHERE casecaseid = ? ORDER BY datestamp DESC LIMIT 1) AS cc, (SELECT casecaseid, employeeemployeeid FROM case_employee WHERE casecaseid = ?) AS ce, employee AS e";
+                selectQuery = "SELECT c.caseid, c.casestatus, ci.citizenid, CONCAT(ci.firstname, ' ', ci.lastname) AS citizenName, to_char(cc.datestamp, 'DD/MM-YYYY') AS datestamp, cc.regardinginquiry, CONCAT(e.firstname, ' ', e.lastname) AS employeeName, e.employeeid ";
+                fromQuery = "FROM \"case\" as c, citizen AS ci, (SELECT casecaseid, datestamp, regardinginquiry FROM case_contents WHERE casecaseid = ? ORDER BY datestamp DESC LIMIT 1) AS cc, (SELECT casecaseid, employeeemployeeid FROM case_employee WHERE casecaseid = ?) AS ce, employee AS e ";
                 whereQuery = "WHERE ce.casecaseid = c.caseid AND e.employeeid = ce.employeeemployeeid AND cc.casecaseid = c.caseid AND ci.citizenid = c.citizenregardingcitizenid AND c.caseid = ? AND c.departmentdepartmentid = ?;";
                 query = selectQuery + fromQuery + whereQuery;
-                
+
                 searchCaseStmt = dbConnection.prepareStatement(query);
                 searchCaseStmt.setString(1, search[0]);
                 searchCaseStmt.setString(2, search[0]);
                 searchCaseStmt.setString(3, search[0]);
-                searchCaseStmt.setString(4, search[1]);
+                searchCaseStmt.setInt(4, Integer.valueOf(search[1]));
                 dbResultSet = searchCaseStmt.executeQuery();
                 while(dbResultSet.next()) {
                     sc.add(new SearchCase(dbResultSet.getInt(3), dbResultSet.getString(4), dbResultSet.getString(1), dbResultSet.getString(2), dbResultSet.getString(5), dbResultSet.getString(6), dbResultSet.getInt(8), dbResultSet.getString(7)));
@@ -88,27 +89,78 @@ public class DataHandler extends DatabaseConnection implements IDataHandler{
                 }
                 disConnectet();
             }
-        } else if(searchKey.equals("citizen")) {
+        } else if(searchKey.equals("Citizen")) {
             try {
+                connectToDB();
                 String[] search = searchValue.split("%");
-                selectQuery = "SELECT c.caseid, c.status, ci.citizenid, CONCAT(ci.firstname, ' ', ci.lastname) AS citizenName, cc.datestamp, cc.regardingInquiry, "
-                            + "CONCAT(e.firstname, ' ', e.lastname) AS employeeName, e.employeeid";
+                List<String> searchVal = new ArrayList();
+                String searchQuery = "";
+                int columns = 0;
+                if(!search[0].equals("")) {
+                    searchQuery += "\"CPR-nr\" LIKE ?";
+                    columns++;
+                    searchVal.add(search[0]);
+                } 
+                if(!search[1].equals("")) {
+                    if(!searchQuery.equals("")) {
+                        searchQuery += " AND ";
+                    }
+                     searchQuery += "CONCAT(ci.firstname, ' ', ci.lastname) LIKE ?";
+                     columns++;
+                     searchVal.add(search[1]);
+                } 
+                if(!search[2].equals("")) {
+                    if(!searchQuery.equals("")) {
+                        searchQuery += " AND ";
+                    }
+                    searchQuery += "(CONCAT(ci.streetname, ' ', ci.houseno) LIKE ? AND CONCAT(ci.zipcodezipcode, ' ', z.cityname) LIKE ?)";
+                    columns++;
+                    searchVal.add(search[2]);
+                    columns++;
+                    searchVal.add(search[3]);
+                }
+                if(!search[3].equals("")) {
+                    if(!searchQuery.equals("")) {
+                        searchQuery += " AND ";
+                    }
+                    searchQuery += "(CONCAT(ci.streetname, ' ', ci.houseno) LIKE ? AND CONCAT(ci.zipcodezipcode, ' ', z.cityname) LIKE ?)";
+                    columns++;
+                    searchVal.add(search[2]);
+                    columns++;
+                    searchVal.add(search[3]);
+                }
+                searchVal.add(search[4]);
+                selectQuery = "SELECT c.caseid, c.casestatus, ci.citizenid, CONCAT(ci.firstname, ' ', ci.lastname) AS citizenName, to_char(cc.datestamp, 'DD/MM-YYYY'), cc.regardinginquiry, "
+                            + "CONCAT(e.firstname, ' ', e.lastname) AS employeeName, e.employeeid ";
                 fromQuery = "FROM citizen AS ci, \"case\" AS c, zipcode AS z, employee AS e, "
-                          + "(SELECT casecaseid, datestamp "
+                          + "(SELECT casecaseid, MAX(datestamp) AS datestamp, regardinginquiry "
                             + "FROM case_contents, \"case\" AS c "
-                            + "WHERE casecaseid = c.caseid AND c.citizenregardingcitizenid = 1 ORDER BY datestamp DESC LIMIT 1) AS cc, "
+                            + "WHERE casecaseid = c.caseid AND c.citizenregardingcitizenid in "
+                             + "(SELECT citizenid "
+                               + "FROM citizen AS ci, zipcode AS z "
+                               + "WHERE (" + searchQuery + ")) "
+                            + "GROUP BY(casecaseid, regardinginquiry)) AS cc, "
                           + "(SELECT casecaseid, employeeemployeeid "
                             + "FROM case_employee, \"case\" "
-                            + "WHERE casecaseid = caseid AND citizenregardingcitizenid = 1) AS ce";
+                            + "WHERE casecaseid = caseid AND citizenregardingcitizenid in "
+                            + "(SELECT citizenid "
+                               + "FROM citizen AS ci, zipcode AS z "
+                               + "WHERE (" + searchQuery + ")) "
+                          + ") AS ce ";
                 whereQuery = "WHERE z.zipcode = ci.zipcodezipcode AND cc.casecaseid = c.caseid AND ce.casecaseid = c.caseid AND ce.employeeemployeeid = e.employeeid "
-                           + "AND (CONCAT(ci.firstname, ' ', ci.lastname) LIKE ? OR (CONCAT(ci.streetname, ' ', ci.houseno) LIKE ? AND CONCAT(ci.zipcodezipcode, ' ', z.cityname) LIKE ?)) "
-                           + "AND ci.citizenid = c.citizenregardingcitizenid AND c.departmentdepartmentid = ?";
+                           + "AND (" + searchQuery + ") "
+                           + "AND ci.citizenid = c.citizenregardingcitizenid AND ci.regardingcitizen AND c.departmentdepartmentid = ?";
                 query = selectQuery + fromQuery + whereQuery;
+                
                 searchCaseStmt = dbConnection.prepareStatement(query);
-                searchCaseStmt.setString(1, "%" + search[0] + "%");
-                searchCaseStmt.setString(2, "%" + search[1] + "%");
-                searchCaseStmt.setString(3, "%" + search[2] + "%");
-                searchCaseStmt.setString(4, search[3]);
+                int index = 1;
+                for(int i = 1; i <= 3; i++) {
+                    for (int j = 0; j < columns; j++) {
+                        searchCaseStmt.setString(index, "%" + searchVal.get(j) + "%");
+                        index++;
+                    }
+                }
+                searchCaseStmt.setInt(index, Integer.valueOf(search[4]));
                 dbResultSet = searchCaseStmt.executeQuery();
                 while(dbResultSet.next()) {
                     sc.add(new SearchCase(dbResultSet.getInt(3), dbResultSet.getString(4), dbResultSet.getString(1), dbResultSet.getString(2), dbResultSet.getString(5), dbResultSet.getString(6), dbResultSet.getInt(8), dbResultSet.getString(7)));

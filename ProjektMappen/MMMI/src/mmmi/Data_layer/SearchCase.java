@@ -1,14 +1,12 @@
 package MMMI.Data_layer;
 
-import java.util.Date;
-
 public class SearchCase {
 
     private final int citizenID;
     private final String citizenName;
     private final String caseID;
     private final String caseStatus;
-    private final String date;
+    private final String currentCaseDate;
     private final String reason;
     private final int EmployeeID;
     private final String EmployeeName;
@@ -29,7 +27,7 @@ public class SearchCase {
         this.citizenName = citizenName;
         this.caseID = caseID;
         this.caseStatus = caseStatus;
-        this.date = date;
+        this.currentCaseDate = date;
         this.reason = reason;
         this.EmployeeID = EmployeeID;
         this.EmployeeName = EmployeeName;
@@ -51,8 +49,8 @@ public class SearchCase {
         return caseStatus;
     }
 
-    public String getDate() {
-        return date;
+    public String getCurrentCaseDate() {
+        return currentCaseDate;
     }
 
     public String getReason() {
@@ -65,6 +63,11 @@ public class SearchCase {
     
     public String getEmployeeName() {
         return EmployeeName;
+    }
+
+    @Override
+    public String toString() {
+        return "SearchCase{" + "citizenID=" + citizenID + ", citizenName=" + citizenName + ", caseID=" + caseID + ", caseStatus=" + caseStatus + ", currentCaseDate=" + currentCaseDate + ", reason=" + reason + ", EmployeeID=" + EmployeeID + ", EmployeeName=" + EmployeeName + '}';
     }
 
 }

@@ -1,14 +1,15 @@
 package mmmi.Domain;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import MMMI.Data_layer.Case;
+import MMMI.Data_layer.Interfaces.IDataHandler;
 import java.util.List;
 import java.util.Map;
 import mmmi.Domain.Interfaces.IDomain;
 
-public class Department implements IDomain{
+public class Department implements IDomain {
 
     private final int id;
+    private IDataHandler dataHandler;
 
     /**
      * @param id
@@ -48,6 +49,7 @@ public class Department implements IDomain{
         throw new UnsupportedOperationException();
 
     }
+
     //REMEMBER: to use the correct names from the IDataHandler interface.
     //REMEMBER: check rights ask the people and dont just do some random stuff.
     @Override
@@ -59,12 +61,30 @@ public class Department implements IDomain{
     @Override
     public Map<String, String> openCase(String caseID) {
         //TODO: Opens a case with all the info into a map that are sendt to the GUI
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return dataHandler.readCase(caseID).getCaseContent();
     }
 
     @Override
     public boolean saveCase(Map<String, String> caseInfo) {
         //TODO: Gets a map with both case info and citizen and needs to make it into the right data
+        String caseID = "";
+        
+        
+        if (!caseInfo.isEmpty()) {
+            for (Map.Entry<String, String> entry : caseInfo.entrySet()) {
+                if (entry.getKey().equalsIgnoreCase("caseid")) {
+                    caseID = entry.getValue();
+                } else if (entry.getKey().equalsIgnoreCase("regardingDoctor")
+                        || entry.getKey().equalsIgnoreCase("regardingrelatives")
+                        || entry.getKey().equalsIgnoreCase("regardinghospital")
+                        || entry.getKey().equalsIgnoreCase("")) {
+
+                }
+            }
+
+            dataHandler.writeCase(new Case(caseID, id, requestingCitizen, caseInfo));
+
+        }
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -73,7 +93,5 @@ public class Department implements IDomain{
         //TODO: Sends the data of employee with rights 
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    
 
 }

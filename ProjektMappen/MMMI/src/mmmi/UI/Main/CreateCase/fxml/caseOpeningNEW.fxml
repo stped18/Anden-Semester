@@ -73,7 +73,7 @@
                                     </AnchorPane>
                                  </content>
                               </TitledPane>
-                              <TitledPane fx:id="fxTP_guardianRepresentation" expanded="false" prefHeight="121.0" prefWidth="1050.0" text="Værgemål og repræsentation">
+                              <TitledPane fx:id="fxTP_guardianRepresentation" expanded="false" prefHeight="37.0" prefWidth="1045.0" text="Værgemål og repræsentation">
                                  <content>
                                     <AnchorPane prefHeight="128.0" prefWidth="1048.0">
                                        <children>
@@ -106,7 +106,7 @@
                                     </AnchorPane>
                                  </content>
                               </TitledPane>
-                              <TitledPane fx:id="fxTP_rightsDuties" expanded="false" layoutX="10.0" layoutY="10.0" prefHeight="121.0" prefWidth="1050.0" text="Rettigheder og pligter">
+                              <TitledPane fx:id="fxTP_rightsDuties" expanded="false" layoutX="10.0" layoutY="10.0" prefHeight="38.0" prefWidth="1042.0" text="Rettigheder og pligter">
                                  <content>
                                     <AnchorPane prefHeight="245.0" prefWidth="1048.0">
                                        <children>
@@ -129,7 +129,7 @@
                                     </AnchorPane>
                                  </content>
                               </TitledPane>
-                              <TitledPane fx:id="fxTP_agreementsWithCitzen" expanded="false" layoutX="10.0" layoutY="252.0" prefHeight="121.0" prefWidth="1050.0" text="Aftaler om det videre forløb">
+                              <TitledPane fx:id="fxTP_agreementsWithCitzen" expanded="false" layoutX="10.0" layoutY="252.0" prefHeight="31.0" prefWidth="1052.0" text="Aftaler om det videre forløb">
                                  <content>
                                     <AnchorPane prefHeight="245.0" prefWidth="1048.0">
                                        <children>
@@ -148,7 +148,7 @@
                                     </AnchorPane>
                                  </content>
                               </TitledPane>
-                              <TitledPane fx:id="fxTP_obtainOfInformation" expanded="false" layoutX="10.0" layoutY="373.0" prefHeight="121.0" prefWidth="1050.0" text="Indhentelse af oplysninger">
+                              <TitledPane fx:id="fxTP_obtainOfInformation" expanded="false" layoutX="10.0" layoutY="373.0" prefHeight="19.0" prefWidth="1050.0" text="Indhentelse af oplysninger">
                                  <content>
                                     <AnchorPane prefHeight="245.0" prefWidth="1048.0">
                                        <children>
@@ -176,7 +176,7 @@
                                     </AnchorPane>
                                  </content>
                               </TitledPane>
-                              <TitledPane fx:id="fxTP_citizenSpecialCircumstances" expanded="false" layoutX="10.0" layoutY="494.0" prefHeight="121.0" prefWidth="1050.0" text="Borgerinddragelse - særlige forhold">
+                              <TitledPane fx:id="fxTP_citizenSpecialCircumstances" expanded="false" layoutX="10.0" layoutY="494.0" prefHeight="4.0" prefWidth="1050.0" text="Borgerinddragelse - særlige forhold">
                                  <content>
                                     <AnchorPane prefHeight="245.0" prefWidth="1048.0">
                                        <children>
@@ -195,7 +195,7 @@
                                     </AnchorPane>
                                  </content>
                               </TitledPane>
-                              <TitledPane fx:id="communePayingOrActing" expanded="false" layoutX="10.0" layoutY="615.0" prefHeight="121.0" prefWidth="1050.0" text="Handle- og betalingskommune">
+                              <TitledPane fx:id="communePayingOrActing" expanded="false" layoutX="10.0" layoutY="615.0" prefHeight="4.0" prefWidth="1050.0" text="Handle- og betalingskommune">
                                  <content>
                                     <AnchorPane prefHeight="245.0" prefWidth="1048.0">
                                        <children>

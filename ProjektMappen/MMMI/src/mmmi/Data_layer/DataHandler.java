@@ -3,7 +3,6 @@ package MMMI.Data_layer;
 import Data_layer.Connection.DatabaseConnection;
 import MMMI.Data_layer.Interfaces.IDataHandler;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -48,37 +47,23 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
             connectToDB();
             dbStatement = dbConnection.createStatement();
 
-            String getEmployee = "SELECT * FROM employee WHERE employeeid = " + employeeID;
-            dbResultSet = dbStatement.executeQuery(getEmployee);
+            String selectQuery = "SELECT em.departmentdepartmentid AS departmentid,"
+                    + "em.roleroleid AS roleid,"
+                    + "CONCAT(em.firstname, ' ', em.lastname) AS employeename,"
+                    + "ce.casecaseid AS caseid,"
+                    + "CONCAT(ci.firstname, ' ', ci.lastname) AS citizenname";
+            String fromQuery = "FROM employee AS em, case_employee AS ce, \"case\" AS c, citizen AS ci";
+            String whereQuery = "WHERE em.employeeid = 7"
+                    + "AND ce.employeeemployeeid = 7 AND c.caseid = ce.casecaseid"
+                    + "AND ci.citizenid = c.citizenregardingcitizenid;";
+            String query = selectQuery + fromQuery + whereQuery; 
 
-            while (dbResultSet.next()) {
-                firstName = dbResultSet.getString("firstname");
-                lastName = dbResultSet.getString("lastname");
-                roleID = dbResultSet.getInt("roleroleid");
-                departmentID = dbResultSet.getInt("departmentdepartmentid");
+            dbResultSet = dbStatement.executeQuery(query);
+            
+            while(dbResultSet.next()) {
+                
             }
-
-            String getCaseID = "SELECT casecaseid FROM case_employee WHERE employeeemployeeid = " + employeeID;
-            dbResultSet = dbStatement.executeQuery(getCaseID);
-
-            while (dbResultSet.next()) {
-                caseID = dbResultSet.getInt("casecaseid");
-            }
-
-            String getCitizenID = "SELECT citizencitizenid FROM case WHERE caseid = " + caseID;
-            dbResultSet = dbStatement.executeQuery(getCitizenID);
-
-            while (dbResultSet.next()) {
-                citizenID = dbResultSet.getInt("citizencitizenid");
-            }
-
-            String getCitizenName = "SELECT firstname AND lastname FROM citizen WHERE citizenid = " + citizenID;
-            dbResultSet = dbStatement.executeQuery(getCitizenName);
-
-            while (dbResultSet.next()) {
-                employeeCases.put(caseID, dbResultSet.getString("firstname") + dbResultSet.getString("lastName"));
-            }
-
+            
             String getRightsID = "SELECT rightsrightsid from role_rights WHERE roleroleid = " + roleID;
             dbResultSet = dbStatement.executeQuery(getRightsID);
 
@@ -86,10 +71,10 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
                 rightsid = dbResultSet.getInt("rightsrighstid");
             }
 
-            String getRights = "SELECT * FORM role_rights WHERE rightsid = " + rightsid;
+            String getRights = "SELECT * FORM rights WHERE rightsid = " + rightsid;
             dbResultSet = dbStatement.executeQuery(getRights);
-            
-            while(dbResultSet.next()) {
+
+            while (dbResultSet.next()) {
                 rights.put(rightsid, dbResultSet.getString("rightsname"));
             }
 

@@ -8,8 +8,8 @@ public class Employee {
     private final String name;
     private final int roleID;
     private final int departmentID;
-    private Map<String, String> employeeCases;
-    private Map<Integer, String> rights;
+    private final Map<String, String> employeeCases;
+    private final Map<Integer, String> rights;
 
     public Employee(int employeeID, String name, int roleID, int departmentID, Map<String, String> employeeCases, Map<Integer, String> rights) {
         this.employeeID = employeeID;

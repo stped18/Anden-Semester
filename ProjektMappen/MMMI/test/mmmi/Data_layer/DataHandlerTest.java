@@ -7,9 +7,10 @@ package mmmi.Data_layer;
 
 import Data_layer.Connection.DatabaseConnection;
 import MMMI.Data_layer.DataHandler;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.junit.After;
@@ -48,39 +49,62 @@ public class DataHandlerTest extends DatabaseConnection{
      */
     @Test
     public void testReadEmployee() {
-        int id = 0;
-        String firstName = "";
-        String lastName = "";
-        int roleID = 0;
-        int departmentID = 0;
-        List<Integer> employeeCases = new ArrayList<>();
+        
+        int id = 7;
+        String empolyeeName = "";
+        int roleID = -1;
+        int departmentID = -1;
+        Map<String, String> employeeCases = new HashMap<>();
+        Map<Integer, String> rights = new HashMap<>();
+
+        String selectQuery, fromQuery, whereQuery, query;
+        PreparedStatement keyPreparedStatement = null;
 
         try {
             connectToDB();
 
-            String getEmployee = "SELECT * FROM employee WHERE employeeid = " + id;
-            dbStatement = dbConnection.createStatement();
-            dbResultSet = dbStatement.executeQuery(getEmployee);
+            selectQuery = "SELECT em.departmentdepartmentid AS departmentid,"
+                    + "em.roleroleid AS roleid,"
+                    + "CONCAT(em.firstname, ' ', em.lastname) AS employeename,"
+                    + "ce.casecaseid AS caseid,"
+                    + "CONCAT(ci.firstname, ' ', ci.lastname) AS citizenname";
+            fromQuery = "FROM employee AS em, case_employee AS ce, \"case\" AS c, citizen AS ci";
+            whereQuery = "WHERE em.employeeid = ? "
+                    + "AND ce.employeeemployeeid = ? " 
+                    + "AND c.caseid = ce.casecaseid"
+                    + "AND ci.citizenid = c.citizenregardingcitizenid;";
+            query = selectQuery + fromQuery + whereQuery;
+
+            keyPreparedStatement = dbConnection.prepareStatement(query);
+            keyPreparedStatement.setInt(1, id);
+            keyPreparedStatement.setInt(2, id);
+            dbResultSet = keyPreparedStatement.executeQuery();
 
             while (dbResultSet.next()) {
-                id = dbResultSet.getInt("employeeID");
-                firstName = dbResultSet.getString("firstname");
-                lastName = dbResultSet.getString("lastname");
-                roleID = dbResultSet.getInt("roleroleid");
-                departmentID = dbResultSet.getInt("departmentdepartmentid");
+                departmentID = dbResultSet.getInt("departmentid");
+                roleID = dbResultSet.getInt("roleid");
+                empolyeeName = dbResultSet.getString("employeename");
+                employeeCases.put(dbResultSet.getString("caseid"), dbResultSet.getString("citizenname"));
             }
 
-            String getCaseID = "SELECT casecaseid FROM case_employee WHERE employeeemployeeid = " + id;
+            selectQuery = "SELECT r.rightsid AS rightsid, r,rightsname AS rightsname";
+            fromQuery = "FROM role_rights AS rr, rights AS r";
+            whereQuery = "WHERE rr.roleroleid = " + roleID + "AND r.rightsid = rr.rightsrightsid;";
+
+            query = selectQuery + fromQuery + whereQuery;
+
             dbStatement = dbConnection.createStatement();
-            dbResultSet = dbStatement.executeQuery(getCaseID);
+            dbResultSet = dbStatement.executeQuery(query);
 
             while (dbResultSet.next()) {
-                employeeCases.add(dbResultSet.getInt("casecaseid"));
+                rights.put(dbResultSet.getInt("rightsid"), dbResultSet.getString("rightsname"));
             }
-
-            disConnectet();
         } catch (SQLException ex) {
+            System.out.println("getEmployee:\nSQLState:" + ex.getSQLState() + "\nMessage:" + ex.getMessage());
             Logger.getLogger(DataHandler.class.getName()).log(Level.SEVERE, null, ex);
+            disConnectet();
+        } finally {
+            disConnectet();
         }
     }
 }

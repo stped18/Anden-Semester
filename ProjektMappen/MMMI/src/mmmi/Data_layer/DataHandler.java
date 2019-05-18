@@ -2,6 +2,7 @@ package MMMI.Data_layer;
 
 import Data_layer.Connection.DatabaseConnection;
 import MMMI.Data_layer.Interfaces.IDataHandler;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
@@ -36,49 +37,53 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
         Map<String, String> employeeCases = new HashMap<>();
         Map<Integer, String> rights = new HashMap<>();
 
-        // TODO: Get rights from database and set in map.
+        String selectQuery, fromQuery, whereQuery, query;
+        PreparedStatement keyPreparedStatement = null;
 
         try {
             connectToDB();
-            dbStatement = dbConnection.createStatement();
 
-            String selectQuery = "SELECT em.departmentdepartmentid AS departmentid,"
+            selectQuery = "SELECT em.departmentdepartmentid AS departmentid,"
                     + "em.roleroleid AS roleid,"
                     + "CONCAT(em.firstname, ' ', em.lastname) AS employeename,"
                     + "ce.casecaseid AS caseid,"
                     + "CONCAT(ci.firstname, ' ', ci.lastname) AS citizenname";
-            String fromQuery = "FROM employee AS em, case_employee AS ce, \"case\" AS c, citizen AS ci";
-            String whereQuery = "WHERE em.employeeid = ?"
+            fromQuery = "FROM employee AS em, case_employee AS ce, \"case\" AS c, citizen AS ci";
+            whereQuery = "WHERE em.employeeid = ?"
                     + "AND ce.employeeemployeeid = ? AND c.caseid = ce.casecaseid"
                     + "AND ci.citizenid = c.citizenregardingcitizenid;";
-            String query = selectQuery + fromQuery + whereQuery; 
+            query = selectQuery + fromQuery + whereQuery;
 
-            dbResultSet = dbStatement.executeQuery(query);
-            
-            while(dbResultSet.next()) {
+            keyPreparedStatement = dbConnection.prepareStatement(query);
+            keyPreparedStatement.setInt(1, employeeID);
+            keyPreparedStatement.setInt(2, employeeID);
+            dbResultSet = keyPreparedStatement.executeQuery();
+
+            while (dbResultSet.next()) {
                 departmentID = dbResultSet.getInt("departmentid");
                 roleID = dbResultSet.getInt("roleid");
                 empolyeeName = dbResultSet.getString("employeename");
                 employeeCases.put(dbResultSet.getString("caseid"), dbResultSet.getString("citizenname"));
             }
-            
-            String selectQuery2, fromQuery2, whereQuery2;
-            
-            selectQuery2 = "SELECT r.rightsid AS rightsid, r,rightsname AS rightsname";
-            fromQuery2 = "FROM role_rights AS rr, rights AS r";
-            whereQuery2 = "WHERE rr.roleroleid = " + roleID + "AND r.rightsid = rr.rightsrightsid";
-            
-            String query2 = selectQuery2 + fromQuery2 + whereQuery2; 
-            
-            dbResultSet = dbStatement.executeQuery(query2);
 
-            while(dbResultSet.next()) {
+            selectQuery = "SELECT r.rightsid AS rightsid, r,rightsname AS rightsname";
+            fromQuery = "FROM role_rights AS rr, rights AS r";
+            whereQuery = "WHERE rr.roleroleid = " + roleID + "AND r.rightsid = rr.rightsrightsid;";
+
+            query = selectQuery + fromQuery + whereQuery;
+
+            dbStatement = dbConnection.createStatement();
+            dbResultSet = dbStatement.executeQuery(query);
+
+            while (dbResultSet.next()) {
                 rights.put(dbResultSet.getInt("rightsid"), dbResultSet.getString("rightsname"));
             }
-
-            disConnectet();
         } catch (SQLException ex) {
+            System.out.println("getEmployee:\nSQLState:" + ex.getSQLState() + "\nMessage:" + ex.getMessage());
             Logger.getLogger(DataHandler.class.getName()).log(Level.SEVERE, null, ex);
+            disConnectet();
+        } finally {
+            disConnectet();
         }
 
         return new Employee(employeeID, empolyeeName, roleID, departmentID, employeeCases, rights);

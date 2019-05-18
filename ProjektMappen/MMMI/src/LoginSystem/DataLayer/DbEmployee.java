@@ -30,10 +30,6 @@ public class DbEmployee {
         
     }
 
-    DbEmployee(int aInt, String string, String string0, int aInt0) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     public int getEmployeeID() {
         return employeeID;
     }
@@ -63,6 +59,7 @@ public class DbEmployee {
 
 }
     
+
 
 
 

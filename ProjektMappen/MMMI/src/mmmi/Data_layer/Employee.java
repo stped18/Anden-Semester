@@ -16,6 +16,8 @@ public class Employee {
         this.departmentID = departmentID;
     }
 
+   
+
     public int getEmployeeID() {
         return employeeID;
     }
@@ -37,3 +39,4 @@ public class Employee {
     }
     
 }
+

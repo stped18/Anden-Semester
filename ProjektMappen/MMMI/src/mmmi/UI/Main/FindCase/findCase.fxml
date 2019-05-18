@@ -15,26 +15,26 @@
         <URL value="@/mmmi/UI/mainStylesheet.css" />
     </stylesheets>
     <children>
-        <ListView fx:id="LV_searchCaseList" layoutX="65.0" layoutY="243.0" orientation="HORIZONTAL" prefHeight="500.0" prefWidth="900.0" />
+        <ListView fx:id="LV_searchCaseList" layoutX="65.0" layoutY="308.0" prefHeight="500.0" prefWidth="900.0" />
         <Label layoutX="451.0" layoutY="14.0" text="Find en sag">
             <font>
                 <Font size="25.0" />
             </font>
         </Label>
-      <Button fx:id="BTN_search" layoutX="381.0" layoutY="168.0" mnemonicParsing="false" onAction="#actionEventHandler" text="Søg" />
+      <Button fx:id="BTN_search" layoutX="380.0" layoutY="127.0" mnemonicParsing="false" onAction="#actionEventHandler" text="Søg" />
       <RadioButton fx:id="RB_searchOptionCitizen" layoutX="65.0" layoutY="91.0" mnemonicParsing="false" onAction="#actionEventHandler" selected="true" text="Borger">
          <toggleGroup>
             <ToggleGroup fx:id="searchOption" />
          </toggleGroup></RadioButton>
       <RadioButton fx:id="RB_searchOptionCaseNo" layoutX="198.0" layoutY="91.0" mnemonicParsing="false" onAction="#actionEventHandler" text="Sagsnummer" toggleGroup="$searchOption" />
-      <Button fx:id="BTN_openCase" layoutX="68.0" layoutY="765.0" mnemonicParsing="false" onAction="#actionEventHandler" text="Åben sag" />
+      <Button fx:id="BTN_openCase" layoutX="68.0" layoutY="830.0" mnemonicParsing="false" onAction="#actionEventHandler" text="Åben sag" />
       <AnchorPane fx:id="caseNumberPane" layoutX="65.0" layoutY="124.0" prefHeight="30.0" prefWidth="305.0" visible="false">
          <children>
             <Label layoutY="7.0" text="Sagsnummer:" />
               <TextField fx:id="TF_searchCaseNumber" layoutX="117.0" layoutY="2.0" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="citizenPane" layoutX="65.0" layoutY="124.0" prefHeight="113.0" prefWidth="305.0">
+      <AnchorPane fx:id="citizenPane" layoutX="65.0" layoutY="124.0" prefHeight="166.0" prefWidth="305.0">
          <children>
             <TextField fx:id="TF_searchCitizenName" layoutX="117.0" layoutY="2.0" />
             <TextField fx:id="TF_searchCitizenAddress" layoutX="117.0" layoutY="44.0" />
@@ -42,6 +42,8 @@
             <Label layoutX="8.0" layoutY="6.0" text="Borgers navn:" />
             <Label layoutX="8.0" layoutY="48.0" text="Borgers adresse:" />
             <Label layoutX="8.0" layoutY="91.0" text="postnummer &amp; by" />
+            <Label layoutX="8.0" layoutY="132.0" text="CPR-nummer:" />
+            <TextField fx:id="TF_searchCitizenCPR" layoutX="117.0" layoutY="128.0" />
          </children>
       </AnchorPane>
     </children>

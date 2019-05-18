@@ -3,11 +3,8 @@ package mmmi.UI.Main.FindCase;
 import javafx.fxml.Initializable;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
-import java.util.Set;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -16,7 +13,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -30,7 +26,7 @@ import mmmi.Domain.Interfaces.IDomain;
 public class FindCaseController implements Initializable {
 
     @FXML
-    private ListView<?> LV_searchCaseList;
+    private ListView<String> LV_searchCaseList;
     @FXML
     private Button BTN_search;
     @FXML
@@ -49,15 +45,17 @@ public class FindCaseController implements Initializable {
     private TextField TF_searchCitizenAddress;
     @FXML
     private TextField TF_searchCitizenZipcode;
-
-    IDomain domain; // Singleton?
-    ObservableList<String> obslistResult;
     @FXML
     private AnchorPane caseNumberPane;
     @FXML
     private AnchorPane citizenPane;
-
-    List<Map<String, String>> result;
+    @FXML
+    private TextField TF_searchCitizenCPR;
+    
+    IDomain domain; // Singleton?
+    ObservableList<String> obslistResult;
+    Map<String, Map<String, String>> result;
+    
 
     /**
      * Initializes the controller class.
@@ -69,9 +67,11 @@ public class FindCaseController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         // domain = Domain::getInstance(); Domain facade instantiation, how?
+        domain = new Department(1);
         RB_searchOptionCaseNo.setUserData("Case");
         RB_searchOptionCitizen.setUserData("Citizen");
-
+        obslistResult = FXCollections.observableArrayList();
+        LV_searchCaseList.setItems(obslistResult);
     }
 
     /**
@@ -81,20 +81,31 @@ public class FindCaseController implements Initializable {
     @FXML
     private void actionEventHandler(ActionEvent event) {
         if (event.getSource() == BTN_search) {
+            obslistResult.removeAll(obslistResult);
             String searchKey = searchOption.getSelectedToggle().getUserData().toString();
-            String searchValue;
+            String searchValue = "";
             if (searchKey.equals("Case")) {
                 searchValue = TF_searchCaseNumber.getText();
             } else {
-                searchValue = TF_searchCitizenName.getText() + "%" + TF_searchCitizenAddress + "%" + TF_searchCitizenZipcode;
+                searchValue = TF_searchCitizenCPR.getText()
+                        + "%" + TF_searchCitizenName.getText() 
+                        + "%" + TF_searchCitizenAddress.getText()
+                        + "%" + TF_searchCitizenZipcode.getText();
             }
-            result = domain.Search(searchKey, searchValue);
-            List<String> listViewStrings = new ArrayList();
-            for (Map<String, String> map : result) {
-                String info = map.values().toString();
-                listViewStrings.add(info);
+            System.out.println(searchValue);
+            if(!searchValue.equals("") && !searchValue.equals("%%%")) {
+                result = domain.search(searchKey, searchValue);
+                for (Map.Entry<String, Map<String, String>> map : result.entrySet()) {
+                    String info = "";
+                    for (Map.Entry<String, String> entry : map.getValue().entrySet()) {
+                        info += entry.getValue() + " ";
+                    }
+                    obslistResult.add(info);
+                }
+                LV_searchCaseList.refresh();
+            } else {
+                //Error, no data input
             }
-            obslistResult = FXCollections.observableArrayList(listViewStrings);
         } else if (event.getSource() == BTN_openCase) {
             openCase();
         } else if (event.getSource() == RB_searchOptionCaseNo) {
@@ -108,9 +119,12 @@ public class FindCaseController implements Initializable {
 
     private void openCase() {
         int listviewIndex = LV_searchCaseList.getFocusModel().getFocusedIndex();
-        Map<String, String> m = result.get(listviewIndex);
-        String caseID = m.keySet().toString();
-        // Open case
+        if(listviewIndex > -1) {
+            Map<String, String> m = result.get(listviewIndex);
+            String caseID = m.keySet().toString();
+            System.out.println(caseID);
+            // Open case
+        }
     }
 
     /**

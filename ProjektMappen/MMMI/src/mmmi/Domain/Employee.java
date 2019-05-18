@@ -4,55 +4,53 @@ import java.util.Map;
 
 public class Employee {
 
-    private int id;
-    private String firstName;
-    private String lastname;
-    private int departmentID;
-    private int roleID;
-    private Map<Integer, String> rightsMap;
-    private Map<Integer, String> caseMap;
+    private final int employeeID;
+    private final String firstName;
+    private final String lastName;
+    private final int roleID;
+    private final int departmentID;
+    private final Map<Integer, String> employeeCases;
+    private final Map<Integer, String> rights;
 
-    public Employee() {
-    }
-
-    public Employee(int id, String firstName, String lastname, int departmentID, int roleID, Map<Integer, String> rightsMap) {
-        this.id = id;
+    public Employee(int employeeID, String firstName, String lastName, int roleID, int departmentID, Map<Integer, String> employeeCases, Map<Integer, String> rights) {
+        this.employeeID = employeeID;
         this.firstName = firstName;
-        this.lastname = lastname;
-        this.departmentID = departmentID;
+        this.lastName = lastName;
         this.roleID = roleID;
-        this.rightsMap = rightsMap;
+        this.departmentID = departmentID;
+        this.employeeCases = employeeCases;
+        this.rights = rights;
     }
 
-    public int getId() {
-        return this.id;
+    public int getEmployeeID() {
+        return this.employeeID;
     }
 
     public String getFirstName() {
         return this.firstName;
     }
 
-    public String getLastname() {
-        return this.lastname;
-    }
-
-    public int getDepartmentID() {
-        return this.departmentID;
+    public String getLastName() {
+        return this.lastName;
     }
 
     public int getRoleID() {
         return this.roleID;
     }
 
-    public Map<Integer, String> getRightsMap() {
-        return this.rightsMap;
+    public int getDepartmentID() {
+        return this.departmentID;
     }
-    
-    public Map<Integer,String> getCaseMap() {
-        return this.caseMap;
+
+    public Map<Integer, String> getEmployeeCases() {
+        return this.employeeCases;
+    }
+
+    public Map<Integer, String> getrights() {
+        return this.rights;
     }
 
     public boolean checkRight(int rightID) {
-        return this.rightsMap.containsKey(rightID);
+        return this.rights.containsKey(rightID);
     }
 }

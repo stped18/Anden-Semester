@@ -6,7 +6,8 @@
 package LoginSystem.Domain;
 
 import LoginSystem.DataLayer.DatabaseHandler;
-import mmmi.Domain.Employee;
+import LoginSystem.DataLayer.DbEmployee;
+
 
 
 
@@ -22,10 +23,14 @@ public class LoginSystem {
     
     private String username;
     private String password;
-    DatabaseHandler databaseHandler;
+    DatabaseHandler db;
+    DbEmployee employee;
+    
+    
+    
 
-    public LoginSystem(String username, String password) {
-       databaseHandler.getEmployee(username, password);
+    public LoginSystem() {
+ 
     }
     
 
@@ -44,6 +49,10 @@ public class LoginSystem {
     public void setPassword(String password) {
         this.password = password;
     }
+    public void  getEmployee (){
+     employee = db.getEmployee(this.username, this.password);
+    System.out.println(employee.toString());
+    }
 
  
 
@@ -53,6 +62,11 @@ public class LoginSystem {
   
     
 }
+
+
+
+
+
 
 
 

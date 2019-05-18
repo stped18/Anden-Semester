@@ -37,11 +37,9 @@ public class LoginMain extends Application {
         stage.setScene(scene);
         stage.show();
     }
-
-
-   
     
 }
+
 
 
 

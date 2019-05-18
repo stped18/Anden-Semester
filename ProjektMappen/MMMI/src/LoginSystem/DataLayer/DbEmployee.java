@@ -11,7 +11,7 @@ import java.util.Map;
  *
  * @author steff
  */
-public class Employee {
+public class DbEmployee {
 
 
     private final int employeeID;
@@ -21,13 +21,17 @@ public class Employee {
     private final int departmentID;
     private Map<Integer, String> rigths; // Key == IDkey Integer of rigth value = Name
 
-    public Employee(int employeeID, String firstName, String lastName, int roleID, int departmentID) {
+    public DbEmployee(int employeeID, String firstName, String lastName, int roleID, int departmentID) {
         this.employeeID = employeeID;
         this.firstName = firstName;
         this.lastName = lastName;
         this.roleID = roleID;
         this.departmentID = departmentID;
         
+    }
+
+    DbEmployee(int aInt, String string, String string0, int aInt0) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public int getEmployeeID() {
@@ -49,11 +53,17 @@ public class Employee {
     public int getDepartmentID() {
         return departmentID;
     }
+
+    @Override
+    public String toString() {
+        return "DbEmployee{" + "employeeID=" + employeeID + ", firstName=" + firstName + ", lastName=" + lastName + ", roleID=" + roleID + ", departmentID=" + departmentID + ", rigths=" + rigths + '}';
+    }
     
     
 
 }
     
+
 
 
 

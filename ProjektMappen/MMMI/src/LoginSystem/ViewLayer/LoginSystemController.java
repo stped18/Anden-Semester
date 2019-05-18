@@ -12,6 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 /**
@@ -20,34 +21,37 @@ import javafx.scene.control.TextField;
  * @author steff
  */
 public class LoginSystemController implements Initializable {
-
+    
     @FXML
     private TextField fxUsername;
+    
     @FXML
-    private TextField fxPassWord;
+    private Button fxLoginBtn;
+    
     @FXML
-    private Button fxLoginBTM;
-       LoginSystem loginSystem ;
-   
-
+    private PasswordField fxPassword;
+    
+    LoginSystem loginSystem;
+    
     /**
      * Initializes the controller class.
      */
+    
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-      
+    public void initialize(URL url, ResourceBundle rb) { 
     }    
-
+    
     @FXML
-    private void logindHandler(ActionEvent event) {
-        loginSystem.setUsername(fxUsername.getText().toString());
-        loginSystem.setPassword(fxPassWord.getText().toString());
-        System.out.println(loginSystem.getPassword()+"   "+ loginSystem.getUsername());
+    private void loginBtnHandler(ActionEvent event) {
+        loginSystem = new LoginSystem();
+        loginSystem.setUsername(fxUsername.getText());
+        loginSystem.setPassword(fxPassword.getText());
+        loginSystem.getEmployee();
+        System.out.println(loginSystem.getPassword()+ "  and "+ loginSystem.getUsername());
+        
     }
     
 }
-
-
 
 
 

@@ -13,7 +13,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import mmmi.Domain.Employee;
+
 
 /**
  *
@@ -29,39 +29,34 @@ public class DatabaseHandler {
     protected Connection dbConnection = null;
     protected Statement dbStatement = null;
     protected ResultSet dbResultSet = null;
+    private DbEmployee employee;
 
+   
 
-    public void connectToDB() {
+    public DbEmployee getEmployee( String username, String password) {
         try {
 
             Class.forName("org.postgresql.Driver");
             dbConnection = DriverManager.getConnection(url, username, password);
             System.out.println("Connectet to MMMI Database");
         } catch (ClassNotFoundException | SQLException ex) {
+            
         }
-    }
-    public Employee getEmployee(String username , String password){
-        connectToDB();
-        Employee employee = null;
+    
+    
+        
+        
         try {
              dbResultSet = dbStatement.executeQuery("SELECT  * From employee WHERE username="+username+" AND password="+password+"");
             while(dbResultSet.next()){
-              employee = new Employee(dbResultSet.getInt("employeeid"), dbResultSet.getString("firstname"), dbResultSet.getString("lastname"), dbResultSet.getInt("departmentdepartmentid"));
+              employee = new DbEmployee(dbResultSet.getInt("employeeid"), dbResultSet.getString("firstname"), dbResultSet.getString("lastname"), dbResultSet.getInt("departmentdepartmentid"));
                
             }
         } catch (SQLException ex) {
             Logger.getLogger(DatabaseHandler.class.getName()).log(Level.SEVERE, null, ex);
         }
-        disConnectet();
-        return employee;
-        
-    }
-    
-    
-    
-    
+   
 
-    public void disConnectet() {
         try {
             if (dbStatement != null) {
                 dbStatement.close();
@@ -75,10 +70,15 @@ public class DatabaseHandler {
             System.out.println("Disconnectet From MMMI Database");
         } catch (SQLException ex) {
         }
+        return this.employee;
     }
+
+
 
     
 }
+
+
 
 
 

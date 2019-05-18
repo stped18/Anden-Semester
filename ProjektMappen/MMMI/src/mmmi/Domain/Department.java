@@ -10,17 +10,17 @@ import mmmi.Domain.Interfaces.IDomain;
 
 public class Department implements IDomain {
 
-    private final int id;
+    private final int departmentid;
 
-    private IDataHandler dataHandler = new DataHandler();
-    private IEmployee loginEmployee = new LoginSystem();
+    private final IDataHandler dataHandler = new DataHandler();
+    private final IEmployee loginEmployee = new LoginSystem();
     private Employee mmmiEmployee;
 
     /**
-     * @param id
+     * @param departmentid
      */
-    public Department(int id) {
-        this.id = id;
+    public Department(int departmentid) {
+        this.departmentid = departmentid;
     }
 
     /**
@@ -84,13 +84,12 @@ public class Department implements IDomain {
 
         int employeeid = loginEmployee.sendEmployee().getEmployeeID();
         
-        String firstName = dataHandler.readEmployee(employeeid).getFirstName();
-        String lastName = dataHandler.readEmployee(employeeid).getLastName();
+        String employeeName = dataHandler.readEmployee(employeeid).getName();
         int departmentID = dataHandler.readEmployee(employeeid).getDepartmentID();
         int roleID = dataHandler.readEmployee(employeeid).getRoleID();
-        Map<Integer, String> casemap = dataHandler.readEmployee(employeeid).getEmployeeCases();
+        Map<String, String> casemap = dataHandler.readEmployee(employeeid).getEmployeeCases();
         Map<Integer, String> rightsMap = dataHandler.readEmployee(employeeid).getrights();
 
-        return mmmiEmployee = new Employee(employeeid, firstName, lastName, departmentID, roleID, casemap, rightsMap);
+        return mmmiEmployee = new Employee(employeeid, employeeName, departmentID, roleID, casemap, rightsMap);
     }
 }

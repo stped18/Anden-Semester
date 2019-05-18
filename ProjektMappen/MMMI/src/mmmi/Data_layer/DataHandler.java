@@ -4,6 +4,7 @@ import Data_layer.Connection.DatabaseConnection;
 import MMMI.Data_layer.Interfaces.IDataHandler;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
@@ -28,30 +29,26 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
      */
     @Override
     public Employee readEmployee(int employeeID) {
-        
+
         int id = employeeID;
         String firstName = "";
         String lastName = "";
-        int roleID = 0;
-        int departmentID = 0;
-        Map<Integer, String> employeeCases;
-        Map<Integer, String> rights;
+        int roleID = -1;
+        int departmentID = -1;
+        int caseID = -1;
+        Map<Integer, String> employeeCases = new HashMap<>();
+        Map<Integer, String> rights = new HashMap<>();
 
-        // TODO: Create variable for caseid.
-        
-        int citizenID;
-        String citizenFirstName;
-        String citizenLastName;
-        
-        // TODO: Get Citizen name from caseid, it has to go througt case and get citizenID.
-        
+        int citizenID = -1;
+
         // TODO: Get rights from database and set in map.
-        
+        int rightsid = -1;
+
         try {
             connectToDB();
+            dbStatement = dbConnection.createStatement();
 
             String getEmployee = "SELECT * FROM employee WHERE employeeid = " + employeeID;
-            dbStatement = dbConnection.createStatement();
             dbResultSet = dbStatement.executeQuery(getEmployee);
 
             while (dbResultSet.next()) {
@@ -62,11 +59,38 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
             }
 
             String getCaseID = "SELECT casecaseid FROM case_employee WHERE employeeemployeeid = " + employeeID;
-            dbStatement = dbConnection.createStatement();
             dbResultSet = dbStatement.executeQuery(getCaseID);
 
             while (dbResultSet.next()) {
-                employeeCases.put(dbResultSet.getInt("casecaseid"), citizen.getFirstName() + " " + citizen.getLastName());
+                caseID = dbResultSet.getInt("casecaseid");
+            }
+
+            String getCitizenID = "SELECT citizencitizenid FROM case WHERE caseid = " + caseID;
+            dbResultSet = dbStatement.executeQuery(getCitizenID);
+
+            while (dbResultSet.next()) {
+                citizenID = dbResultSet.getInt("citizencitizenid");
+            }
+
+            String getCitizenName = "SELECT firstname AND lastname FROM citizen WHERE citizenid = " + citizenID;
+            dbResultSet = dbStatement.executeQuery(getCitizenName);
+
+            while (dbResultSet.next()) {
+                employeeCases.put(caseID, dbResultSet.getString("firstname") + dbResultSet.getString("lastName"));
+            }
+
+            String getRightsID = "SELECT rightsrightsid from role_rights WHERE roleroleid = " + roleID;
+            dbResultSet = dbStatement.executeQuery(getRightsID);
+
+            while (dbResultSet.next()) {
+                rightsid = dbResultSet.getInt("rightsrighstid");
+            }
+
+            String getRights = "SELECT * FORM role_rights WHERE rightsid = " + rightsid;
+            dbResultSet = dbStatement.executeQuery(getRights);
+            
+            while(dbResultSet.next()) {
+                rights.put(rightsid, dbResultSet.getString("rightsname"));
             }
 
             disConnectet();
@@ -74,7 +98,7 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
             Logger.getLogger(DataHandler.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        return new Employee(int employeeID, String firstName, String lastName, int roleID, int departmentID, Map<Integer, String> employeeCases, Map<Integer, String> rights);
+        return new Employee(employeeID, firstName, lastName, roleID, departmentID, employeeCases, rights);
     }
 
     @Override

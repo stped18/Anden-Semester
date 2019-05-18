@@ -55,25 +55,22 @@ public class Department implements IDomain {
     //REMEMBER: to use the correct names from the IDataHandler interface.
     //REMEMBER: check rights ask the people and dont just do some random stuff.
     @Override
-    public List<Map<String, String>> Search(String key, String value) {
-        //TODO: needs to be able to send all info from a searchcase to the GUI in the form of list with a map
+    public Map<String,Map<String, String>> search(String key, String value) {
         value += "%" + String.valueOf(id);
         IDataHandler searchHandler = new DataHandler();
         List<SearchCase> searchCases = searchHandler.search(key, value);
+        
         int length = searchCases.size();
-        String caseID, citizenName, caseStatus, caseReason, currentCaseDate, caseEmployeeName, listString;
-        Map searchResultMap = new HashMap();
-        List searchResultList = new ArrayList();
+        
+        Map searchResultList = new HashMap();
         for (int i = 0; i < length; i++) {
-            caseID = searchCases.get(i).getCaseID();
-            citizenName = searchCases.get(i).getCitizenName();
-            caseStatus = searchCases.get(i).getCaseStatus();
-            currentCaseDate = searchCases.get(i).getCurrentCaseDate();
-            caseReason = searchCases.get(i).getCaseReason();
-            caseEmployeeName = searchCases.get(i).getCaseEmployeeName();
-            listString = citizenName + " " + currentCaseDate + " " + caseReason + " " + caseEmployeeName + " " + caseStatus;
-            searchResultMap.put(caseID, listString);
-            searchResultList.add(searchResultMap);
+            Map searchResultMap = new HashMap();
+            searchResultMap.put("citizenName", searchCases.get(i).getCitizenName());
+            searchResultMap.put("currentCaseDate", searchCases.get(i).getCurrentCaseDate());
+            searchResultMap.put("caseReason", searchCases.get(i).getReason());
+            searchResultMap.put("caseEmployeeName", searchCases.get(i).getEmployeeName());
+            searchResultMap.put("caseStatus", searchCases.get(i).getCaseStatus());
+            searchResultList.put(searchCases.get(i).getCaseID(), searchResultMap);
         }
         return searchResultList;
     }

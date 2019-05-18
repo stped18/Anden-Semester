@@ -6,6 +6,8 @@ import java.net.URL;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
@@ -22,7 +24,12 @@ public class HomeController implements Initializable {
     private TextField employeeName;
     @FXML
     private TextField numberOfCases;
-
+    @FXML
+    private ObservableList<String> cases = FXCollections.observableArrayList();
+    @FXML
+    private ObservableList<String> notes = FXCollections.observableArrayList();
+    
+    
     IDomain department = new Department(); // TODO: need a constructor with out any parameters.
 
     /**
@@ -31,13 +38,19 @@ public class HomeController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-        String fullName = department.getEmployee().getFirstName() + " " + department.getEmployee().getLastname();
+        String fullName = department.getEmployee().getName();
         employeeName.setText(fullName);
-
-        // Snak med Aslak og Mathias om hvordan Search er håndteret.
-        List<Map<String, String>> somemap = department.Search("caseid", String.valueOf(department.getEmployee().getId()));
-
-        numberOfCases.setText(somemap.size() + "");
+        
+        
+        Map<String, String> caseMap = department.getEmployee().getEmployeeCases();
+        numberOfCases.setText(caseMap.size() + "");
+        
+        for (Map.Entry<String, String> entry : caseMap.entrySet()) {
+            String key = entry.getKey();
+            String valuve = entry.getValue();
+            cases.add(key + "\t" + valuve);
+        }
+        
     }
 
 }

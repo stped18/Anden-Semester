@@ -8,8 +8,8 @@ public class SearchCase {
     private final String caseStatus;
     private final String currentCaseDate;
     private final String reason;
-    private final int EmployeeID;
-    private final String EmployeeName;
+    private final int employeeID;
+    private final String employeeName;
 
     /**
      *
@@ -19,18 +19,18 @@ public class SearchCase {
      * @param caseStatus
      * @param date
      * @param reason
-     * @param EmployeeID
-     * @param EmployeeName
+     * @param employeeID
+     * @param employeeName
      */
-    public SearchCase(int citizenID, String citizenName, String caseID, String caseStatus, String date, String reason, int EmployeeID, String EmployeeName) {
+    public SearchCase(int citizenID, String citizenName, String caseID, String caseStatus, String date, String reason, int employeeID, String employeeName) {
         this.citizenID = citizenID;
         this.citizenName = citizenName;
         this.caseID = caseID;
         this.caseStatus = caseStatus;
         this.currentCaseDate = date;
         this.reason = reason;
-        this.EmployeeID = EmployeeID;
-        this.EmployeeName = EmployeeName;
+        this.employeeID = employeeID;
+        this.employeeName = employeeName;
     }
 
     public int getCitizenID() {
@@ -58,16 +58,16 @@ public class SearchCase {
     }
     
     public int getEmployeeID() {
-        return EmployeeID;
+        return employeeID;
     }
     
     public String getEmployeeName() {
-        return EmployeeName;
+        return employeeName;
     }
 
     @Override
     public String toString() {
-        return "SearchCase{" + "citizenID=" + citizenID + ", citizenName=" + citizenName + ", caseID=" + caseID + ", caseStatus=" + caseStatus + ", currentCaseDate=" + currentCaseDate + ", reason=" + reason + ", EmployeeID=" + EmployeeID + ", EmployeeName=" + EmployeeName + '}';
+        return "SearchCase{" + "citizenID=" + citizenID + ", citizenName=" + citizenName + ", caseID=" + caseID + ", caseStatus=" + caseStatus + ", currentCaseDate=" + currentCaseDate + ", reason=" + reason + ", employeeID=" + employeeID + ", employeeName=" + employeeName + '}';
     }
 
 }

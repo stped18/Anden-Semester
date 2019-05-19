@@ -109,17 +109,7 @@ public class DataHandler extends DatabaseConnection implements IDataHandler{
                      columns++;
                      searchVal.add(search[1]);
                 } 
-                if(!search[2].equals("")) {
-                    if(!searchQuery.equals("")) {
-                        searchQuery += " AND ";
-                    }
-                    searchQuery += "(CONCAT(ci.streetname, ' ', ci.houseno) LIKE ? AND CONCAT(ci.zipcodezipcode, ' ', z.cityname) LIKE ?)";
-                    columns++;
-                    searchVal.add(search[2]);
-                    columns++;
-                    searchVal.add(search[3]);
-                }
-                if(!search[3].equals("")) {
+                if(!search[2].equals("") || !search[3].equals("")) {
                     if(!searchQuery.equals("")) {
                         searchQuery += " AND ";
                     }

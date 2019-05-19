@@ -1,6 +1,7 @@
 
 package LoginSystem.Domain;
 
+import LoginSystem.DataLayer.DbEmployee;
 import MMMI.Data_layer.Employee;
 
 /**
@@ -14,10 +15,11 @@ public interface IEmployee {
      * @return Employee - int employeeID, String firstName, String lastName, int roleID, int departmentID 
      * 
      */
-    Employee sendEmployee();
+    DbEmployee sendEmployee();
     
     
 }
+
 
 
 

@@ -8,32 +8,22 @@ package LoginSystem.Domain;
 import LoginSystem.DataLayer.DatabaseHandler;
 import LoginSystem.DataLayer.DbEmployee;
 import MMMI.Data_layer.Employee;
-
-
-
-
-
+import LoginSystem.DataLayer.DbEmployee;
 
 /**
  *
  * @author steff
  */
-public class LoginSystem implements IEmployee{
-   
-   
-    
+public class LoginSystem implements IEmployee {
+
     private String username;
     private String password;
     DatabaseHandler db = new DatabaseHandler();
     DbEmployee employee;
-    Employee e;
-    
-    
 
     public LoginSystem() {
- 
+
     }
-    
 
     public String getUsername() {
         return username;
@@ -50,29 +40,27 @@ public class LoginSystem implements IEmployee{
     public void setPassword(String password) {
         this.password = password;
     }
-    public boolean getEmployee (){
-    employee = db.getEmployeedb(this.username, this.password);
-    if(employee==null){
-        return false;
-    }
-    return true; 
+
+    public boolean getEmployee() {
+        employee = db.getEmployeedb(this.username, this.password);
+        if (employee == null) {
+            return false;
+        }
+        return true;
     }
 
+//    @Override
+//    public Employee sendEmployee() {
+//   employee = new Employee(employee.getEmployeeID(), employee.getFirstName(),employee.getLastName(), employee.getRoleID(),  employee.getDepartmentID());
+//    return e;
+//       
+//    }
     @Override
-    public Employee sendEmployee() {
-    e = new Employee(employee.getEmployeeID(), employee.getFirstName(),employee.getLastName(), employee.getRoleID(),  employee.getDepartmentID());
-    return e;
-       
+    public DbEmployee sendEmployee() {
+        employee = new DbEmployee(employee.getEmployeeID(), employee.getFirstName(), employee.getLastName(), employee.getRoleID(), employee.getDepartmentID());
+        return employee;
     }
 
-
-    
-    
 }
-
-
-
-
-
 
 

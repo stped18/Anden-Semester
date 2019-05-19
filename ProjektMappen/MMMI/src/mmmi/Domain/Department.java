@@ -1,6 +1,7 @@
 package mmmi.Domain;
 
 import MMMI.Data_layer.Case;
+import MMMI.Data_layer.Citizen;
 import MMMI.Data_layer.Interfaces.IDataHandler;
 import java.util.List;
 import java.util.Map;
@@ -67,31 +68,35 @@ public class Department implements IDomain {
     @Override
     public boolean saveCase(Map<String, String> caseInfo) {
         //TODO: Gets a map with both case info and citizen and needs to make it into the right data
-        String caseID = "";
-        
-        
-        if (!caseInfo.isEmpty()) {
-            for (Map.Entry<String, String> entry : caseInfo.entrySet()) {
-                if (entry.getKey().equalsIgnoreCase("caseid")) {
-                    caseID = entry.getValue();
-                } else if (entry.getKey().equalsIgnoreCase("regardingDoctor")
-                        || entry.getKey().equalsIgnoreCase("regardingrelatives")
-                        || entry.getKey().equalsIgnoreCase("regardinghospital")
-                        || entry.getKey().equalsIgnoreCase("")) {
+        //public Case(String caseID, String caseStatus, int regardingCitizenID, List<Integer> requestingCitizens, Map<String, String> caseContent) 
+        //TODO: Create case object where contents from caseInfo get put into caseContent Map
+        // Autogenerate caseID based on department, commune
+        // We need to get all info from caseInfo in regards to writeCitizen 
+        // Autogenerate
 
-                }
+        Citizen c = dataHandler.createCitizen();
+//        Case caze = new Case(caseInfo.get("caseID"), caseInfo.get("caseStatus"), c.getCitizenID(), caseInfo.get("requestingCitizens"), caseInfo.get("caseContent"));
+        Case caze;
+        for (Map.Entry<String, String> entry : caseInfo.entrySet()) {
+            if (entry.getKey().equalsIgnoreCase("requestingCitizen")) {
+                caze.addRequestingCitizen(Integer.valueOf(entry.getValue()));
             }
-
-            dataHandler.writeCase(new Case(caseID, id, requestingCitizen, caseInfo));
-
         }
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        dataHandler.writeCase(theCase)
+
+    }
+
+    throw new UnsupportedOperationException(
+
+"Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Employee getEmployee() {
+        public Employee getEmployee() {
         //TODO: Sends the data of employee with rights 
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
+

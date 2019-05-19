@@ -56,6 +56,7 @@ public class Department implements IDomain {
     //REMEMBER: check rights ask the people and dont just do some random stuff.
     @Override
     public Map<String,Map<String, String>> search(String key, String value) {
+        //TODO: needs to be able to send all info from a searchcase to the GUI in the form of list with a map
         value += "%" + String.valueOf(id);
         IDataHandler searchHandler = new DataHandler();
         List<SearchCase> searchCases = searchHandler.search(key, value);
@@ -67,6 +68,7 @@ public class Department implements IDomain {
             Map searchResultMap = new HashMap();
             searchResultMap.put("citizenName", searchCases.get(i).getCitizenName());
             searchResultMap.put("currentCaseDate", searchCases.get(i).getCurrentCaseDate());
+            searchResultMap.put("createdCaseDate", searchCases.get(i).getCreatedCaseDate());
             searchResultMap.put("caseReason", searchCases.get(i).getReason());
             searchResultMap.put("caseEmployeeName", searchCases.get(i).getEmployeeName());
             searchResultMap.put("caseStatus", searchCases.get(i).getCaseStatus());

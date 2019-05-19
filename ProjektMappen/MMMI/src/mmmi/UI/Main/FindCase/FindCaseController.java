@@ -74,6 +74,8 @@ public class FindCaseController implements Initializable {
     private TableColumn<SearchResult, String> employeeNameColumn;
     @FXML
     private TableColumn<SearchResult, String> reasonColumn;
+    @FXML
+    private TableColumn<SearchResult, String> createdDateColumn;
     
 
     /**
@@ -98,8 +100,7 @@ public class FindCaseController implements Initializable {
         currentDateColumn.setCellValueFactory(cellData -> cellData.getValue().currentCaseDateProperty());
         employeeNameColumn.setCellValueFactory(cellData -> cellData.getValue().employeeNameProperty());
         reasonColumn.setCellValueFactory(cellData -> cellData.getValue().reasonProperty());
-        /*TV_searchCase.getSelectionModel().selectedItemProperty().addListener(
-            (observable, oldValue, newValue) -> openCase(newValue));*/
+        createdDateColumn.setCellValueFactory(cellData -> cellData.getValue().createdCaseDateProperty());
     }
 
     /**
@@ -127,7 +128,7 @@ public class FindCaseController implements Initializable {
                     System.out.println(map);
                     String caseid = map.getKey();
 
-                    obslistResult.add(new SearchResult(map.getValue().get("citizenName"), caseid, map.getValue().get("caseStatus"), map.getValue().get("currentCaseDate"), map.getValue().get("caseReason"), map.getValue().get("caseEmployeeName")));
+                    obslistResult.add(new SearchResult(map.getValue().get("citizenName"), caseid, map.getValue().get("caseStatus"), map.getValue().get("currentCaseDate"), map.getValue().get("createdCaseDate"), map.getValue().get("caseReason"), map.getValue().get("caseEmployeeName")));
                 }
                 TV_searchCase.refresh();
             } else {

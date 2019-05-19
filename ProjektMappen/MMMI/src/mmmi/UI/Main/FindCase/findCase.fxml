@@ -48,12 +48,13 @@
       </AnchorPane>
       <TableView fx:id="TV_searchCase" layoutX="65.0" layoutY="322.0" prefWidth="900.0">
         <columns>
-          <TableColumn fx:id="caseIDColumn" editable="false" prefWidth="100.0" resizable="false" text="Sagsnummer" />
+          <TableColumn fx:id="caseIDColumn" editable="false" prefWidth="60.0" resizable="false" sortable="false" text="Sagsnr" />
+            <TableColumn fx:id="createdDateColumn" editable="false" prefWidth="100.0" resizable="false" sortable="false" text="Oprettet" />
           <TableColumn fx:id="citizenNameColumn" editable="false" prefWidth="170.0" resizable="false" sortable="false" text="Borgers navn" />
-            <TableColumn fx:id="caseStatusColumn" editable="false" prefWidth="100.0" resizable="false" sortable="false" text="Status" />
-            <TableColumn fx:id="currentDateColumn" editable="false" prefWidth="160.0" resizable="false" sortable="false" text="Sidst redigeret" />
-            <TableColumn fx:id="employeeNameColumn" editable="false" prefWidth="170.0" resizable="false" sortable="false" text="Sagsbehandler" />
             <TableColumn fx:id="reasonColumn" editable="false" prefWidth="198.0" resizable="false" sortable="false" text="Årsag" />
+            <TableColumn fx:id="caseStatusColumn" editable="false" prefWidth="100.0" resizable="false" sortable="false" text="Status" />
+            <TableColumn fx:id="currentDateColumn" editable="false" prefWidth="100.0" resizable="false" sortable="false" text="Sidst redigeret" />
+            <TableColumn fx:id="employeeNameColumn" editable="false" prefWidth="170.0" resizable="false" sortable="false" text="Sagsbehandler" />
         </columns>
       </TableView>
     </children>

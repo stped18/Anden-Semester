@@ -2,8 +2,11 @@ package MMMI.Data_layer;
 
 import mmmi.Data_layer.Connection.DatabaseConnection;
 import MMMI.Data_layer.Interfaces.IDataHandler;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -95,7 +98,7 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
 
     @Override
     public boolean writeCase(Case theCase) {
-
+System.out.println("TEST");
         connectToDB();
         try {
 
@@ -141,9 +144,39 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
     }
 
     @Override
-    public boolean writeCitizen(Citizen citizen
-    ) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public int writeCitizen(Citizen citizen) {
+        int citizenID = citizen.getCitizenID();
+        PreparedStatement insertCitizen = null;
+        try {
+            String query = "INSERT INTO citizen(zipcodezipcode, firstname, lastname, \"CPR-nr\", streetname, houseno, floor, floordirection, regardingCitizen, requestingcitizen) VALUES(?,?,?,?,?,?,?,?,?,?)";
+           
+            connectToDB();
+            insertCitizen = dbConnection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            insertCitizen.setInt(1, citizen.getZipcode());
+            insertCitizen.setString(2, citizen.getFirstName());
+            insertCitizen.setString(3, citizen.getLastName());
+            insertCitizen.setString(4, citizen.getCprNo());
+            insertCitizen.setString(5, citizen.getStreetName());
+            insertCitizen.setString(6, citizen.getHouseNo());
+            insertCitizen.setString(7, citizen.getFloor());
+            insertCitizen.setString(8, citizen.getFloorDirection());
+            insertCitizen.setBoolean(9, citizen.isRegardingCitizen());
+            insertCitizen.setBoolean(10, citizen.isRequestingCitizen());
+            insertCitizen.executeUpdate();
+
+            ResultSet rs = insertCitizen.getGeneratedKeys();
+            if (rs.next()) {
+                citizenID = rs.getInt(1);
+            }
+            disconnectDB();
+        } catch (SQLException ex) {
+            Logger.getLogger(DataHandler.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (insertCitizen != null) {
+                insertCitizen = null;
+            }
+        }
+        return citizenID;
     }
 
     @Override
@@ -168,7 +201,7 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
 
     @Override
     public Citizen createCitizen() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         return new Citizen(-1, "", "", "", "", "", "", "", -1, "", false, false);
     }
 
     @Override

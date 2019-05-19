@@ -13,7 +13,7 @@ public interface IDataHandler {
     public Employee readEmployee(int employeeID);
     
     public boolean writeCase(Case theCase);
-    public boolean writeCitizen(Citizen citizen);
+    public int writeCitizen(Citizen citizen);
     public boolean writeEmployee(Employee employee);
     
     public boolean updateCitizen(Citizen citizen);

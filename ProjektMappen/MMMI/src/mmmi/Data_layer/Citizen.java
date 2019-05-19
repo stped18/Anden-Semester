@@ -1,7 +1,7 @@
 package MMMI.Data_layer;
 
 public class Citizen {
-    
+
     private final int citizenID;
     private String firstName;
     private String lastName;
@@ -23,7 +23,7 @@ public class Citizen {
         this.regardingCitizen = regardingCitizen;
         this.requestingCitizen = requestingCitizen;
     }
-    
+
     public Citizen(int citizenID, String firstName, String lastName, String cprNo, String streetName, String houseNo, String floor, String floorDirection, int zipcode, String cityname, boolean regardingCitizen, boolean requestingCitizen) {
         this.citizenID = citizenID;
         this.firstName = firstName;
@@ -131,4 +131,5 @@ public class Citizen {
         this.requestingCitizen = requestingCitizen;
     }
     
+
 }

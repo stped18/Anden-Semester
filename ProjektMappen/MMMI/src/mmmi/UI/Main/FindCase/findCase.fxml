@@ -3,8 +3,9 @@
 <?import java.net.URL?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -15,19 +16,18 @@
         <URL value="@/mmmi/UI/mainStylesheet.css" />
     </stylesheets>
     <children>
-        <ListView fx:id="LV_searchCaseList" layoutX="65.0" layoutY="308.0" prefHeight="500.0" prefWidth="900.0" />
         <Label layoutX="451.0" layoutY="14.0" text="Find en sag">
             <font>
                 <Font size="25.0" />
             </font>
         </Label>
-      <Button fx:id="BTN_search" layoutX="380.0" layoutY="127.0" mnemonicParsing="false" onAction="#actionEventHandler" text="Søg" />
+      <Button fx:id="BTN_search" layoutX="383.0" layoutY="127.0" mnemonicParsing="false" onAction="#actionEventHandler" text="Søg" />
       <RadioButton fx:id="RB_searchOptionCitizen" layoutX="65.0" layoutY="91.0" mnemonicParsing="false" onAction="#actionEventHandler" selected="true" text="Borger">
          <toggleGroup>
             <ToggleGroup fx:id="searchOption" />
          </toggleGroup></RadioButton>
       <RadioButton fx:id="RB_searchOptionCaseNo" layoutX="198.0" layoutY="91.0" mnemonicParsing="false" onAction="#actionEventHandler" text="Sagsnummer" toggleGroup="$searchOption" />
-      <Button fx:id="BTN_openCase" layoutX="68.0" layoutY="830.0" mnemonicParsing="false" onAction="#actionEventHandler" text="Åben sag" />
+      <Button fx:id="BTN_openCase" layoutX="65.0" layoutY="747.0" mnemonicParsing="false" onAction="#actionEventHandler" text="Åben sag" />
       <AnchorPane fx:id="caseNumberPane" layoutX="65.0" layoutY="124.0" prefHeight="30.0" prefWidth="305.0" visible="false">
          <children>
             <Label layoutY="7.0" text="Sagsnummer:" />
@@ -46,5 +46,15 @@
             <TextField fx:id="TF_searchCitizenCPR" layoutX="117.0" layoutY="128.0" />
          </children>
       </AnchorPane>
+      <TableView fx:id="TV_searchCase" layoutX="65.0" layoutY="322.0" prefWidth="900.0">
+        <columns>
+          <TableColumn fx:id="caseIDColumn" editable="false" prefWidth="100.0" resizable="false" text="Sagsnummer" />
+          <TableColumn fx:id="citizenNameColumn" editable="false" prefWidth="170.0" resizable="false" sortable="false" text="Borgers navn" />
+            <TableColumn fx:id="caseStatusColumn" editable="false" prefWidth="100.0" resizable="false" sortable="false" text="Status" />
+            <TableColumn fx:id="currentDateColumn" editable="false" prefWidth="160.0" resizable="false" sortable="false" text="Sidst redigeret" />
+            <TableColumn fx:id="employeeNameColumn" editable="false" prefWidth="170.0" resizable="false" sortable="false" text="Sagsbehandler" />
+            <TableColumn fx:id="reasonColumn" editable="false" prefWidth="198.0" resizable="false" sortable="false" text="Årsag" />
+        </columns>
+      </TableView>
     </children>
 </AnchorPane>

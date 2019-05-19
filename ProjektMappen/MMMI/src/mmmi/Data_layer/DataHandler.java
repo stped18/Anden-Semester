@@ -43,14 +43,14 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
         try {
             connectToDB();
 
-            selectQuery = "SELECT em.departmentdepartmentid AS departmentid,"
-                    + "em.roleroleid AS roleid,"
-                    + "CONCAT(em.firstname, ' ', em.lastname) AS employeename,"
-                    + "ce.casecaseid AS caseid,"
-                    + "CONCAT(ci.firstname, ' ', ci.lastname) AS citizenname";
-            fromQuery = "FROM employee AS em, case_employee AS ce, \"case\" AS c, citizen AS ci";
-            whereQuery = "WHERE em.employeeid = ?"
-                    + "AND ce.employeeemployeeid = ? AND c.caseid = ce.casecaseid"
+            selectQuery = "SELECT em.departmentdepartmentid AS departmentid, "
+                    + "em.roleroleid AS roleid, "
+                    + "CONCAT(em.firstname, ' ', em.lastname) AS employeename, "
+                    + "ce.casecaseid AS caseid, "
+                    + "CONCAT(ci.firstname, ' ', ci.lastname) AS citizenname ";
+            fromQuery = "FROM employee AS em, case_employee AS ce, \"case\" AS c, citizen AS ci ";
+            whereQuery = "WHERE em.employeeid = ? "
+                    + "AND ce.employeeemployeeid = ? AND c.caseid = ce.casecaseid "
                     + "AND ci.citizenid = c.citizenregardingcitizenid;";
             query = selectQuery + fromQuery + whereQuery;
 
@@ -66,8 +66,8 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
                 employeeCases.put(dbResultSet.getString("caseid"), dbResultSet.getString("citizenname"));
             }
 
-            selectQuery = "SELECT r.rightsid AS rightsid, r,rightsname AS rightsname";
-            fromQuery = "FROM role_rights AS rr, rights AS r";
+            selectQuery = "SELECT r.rightsid AS rightsid, r,rightsname AS rightsname ";
+            fromQuery = "FROM role_rights AS rr, rights AS r ";
             whereQuery = "WHERE rr.roleroleid = " + roleID + "AND r.rightsid = rr.rightsrightsid;";
 
             query = selectQuery + fromQuery + whereQuery;

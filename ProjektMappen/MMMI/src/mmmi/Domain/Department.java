@@ -10,11 +10,15 @@ import mmmi.Domain.Interfaces.IDomain;
 
 public class Department implements IDomain {
 
-    private final int departmentid;
+    private int departmentid;
 
     private final IDataHandler dataHandler = new DataHandler();
     private final IEmployee loginEmployee = new LoginSystem();
     private Employee mmmiEmployee;
+
+    public Department() {
+
+    }
 
     /**
      * @param departmentid
@@ -29,9 +33,7 @@ public class Department implements IDomain {
      * @return
      */
     public boolean assignCase(String caseNumber, int employeeID) {
-
         throw new UnsupportedOperationException();
-
     }
 
     /**
@@ -40,7 +42,6 @@ public class Department implements IDomain {
      * @return
      */
     public boolean removeCase(String caseNumber, int employeeID) {
-
         throw new UnsupportedOperationException();
     }
 
@@ -50,9 +51,7 @@ public class Department implements IDomain {
      * @return
      */
     public boolean createCase(String name, String reason) {
-
         throw new UnsupportedOperationException();
-
     }
 
     //REMEMBER: to use the correct names from the IDataHandler interface.
@@ -82,8 +81,8 @@ public class Department implements IDomain {
 
     private Employee receiveEmployee() {
 
-        int employeeid = loginEmployee.sendEmployee().getEmployeeID();
-        
+        int employeeid = 7; // loginEmployee.sendEmployee().getEmployeeID();
+
         String employeeName = dataHandler.readEmployee(employeeid).getName();
         int departmentID = dataHandler.readEmployee(employeeid).getDepartmentID();
         int roleID = dataHandler.readEmployee(employeeid).getRoleID();

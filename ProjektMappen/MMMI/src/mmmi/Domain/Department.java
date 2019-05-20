@@ -6,9 +6,13 @@ import java.util.List;
 import java.util.Map;
 import mmmi.Domain.Interfaces.IDomain;
 
-public class Department implements IDomain{
+public class Department implements IDomain {
 
-    private final int id;
+    private int id;
+
+    public Department() {
+
+    }
 
     /**
      * @param id
@@ -23,9 +27,7 @@ public class Department implements IDomain{
      * @return
      */
     public boolean assignCase(String caseNumber, int employeeID) {
-
         throw new UnsupportedOperationException();
-
     }
 
     /**
@@ -34,7 +36,6 @@ public class Department implements IDomain{
      * @return
      */
     public boolean removeCase(String caseNumber, int employeeID) {
-
         throw new UnsupportedOperationException();
     }
 
@@ -44,10 +45,9 @@ public class Department implements IDomain{
      * @return
      */
     public boolean createCase(String name, String reason) {
-
         throw new UnsupportedOperationException();
-
     }
+
     //REMEMBER: to use the correct names from the IDataHandler interface.
     //REMEMBER: check rights ask the people and dont just do some random stuff.
     @Override
@@ -73,7 +73,4 @@ public class Department implements IDomain{
         //TODO: Sends the data of employee with rights 
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    
-
 }

@@ -20,6 +20,8 @@ public class Employee {
         this.rights = rights;
     }
 
+   
+
     public int getEmployeeID() {
         return this.employeeID;
     }
@@ -44,3 +46,4 @@ public class Employee {
         return this.rights;
     }
 }
+

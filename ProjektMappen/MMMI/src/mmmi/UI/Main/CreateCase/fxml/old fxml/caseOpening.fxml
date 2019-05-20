@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="caseOpenRootpane" prefHeight="500.0" prefWidth="891.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mmmi.UI.Main.CreateCase.CaseOpeningController">
+    <children>
+        <ScrollPane maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="2800.0" prefWidth="1100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <content>
+                <AnchorPane prefHeight="2608.0" prefWidth="890.0">
+                    <children>
+                        <Label layoutX="14.0" layoutY="14.0" text="Hvad drejer henvendelsen sig om?" />
+                        <Label layoutX="14.0" layoutY="107.0" text="Er det klart hvad borgeren søger om?" />
+                        <TextArea fx:id="fxTA_RegardingInquiry" layoutX="206.0" layoutY="14.0" prefHeight="77.0" prefWidth="387.0" promptText="Beskriv henvendelsen" wrapText="true" />
+                        <Label layoutX="14.0" layoutY="137.0" text="Hvis ja, angiv ydelse [afkrydsning af ydelser/§]" />
+                  <VBox fx:id="fxVBox_carriage" layoutX="41.0" layoutY="208.0">
+                     <children>
+                        <RadioButton fx:id="fxRB_carriage1" mnemonicParsing="false" text="Befordring til og fra et tilbud (Hjælpemiddelbekendtgørelsen § 25)" />
+                        <RadioButton fx:id="fxRB_carriage2" layoutX="10.0" layoutY="78.0" mnemonicParsing="false" text="Befordring til og fra et tilbud (Lov om specialundervisning til voksne § 5)" />
+                        <RadioButton fx:id="fxRB_carriage3" layoutX="10.0" layoutY="95.0" mnemonicParsing="false" text="Befordring til og fra et tilbud (Lov om ungdomsuddannelse for unge med særlige" />
+                        <RadioButton fx:id="fxRB_carriage4" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Befordring til og fra et tilbud (SUL § 170)" />
+                        <RadioButton fx:id="fxRB_carriage5" layoutX="10.0" layoutY="61.0" mnemonicParsing="false" text="Befordring til og fra et tilbud (SUL § 172)" />
+                        <RadioButton fx:id="fxRB_carriage6" layoutX="10.0" layoutY="78.0" mnemonicParsing="false" text="Individuel befordring (§ 117) " />
+                     </children>
+                  </VBox>
+                  <VBox fx:id="fxVbox_treatment" layoutX="39.0" layoutY="329.0">
+                     <children>
+                        <RadioButton fx:id="fxRB_treatment1" mnemonicParsing="false" text="Misbrugsbehandling (§ 101)" />
+                        <RadioButton fx:id="fxRB_treatment2" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Misbrugsbehandling (SUL § 141)" />
+                        <RadioButton fx:id="fxRB_treatment3" layoutX="10.0" layoutY="27.0" mnemonicParsing="false" text="Terapi (§ 102)" />
+                        <RadioButton fx:id="fxRB_treatment4" layoutX="10.0" layoutY="44.0" mnemonicParsing="false" text="Psykologisk behandling (§ 102)" />
+                        <RadioButton fx:id="fxRB_treatment5" layoutX="10.0" layoutY="61.0" mnemonicParsing="false" text="Speciallæge behandling (§ 102)" />
+                     </children>
+                  </VBox>
+                  <VBox layoutX="34.0" layoutY="439.0">
+                     <children>
+                        <RadioButton fx:id="fxRB_cashBenefit1" mnemonicParsing="false" text="Arbejdsvederlag (§ 105)" />
+                        <RadioButton fx:id="fxRB_cashBenefit2" layoutX="10.0" layoutY="44.0" mnemonicParsing="false" text="Dækning af merudgift (§ 100)" />
+                     </children>
+                  </VBox>
+                  <VBox fx:id="fxVbox_control" layoutX="34.0" layoutY="512.0">
+                     <children>
+                        <RadioButton fx:id="fxRB_control1" mnemonicParsing="false" text="Fastholdelse (§ 126) " />
+                        <RadioButton fx:id="fxRB_control2" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Fastholdelse (§ 127) " />
+                        <RadioButton fx:id="fxRB_control3" layoutX="10.0" layoutY="27.0" mnemonicParsing="false" text="Fastholdelse (§ 128)" />
+                        <RadioButton fx:id="fxRB_control4" layoutX="10.0" layoutY="44.0" mnemonicParsing="false" text="Kontrol med færden (§ 125) " />
+                     </children>
+                  </VBox>
+                  <VBox fx:id="fxVbox_stay" layoutX="35.0" layoutY="617.0">
+                     <children>
+                        <RadioButton fx:id="fxRB_stay1" mnemonicParsing="false" text="Døgnaflastning (§ 84)" />
+                        <RadioButton fx:id="fxRB_stay2" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Længevarende ophold (§ 108)" />
+                        <RadioButton fx:id="fxRB_stay3" layoutX="10.0" layoutY="27.0" mnemonicParsing="false" text="Midlertidigt ophold (§ 80)" />
+                        <RadioButton fx:id="fxRB_stay4" layoutX="10.0" layoutY="44.0" mnemonicParsing="false" text="Midlertidigt ophold (§ 107)" />
+                        <RadioButton fx:id="fxRB_stay5" layoutX="10.0" layoutY="61.0" mnemonicParsing="false" text="Midlertidigt ophold (§ 109)" />
+                     </children>
+                  </VBox>
+                  <VBox layoutX="540.0" layoutY="200.0" prefHeight="102.0" prefWidth="215.0">
+                     <children>
+                        <RadioButton fx:id="fxRB_practicalHelp83" mnemonicParsing="false" text="Praktisk hjælp (§ 83)" />
+                        <RadioButton fx:id="fxRB_praticalHelp95" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Praktisk hjælp (§ 95)" />
+                        <RadioButton fx:id="fxRB_dayRelief" mnemonicParsing="false" text="Dagaflastning (§ 84)" />
+                        <RadioButton fx:id="fxRB_protectedEmploymentBenefit" mnemonicParsing="false" text="Beskyttet beskæftigelsesydelse (§ 103)" />
+                        <RadioButton fx:id="fxRB_personalHelp95" mnemonicParsing="false" text="Personlig hjælp og pleje (§ 95)" />
+                        <RadioButton fx:id="fxRB_personalHelp83" mnemonicParsing="false" text="Personlig hjælp og pleje (§ 83)" />
+                     </children>
+                  </VBox>
+                  <VBox fx:id="fxVbox_socialPedagogicalHelp" layoutX="541.0" layoutY="326.0">
+                     <children>
+                        <RadioButton fx:id="fxRB_socialPedagogicalHelp1" mnemonicParsing="false" text="Støtte til administration (§ 85)" />
+                        <RadioButton fx:id="fxRB_socialPedagogicalHelp2" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Støtte til indkøb og kost (§ 85)" />
+                        <RadioButton fx:id="fxRB_socialPedagogicalHelp3" layoutX="10.0" layoutY="27.0" mnemonicParsing="false" text="Støtte til kontakt og samvær (§ 85)" />
+                        <RadioButton fx:id="fxRB_socialPedagogicalHelp4" layoutX="10.0" layoutY="44.0" mnemonicParsing="false" text="Støtte til medicinhåndtering (§ 85)" />
+                        <RadioButton fx:id="fxRB_socialPedagogicalHelp5" layoutX="10.0" layoutY="61.0" mnemonicParsing="false" text="Støtte til personlig pleje (§ 85)" />
+                        <RadioButton fx:id="fxRB_socialPedagogicalHelp6" layoutX="10.0" layoutY="78.0" mnemonicParsing="false" text="Støtte til praktiske opgaver i hjemmet (§ 85)" />
+                        <RadioButton fx:id="fxRB_socialPedagogicalHelp7" layoutX="10.0" layoutY="95.0" mnemonicParsing="false" text="Støtte til uddannelse og beskæftigelse (§ 85)" />
+                        <RadioButton fx:id="fxRB_socialPedagogicalHelp8" layoutX="10.0" layoutY="112.0" mnemonicParsing="false" text="Støtte til varetagelse af forældrerollen (§ 85)" />
+                     </children>
+                  </VBox>
+                  <VBox fx:id="fxVbox_personHelpScheme" layoutX="541.0" layoutY="495.0">
+                     <children>
+                        <RadioButton fx:id="fxRB_personHelpScheme1" mnemonicParsing="false" text="Afløsning (§ 84)" />
+                        <RadioButton fx:id="fxRB_personHelpScheme2" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Afløsning (§ 95)" />
+                        <RadioButton fx:id="fxRB_personHelpScheme3" layoutX="10.0" layoutY="27.0" mnemonicParsing="false" text="Borgerstyret personlig assistance (§ 96)" />
+                        <RadioButton fx:id="fxRB_personHelpScheme4" layoutX="10.0" layoutY="44.0" mnemonicParsing="false" text="Kontaktperson for døvblinde (§ 98)" />
+                        <RadioButton fx:id="fxRB_personHelpScheme5" layoutX="10.0" layoutY="61.0" mnemonicParsing="false" text="Ledsageordning (§ 97)" />
+                        <RadioButton fx:id="fxRB_personHelpScheme6" layoutX="10.0" layoutY="78.0" mnemonicParsing="false" text="Pasning af pårørende (§ 118)" />
+                        <RadioButton fx:id="fxRB_personHelpScheme7" layoutX="10.0" layoutY="95.0" mnemonicParsing="false" text="Pasning af pårørende (§ 119)" />
+                     </children>
+                  </VBox>
+                  <Label layoutX="14.0" layoutY="791.0" text="Hvis ja, angiv ydelse [afkrydsning af ydelser/§]" />
+                  <Label layoutX="16.0" layoutY="820.0" prefHeight="17.0" prefWidth="163.0" text="Ambulant tilbud til voksne" />
+                  <Label layoutX="16.0" layoutY="861.0" prefHeight="17.0" prefWidth="139.0" text="Dagtilbud til voksne" />
+                  <Label layoutX="526.0" layoutY="761.0" prefHeight="17.0" prefWidth="139.0" text="Botilbud til voksne" />
+                  <VBox layoutX="540.0" layoutY="778.0">
+                     <children>
+                        <RadioButton fx:id="fxRB_housingGeneralCareHome" mnemonicParsing="false" text="Almen plejebolig" />
+                        <RadioButton fx:id="fxRB_housingElderlyOrHandicapFriendly" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Almen ældrebolig/handicapvenlig bolig" />
+                        <RadioButton fx:id="fxRB_housingShared" layoutX="10.0" layoutY="27.0" mnemonicParsing="false" text="Bofællesskab" />
+                        <RadioButton fx:id="fxRB_housingDayTreatmentOffer" layoutX="10.0" layoutY="44.0" mnemonicParsing="false" text="Døgnbehandlingstilbud til voksne" />
+                        <RadioButton fx:id="fxRB_housingCareHome" layoutX="10.0" layoutY="61.0" mnemonicParsing="false" text="Forsorgshjem/herberg" />
+                        <RadioButton fx:id="fxRB_housingCrisisCenter" layoutX="10.0" layoutY="78.0" mnemonicParsing="false" text="Krisecenter" />
+                        <RadioButton fx:id="fxRB_housingTemporary" layoutX="10.0" layoutY="95.0" mnemonicParsing="false" text="Midlertidigt botilbud" />
+                        <RadioButton fx:id="fxRB_housingNursingHome" layoutX="10.0" layoutY="112.0" mnemonicParsing="false" text="Plejehjem" />
+                        <RadioButton fx:id="fxRB_housingRehabilitation" layoutX="10.0" layoutY="129.0" mnemonicParsing="false" text="Rehabiliteringstilbud" />
+                     </children>
+                  </VBox>
+                  <VBox layoutX="540.0" layoutY="928.0">
+                     <children>
+                        <Label prefHeight="17.0" prefWidth="239.0" text="Længerevarende botilbud til voksne " />
+                        <RadioButton fx:id="fxRB_securedHousing" mnemonicParsing="false" text="Sikret botilbud" />
+                        <RadioButton fx:id="fxRB_otherLengthyHousing" layoutX="10.0" layoutY="61.0" mnemonicParsing="false" text="Andet længerevarende botilbud til voksne" />
+                     </children>
+                  </VBox>
+                  <VBox layoutX="553.0" layoutY="1021.0">
+                     <children>
+                        <RadioButton fx:id="fxRB_outgoingOffer" mnemonicParsing="false" text="Udgående tilbud til voksne" />
+                        <RadioButton fx:id="fxRB_offerWithAuthority" layoutX="10.0" layoutY="44.0" mnemonicParsing="false" text="Tilbud med myndighedsbeføjelse" />
+                     </children>
+                  </VBox>
+                  <RadioButton fx:id="fxRB_clearLookingForYes" layoutX="232.0" layoutY="107.0" mnemonicParsing="false" text="Yes" />
+                  <RadioButton fx:id="fxRB_clearLookingForNo" layoutX="308.0" layoutY="107.0" mnemonicParsing="false" text="No" />
+                  <RadioButton fx:id="fxRB_carriage" layoutX="21.0" layoutY="191.0" mnemonicParsing="false" onAction="#rbCarriageOnAction" text="Befordring " />
+                  <RadioButton fx:id="fxRB_treatment" layoutX="21.0" layoutY="313.0" mnemonicParsing="false" text="Behandling" />
+                  <RadioButton fx:id="fxRB_cashBenefit" layoutX="15.0" layoutY="422.0" mnemonicParsing="false" text="Kontantydelse" />
+                  <RadioButton fx:id="fxRB_control" layoutX="13.0" layoutY="495.0" mnemonicParsing="false" text="Kontrolordning" />
+                  <RadioButton fx:id="fxRB_stay" layoutX="14.0" layoutY="600.0" mnemonicParsing="false" text="Ophold" />
+                  <RadioButton fx:id="fxRB_socialPedagogicalHelp" layoutX="520.0" layoutY="310.0" mnemonicParsing="false" text="Socialpædagogisk støtte" />
+                  <RadioButton fx:id="fxRB_personHelpScheme" layoutX="520.0" layoutY="478.0" mnemonicParsing="false" text="Støttepersonordning" />
+                  <VBox layoutX="492.0" layoutY="1084.0" prefHeight="431.0" prefWidth="380.0">
+                     <children>
+                        <Label text="Henvendelse">
+                           <font>
+                              <Font name="System Bold Italic" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label prefHeight="17.0" prefWidth="187.0" text="Hvor kommer henvendelsen fra?" />
+                        <RadioButton fx:id="fxRB_regardingCitizen" mnemonicParsing="false" text="Borger" />
+                        <RadioButton fx:id="fxRB_regardingRelatives" layoutX="10.0" layoutY="285.0" mnemonicParsing="false" text="Pårørende [angiv kontaktoplysninger]" />
+                        <RadioButton fx:id="fxRB_regardingDoctor" layoutX="10.0" layoutY="286.0" mnemonicParsing="false" text="Læge [angiv kontaktoplysninger]" />
+                        <RadioButton fx:id="fxRB_regardingHospital" layoutX="10.0" layoutY="303.0" mnemonicParsing="false" text="Hospital [angiv kontaktoplysninger]" />
+                        <RadioButton fx:id="fxRB_regardingOtherAdministration" layoutX="10.0" layoutY="320.0" mnemonicParsing="false" text="Anden forvaltning [angiv kontaktoplysninger]" />
+                        <RadioButton fx:id="fxRB_regardingInProgressEffort" layoutX="10.0" layoutY="337.0" mnemonicParsing="false" text="Igangværende indsats [angiv kontaktoplysninger]" />
+                        <RadioButton fx:id="fxRB_regardingOtherCommune" layoutX="10.0" layoutY="354.0" mnemonicParsing="false" text="Anden kommune" />
+                        <RadioButton fx:id="fxRB_regardingOthers" layoutX="10.0" layoutY="371.0" mnemonicParsing="false" text="Andre [angiv kontaktoplysninger]" />
+                        <Label text="Er borgeren indforstået med henvendelsen?" />
+                        <RadioButton fx:id="fxRB_agreeToInquiryYes" mnemonicParsing="false" text="Ja" />
+                        <RadioButton fx:id="fxRB_agreeToInquiryNo" layoutX="10.0" layoutY="197.0" mnemonicParsing="false" text="Nej" />
+                        <Label text="Navn:" />
+                        <JFXTextField fx:id="fxTF_firstname" prefHeight="15.0" prefWidth="299.0" promptText="Indtast navn evt. mellemnavn" />
+                        <Label layoutX="10.0" layoutY="231.0" text="Efternavn" />
+                        <JFXTextField fx:id="fxTF_lastname" layoutX="10.0" layoutY="248.0" prefHeight="15.0" prefWidth="299.0" promptText="Indtast efternavn" />
+                        <Label layoutX="10.0" layoutY="273.0" prefHeight="11.0" prefWidth="106.0" text="Postnr/By/Adresse" />
+                        <JFXTextField fx:id="fxTF_zipcode" layoutX="10.0" layoutY="290.0" prefHeight="9.0" prefWidth="380.0" promptText="Indtast postnummer" />
+                        <JFXTextField fx:id="fxTF_cityname" prefHeight="8.0" prefWidth="380.0" promptText="Indtast byens navn" />
+                        <JFXTextField fx:id="fxTF_streetName" layoutX="10.0" layoutY="357.0" prefHeight="11.0" prefWidth="380.0" promptText="Indtast adresse" />
+                        <JFXTextField fx:id="fxTF_houseNo" layoutX="10.0" layoutY="407.0" prefHeight="11.0" prefWidth="380.0" promptText="husnummer" />
+                        <JFXTextField fx:id="fxTF_floorAndFloorDirection" layoutX="10.0" layoutY="382.0" prefHeight="11.0" prefWidth="380.0" promptText="Hvis lejlighed, indtast etage og etage retning (f.eks. 2 etage, højre)" />
+                     </children>
+                  </VBox>
+                  <VBox layoutX="28.0" layoutY="881.0" prefHeight="80.0" prefWidth="208.0">
+                     <children>
+                        <RadioButton fx:id="fxRB_activityAndSocialInteractionOffer" mnemonicParsing="false" text="Aktivitets- og samværstilbud" />
+                        <RadioButton fx:id="fxRB_protectedEmploymentOffer" layoutX="10.0" layoutY="78.0" mnemonicParsing="false" text="Beskyttet beskæftigelsestilbud" />
+                        <RadioButton fx:id="fxRB_dayCareOffer" layoutX="10.0" layoutY="95.0" mnemonicParsing="false" text="Dagbehandlingstilbud til voksne" />
+                        <RadioButton fx:id="fxRB_educationOffer" layoutX="10.0" layoutY="112.0" mnemonicParsing="false" text="Uddannelsestilbud" />
+                     </children>
+                  </VBox>
+                  <VBox layoutX="19.0" layoutY="1084.0" prefHeight="343.0" prefWidth="374.0">
+                     <children>
+                        <Label text="Værgemål og repræsentation">
+                           <font>
+                              <Font name="System Bold Italic" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label text="Angiv, hvis relevant ">
+                           <font>
+                              <Font name="System Italic" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="10.0" layoutY="27.0" text="Værgemål:" />
+                        <RadioButton fx:id="fxRB_guadianship" mnemonicParsing="false" text="Værgemål (§ 5)" />
+                        <RadioButton fx:id="fxRB_guadianshipWithRevokedCapacity" layoutX="10.0" layoutY="129.0" mnemonicParsing="false" text="Værgemål med frataget retslig handleevne (§ 6)" />
+                        <RadioButton fx:id="fxRB_curatorship" layoutX="10.0" layoutY="336.0" mnemonicParsing="false" text="Samværgemål (§7)" />
+                        <RadioButton fx:id="fxRB_guardian" layoutX="10.0" layoutY="336.0" mnemonicParsing="false" text="Værge [angiv kontaktoplysninger]" />
+                        <TextArea fx:id="fxTA_guardianContact" prefHeight="74.0" prefWidth="374.0" promptText="Angiv kontaktoplysninger" wrapText="true" />
+                        <Label layoutX="10.0" layoutY="44.0" text="Repræsentation:" />
+                        <RadioButton fx:id="fxRB_layRepresentative" layoutX="10.0" layoutY="235.0" mnemonicParsing="false" text="Bisidder" />
+                        <RadioButton fx:id="fxRB_partRepresentative" layoutX="10.0" layoutY="336.0" mnemonicParsing="false" text="Partsrepræsentant" />
+                        <RadioButton fx:id="fxRB_powerOfAttorney" mnemonicParsing="false" text="Fuldmagt - hvis ja (Afkrydset, angiv hvad der er givet fuldmagt til: [tekst felt]" />
+                        <TextArea fx:id="fxTA_powerOfAttorney" prefHeight="200.0" prefWidth="200.0" promptText="Skriv tekst her" wrapText="true" />
+                     </children>
+                  </VBox>
+                  <VBox layoutX="28.0" layoutY="1430.0">
+                     <children>
+                        <Label text="Rettigheder og pligter">
+                           <font>
+                              <Font name="System Bold Italic" size="12.0" />
+                           </font>
+                        </Label>
+                        <RadioButton fx:id="fxRB_rightsAndDuties" mnemonicParsing="false" text="Er borgeren informeret om ret til bisidder og partsrepræsentant?" />
+                        <TextArea fx:id="fxTA_rightsAndDuties" prefHeight="93.0" prefWidth="351.0" promptText="Eventuel note/beskrivelse" wrapText="true" />
+                     </children>
+                  </VBox>
+                  <VBox layoutX="36.0" layoutY="1568.0">
+                     <children>
+                        <Label text="Er borgeren informeret om at oplysningerne vil blive registreret elektronisk?" />
+                        <RadioButton fx:id="fxRB_agreeToElectronicRegistrationYes" mnemonicParsing="false" text="Ja" />
+                        <RadioButton fx:id="fxRB_agreeToElectronicRegistrationNo" mnemonicParsing="false" text="Nej" />
+                     </children>
+                  </VBox>
+                  <VBox layoutX="21.0" layoutY="1641.0">
+                     <children>
+                        <Label text="Aftaler om det videre forløb">
+                           <font>
+                              <Font name="System Bold Italic" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label text="Hvilke aftaler er indgået med borgeren om det videre forløb" />
+                        <TextArea fx:id="fxTA_agreementsWithCitzen" prefHeight="108.0" prefWidth="480.0" promptText="Beskriv aftaler" wrapText="true" />
+                     </children>
+                  </VBox>
+                  <VBox layoutX="22.0" layoutY="1797.0">
+                     <children>
+                        <Label text="Samtykke ">
+                           <font>
+                              <Font name="System Bold Italic" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label text="Er det relevant at indhente samtykke?" />
+                        <RadioButton fx:id="fxRB_consentYes" mnemonicParsing="false" text="Ja" />
+                        <RadioButton fx:id="fxRB_consentNo" mnemonicParsing="false" text="Nej" />
+                        <Label text="Hvis ja, angiv hvordan samtykke er modtaget:" />
+                        <RadioButton fx:id="fxRB_consentOral" mnemonicParsing="false" text="Mundtligt samtykke" />
+                        <RadioButton fx:id="fxRB_consentWritten" layoutX="10.0" layoutY="129.0" mnemonicParsing="false" text="Skriftligt samtykke" />
+                     </children>
+                  </VBox>
+                  <VBox layoutX="16.0" layoutY="1963.0">
+                     <children>
+                        <Label text="Indhentelse af oplysninger">
+                           <font>
+                              <Font name="System Bold Italic" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label text="Er der modtaget samtykke om indhentning af oplysninger fra:" />
+                        <RadioButton fx:id="fxRB_getInfoDoctor" mnemonicParsing="false" text="Egen læge [angiv læge]" />
+                        <RadioButton fx:id="fxRB_getInfoSpecialDoctor" layoutX="10.0" layoutY="289.0" mnemonicParsing="false" text="Speciallæge [angiv læge]" />
+                        <RadioButton fx:id="fxRB_getInfoHospital" layoutX="10.0" layoutY="306.0" mnemonicParsing="false" text="Hospital [angiv hospital]" />
+                        <RadioButton fx:id="fxRB_getInfoAKasse" layoutX="10.0" layoutY="323.0" mnemonicParsing="false" text="A-kasse [angiv a-kasse]" />
+                        <RadioButton fx:id="fxRB_getInfoOffer" layoutX="10.0" layoutY="340.0" mnemonicParsing="false" text="Tilbud [angiv konkret tilbudssted]" />
+                        <RadioButton fx:id="fxRB_getInfoEmployer" layoutX="10.0" layoutY="357.0" mnemonicParsing="false" text="Arbejdsgiver [angiv arbejdsgiver]" />
+                        <RadioButton fx:id="fxRB_getInfoPreviousCommune" layoutX="10.0" layoutY="374.0" mnemonicParsing="false" text="Tidligere opholdskommune[angiv bopælskommune]" />
+                        <RadioButton fx:id="fxRB_getInfoOtherAdministrations" layoutX="10.0" layoutY="391.0" mnemonicParsing="false" text="Andre forvaltninger [angiv hvilke]" />
+                        <Label layoutX="10.0" layoutY="27.0" text="Andre:[angiv hvilke]" />
+                        <TextArea fx:id="fxTA_obtainOfInformation" prefHeight="92.0" prefWidth="496.0" promptText="Angiv informationer" wrapText="true" />
+                     </children>
+                  </VBox>
+                  <VBox layoutX="18.0" layoutY="2251.0">
+                     <children>
+                        <Label text="Borgerinddragelse - særlige forhold">
+                           <font>
+                              <Font name="System Bold Italic" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label text="Eventuelle særlige forhold der skal adresseres for at borgeren kan inddrages i sagsbehandlingen?" />
+                        <TextArea fx:id="fxTA_citizenSpecialCircumstances" prefHeight="92.0" prefWidth="496.0" promptText="Angiv informationer" wrapText="true" />
+                     </children>
+                  </VBox>
+                  <VBox layoutX="18.0" layoutY="2390.0">
+                     <children>
+                        <Label text="Handle- og betalingskommune">
+                           <font>
+                              <Font name="System Bold Italic" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label text="Angiv kun hvilken kommune, hvis det ikke er egen kommune." />
+                        <RadioButton fx:id="fxRB_OtherActingCommune" mnemonicParsing="false" text="Anden handlekommune [angiv hvilke]" />
+                        <RadioButton fx:id="fxRB_otherPayingCommune" layoutX="10.0" layoutY="170.0" mnemonicParsing="false" text="Anden betalingskommune [angiv hvilke]" />
+                        <TextArea fx:id="fxTA_CommunePayingOrActing" prefHeight="92.0" prefWidth="496.0" promptText="Angiv informationer" wrapText="true" />
+                     </children>
+                  </VBox>
+                  <RadioButton fx:id="fxRB_Activity104" layoutX="18.0" layoutY="162.0" mnemonicParsing="false" text="Aktivitets- og samværsydelse (§ 104)" />
+                  <RadioButton fx:id="fxRB_ambulantTreatment" layoutX="25.0" layoutY="837.0" mnemonicParsing="false" text="Ambulant behandlingstilbud til voksne" />
+                    </children>
+                </AnchorPane>
+            </content>
+        </ScrollPane>
+    </children>
+</AnchorPane>

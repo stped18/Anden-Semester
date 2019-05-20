@@ -3,17 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mmmi.UI.Main.createCase.caseOpening;
+package mmmi.UI.Main.CreateCase;
 
+import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TitledPane;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -32,7 +33,19 @@ public class CaseOpeningController implements Initializable {
     // Vbox = Vbox
     // etc ...
     @FXML
-    private AnchorPane caseOpenRootpane;
+    private JFXTextField fxTF_firstname;
+    @FXML
+    private JFXTextField fxTF_lastname;
+    @FXML
+    private JFXTextField fxTF_zipcode;
+    @FXML
+    private JFXTextField fxTF_cityname;
+    @FXML
+    private JFXTextField fxTF_streetName;
+    @FXML
+    private JFXTextField fxTF_houseNo;
+    @FXML
+    private JFXTextField fxTF_floorAndFloorDirection;
     @FXML
     private TextArea fxTA_RegardingInquiry;
     @FXML
@@ -156,10 +169,6 @@ public class CaseOpeningController implements Initializable {
     @FXML
     private RadioButton fxRB_otherLengthyHousing;
     @FXML
-    private RadioButton fxRB_outgoingOffer;
-    @FXML
-    private RadioButton fxRB_offerWithAuthority;
-    @FXML
     private RadioButton fxRB_clearLookingForYes;
     @FXML
     private RadioButton fxRB_clearLookingForNo;
@@ -167,8 +176,6 @@ public class CaseOpeningController implements Initializable {
     private RadioButton fxRB_carriage;
     @FXML
     private RadioButton fxRB_treatment;
-    @FXML
-    private RadioButton fxRB_cashBenefit;
     @FXML
     private RadioButton fxRB_control;
     @FXML
@@ -234,14 +241,6 @@ public class CaseOpeningController implements Initializable {
     @FXML
     private TextArea fxTA_agreementsWithCitzen;
     @FXML
-    private RadioButton fxRB_consentYes;
-    @FXML
-    private RadioButton fxRB_consentNo;
-    @FXML
-    private RadioButton fxRB_consentOral;
-    @FXML
-    private RadioButton fxRB_consentWritten;
-    @FXML
     private RadioButton fxRB_getInfoDoctor;
     @FXML
     private RadioButton fxRB_getInfoSpecialDoctor;
@@ -271,6 +270,24 @@ public class CaseOpeningController implements Initializable {
     private RadioButton fxRB_Activity104;
     @FXML
     private RadioButton fxRB_ambulantTreatment;
+    @FXML
+    private AnchorPane fxAP_subpane;
+    @FXML
+    private TitledPane fxTP_inquiries;
+    @FXML
+    private TitledPane fxTP_guardianRepresentation;
+    @FXML
+    private TitledPane fxTP_rightsDuties;
+    @FXML
+    private TitledPane fxTP_agreementsWithCitzen;
+    @FXML
+    private TitledPane fxTP_obtainOfInformation;
+    @FXML
+    private TitledPane fxTP_citizenSpecialCircumstances;
+    @FXML
+    private TitledPane communePayingOrActing;
+    @FXML
+    private TitledPane fxTP_benefitsParagraphs;
 
     // Other attributes
     private ObservableList<RadioButton> carriageList,
@@ -344,7 +361,7 @@ public class CaseOpeningController implements Initializable {
         personHelpSchemeList.add(fxRB_personHelpScheme5);
         personHelpSchemeList.add(fxRB_personHelpScheme6);
         personHelpSchemeList.add(fxRB_personHelpScheme7);
-        
+
         // Eventual implementation:
         otherElementsList.add(fxRB_Activity104);
         otherElementsList.add(fxRB_protectedEmploymentBenefit);
@@ -356,22 +373,22 @@ public class CaseOpeningController implements Initializable {
             RadioButton.setToggleGroup(tgLookingForGroup);
         });
 
-    }
-
-    @FXML
-    private void rbCarriageOnAction(ActionEvent event) {
-        if (event.getSource() == fxRB_carriage) {
-            carriageList.forEach((RadioButton) -> {
-                RadioButton.setVisible(true);
-            });
-
-            if (fxRB_carriage.isSelected() == false) {
-                carriageList.forEach((RadioButton) -> {
-                    RadioButton.setVisible(false);
-                });
-            }
-
-        }
-    }
+    }   
+    
+//    @FXML
+//    private void rbCarriageOnAction(ActionEvent event) {
+//        if (event.getSource() == fxRB_carriage) {
+//            carriageList.forEach((RadioButton) -> {
+//                RadioButton.setVisible(true);
+//            });
+//
+//            if (fxRB_carriage.isSelected() == false) {
+//                carriageList.forEach((RadioButton) -> {
+//                    RadioButton.setVisible(false);
+//                });
+//            }
+//
+//        }
+//    }
 
 }

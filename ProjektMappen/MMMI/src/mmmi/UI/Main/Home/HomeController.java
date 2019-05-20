@@ -19,26 +19,26 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import mmmi.Domain.Department;
 import mmmi.Domain.Interfaces.IDomain;
-import mmmi.UI.Main.Home.Table;
+import mmmi.UI.Main.Home.UIEmployee;
 
 public class HomeController implements Initializable {
 
     @FXML
-    private TableView<Table> caseTable;
+    private TableView<UIEmployee> caseTable;
     @FXML
-    TableColumn<Table, String> number;
+    TableColumn<UIEmployee, String> number;
     @FXML
-    TableColumn<Table, String> name;
+    TableColumn<UIEmployee, String> name;
     @FXML
-    private TextField employeeName;
+    private TextField employeeName; // TODO: Changes to label.
     @FXML
-    private TextField numberOfCases;
+    private TextField numberOfCases; // TODO: Changes to label.
     @FXML
     private TextArea alterentativeNotets;
     @FXML
     private Button savebtn;
 
-    private final ObservableList<Table> casesNo = FXCollections.observableArrayList();
+    private final ObservableList<UIEmployee> casesNo = FXCollections.observableArrayList();
 
     IDomain department = new Department();
 
@@ -65,7 +65,7 @@ public class HomeController implements Initializable {
             String key = entry.getKey();
             String valuve = entry.getValue();
 
-            casesNo.add(new Table(key, valuve));
+            casesNo.add(new UIEmployee(key, valuve));
         }
         caseTable.setItems(casesNo);
 

@@ -80,6 +80,7 @@ public class Case {
 
     }
 
+    // Test
     @Override
     public String toString() {
         String total = "";
@@ -93,6 +94,7 @@ public class Case {
         return totallll;
     }
 
+    // Test
     public static void main(String[] args) {
         Map<String, String> mapTestValues = new HashMap<>();
 

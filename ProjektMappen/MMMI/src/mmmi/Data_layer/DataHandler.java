@@ -95,7 +95,7 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
 
     @Override
     public boolean writeCase(Case theCase) {
-
+        // TODO: Handle empty case.
         connectToDB();
         try {
 
@@ -153,8 +153,7 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
     }
 
     @Override
-    public boolean updateCitizen(Citizen citizen
-    ) {
+    public boolean updateCitizen(Citizen citizen) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -163,7 +162,7 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
         List<Integer> requestingCitizen = new ArrayList<>();
         Map<String, String> caseContent = new HashMap<>();
 
-        return new Case("", "Igang", 0, requestingCitizen, caseContent);
+        return new Case("", "", -1, requestingCitizen, caseContent);
     }
 
     @Override
@@ -177,6 +176,7 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    // Test
     public static void main(String[] args) {
         DataHandler dataHandler = new DataHandler();
         List<Integer> listTest = new ArrayList<>();
@@ -184,7 +184,7 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
         listTest.add(2);
         Map<String, String> mapTestValues = new LinkedHashMap<>();
         mapTestValues.put("carriage", "Test1");
-        mapTestValues.put("treament", "Test2");
+        mapTestValues.put("treatment", "Test2");
         mapTestValues.put("cashbenefit", "Test3");
         mapTestValues.put("control", "Test4");
         mapTestValues.put("stay", "Test5");
@@ -223,10 +223,10 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
 //            mapTestValues.put("Test" + String.valueOf(i), "Test" + String.valueOf(i));
 //        }
         //System.out.println(mapTestValues);
-        Case caze = new Case("1234", "Igang", 3, listTest, mapTestValues);
+        Case caze = new Case("123", "Igang", 3, listTest, mapTestValues);
 
-//        dataHandler.readCase(caze.getCaseID());
-//        System.out.println("l178: " + dataHandler.readCase(caze.getCaseID()));
+        dataHandler.readCase(caze.getCaseID());
+        System.out.println("l178: " + dataHandler.readCase(caze.getCaseID()));
         System.out.println(dataHandler.writeCase(caze));
 
     }

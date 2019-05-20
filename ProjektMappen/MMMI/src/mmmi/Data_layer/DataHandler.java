@@ -2,6 +2,10 @@ package MMMI.Data_layer;
 
 import mmmi.Data_layer.Connection.DatabaseConnection;
 import MMMI.Data_layer.Interfaces.IDataHandler;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -327,6 +331,7 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
 
     @Override
     public Case createCase() {
+
         List<Integer> requestingCitizen = new ArrayList<>();
         Map<String, String> caseContent = new HashMap<>();
 

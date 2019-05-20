@@ -1,14 +1,14 @@
-package MMMI.Data_layer.Interfaces;
+package mmmi.Data_layer.Interfaces;
 
-import MMMI.Data_layer.Case;
-import MMMI.Data_layer.Citizen;
-import MMMI.Data_layer.Employee;
-import MMMI.Data_layer.SearchCase;
+import mmmi.Data_layer.Case;
+import mmmi.Data_layer.Citizen;
+import mmmi.Data_layer.Employee;
+import mmmi.Data_layer.SearchCase;
 import java.util.List;
 
 public interface IDataHandler {
 
-    public Case readCase(String caseID);
+    public Case readCase(int caseID);
     public Citizen readCitizen(int citizenID);
     public Employee readEmployee(int employeeID);
 

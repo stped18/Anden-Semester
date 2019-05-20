@@ -6,7 +6,6 @@ import MMMI.Data_layer.SearchCase;
 import java.util.ArrayList;
 import java.util.HashMap;
 import LoginSystem.Domain.IEmployee;
-import LoginSystem.Domain.LoginSystem;
 import MMMI.Data_layer.DataHandler;
 import MMMI.Data_layer.Interfaces.IDataHandler;
 import java.util.List;
@@ -16,28 +15,39 @@ import mmmi.Domain.Interfaces.IDomain;
 
 public class Department implements IDomain {
 
-    private int id;
+    private int departmentID;
 
     private final IDataHandler dataHandler = new DataHandler();
-    private final IEmployee loginEmployee = new LoginSystem();
+    private IEmployee loginEmployee;
     private Employee mmmiEmployee;
 
-    public Department() {
+    private static Department departmentInstance = null;
+
+    private Department() {
 
     }
 
-    /**
-     * @param departmentid
-     */
-    public Department(int id) {
-        this.id = id;
+    public static Department getInstance() {
 
+        if (departmentInstance == null) {
+            departmentInstance = new Department();
+        }
+
+        return departmentInstance;
+    }
+    
+    public void setDepartmentID(int departmentID) {
+        this.departmentID = departmentID;
     }
 
     public int getId() {
-        return id;
+        return departmentID;
     }
 
+    public void setLoginEmployee(IEmployee employee) {
+        this.loginEmployee = employee;
+    }
+    
     /**
      * @param caseNumber
      * @param employeeID
@@ -68,14 +78,14 @@ public class Department implements IDomain {
     //REMEMBER: to use the correct names from the IDataHandler interface.
     //REMEMBER: check rights ask the people and dont just do some random stuff.
     @Override
-    public Map<String,Map<String, String>> search(String key, String value) {
+    public Map<String, Map<String, String>> search(String key, String value) {
         //TODO: needs to be able to send all info from a searchcase to the GUI in the form of list with a map
-        value += "%" + String.valueOf(id);
+        value += "%" + String.valueOf(departmentID);
         IDataHandler searchHandler = new DataHandler();
         List<SearchCase> searchCases = searchHandler.search(key, value);
-        
+
         int length = searchCases.size();
-        
+
         Map searchResultList = new HashMap();
         for (int i = 0; i < length; i++) {
             Map searchResultMap = new HashMap();
@@ -119,16 +129,15 @@ public class Department implements IDomain {
 //        for (Map.Entry<String, Map<String, String>> entry : caseInfo.entrySet()) {
 //            if (entry.getKey().equalsIgnoreCase("caseContents")) {
 //                contentsMap = entry.getValue();
-
         System.out.println(caseInfo);
         for (int i = 0; i < caseInfo.size(); i++) {
 
             Map<String, String> map = caseInfo.get(i);
             if (map.containsKey("regardinginquiry")) {
-               System.out.println("condmap" + map);
+                System.out.println("condmap" + map);
                 contentsMap = map;
-            }else{
-            citizenInfoList.add(map);
+            } else {
+                citizenInfoList.add(map);
             }
         }
 
@@ -157,11 +166,8 @@ public class Department implements IDomain {
 //                        System.out.println("EQUEST" + entry1.getValue());
 //                        citizenInfoList.add(entry1);
 //                    }
-
-
 //        String firstName, lastName, streetName, cityName, cpr, zipcode, houseNo, floor, floorDir, citizenType;
 //        firstName = lastName = streetName = cityName = zipcode = houseNo = floor = floorDir = citizenType = cpr = "";
-
         int getCitizenID = 0;
         List<Citizen> citezinList = new ArrayList<Citizen>();
         Citizen c = dataHandler.createCitizen();
@@ -180,14 +186,14 @@ public class Department implements IDomain {
                 c.setRequestingCitizen(Boolean.valueOf(map.get("regardingCitizen")));
             }
             c = new Citizen(-1, c.getFirstName(), c.getLastName(),
-                            c.getCprNo(), c.getStreetName(), c.getHouseNo(), c.getFloor(), c.getFloorDirection(),
-                            c.getZipcode(), c.getCityname(), c.isRegardingCitizen(), c.isRequestingCitizen());
+                    c.getCprNo(), c.getStreetName(), c.getHouseNo(), c.getFloor(), c.getFloorDirection(),
+                    c.getZipcode(), c.getCityname(), c.isRegardingCitizen(), c.isRequestingCitizen());
 
             citezinList.add(c);
 
         }
         for (Citizen a : citezinList) {
-            System.out.println("Citesin add to db:  "+a.toString());
+            System.out.println("Citesin add to db:  " + a.toString());
             getCitizenID = dataHandler.writeCitizen(a);
         }
 
@@ -198,16 +204,16 @@ public class Department implements IDomain {
 
     }
 
-    private boolean isCitizen(String key, String value, Map<String , String> map) {
-    if (map != null){
-        if (map.containsKey(key)){
-            if ((map.get(key)).equals(value)){
-                return true;
+    private boolean isCitizen(String key, String value, Map<String, String> map) {
+        if (map != null) {
+            if (map.containsKey(key)) {
+                if ((map.get(key)).equals(value)) {
+                    return true;
+                }
             }
         }
+        return false;
     }
-    return false;
-}
 
     @Override
     public Employee getEmployee() {
@@ -216,14 +222,13 @@ public class Department implements IDomain {
 
     private Employee receiveEmployee() {
 
-        int employeeid = 7; // loginEmployee.sendEmployee().getEmployeeID();
+        int employeeid = loginEmployee.getEmployeeID();
 
         String employeeName = dataHandler.readEmployee(employeeid).getName();
-        int departmentID = dataHandler.readEmployee(employeeid).getDepartmentID();
         int roleID = dataHandler.readEmployee(employeeid).getRoleID();
         Map<String, String> casemap = dataHandler.readEmployee(employeeid).getEmployeeCases();
         Map<Integer, String> rightsMap = dataHandler.readEmployee(employeeid).getrights();
 
-        return mmmiEmployee = new Employee(employeeid, employeeName, departmentID, roleID, casemap, rightsMap);
+        return mmmiEmployee = new Employee(employeeid, employeeName, this.departmentID, roleID, casemap, rightsMap);
     }
 }

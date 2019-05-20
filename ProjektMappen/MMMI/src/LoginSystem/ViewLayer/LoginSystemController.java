@@ -68,7 +68,6 @@ public class LoginSystemController implements Initializable {
             loginSystem.setPassword(fxPassword.getText());
 
             if (loginSystem.getEmployee()) {
-                loginSystem.sendEmployee();
                 MMMI main = new MMMI();
 
                 try {

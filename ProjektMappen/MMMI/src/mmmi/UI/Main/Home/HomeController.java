@@ -38,7 +38,7 @@ public class HomeController implements Initializable {
 
     private final ObservableList<UIEmployee> casesNo = FXCollections.observableArrayList();
 
-    IDomain department = new Department();
+    IDomain department = Department.getInstance();
 
     /**
      * Initializes the controller class.

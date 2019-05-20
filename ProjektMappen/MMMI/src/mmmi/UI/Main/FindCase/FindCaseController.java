@@ -87,8 +87,7 @@ public class FindCaseController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        // domain = Domain::getInstance(); Domain facade instantiation, how?
-        domain = new Department(1);
+        domain = Department.getInstance(); 
         RB_searchOptionCaseNo.setUserData("Case");
         RB_searchOptionCitizen.setUserData("Citizen");
         obslistResult = FXCollections.observableArrayList();

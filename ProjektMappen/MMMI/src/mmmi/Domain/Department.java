@@ -6,6 +6,7 @@ import MMMI.Data_layer.DataHandler;
 import MMMI.Data_layer.Interfaces.IDataHandler;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -99,27 +100,18 @@ public class Department implements IDomain {
 //        for (Map.Entry<String, Map<String, String>> entry : caseInfo.entrySet()) {
 //            if (entry.getKey().equalsIgnoreCase("caseContents")) {
 //                contentsMap = entry.getValue();
-        for (Map<String, String> map : caseInfo) {
 
-//                System.out.println(caseInfo.indexOf(map));
-            if (map.containsKey("regardinginquiry")) {
-
-                System.out.println(caseInfo.get(caseInfo.indexOf(map)));
-                System.out.println("condmap" + map);
+        System.out.println(caseInfo);
+        for (int i = 0; i < caseInfo.size(); i++) {
+            
+            Map<String, String> map = caseInfo.get(i);
+            if (map.containsKey("regardinginquiry")) {            
+               System.out.println("condmap" + map);
                 contentsMap = map;
-
-            }
-            if (map.get("regardingCitizen").equals("true")) {
-                System.out.println("citesen1" + map);
-                citizenInfoList.add(map);
-
-            }
-            if (map.get("requestingCitizen").equals("true")) {
-
-                System.out.println("cittesen2" + map);
-                citizenInfoList.add(map);
-
-            }
+            }else{
+            citizenInfoList.add(map);
+            }  
+        }
 
 //            System.out.println(Arrays.asList(citizenInfoList));
 //                if (entry.getValue().containsKey("requestingCitizen") && entry.getValue().containsValue("true")) {
@@ -146,20 +138,20 @@ public class Department implements IDomain {
 //                        System.out.println("EQUEST" + entry1.getValue());
 //                        citizenInfoList.add(entry1);
 //                    }
-        }
 
-        String firstName, lastName, streetName, cityName, cpr, zipcode, houseNo, floor, floorDir, citizenType;
-        firstName = lastName = streetName = cityName = zipcode = houseNo = floor = floorDir = citizenType = cpr = "";
+
+//        String firstName, lastName, streetName, cityName, cpr, zipcode, houseNo, floor, floorDir, citizenType;
+//        firstName = lastName = streetName = cityName = zipcode = houseNo = floor = floorDir = citizenType = cpr = "";
 
         int getCitizenID = 0;
-
+        List<Citizen> citezinList = new ArrayList<Citizen>();
         Citizen c = dataHandler.createCitizen();
         for (Map<String, String> map : citizenInfoList) {
             if (map.containsKey("regardingCitizen") || map.containsValue("requestingCitizen")) {
                 c.setFirstName(map.get("firstName"));
                 c.setLastName(map.get("lastName"));
                 c.setStreetName(map.get("streetName"));
-                cpr = map.get("cpr");
+                c.setCprNo(map.get("cpr")); 
                 c.setCityname(map.get("cityName"));
                 c.setZipcode(Integer.valueOf(map.get("zipCode")));
                 c.setHouseNo(map.get("houseNo"));
@@ -168,11 +160,16 @@ public class Department implements IDomain {
                 c.setRegardingCitizen(Boolean.valueOf(map.get("reqardingCitizen")));
                 c.setRequestingCitizen(Boolean.valueOf(map.get("regardingCitizen")));
             }
-
-            getCitizenID = dataHandler.writeCitizen(
-                    c = new Citizen(-1, c.getFirstName(), c.getLastName(),
+            c = new Citizen(-1, c.getFirstName(), c.getLastName(),
                             c.getCprNo(), c.getStreetName(), c.getHouseNo(), c.getFloor(), c.getFloorDirection(),
-                            c.getZipcode(), c.getCityname(), c.isRegardingCitizen(), c.isRequestingCitizen()));
+                            c.getZipcode(), c.getCityname(), c.isRegardingCitizen(), c.isRequestingCitizen());
+        
+            citezinList.add(c);
+            
+        }
+        for (Citizen a : citezinList) {     
+            System.out.println("Citesin add to db:  "+a.toString());
+            getCitizenID = dataHandler.writeCitizen(a);
         }
 
         List<Integer> requestingCitizenList = new ArrayList<>();
@@ -181,6 +178,17 @@ public class Department implements IDomain {
         return dataHandler.writeCase(new Case(String.valueOf(new Random().nextInt(1000)), "igang", getCitizenID, requestingCitizenList, contentsMap));
 
     }
+    
+    private boolean isCitizen(String key, String value, Map<String , String> map) {
+    if (map != null){
+        if (map.containsKey(key)){
+            if ((map.get(key)).equals(value)){
+                return true;
+            }
+        }
+    }
+    return false;
+}
 
     @Override
     public Employee getEmployee() {
@@ -190,8 +198,7 @@ public class Department implements IDomain {
 
     public static void main(String[] args) {
         Department department = new Department(1);
-        List<Map<String, String>> caseInfo;
-        caseInfo = new ArrayList<>();
+        List<Map<String, String>> caseInfo = new ArrayList<Map<String,String>>();
 
         Map<String, String> conentsMap = new HashMap<>();
         conentsMap.put("regardinginquiry", "test1");
@@ -209,6 +216,7 @@ public class Department implements IDomain {
         citizenInfoRegarding.put("cpr", "");
         citizenInfoRegarding.put("floor", "");
         citizenInfoRegarding.put("floorDirection", "");
+        
         Map<String, String> citizenInfoRequesting = new HashMap<>();
         citizenInfoRequesting.put("firstName", "Requestingmads");
         citizenInfoRequesting.put("lastName", "RequestingHansen");
@@ -221,14 +229,66 @@ public class Department implements IDomain {
         citizenInfoRequesting.put("cpr", "");
         citizenInfoRequesting.put("floor", "");
         citizenInfoRequesting.put("floorDirection", "");
+        
+        Map<String, String> cd= new HashMap<>();
+        citizenInfoRequesting.put("firstName", "cd");
+        citizenInfoRequesting.put("lastName", "RequestingHansen");
+        citizenInfoRequesting.put("streetName", "RequestingStreet");
+        citizenInfoRequesting.put("cityName", "Kerteminde");
+        citizenInfoRequesting.put("zipCode", "5300");
+        citizenInfoRequesting.put("houseNo", "75");
+        citizenInfoRequesting.put("regardingCitizen", "false");
+        citizenInfoRequesting.put("requestingCitizen", "true");
+        citizenInfoRequesting.put("cpr", "");
+        citizenInfoRequesting.put("floor", "");
+        citizenInfoRequesting.put("floorDirection", "");
+        
+           Map<String, String> cb = new HashMap<>();
+         citizenInfoRegarding.put("firstName", "cb");
+        citizenInfoRegarding.put("lastName", "RegardingHansen");
+        citizenInfoRegarding.put("streetName", "RegardingStreet");
+        citizenInfoRegarding.put("cityName", "Kerteminde");
+        citizenInfoRegarding.put("zipCode", "5300");
+        citizenInfoRegarding.put("houseNo", "75");
+        citizenInfoRegarding.put("regardingCitizen", "true");
+        citizenInfoRegarding.put("requestingCitizen", "false");
+        citizenInfoRegarding.put("cpr", "");
+        citizenInfoRegarding.put("floor", "");
+        citizenInfoRegarding.put("floorDirection", "");
 
         caseInfo.add(conentsMap);
         caseInfo.add(citizenInfoRegarding);
         caseInfo.add(citizenInfoRequesting);
+        caseInfo.add(cd);
+        caseInfo.add(cb);
+        
 //        caseInfo.put("citizenInfo", citizenInfoRequesting);
 
         department.saveCase(caseInfo);
-        System.out.println("Department result: " + department.saveCase(caseInfo));
+        ;
 
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

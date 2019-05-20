@@ -5,7 +5,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -23,10 +22,10 @@
         <Label layoutX="42.0" layoutY="152.0" text="Antal af sager:" />
         <Label layoutX="704.0" layoutY="50.0" text="Mine sager" />
         <Label layoutX="49.0" layoutY="345.0" text="Eventuelle Noter" />
-      <TextField fx:id="employeeName" layoutX="137.0" layoutY="116.0" />
-      <TextField fx:id="numberOfCases" layoutX="137.0" layoutY="148.0" />
       <TextArea fx:id="alterentativeNotets" layoutX="47.0" layoutY="375.0" prefHeight="500.0" prefWidth="956.0" />
       <TableView fx:id="caseTable" layoutX="704.0" layoutY="73.0" onMouseClicked="#eventnote" prefHeight="280.0" prefWidth="280.0" />
       <Button fx:id="Savebtn" layoutX="191.0" layoutY="328.0" mnemonicParsing="false" onMouseClicked="#eventnote" text="Gem" />
+      <Label fx:id="employeeName" layoutX="137.0" layoutY="120.0" prefHeight="17.0" prefWidth="111.0" />
+      <Label fx:id="numberOfCases" layoutX="137.0" layoutY="152.0" prefHeight="17.0" prefWidth="111.0" />
     </children>
 </AnchorPane>

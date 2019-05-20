@@ -9,6 +9,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
@@ -28,28 +29,32 @@ public class HomeController implements Initializable {
     @FXML
     TableColumn<UIEmployee, String> name;
     @FXML
-    private TextField employeeName; // TODO: Changes to label.
+    private Label employeeName;
     @FXML
-    private TextField numberOfCases; // TODO: Changes to label.
+    private Label numberOfCases;
     @FXML
     private TextArea alterentativeNotets;
     @FXML
     private Button savebtn;
 
-    private final ObservableList<UIEmployee> casesNo = FXCollections.observableArrayList();
+    private ObservableList<UIEmployee> casesNo;
 
-    IDomain department = Department.getInstance();
+    private IDomain department = Department.getInstance();
+   
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        
+        casesNo = FXCollections.observableArrayList();
+        
         number = new TableColumn("sags nummer");
         name = new TableColumn("borger navn");
         number.setCellValueFactory(new PropertyValueFactory<>("number"));
         name.setCellValueFactory(new PropertyValueFactory<>("name"));
+        
         caseTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         caseTable.getColumns().addAll(number, name);
 

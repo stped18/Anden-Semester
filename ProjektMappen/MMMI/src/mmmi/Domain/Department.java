@@ -214,6 +214,15 @@ public class Department implements IDomain {
         }
         return false;
     }
+    
+    public String getnote(String caseID) {
+        return dataHandler.readAlternativeNotets(caseID);
+    }
+    
+    public boolean writenote(String caseID, String note) {
+        System.out.println("in domain");
+        return dataHandler.writeAlternativeNote(caseID, note);
+    }
 
     @Override
     public Employee getEmployee() {

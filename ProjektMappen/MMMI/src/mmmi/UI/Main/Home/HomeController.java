@@ -7,13 +7,13 @@ import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import mmmi.Domain.Department;
@@ -24,9 +24,7 @@ public class HomeController implements Initializable {
 
     @FXML
     private TableView<UIEmployee> caseTable;
-    @FXML
     TableColumn<UIEmployee, String> number;
-    @FXML
     TableColumn<UIEmployee, String> name;
     @FXML
     private Label employeeName;
@@ -34,12 +32,14 @@ public class HomeController implements Initializable {
     private Label numberOfCases;
     @FXML
     private TextArea alterentativeNotets;
-    @FXML
-    private Button savebtn;
-
+    
     private ObservableList<UIEmployee> casesNo;
 
     private IDomain department = Department.getInstance();
+    @FXML
+    private Button Savebtn;
+    
+    String caseid = "";
    
 
     /**
@@ -77,12 +77,6 @@ public class HomeController implements Initializable {
     @FXML
     private void eventnote(MouseEvent event) {
 
-        String caseid = "";
-
-        if (event.getSource() == savebtn) {
-
-        }
-
         if (event.getSource() == caseTable) {
             if (event.getClickCount() >= 2) {
                 System.out.println("2 click");
@@ -91,5 +85,11 @@ public class HomeController implements Initializable {
 
             }
         }
+    }
+
+    @FXML
+    private void eventnotes(ActionEvent event) {
+        System.out.println("Gemmer!!!");
+        department.writenote(caseid, alterentativeNotets.getText());
     }
 }

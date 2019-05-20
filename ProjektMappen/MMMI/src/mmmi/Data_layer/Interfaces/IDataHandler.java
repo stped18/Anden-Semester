@@ -12,13 +12,13 @@ public interface IDataHandler {
     public Case readCase(String caseID);
     public Citizen readCitizen(int citizenID);
     public Employee readEmployee(int employeeID);
+    public String readAlternativeNotets(String caseID);
 
     public boolean writeCase(Case theCase);
     public int writeCitizen(Citizen citizen);
     public boolean writeEmployee(Employee employee);
+    public boolean writeAlternativeNote(String caseID, String note);
 
-    public Map<String, String> getAlternativeNotets(int caseID);
-    
     public boolean updateCitizen(Citizen citizen);
 
     public Case createCase();

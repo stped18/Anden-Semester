@@ -11,6 +11,7 @@ import java.sql.Statement;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.sql.PreparedStatement;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +23,7 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
 
     private int employeeID;
     private Employee employee = null;
+    private Case noteCase;
 
     @Override
     public Case readCase(String caseID) {
@@ -462,34 +464,104 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
     }
 
     @Override
-    public Map<String, String> getAlternativeNotets(int caseID) {
-        Map<String, String> noteMap = new HashMap();
+    public String readAlternativeNotets(String caseID) {
 
         String selectQuery, fromQuery, whereQuery, query;
+        String note = null;
 
         try {
             connectToDB();
 
-            selectQuery = "SELECT * ";
-            fromQuery = "FROM case_content AS cc ";
-            whereQuery = "WHERE cc.casecaseid = ?;";
+            selectQuery = "SELECT alternativenotes ";
+            fromQuery = "FROM case_contents AS cc ";
+            whereQuery = "WHERE cc.casecaseid = ? ORDER BY cc.datestamp DESC LIMIT 1;";
             query = selectQuery + fromQuery + whereQuery;
-            
+
             dbPreparedStatement = dbConnection.prepareStatement(query);
-            dbPreparedStatement.setInt(1, caseID);
+            dbPreparedStatement.setString(1, caseID);
             dbResultSet = dbPreparedStatement.executeQuery();
 
             while (dbResultSet.next()) {
-                noteMap.put("", "");
+                note = dbResultSet.getString("alternativenotes");
             }
-            
-        } catch (Exception e) {
+
+        } catch (SQLException e) {
             disconnectDB();
         } finally {
             disconnectDB();
         }
 
-        return noteMap;
+        if (note == null) {
+            note = "";
+        }
+
+        return note;
     }
 
+    @Override
+    public boolean writeAlternativeNote(String caseID, String note) {
+
+        String selectQuery, fromQuery, whereQuery, query;
+
+        Map<String, String> valueMap = new HashMap<>();
+
+        try {
+            connectToDB();
+
+            selectQuery = "SELECT * ";
+            fromQuery = "FROM case_contents AS cc ";
+            whereQuery = "WHERE cc.casecaseid = ? ORDER BY cc.datestamp DESC LIMIT 1;";
+            query = selectQuery + fromQuery + whereQuery;
+
+            dbPreparedStatement = dbConnection.prepareStatement(query);
+            dbPreparedStatement.setString(1, caseID);
+            dbResultSet = dbPreparedStatement.executeQuery();
+            ResultSetMetaData rsmd = dbResultSet.getMetaData();
+
+            while (dbResultSet.next()) {
+                for (int i = 1; i <= rsmd.getColumnCount(); i++) {
+                    if ("alternativenotes".equals(rsmd.getColumnName(i))) {
+                        valueMap.put(rsmd.getColumnName(i), note);
+                    } else if ("casecontentid".equals(rsmd.getColumnName(i))) {
+                        // Is empty so we dont set casecontent id.
+                    } else if ("datestamp".equals(rsmd.getColumnName(i))) {
+                        // Is empty so we dont set datestamp.
+                    } else if ("casecaseid".equals(rsmd.getColumnName(i))) {
+                        // Is empty so we dont set case ID.
+                    } else {
+                        valueMap.put(rsmd.getColumnName(i), dbResultSet.getString(i));
+                    }
+                }
+            }
+
+            StringBuilder sb = new StringBuilder();
+            StringBuilder keysb = new StringBuilder();
+            
+            for (String key : valueMap.keySet()) {
+                keysb.append(key).append(",");
+            }
+
+            for (String value : valueMap.values()) {
+                sb.append("'").append(value).append("',");
+            }
+            
+            System.out.println(sb.toString() + "\n" + keysb.toString());
+            
+            String insert = "INSERT INTO case_contents (casecaseid," + keysb.toString() + ") ";
+            String values = "VALUES (" + caseID + ", " + sb.toString() + ");";
+            
+            dbStatement = dbConnection.createStatement();
+            dbStatement.executeQuery(insert + values);
+            
+            return true;
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            disconnectDB();
+            return false;
+        } finally {
+            disconnectDB();
+        }
+
+    }
 }

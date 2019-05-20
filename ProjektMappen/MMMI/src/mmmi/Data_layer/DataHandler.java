@@ -2,34 +2,14 @@ package MMMI.Data_layer;
 
 import mmmi.Data_layer.Connection.DatabaseConnection;
 import MMMI.Data_layer.Interfaces.IDataHandler;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.util.HashMap;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -97,7 +77,7 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
                         requestingCitizens.add(requestingCitizenSet.getInt(1));
                     }
 
-                    cases.add(new Case(caseID, citizenID, requestingCitizens, caseContent));
+                    cases.add(new Case(caseID,"Status", citizenID, requestingCitizens, caseContent));
 
                     citizen.setCases(cases);
                 }
@@ -107,7 +87,7 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
         } catch (SQLException ex) {
             Logger.getLogger(DataHandler.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("readCitizen:\nSQLState: " + ex.getSQLState() + "\nmessage: " + ex.getMessage());
-            disConnectet();
+            disconnectDB();
         } finally {
             if(fetchCitizen != null) {
                 fetchCitizen = null;
@@ -124,7 +104,7 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
             if(fetchRequestingCitizen != null) {
                 fetchRequestingCitizen = null;
             }
-            disConnectet();
+            disconnectDB();
         }
         return citizen;
     }
@@ -187,9 +167,9 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
         } catch (SQLException ex) {
             System.out.println("getEmployee:\nSQLState:" + ex.getSQLState() + "\nMessage:" + ex.getMessage());
             Logger.getLogger(DataHandler.class.getName()).log(Level.SEVERE, null, ex);
-            disConnectet();
+            disconnectDB();
         } finally {
-            disConnectet();
+            disconnectDB();
         }
 
         return new Employee(employeeID, empolyeeName, roleID, departmentID, employeeCases, rights);
@@ -279,12 +259,12 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
         } catch (SQLException ex) {
             Logger.getLogger(DataHandler.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("writeCitizen:\nSQLState: " + ex.getSQLState() + "\nmessage: " + ex.getMessage());
-            disConnectet();
+            disconnectDB();
         } finally {
             if(insertCitizen != null) {
                 insertCitizen = null;
             }
-            disConnectet();
+            disconnectDB();
         }
         return citizenID;
     }
@@ -319,12 +299,12 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
             
         } catch (SQLException ex) {
             System.out.println("updateCitizen:\nSQLState: " + ex.getSQLState() + "\nmessage: " + ex.getMessage());
-            disConnectet();
+            disconnectDB();
         } finally {
             if(updateCitizen != null) {
                 updateCitizen = null;
             }
-            disConnectet();
+            disconnectDB();
         }
         return citizen_updated;
     }
@@ -374,12 +354,12 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
             } catch (SQLException ex) {
                 System.out.println("readCitizen:\nSQLState: " + ex.getSQLState() + "\nmessage: " + ex.getMessage());
                 Logger.getLogger(DataHandler.class.getName()).log(Level.SEVERE, null, ex);
-                disConnectet();
+                disconnectDB();
             } finally {
                 if(searchCaseStmt != null) {
                     searchCaseStmt = null;
                 }
-                disConnectet();
+                disconnectDB();
             }
         } else if(searchKey.equals("Citizen")) {
             try {
@@ -454,14 +434,19 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
             } catch (SQLException ex) {
                 System.out.println("search:\nSQLState: " + ex.getSQLState() + "\nmessage: " + ex.getMessage());
                 Logger.getLogger(DataHandler.class.getName()).log(Level.SEVERE, null, ex);
-                disConnectet();
+                disconnectDB();
             } finally {
                 if(searchCaseStmt != null) {
                     searchCaseStmt = null;
                 }
-                disConnectet();
+                disconnectDB();
             }
         }
         return sc;
+    }
+
+    @Override
+    public boolean writeEmployee(Employee employee) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

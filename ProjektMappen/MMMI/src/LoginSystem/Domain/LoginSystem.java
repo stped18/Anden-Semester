@@ -22,7 +22,6 @@ public class LoginSystem implements IEmployee {
         return username;
     }
 
-    @Override
     public void setUsername(String username) {
         this.username = username;
         System.out.println("im set");
@@ -32,7 +31,6 @@ public class LoginSystem implements IEmployee {
         return password;
     }
 
-    @Override
     public void setPassword(String password) {
         this.password = password;
         System.out.println("im set2");

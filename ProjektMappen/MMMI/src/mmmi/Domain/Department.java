@@ -2,14 +2,9 @@ package mmmi.Domain;
 
 import MMMI.Data_layer.Case;
 import MMMI.Data_layer.Citizen;
-import MMMI.Data_layer.DataHandler;
-import MMMI.Data_layer.Interfaces.IDataHandler;
-import MMMI.Data_layer.DataHandler;
-import MMMI.Data_layer.Interfaces.IDataHandler;
 import MMMI.Data_layer.SearchCase;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import LoginSystem.Domain.IEmployee;
 import LoginSystem.Domain.LoginSystem;
 import MMMI.Data_layer.DataHandler;
@@ -117,7 +112,6 @@ public class Department implements IDomain {
         // RequestingCitizen skal kunne gemme alle id'er på de forskellige aktør der henvender sig om borgen, dvs, hvis sagen
         // åbnes igen og der tilføjes en ny requestingCitizen, skal der tilføjes til requestingCitizen listen.
 //        Case caze = new Case(caseInfo.get("caseID"), caseInfo.get("caseStatus"), c.getCitizenID(), caseInfo.get("requestingCitizens"), caseInfo.get("caseContent"));
-        dataHandler = new DataHandler();
         Map<String, String> contentsMap = new HashMap<>();
         List<Map<String, String>> citizenInfoList = new ArrayList<>();
         Map<String, String> otherInfoMap = new HashMap<>();

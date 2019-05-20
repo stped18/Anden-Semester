@@ -5,7 +5,6 @@
  */
 package mmmi.UI.Main.CreateCase;
 
-import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -14,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
@@ -33,19 +33,19 @@ public class CaseOpeningController implements Initializable {
     // Vbox = Vbox
     // etc ...
     @FXML
-    private JFXTextField fxTF_firstname;
+    private TextField fxTF_firstname;
     @FXML
-    private JFXTextField fxTF_lastname;
+    private TextField fxTF_lastname;
     @FXML
-    private JFXTextField fxTF_zipcode;
+    private TextField fxTF_zipcode;
     @FXML
-    private JFXTextField fxTF_cityname;
+    private TextField fxTF_cityname;
     @FXML
-    private JFXTextField fxTF_streetName;
+    private TextField fxTF_streetName;
     @FXML
-    private JFXTextField fxTF_houseNo;
+    private TextField fxTF_houseNo;
     @FXML
-    private JFXTextField fxTF_floorAndFloorDirection;
+    private TextField fxTF_floorAndFloorDirection;
     @FXML
     private TextArea fxTA_RegardingInquiry;
     @FXML

@@ -3,8 +3,6 @@ package mmmi.UI.Main.home;
 import javafx.fxml.Initializable;
 
 import java.net.URL;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -73,14 +71,11 @@ public class HomeController implements Initializable {
 
     @FXML
     private void eventnote(MouseEvent event) {
-        
+
         String caseid = "";
-        
+
         if (event.getSource() == savebtn) {
-            Map<String, String> noteMap = new HashMap<>();
-            noteMap.put("caseid", caseid);
-            noteMap.put("alternativenotes", alterentativeNotets.getText());
-            department.saveCase(noteMap);
+
         }
 
         if (event.getSource() == caseTable) {
@@ -88,19 +83,7 @@ public class HomeController implements Initializable {
                 System.out.println("2 click");
             } else {
                 caseid = caseTable.getSelectionModel().getSelectedItem().getNumber();
-                List<Map<String, String>> returnSearch = department.Search("case", caseid);
 
-                for (int i = 0; i < returnSearch.size(); i++) {
-
-                    Map<String, String> newMap;
-                    newMap = returnSearch.get(i);
-
-                    for (Map.Entry<String, String> entry : newMap.entrySet()) {
-                        if ("alternativenotes".equals(entry.getKey())) {
-                            alterentativeNotets.setText(entry.getValue());
-                        }
-                    }
-                }
             }
         }
     }

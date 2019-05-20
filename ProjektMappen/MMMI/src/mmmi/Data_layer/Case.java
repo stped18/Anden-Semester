@@ -54,4 +54,29 @@ public class Case {
     public void addContents(String key, String value) {
         caseContent.put(key, value);
     }
+    
+    /**
+     *
+     * @param caseContenst
+     * @return
+     */
+    public String columnStringBuilder(Map<String, String> caseContenst) {
+
+        List<String> stringColoumnBuilder = new ArrayList<>();
+        // put mapKeys to list
+        for (String mapKey : caseContenst.keySet()) {
+            stringColoumnBuilder.add(mapKey);
+        }
+        // build string, seperated with ","
+        StringBuilder sb = new StringBuilder();
+        for (String s : stringColoumnBuilder) {
+
+            sb.append(s).append(",");
+        }
+
+        sb.setLength(sb.length() - 1);  // To remove "," on the last part of the string when it gets appended.
+
+        return sb.toString();
+
+    }
 }

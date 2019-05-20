@@ -1,13 +1,11 @@
 package LoginSystem.ViewLayer;
 
-import LoginSystem.Domain.ILogind;
 import LoginSystem.Domain.LoginSystem;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import static javafx.application.Application.launch;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,7 +17,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import mmmi.UI.Main.*;
-import mmmi.Domain.Employee;
 
 public class LoginSystemController implements Initializable {
 
@@ -46,22 +43,21 @@ public class LoginSystemController implements Initializable {
 
     /**
      * Initializes the controller class.
+     *
      * @param url
      * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         fxErroBoks.setVisible(false);
-           try {   
-                process();
-                 double d = fxprocessbar.getProgress();
-                 fxprocessbar.setProgress(d);
-                Thread.sleep(1000);
-            } catch (InterruptedException ex) {
-                Logger.getLogger(LoginSystemController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-    }
-
+        try {
+            process();
+            double d = fxprocessbar.getProgress();
+            fxprocessbar.setProgress(d);
+            Thread.sleep(1000);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(LoginSystemController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @FXML
@@ -70,8 +66,7 @@ public class LoginSystemController implements Initializable {
             loginSystem = new LoginSystem();
             loginSystem.setUsername(fxUsername.getText());
             loginSystem.setPassword(fxPassword.getText());
-                 
-         
+
             if (loginSystem.getEmployee()) {
                 loginSystem.sendEmployee();
                 MMMI main = new MMMI();
@@ -82,9 +77,11 @@ public class LoginSystemController implements Initializable {
                     Stage stage = (Stage) fxloginroot.getScene().getWindow();
 
                     stage.close();
+
                 } catch (IOException ex) {
-                    Logger.getLogger(LoginSystemController.class.getName()).log(Level.SEVERE, null, ex);
-                } 
+                    Logger.getLogger(LoginSystemController.class
+                            .getName()).log(Level.SEVERE, null, ex);
+                }
 
             } else {
                 fxErroBoks.setVisible(true);
@@ -130,7 +127,7 @@ public class LoginSystemController implements Initializable {
                     e.printStackTrace();
                 }
                 final double progress = i * 0.1;
-                
+
                 Platform.runLater(() -> updateProgress(progress));
 
             }
@@ -146,10 +143,3 @@ public class LoginSystemController implements Initializable {
 
     }
 }
-
-
-
-
-
-
-

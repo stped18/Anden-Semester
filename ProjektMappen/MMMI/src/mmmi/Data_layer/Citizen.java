@@ -1,7 +1,10 @@
+
 package MMMI.Data_layer;
 
+import java.util.List;
+
 public class Citizen {
-    
+
     private final int citizenID;
     private String firstName;
     private String lastName;
@@ -14,6 +17,7 @@ public class Citizen {
     private String cityname;
     private boolean regardingCitizen;
     private boolean requestingCitizen;
+    private List<Case> Cases;
 
     public Citizen(int citizenID, String firstName, String lastName, String cprNo, boolean regardingCitizen, boolean requestingCitizen) {
         this.citizenID = citizenID;
@@ -23,7 +27,7 @@ public class Citizen {
         this.regardingCitizen = regardingCitizen;
         this.requestingCitizen = requestingCitizen;
     }
-    
+
     public Citizen(int citizenID, String firstName, String lastName, String cprNo, String streetName, String houseNo, String floor, String floorDirection, int zipcode, String cityname, boolean regardingCitizen, boolean requestingCitizen) {
         this.citizenID = citizenID;
         this.firstName = firstName;
@@ -37,6 +41,10 @@ public class Citizen {
         this.cityname = cityname;
         this.regardingCitizen = regardingCitizen;
         this.requestingCitizen = requestingCitizen;
+    }
+
+    public List<Case> getCases() {
+        return Cases;
     }
 
     public int getCitizenID() {
@@ -87,6 +95,10 @@ public class Citizen {
         return requestingCitizen;
     }
 
+    public void setCases(List<Case> Cases) {
+        this.Cases = Cases;
+    }
+    
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
@@ -130,5 +142,17 @@ public class Citizen {
     public void setRequestingCitizen(boolean requestingCitizen) {
         this.requestingCitizen = requestingCitizen;
     }
+
+    @Override
+    public String toString() {
+        String casestring = "";
+        for (Case Case1 : Cases) {
+            casestring += Case1.toString() + "\n";
+        }
+        
+        return "Citizen{" + "citizenID=" + citizenID + ", firstName=" + firstName + ", lastName=" + lastName + ", cprNo=" + cprNo + ", streetName=" + streetName + ", houseNo=" + houseNo + ", floor=" + floor + ", floorDirection=" + floorDirection + ", zipcode=" + zipcode + ", cityname=" + cityname + ", regardingCitizen=" + regardingCitizen + ", requestingCitizen=" + requestingCitizen + ", Cases=" + casestring + '}';
+    }
     
+    
+
 }

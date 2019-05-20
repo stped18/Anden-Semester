@@ -5,6 +5,7 @@
  */
 package mmmi.UI.Main;
 
+import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -15,6 +16,9 @@ import javafx.stage.Stage;
  * @author steff
  */
 public class MMMI extends Application {
+
+    Scene scene;
+    Stage stage;
 
     /**
      * @param args the command line arguments
@@ -27,7 +31,6 @@ public class MMMI extends Application {
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
 
-
         Scene scene = new Scene(root);
 
         stage.setScene(scene);
@@ -35,5 +38,16 @@ public class MMMI extends Application {
         stage.show();
     }
 
+    public void changeScene() throws IOException {
+
+        this.stage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
+        this.stage.setResizable(false);
+        this.scene = new Scene(root);
+        this.stage.setScene(scene);
+        this.stage.show();
+    }
+
 }
+
 

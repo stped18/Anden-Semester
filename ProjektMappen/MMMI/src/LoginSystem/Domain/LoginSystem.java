@@ -2,6 +2,8 @@ package LoginSystem.Domain;
 
 import LoginSystem.DataLayer.DatabaseHandler;
 import LoginSystem.DataLayer.DbEmployee;
+import mmmi.Domain.Department;
+import mmmi.Domain.Interfaces.IDomain;
 
 /**
  *
@@ -11,11 +13,13 @@ public class LoginSystem implements IEmployee {
 
     private String username;
     private String password;
-    DatabaseHandler db = new DatabaseHandler();
-    DbEmployee employee;
+    private DatabaseHandler db = new DatabaseHandler();
+    private DbEmployee employee;
+
+    private IDomain mmmi;
 
     public LoginSystem() {
-
+        mmmi = Department.getInstance();
     }
 
     public String getUsername() {
@@ -38,6 +42,8 @@ public class LoginSystem implements IEmployee {
 
     public boolean getEmployee() {
         employee = db.getEmployeedb(this.username, this.password);
+        mmmi.setDepartmentID(employee.getDepartmentID());
+        mmmi.setLoginEmployee(this);
         if (employee == null) {
             return false;
         }
@@ -45,11 +51,8 @@ public class LoginSystem implements IEmployee {
     }
 
     @Override
-    public DbEmployee sendEmployee() {
-        employee = new DbEmployee(employee.getEmployeeID(), employee.getFirstName(), employee.getLastName(), employee.getRoleID(), employee.getDepartmentID());
-        return employee;
+    public int getEmployeeID() {
+        return employee.getEmployeeID();
     }
 
 }
-
-

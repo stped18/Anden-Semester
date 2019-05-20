@@ -326,6 +326,7 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
 
     @Override
     public List<SearchCase> search(String searchKey, String searchValue) {
+
         List<SearchCase> sc = new ArrayList();
         PreparedStatement searchCaseStmt = null;
         String selectQuery, fromQuery, whereQuery, query;

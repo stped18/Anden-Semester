@@ -1,5 +1,6 @@
 package mmmi.Domain.Interfaces;
 
+import LoginSystem.Domain.IEmployee;
 import java.util.List;
 import java.util.Map;
 import mmmi.Domain.Employee;
@@ -13,6 +14,9 @@ public interface IDomain {
     public boolean saveCase (List< Map<String, String>> caseInfo);
     
     public Employee getEmployee();
+    
+    public void setDepartmentID(int departmentID);
+    public void setLoginEmployee(IEmployee employee);
     
     
     

@@ -50,13 +50,12 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
                     + "CONCAT(ci.firstname, ' ', ci.lastname) AS citizenname ";
             fromQuery = "FROM employee AS em, case_employee AS ce, \"case\" AS c, citizen AS ci ";
             whereQuery = "WHERE em.employeeid = ? "
-                    + "AND ce.employeeemployeeid = ? AND c.caseid = ce.casecaseid "
+                    + "AND ce.employeeemployeeid = em.employeeid AND c.caseid = ce.casecaseid "
                     + "AND ci.citizenid = c.citizenregardingcitizenid;";
             query = selectQuery + fromQuery + whereQuery;
 
             keyPreparedStatement = dbConnection.prepareStatement(query);
             keyPreparedStatement.setInt(1, employeeID);
-            keyPreparedStatement.setInt(2, employeeID);
             dbResultSet = keyPreparedStatement.executeQuery();
 
             while (dbResultSet.next()) {
@@ -68,7 +67,7 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
 
             selectQuery = "SELECT r.rightsid AS rightsid, r,rightsname AS rightsname ";
             fromQuery = "FROM role_rights AS rr, rights AS r ";
-            whereQuery = "WHERE rr.roleroleid = " + roleID + "AND r.rightsid = rr.rightsrightsid;";
+            whereQuery = "WHERE rr.roleroleid = " + roleID + " AND r.rightsid = rr.rightsrightsid;";
 
             query = selectQuery + fromQuery + whereQuery;
 

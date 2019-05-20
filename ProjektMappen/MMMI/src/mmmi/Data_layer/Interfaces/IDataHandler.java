@@ -1,10 +1,11 @@
-package MMMI.Data_layer.Interfaces;
+package mmmi.Data_layer.Interfaces;
 
 import MMMI.Data_layer.Case;
 import MMMI.Data_layer.Citizen;
 import MMMI.Data_layer.Employee;
 import MMMI.Data_layer.SearchCase;
 import java.util.List;
+import java.util.Map;
 
 public interface IDataHandler {
 
@@ -16,6 +17,8 @@ public interface IDataHandler {
     public int writeCitizen(Citizen citizen);
     public boolean writeEmployee(Employee employee);
 
+    public Map<String, String> getAlternativeNotets(int caseID);
+    
     public boolean updateCitizen(Citizen citizen);
 
     public Case createCase();

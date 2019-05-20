@@ -5,7 +5,11 @@
  */
 package mmmi.Domain;
 
+import mmmi.Data_layer.Interfaces.IDataHandler;
+import mmmi.Data_layer.DataHandler;
+import MMMI.Data_layer.SearchCase;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -17,15 +21,8 @@ import org.junit.Test;
  *
  * @author Aleksander Henriksen
  */
-import LoginSystem.Domain.IEmployee;
-import LoginSystem.Domain.LoginSystem;
-import MMMI.Data_layer.DataHandler;
-import MMMI.Data_layer.Interfaces.IDataHandler;
 public class DepartmentTest {
     
-    private IDataHandler dataHandler = new DataHandler();
-    private IEmployee loginEmployee = new LoginSystem();
-     
     public DepartmentTest() {
     }
     
@@ -46,24 +43,27 @@ public class DepartmentTest {
     }
 
     /**
-     * Test of getEmployee method, of class Department.
+     * Test of search method, of class Department.
      */
     @Test
-    public void testGetEmployee() {
-        int employeeid = 0;
-        String firstName = "";
-        String lastName = "";
-        int departmentID = -1;
-        int roleID = -1;
-        Map<Integer, String> rightsMap = new HashMap<>();
+    public void testSearch() {
+        //value += "%" + String.valueOf(departmentID);
+        IDataHandler searchHandler = new DataHandler();
+        List<SearchCase> searchCases = searchHandler.search("Case", "%7");
 
-        MMMI.Data_layer.Employee newEmployee = dataHandler.readEmployee(employeeid);
-        String[] split = newEmployee.toString().split(",");
+        int length = searchCases.size();
 
-            firstName = split[0];
-            lastName = split[1];
-            roleID = Integer.parseInt(split[2]);
-            departmentID = Integer.parseInt(split[3]);
+        Map searchResultList = new HashMap();
+        for (int i = 0; i < length; i++) {
+            Map searchResultMap = new HashMap();
+            searchResultMap.put("citizenName", searchCases.get(i).getCitizenName());
+            searchResultMap.put("currentCaseDate", searchCases.get(i).getCurrentCaseDate());
+            searchResultMap.put("createdCaseDate", searchCases.get(i).getCreatedCaseDate());
+            searchResultMap.put("caseReason", searchCases.get(i).getReason());
+            searchResultMap.put("caseEmployeeName", searchCases.get(i).getEmployeeName());
+            searchResultMap.put("caseStatus", searchCases.get(i).getCaseStatus());
+            searchResultList.put(searchCases.get(i).getCaseID(), searchResultMap);
+        }
     }
     
 }

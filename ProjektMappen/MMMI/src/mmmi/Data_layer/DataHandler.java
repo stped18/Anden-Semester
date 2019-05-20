@@ -1,7 +1,11 @@
-package MMMI.Data_layer;
+package mmmi.Data_layer;
 
+import MMMI.Data_layer.Case;
+import MMMI.Data_layer.Citizen;
+import MMMI.Data_layer.Employee;
+import MMMI.Data_layer.SearchCase;
 import mmmi.Data_layer.Connection.DatabaseConnection;
-import MMMI.Data_layer.Interfaces.IDataHandler;
+import mmmi.Data_layer.Interfaces.IDataHandler;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Arrays;
@@ -42,7 +46,7 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
                 fetchCitizen = dbConnection.prepareStatement(query);
                 fetchCitizen.setInt(1, citizenID);
                 boolean result = fetchCitizen.execute();
-                if (result) {
+                if (result) { // REMEMBER: If result is what????
                     dbResultSet = fetchCitizen.getResultSet();
                     dbResultSet.next();
 
@@ -176,7 +180,7 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
             }
             employee = new Employee(employeeID, empolyeeName, roleID, employeeCases, rights);
         }
-        
+
         return employee;
     }
 
@@ -456,4 +460,36 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
     public boolean writeEmployee(Employee employee) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public Map<String, String> getAlternativeNotets(int caseID) {
+        Map<String, String> noteMap = new HashMap();
+
+        String selectQuery, fromQuery, whereQuery, query;
+
+        try {
+            connectToDB();
+
+            selectQuery = "SELECT * ";
+            fromQuery = "FROM case_content AS cc ";
+            whereQuery = "WHERE cc.casecaseid = ?;";
+            query = selectQuery + fromQuery + whereQuery;
+            
+            dbPreparedStatement = dbConnection.prepareStatement(query);
+            dbPreparedStatement.setInt(1, caseID);
+            dbResultSet = dbPreparedStatement.executeQuery();
+
+            while (dbResultSet.next()) {
+                noteMap.put("", "");
+            }
+            
+        } catch (Exception e) {
+            disconnectDB();
+        } finally {
+            disconnectDB();
+        }
+
+        return noteMap;
+    }
+
 }

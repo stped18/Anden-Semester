@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mmmi.UI.Main.createCase;
+package mmmi.UI.Main.CreateCase;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

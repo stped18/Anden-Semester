@@ -2,10 +2,9 @@
  * Denne classe skaber kontakten mellem programet og databasen
  *
  */
-package Data_layer.Connection;
+package mmmi.Data_layer.Connection;
 
 import java.sql.*;
-
 
 /**
  * @author steff dette er kun en ide til hvordan man henter og sender data
@@ -18,8 +17,8 @@ public class DatabaseConnection {
 
     protected Connection dbConnection = null;
     protected Statement dbStatement = null;
+    protected PreparedStatement dbPreparedStatement = null;
     protected ResultSet dbResultSet = null;
-
 
     public void connectToDB() {
         try {
@@ -31,10 +30,13 @@ public class DatabaseConnection {
         }
     }
 
-    public void disConnectet() {
+    public void disconnectDB() {
         try {
             if (dbStatement != null) {
                 dbStatement.close();
+            }
+            if (dbPreparedStatement != null) {
+                dbPreparedStatement.close();
             }
             if (dbResultSet != null) {
                 dbResultSet.close();
@@ -42,11 +44,10 @@ public class DatabaseConnection {
             if (dbConnection != null) {
                 dbConnection.close();
             }
+
             System.out.println("Disconnectet From MMMI Database");
         } catch (SQLException ex) {
         }
     }
 
-
 }
-

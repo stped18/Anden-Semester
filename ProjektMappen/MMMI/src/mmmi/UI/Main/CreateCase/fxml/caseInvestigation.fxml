@@ -3,7 +3,6 @@
 <?import com.jfoenix.controls.JFXTextField?>
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ScrollPane?>
@@ -18,8 +17,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="900.0" prefWidth="1050.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" 
-            fx:controller="mmmi.UI.Main.CreateCase.CaseInvestigationController">
+<AnchorPane id="AnchorPane" prefHeight="900.0" prefWidth="1050.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mmmi.UI.Main.CreateCase.CaseInvestigationController">
     <stylesheets>
         <URL value="@/mmmi/UI/mainStylesheet.css" />
     </stylesheets>
@@ -53,19 +51,19 @@
                                                       <Font name="System Bold" size="12.0" />
                                                    </font>
                                                 </Label>
-                                                <TextArea prefHeight="100.0" prefWidth="1026.0" promptText="(Udfordringer, ønsker og prioriteringer)" />
+                                                <TextArea fx:id="physicsInformationCitizen" prefHeight="100.0" prefWidth="1026.0" promptText="(Udfordringer, ønsker og prioriteringer)" />
                                                 <Label text="Oplysninger fra andre">
                                                    <font>
                                                       <Font name="System Bold" size="12.0" />
                                                    </font>
                                                 </Label>
-                                                <TextArea prefHeight="100.0" prefWidth="1026.0" promptText="(Fx læge, pårørende,tilbud)" />
+                                                <TextArea fx:id="physicsInformatinOthers" prefHeight="100.0" prefWidth="1026.0" promptText="(Fx læge, pårørende,tilbud)" />
                                                 <Label text="Sagsbehandlersbemærkninger">
                                                    <font>
                                                       <Font name="System Bold" size="12.0" />
                                                    </font>
                                                 </Label>
-                                                <TextArea prefHeight="100.0" prefWidth="1026.0" promptText="(Observationer, analyse)" />
+                                                <TextArea fx:id="physicsRemarks" prefHeight="100.0" prefWidth="1026.0" promptText="(Observationer, analyse)" />
                                                 <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                                                    <children>
                                                       <Label text="Funktionsniveau">
@@ -73,17 +71,17 @@
                                                             <Font name="System Bold" size="12.0" />
                                                          </font>
                                                       </Label>
-                                                      <CheckBox mnemonicParsing="false" text="0" />
-                                                      <CheckBox mnemonicParsing="false" text="1" />
-                                                      <CheckBox mnemonicParsing="false" text="2" />
-                                                      <CheckBox mnemonicParsing="false" text="3" />
-                                                      <CheckBox mnemonicParsing="false" text="4" />
+                                                      <RadioButton mnemonicParsing="false" text="0" />
+                                                      <RadioButton mnemonicParsing="false" text="1" />
+                                                      <RadioButton mnemonicParsing="false" text="2" />
+                                                      <RadioButton mnemonicParsing="false" text="3" />
+                                                      <RadioButton mnemonicParsing="false" text="4" />
                                                       <Label text="Behandlede temaer:">
                                                          <font>
                                                             <Font name="System Bold" size="12.0" />
                                                          </font>
                                                       </Label>
-                                                      <JFXTextField prefHeight="25.0" prefWidth="249.0" />
+                                                      <JFXTextField fx:id="physicalThemes" prefHeight="25.0" prefWidth="249.0" />
                                                    </children>
                                                    <opaqueInsets>
                                                       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -99,7 +97,7 @@
                                           </VBox>
                                        </content>
                                     </TitledPane>
-                                    <TitledPane expanded="false" prefHeight="6.0" prefWidth="1048.0" stylesheets="@../../../mainStylesheet.css" text="Psykisk funktionsnedsættelse" textAlignment="CENTER">
+                                    <TitledPane prefHeight="6.0" prefWidth="1048.0" stylesheets="@../../../mainStylesheet.css" text="Psykisk funktionsnedsættelse" textAlignment="CENTER">
                                        <content>
                                           <VBox prefHeight="200.0" prefWidth="100.0">
                                              <children>
@@ -110,19 +108,19 @@
                                                       <Font name="System Bold" size="12.0" />
                                                    </font>
                                                 </Label>
-                                                <TextArea prefHeight="100.0" prefWidth="1026.0" promptText="(Udfordringer, ønsker og prioriteringer)" />
+                                                <TextArea fx:id="mentallyInformationCitizen" prefHeight="100.0" prefWidth="1026.0" promptText="(Udfordringer, ønsker og prioriteringer)" />
                                                 <Label text="Oplysninger fra andre">
                                                    <font>
                                                       <Font name="System Bold" size="12.0" />
                                                    </font>
                                                 </Label>
-                                                <TextArea prefHeight="100.0" prefWidth="1026.0" promptText="(Fx læge, pårørende,tilbud)" />
+                                                <TextArea fx:id="mentallyInformatinOthers" prefHeight="100.0" prefWidth="1026.0" promptText="(Fx læge, pårørende,tilbud)" />
                                                 <Label text="Sagsbehandlersbemærkninger">
                                                    <font>
                                                       <Font name="System Bold" size="12.0" />
                                                    </font>
                                                 </Label>
-                                                <TextArea prefHeight="100.0" prefWidth="1026.0" promptText="(Observationer, analyse)" />
+                                                <TextArea fx:id="mentallyRemarks" prefHeight="100.0" prefWidth="1026.0" promptText="(Observationer, analyse)" />
                                                 <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                                                    <children>
                                                       <Label text="Funktionsniveau">
@@ -130,11 +128,11 @@
                                                             <Font name="System Bold" size="12.0" />
                                                          </font>
                                                       </Label>
-                                                      <CheckBox mnemonicParsing="false" text="0" />
-                                                      <CheckBox mnemonicParsing="false" text="1" />
-                                                      <CheckBox mnemonicParsing="false" text="2" />
-                                                      <CheckBox mnemonicParsing="false" text="3" />
-                                                      <CheckBox mnemonicParsing="false" text="4" />
+                                                      <RadioButton mnemonicParsing="false" text="0" />
+                                                      <RadioButton mnemonicParsing="false" text="1" />
+                                                      <RadioButton mnemonicParsing="false" text="2" />
+                                                      <RadioButton mnemonicParsing="false" text="3" />
+                                                      <RadioButton mnemonicParsing="false" text="4" />
                                                       <Label text="Behandlede temaer:">
                                                          <font>
                                                             <Font name="System Bold" size="12.0" />
@@ -187,11 +185,11 @@
                                                             <Font name="System Bold" size="12.0" />
                                                          </font>
                                                       </Label>
-                                                      <CheckBox mnemonicParsing="false" text="0" />
-                                                      <CheckBox mnemonicParsing="false" text="1" />
-                                                      <CheckBox mnemonicParsing="false" text="2" />
-                                                      <CheckBox mnemonicParsing="false" text="3" />
-                                                      <CheckBox mnemonicParsing="false" text="4" />
+                                                      <RadioButton mnemonicParsing="false" text="0" />
+                                                      <RadioButton mnemonicParsing="false" text="1" />
+                                                      <RadioButton mnemonicParsing="false" text="2" />
+                                                      <RadioButton mnemonicParsing="false" text="3" />
+                                                      <RadioButton mnemonicParsing="false" text="4" />
                                                       <Label text="Behandlede temaer:">
                                                          <font>
                                                             <Font name="System Bold" size="12.0" />
@@ -243,11 +241,11 @@
                                                             <Font name="System Bold" size="12.0" />
                                                          </font>
                                                       </Label>
-                                                      <CheckBox mnemonicParsing="false" text="0" />
-                                                      <CheckBox mnemonicParsing="false" text="1" />
-                                                      <CheckBox mnemonicParsing="false" text="2" />
-                                                      <CheckBox mnemonicParsing="false" text="3" />
-                                                      <CheckBox mnemonicParsing="false" text="4" />
+                                                      <RadioButton mnemonicParsing="false" text="0" />
+                                                      <RadioButton mnemonicParsing="false" text="1" />
+                                                      <RadioButton mnemonicParsing="false" text="2" />
+                                                      <RadioButton mnemonicParsing="false" text="3" />
+                                                      <RadioButton mnemonicParsing="false" text="4" />
                                                       <Label text="Behandlede temaer:">
                                                          <font>
                                                             <Font name="System Bold" size="12.0" />
@@ -299,11 +297,11 @@
                                                             <Font name="System Bold" size="12.0" />
                                                          </font>
                                                       </Label>
-                                                      <CheckBox mnemonicParsing="false" text="0" />
-                                                      <CheckBox mnemonicParsing="false" text="1" />
-                                                      <CheckBox mnemonicParsing="false" text="2" />
-                                                      <CheckBox mnemonicParsing="false" text="3" />
-                                                      <CheckBox mnemonicParsing="false" text="4" />
+                                                      <RadioButton mnemonicParsing="false" text="0" />
+                                                      <RadioButton mnemonicParsing="false" text="1" />
+                                                      <RadioButton mnemonicParsing="false" text="2" />
+                                                      <RadioButton mnemonicParsing="false" text="3" />
+                                                      <RadioButton mnemonicParsing="false" text="4" />
                                                       <Label text="Behandlede temaer:">
                                                          <font>
                                                             <Font name="System Bold" size="12.0" />
@@ -355,11 +353,11 @@
                                                             <Font name="System Bold" size="12.0" />
                                                          </font>
                                                       </Label>
-                                                      <CheckBox mnemonicParsing="false" text="0" />
-                                                      <CheckBox mnemonicParsing="false" text="1" />
-                                                      <CheckBox mnemonicParsing="false" text="2" />
-                                                      <CheckBox mnemonicParsing="false" text="3" />
-                                                      <CheckBox mnemonicParsing="false" text="4" />
+                                                      <RadioButton mnemonicParsing="false" text="0" />
+                                                      <RadioButton mnemonicParsing="false" text="1" />
+                                                      <RadioButton mnemonicParsing="false" text="2" />
+                                                      <RadioButton mnemonicParsing="false" text="3" />
+                                                      <RadioButton mnemonicParsing="false" text="4" />
                                                       <Label text="Behandlede temaer:">
                                                          <font>
                                                             <Font name="System Bold" size="12.0" />
@@ -411,11 +409,11 @@
                                                             <Font name="System Bold" size="12.0" />
                                                          </font>
                                                       </Label>
-                                                      <CheckBox mnemonicParsing="false" text="0" />
-                                                      <CheckBox mnemonicParsing="false" text="1" />
-                                                      <CheckBox mnemonicParsing="false" text="2" />
-                                                      <CheckBox mnemonicParsing="false" text="3" />
-                                                      <CheckBox mnemonicParsing="false" text="4" />
+                                                      <RadioButton mnemonicParsing="false" text="0" />
+                                                      <RadioButton mnemonicParsing="false" text="1" />
+                                                      <RadioButton mnemonicParsing="false" text="2" />
+                                                      <RadioButton mnemonicParsing="false" text="3" />
+                                                      <RadioButton mnemonicParsing="false" text="4" />
                                                       <Label text="Behandlede temaer:">
                                                          <font>
                                                             <Font name="System Bold" size="12.0" />
@@ -467,11 +465,11 @@
                                                             <Font name="System Bold" size="12.0" />
                                                          </font>
                                                       </Label>
-                                                      <CheckBox mnemonicParsing="false" text="0" />
-                                                      <CheckBox mnemonicParsing="false" text="1" />
-                                                      <CheckBox mnemonicParsing="false" text="2" />
-                                                      <CheckBox mnemonicParsing="false" text="3" />
-                                                      <CheckBox mnemonicParsing="false" text="4" />
+                                                      <RadioButton mnemonicParsing="false" text="0" />
+                                                      <RadioButton mnemonicParsing="false" text="1" />
+                                                      <RadioButton mnemonicParsing="false" text="2" />
+                                                      <RadioButton mnemonicParsing="false" text="3" />
+                                                      <RadioButton mnemonicParsing="false" text="4" />
                                                       <Label text="Behandlede temaer:">
                                                          <font>
                                                             <Font name="System Bold" size="12.0" />
@@ -523,11 +521,11 @@
                                                             <Font name="System Bold" size="12.0" />
                                                          </font>
                                                       </Label>
-                                                      <CheckBox mnemonicParsing="false" text="0" />
-                                                      <CheckBox mnemonicParsing="false" text="1" />
-                                                      <CheckBox mnemonicParsing="false" text="2" />
-                                                      <CheckBox mnemonicParsing="false" text="3" />
-                                                      <CheckBox mnemonicParsing="false" text="4" />
+                                                      <RadioButton mnemonicParsing="false" text="0" />
+                                                      <RadioButton mnemonicParsing="false" text="1" />
+                                                      <RadioButton mnemonicParsing="false" text="2" />
+                                                      <RadioButton mnemonicParsing="false" text="3" />
+                                                      <RadioButton mnemonicParsing="false" text="4" />
                                                       <Label text="Behandlede temaer:">
                                                          <font>
                                                             <Font name="System Bold" size="12.0" />
@@ -579,11 +577,11 @@
                                                             <Font name="System Bold" size="12.0" />
                                                          </font>
                                                       </Label>
-                                                      <CheckBox mnemonicParsing="false" text="0" />
-                                                      <CheckBox mnemonicParsing="false" text="1" />
-                                                      <CheckBox mnemonicParsing="false" text="2" />
-                                                      <CheckBox mnemonicParsing="false" text="3" />
-                                                      <CheckBox mnemonicParsing="false" text="4" />
+                                                      <RadioButton mnemonicParsing="false" text="0" />
+                                                      <RadioButton mnemonicParsing="false" text="1" />
+                                                      <RadioButton mnemonicParsing="false" text="2" />
+                                                      <RadioButton mnemonicParsing="false" text="3" />
+                                                      <RadioButton mnemonicParsing="false" text="4" />
                                                       <Label text="Behandlede temaer:">
                                                          <font>
                                                             <Font name="System Bold" size="12.0" />
@@ -635,11 +633,11 @@
                                                             <Font name="System Bold" size="12.0" />
                                                          </font>
                                                       </Label>
-                                                      <CheckBox mnemonicParsing="false" text="0" />
-                                                      <CheckBox mnemonicParsing="false" text="1" />
-                                                      <CheckBox mnemonicParsing="false" text="2" />
-                                                      <CheckBox mnemonicParsing="false" text="3" />
-                                                      <CheckBox mnemonicParsing="false" text="4" />
+                                                      <RadioButton mnemonicParsing="false" text="0" />
+                                                      <RadioButton mnemonicParsing="false" text="1" />
+                                                      <RadioButton mnemonicParsing="false" text="2" />
+                                                      <RadioButton mnemonicParsing="false" text="3" />
+                                                      <RadioButton mnemonicParsing="false" text="4" />
                                                       <Label text="Behandlede temaer:">
                                                          <font>
                                                             <Font name="System Bold" size="12.0" />

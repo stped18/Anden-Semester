@@ -1,10 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package LoginSystem.ViewLayer;
 
+import LoginSystem.Domain.ILogind;
 import LoginSystem.Domain.LoginSystem;
 import java.io.IOException;
 import java.net.URL;
@@ -25,11 +21,6 @@ import javafx.stage.Stage;
 import mmmi.UI.Main.*;
 import mmmi.Domain.Employee;
 
-/**
- * FXML Controller class
- *
- * @author steff
- */
 public class LoginSystemController implements Initializable {
 
     @FXML
@@ -55,6 +46,8 @@ public class LoginSystemController implements Initializable {
 
     /**
      * Initializes the controller class.
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -67,6 +60,8 @@ public class LoginSystemController implements Initializable {
             } catch (InterruptedException ex) {
                 Logger.getLogger(LoginSystemController.class.getName()).log(Level.SEVERE, null, ex);
             }
+    }
+
     }
 
     @FXML

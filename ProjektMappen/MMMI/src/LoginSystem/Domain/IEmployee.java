@@ -1,13 +1,8 @@
-
 package LoginSystem.Domain;
 
 import LoginSystem.DataLayer.DbEmployee;
 import MMMI.Data_layer.Employee;
 
-/**
- *
- * @author steff
- */
 public interface IEmployee {
     
     /**

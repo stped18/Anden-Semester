@@ -7,6 +7,10 @@ import MMMI.Data_layer.Interfaces.IDataHandler;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import LoginSystem.Domain.IEmployee;
+import LoginSystem.Domain.LoginSystem;
+import MMMI.Data_layer.DataHandler;
+import MMMI.Data_layer.Interfaces.IDataHandler;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -16,14 +20,16 @@ public class Department implements IDomain {
 
     private int id;
 
+    private final IDataHandler dataHandler = new DataHandler();
+    private final IEmployee loginEmployee = new LoginSystem();
+    private Employee mmmiEmployee;
+
     public Department() {
 
     }
 
-    private IDataHandler dataHandler;
-
     /**
-     * @param id
+     * @param departmentid
      */
     public Department(int id) {
         this.id = id;
@@ -191,7 +197,19 @@ public class Department implements IDomain {
 
     @Override
     public Employee getEmployee() {
-        //TODO: Sends the data of employee with rights  getRegardingID
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return receiveEmployee();
+    }
+
+    private Employee receiveEmployee() {
+
+        int employeeid = 7; // loginEmployee.sendEmployee().getEmployeeID();
+
+        String employeeName = dataHandler.readEmployee(employeeid).getName();
+        int departmentID = dataHandler.readEmployee(employeeid).getDepartmentID();
+        int roleID = dataHandler.readEmployee(employeeid).getRoleID();
+        Map<String, String> casemap = dataHandler.readEmployee(employeeid).getEmployeeCases();
+        Map<Integer, String> rightsMap = dataHandler.readEmployee(employeeid).getrights();
+
+        return mmmiEmployee = new Employee(employeeid, employeeName, departmentID, roleID, casemap, rightsMap);
     }
 }

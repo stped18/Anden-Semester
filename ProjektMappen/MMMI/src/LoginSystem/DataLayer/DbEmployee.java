@@ -50,6 +50,7 @@ public class DbEmployee {
         return departmentID;
     }
 
+    // Test
     @Override
     public String toString() {
         return "DbEmployee{" + "employeeID=" + employeeID + ", firstName=" + firstName + ", lastName=" + lastName + ", roleID=" + roleID + ", departmentID=" + departmentID + ", rigths=" + rigths + '}';

@@ -46,7 +46,7 @@ public class DatabaseHandler {
          DbEmployee employee = null;
         try {
             dbStatement = dbConnection.createStatement();
-            dbResultSet = dbStatement.executeQuery("SELECT  *  From employee WHERE username='" + username + "'  AND password='" + password + "';");
+            dbResultSet = dbStatement.executeQuery("SELECT *  From employee WHERE username='" + username + "'  AND password='" + password + "';");
             while (dbResultSet.next()) {
                 int employeid = dbResultSet.getInt("employeeid");
                 String first_name = dbResultSet.getString("firstname");

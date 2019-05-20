@@ -7,8 +7,6 @@ package LoginSystem.Domain;
 
 import LoginSystem.DataLayer.DatabaseHandler;
 import LoginSystem.DataLayer.DbEmployee;
-import MMMI.Data_layer.Employee;
-import LoginSystem.DataLayer.DbEmployee;
 
 /**
  *
@@ -49,12 +47,6 @@ public class LoginSystem implements IEmployee {
         return true;
     }
 
-//    @Override
-//    public Employee sendEmployee() {
-//   employee = new Employee(employee.getEmployeeID(), employee.getFirstName(),employee.getLastName(), employee.getRoleID(),  employee.getDepartmentID());
-//    return e;
-//       
-//    }
     @Override
     public DbEmployee sendEmployee() {
         employee = new DbEmployee(employee.getEmployeeID(), employee.getFirstName(), employee.getLastName(), employee.getRoleID(), employee.getDepartmentID());

@@ -261,16 +261,28 @@ public class CaseInvestigationController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         caseInvestigation = new HashMap<>();
+        runRadioFinder();
         
-            new Thread(){
+
+    }
+    
+    
+    
+    public void runRadioFinder(){
+                    new Thread(){
             @Override
             public void run() {
-                getAllRadioNodes(fxAc_CaseInvestigationroot);
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(CaseInvestigationController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                     getAllRadioNodes(fxAc_CaseInvestigationroot);
+                
+                
             }
                 
             }.start();
-        
-
     }
 
     @FXML
@@ -368,5 +380,11 @@ public class CaseInvestigationController implements Initializable {
     }
 
 }
+
+
+
+
+
+
 
 

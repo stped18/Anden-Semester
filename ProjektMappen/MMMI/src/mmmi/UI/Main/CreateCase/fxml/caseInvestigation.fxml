@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.TextField?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
@@ -38,11 +38,11 @@
                               </Label>
                            </children>
                         </AnchorPane>
-                      <AnchorPane fx:id="fxAcfiedsRoot" minHeight="0.0" minWidth="0.0" prefHeight="900.0" prefWidth="1050.0">
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="900.0" prefWidth="1050.0">
                            <children>
-                              <VBox fx:id="fxVB_TiledpaneRoot" prefHeight="842.0" prefWidth="1048.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <VBox prefHeight="842.0" prefWidth="1048.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
-                                    <TitledPane expanded="false" prefHeight="6.0" prefWidth="1048.0" stylesheets="@../../../mainStylesheet.css" text="Fysisk funktionsnedsættelse " textAlignment="CENTER">
+                                    <TitledPane prefHeight="6.0" prefWidth="1048.0" stylesheets="@../../../mainStylesheet.css" text="Fysisk funktionsnedsættelse " textAlignment="CENTER">
                                        <content>
                                           <VBox prefHeight="200.0" prefWidth="100.0">
                                              <children>
@@ -82,7 +82,7 @@
                                                             <Font name="System Bold" size="12.0" />
                                                          </font>
                                                       </Label>
-                                                      <TextField prefHeight="25.0" prefWidth="249.0" />
+                                                      <JFXTextField fx:id="fxTf_physicalThemes" prefHeight="25.0" prefWidth="249.0" />
                                                    </children>
                                                    <opaqueInsets>
                                                       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -139,7 +139,7 @@
                                                             <Font name="System Bold" size="12.0" />
                                                          </font>
                                                       </Label>
-                                                      <TextField prefHeight="25.0" prefWidth="249.0" />
+                                                      <JFXTextField fx:id="fxTf_mentallyThemes" prefHeight="25.0" prefWidth="249.0" />
                                                    </children>
                                                    <opaqueInsets>
                                                       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -196,7 +196,7 @@
                                                             <Font name="System Bold" size="12.0" />
                                                          </font>
                                                       </Label>
-                                                      <TextField prefHeight="25.0" prefWidth="249.0" />
+                                                      <JFXTextField fx:id="fxTf_sociallyThemes" prefHeight="25.0" prefWidth="249.0" />
                                                    </children>
                                                    <opaqueInsets>
                                                       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -252,7 +252,7 @@
                                                             <Font name="System Bold" size="12.0" />
                                                          </font>
                                                       </Label>
-                                                      <TextField prefHeight="25.0" prefWidth="249.0" />
+                                                      <JFXTextField fx:id="fxTf_practiceTasksThemes" prefHeight="25.0" prefWidth="249.0" />
                                                    </children>
                                                    <opaqueInsets>
                                                       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -308,7 +308,7 @@
                                                             <Font name="System Bold" size="12.0" />
                                                          </font>
                                                       </Label>
-                                                      <TextField prefHeight="25.0" prefWidth="249.0" />
+                                                      <JFXTextField fx:id="fxTf_selfcareThemes" prefHeight="25.0" prefWidth="249.0" />
                                                    </children>
                                                    <opaqueInsets>
                                                       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -364,7 +364,7 @@
                                                             <Font name="System Bold" size="12.0" />
                                                          </font>
                                                       </Label>
-                                                      <TextField prefHeight="25.0" prefWidth="249.0" />
+                                                      <JFXTextField fx:id="fxTf_mobilityThemes" prefHeight="25.0" prefWidth="249.0" />
                                                    </children>
                                                    <opaqueInsets>
                                                       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -420,7 +420,7 @@
                                                             <Font name="System Bold" size="12.0" />
                                                          </font>
                                                       </Label>
-                                                      <TextField prefHeight="25.0" prefWidth="249.0" />
+                                                      <JFXTextField fx:id="fxTf_communicationThemes" prefHeight="25.0" prefWidth="249.0" />
                                                    </children>
                                                    <opaqueInsets>
                                                       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -476,7 +476,7 @@
                                                             <Font name="System Bold" size="12.0" />
                                                          </font>
                                                       </Label>
-                                                      <TextField prefHeight="25.0" prefWidth="249.0" />
+                                                      <JFXTextField fx:id="fxTf_communityLifeThemes" prefHeight="25.0" prefWidth="249.0" />
                                                    </children>
                                                    <opaqueInsets>
                                                       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -532,7 +532,7 @@
                                                             <Font name="System Bold" size="12.0" />
                                                          </font>
                                                       </Label>
-                                                      <TextField prefHeight="25.0" prefWidth="249.0" />
+                                                      <JFXTextField fx:id="fxTf_socialLifeThemes" prefHeight="25.0" prefWidth="249.0" />
                                                    </children>
                                                    <opaqueInsets>
                                                       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -588,7 +588,7 @@
                                                             <Font name="System Bold" size="12.0" />
                                                          </font>
                                                       </Label>
-                                                      <TextField prefHeight="25.0" prefWidth="249.0" />
+                                                      <JFXTextField fx:id="fxTf_healthThemes" prefHeight="25.0" prefWidth="249.0" />
                                                    </children>
                                                    <opaqueInsets>
                                                       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -644,7 +644,7 @@
                                                             <Font name="System Bold" size="12.0" />
                                                          </font>
                                                       </Label>
-                                                      <TextField prefHeight="25.0" prefWidth="249.0" />
+                                                      <JFXTextField fx:id="fxTf_environmentThemes" prefHeight="25.0" prefWidth="249.0" />
                                                    </children>
                                                    <opaqueInsets>
                                                       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

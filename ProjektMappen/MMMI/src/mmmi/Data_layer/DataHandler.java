@@ -23,7 +23,6 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
 
     private int employeeID;
     private Employee employee = null;
-    private Case noteCase;
 
     @Override
     public Case readCase(String caseID) {
@@ -48,7 +47,7 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
                 fetchCitizen = dbConnection.prepareStatement(query);
                 fetchCitizen.setInt(1, citizenID);
                 boolean result = fetchCitizen.execute();
-                if (result) { // REMEMBER: If result is what????
+                if (result) {
                     dbResultSet = fetchCitizen.getResultSet();
                     dbResultSet.next();
 

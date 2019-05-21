@@ -25,9 +25,7 @@ public class HomeController implements Initializable {
     @FXML
     private TableView<UIEmployee> caseTable;
     @FXML
-    private Label employeeName;
-    @FXML
-    private Label numberOfCases;
+    private Label employeeName, numberOfCases;
     @FXML
     private TextArea alterentativeNotets;
     @FXML

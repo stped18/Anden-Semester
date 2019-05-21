@@ -9,6 +9,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.RadioButton;
@@ -33,261 +34,61 @@ public class CaseOpeningController implements Initializable {
     // Vbox = Vbox
     // etc ...
     @FXML
-    private TextField fxTF_firstname;
-    @FXML
-    private TextField fxTF_lastname;
-    @FXML
-    private TextField fxTF_zipcode;
-    @FXML
-    private TextField fxTF_cityname;
-    @FXML
-    private TextField fxTF_streetName;
-    @FXML
-    private TextField fxTF_houseNo;
-    @FXML
-    private TextField fxTF_floorAndFloorDirection;
+    private TextField fxTF_firstname, fxTF_lastname, fxTF_zipcode, fxTF_cityname, fxTF_streetName, fxTF_houseNo, fxTF_floorAndFloorDirection;
     @FXML
     private TextArea fxTA_RegardingInquiry;
     @FXML
-    private VBox fxVBox_carriage;
+    private VBox fxVBox_carriage, fxVbox_treatment, fxVbox_control, fxVbox_stay,
+            fxVbox_socialPedagogicalHelp, fxVbox_personHelpScheme;
     @FXML
-    private RadioButton fxRB_carriage1;
+    private RadioButton fxRB_carriage1, fxRB_carriage2, fxRB_carriage3, fxRB_carriage4, fxRB_carriage5, fxRB_carriage6;
     @FXML
-    private RadioButton fxRB_carriage2;
+    private RadioButton fxRB_treatment1, fxRB_treatment2, fxRB_treatment3, fxRB_treatment4, fxRB_treatment5;
     @FXML
-    private RadioButton fxRB_carriage3;
+    private RadioButton fxRB_protectedEmploymentBenefit, fxRB_dayRelief, fxRB_cashBenefit1, fxRB_cashBenefit2;
     @FXML
-    private RadioButton fxRB_carriage4;
+    private RadioButton fxRB_control1, fxRB_control2, fxRB_control3, fxRB_control4;
     @FXML
-    private RadioButton fxRB_carriage5;
+    private RadioButton fxRB_stay1, fxRB_stay2, fxRB_stay3, fxRB_stay4, fxRB_stay5;
     @FXML
-    private RadioButton fxRB_carriage6;
+    private RadioButton fxRB_personalHelp83, fxRB_personalHelp95, fxRB_practicalHelp83, fxRB_praticalHelp95;
     @FXML
-    private VBox fxVbox_treatment;
+    private RadioButton fxRB_socialPedagogicalHelp1, fxRB_socialPedagogicalHelp2,
+            fxRB_socialPedagogicalHelp3, fxRB_socialPedagogicalHelp4,
+            fxRB_socialPedagogicalHelp5, fxRB_socialPedagogicalHelp6, fxRB_socialPedagogicalHelp7, fxRB_socialPedagogicalHelp8;
     @FXML
-    private RadioButton fxRB_treatment1;
+    private RadioButton fxRB_personHelpScheme1, fxRB_personHelpScheme2, fxRB_personHelpScheme3,
+            fxRB_personHelpScheme4, fxRB_personHelpScheme5, fxRB_personHelpScheme6, fxRB_personHelpScheme7;
     @FXML
-    private RadioButton fxRB_treatment2;
+    private RadioButton fxRB_housingGeneralCareHome, fxRB_housingElderlyOrHandicapFriendly,
+            fxRB_housingShared, fxRB_housingDayTreatmentOffer, fxRB_housingCareHome, fxRB_housingCrisisCenter,
+            fxRB_housingTemporary, fxRB_housingNursingHome, fxRB_housingRehabilitation;
     @FXML
-    private RadioButton fxRB_treatment3;
+    private RadioButton fxRB_securedHousing, fxRB_otherLengthyHousing, fxRB_clearLookingForYes,
+            fxRB_clearLookingForNo, fxRB_carriage, fxRB_treatment, fxRB_control, fxRB_stay,
+            fxRB_socialPedagogicalHelp, fxRB_personHelpScheme, fxRB_regardingCitizen;
     @FXML
-    private RadioButton fxRB_treatment4;
+    private RadioButton fxRB_regardingRelatives, fxRB_regardingDoctor, fxRB_regardingHospital,
+            fxRB_regardingOtherAdministration, fxRB_regardingInProgressEffort, fxRB_regardingOtherCommune,
+            fxRB_regardingOthers, fxRB_agreeToInquiryYes, fxRB_agreeToInquiryNo, fxRB_activityAndSocialInteractionOffer;
     @FXML
-    private RadioButton fxRB_treatment5;
+    private RadioButton fxRB_protectedEmploymentOffer, fxRB_dayCareOffer, fxRB_educationOffer,
+            fxRB_guadianship, fxRB_guadianshipWithRevokedCapacity, fxRB_curatorship, fxRB_guardian,
+            fxRB_layRepresentative, fxRB_rightsAndDuties, fxRB_powerOfAttorney, fxRB_partRepresentative;
     @FXML
-    private RadioButton fxRB_protectedEmploymentBenefit;
+    private RadioButton fxRB_agreeToElectronicRegistrationYes, fxRB_getInfoOtherAdministrations,
+            fxRB_getInfoPreviousCommune, fxRB_getInfoEmployer, fxRB_getInfoOffer, fxRB_getInfoAKasse,
+            fxRB_getInfoHospital, fxRB_getInfoSpecialDoctor, fxRB_getInfoDoctor, fxRB_agreeToElectronicRegistrationNo;
     @FXML
-    private RadioButton fxRB_dayRelief;
+    private TextArea fxTA_obtainOfInformation, fxTA_CommunePayingOrActing, fxTA_citizenSpecialCircumstances,
+            fxTA_agreementsWithCitzen, fxTA_rightsAndDuties, fxTA_powerOfAttorney, fxTA_guardianContact;
     @FXML
-    private RadioButton fxRB_cashBenefit1;
-    @FXML
-    private RadioButton fxRB_cashBenefit2;
-    @FXML
-    private VBox fxVbox_control;
-    @FXML
-    private RadioButton fxRB_control1;
-    @FXML
-    private RadioButton fxRB_control2;
-    @FXML
-    private RadioButton fxRB_control3;
-    @FXML
-    private RadioButton fxRB_control4;
-    @FXML
-    private VBox fxVbox_stay;
-    @FXML
-    private RadioButton fxRB_stay1;
-    @FXML
-    private RadioButton fxRB_stay2;
-    @FXML
-    private RadioButton fxRB_stay3;
-    @FXML
-    private RadioButton fxRB_stay4;
-    @FXML
-    private RadioButton fxRB_stay5;
-    @FXML
-    private RadioButton fxRB_personalHelp83;
-    @FXML
-    private RadioButton fxRB_personalHelp95;
-    @FXML
-    private RadioButton fxRB_practicalHelp83;
-    @FXML
-    private RadioButton fxRB_praticalHelp95;
-    @FXML
-    private VBox fxVbox_socialPedagogicalHelp;
-    @FXML
-    private RadioButton fxRB_socialPedagogicalHelp1;
-    @FXML
-    private RadioButton fxRB_socialPedagogicalHelp2;
-    @FXML
-    private RadioButton fxRB_socialPedagogicalHelp3;
-    @FXML
-    private RadioButton fxRB_socialPedagogicalHelp4;
-    @FXML
-    private RadioButton fxRB_socialPedagogicalHelp5;
-    @FXML
-    private RadioButton fxRB_socialPedagogicalHelp6;
-    @FXML
-    private RadioButton fxRB_socialPedagogicalHelp7;
-    @FXML
-    private RadioButton fxRB_socialPedagogicalHelp8;
-    @FXML
-    private VBox fxVbox_personHelpScheme;
-    @FXML
-    private RadioButton fxRB_personHelpScheme1;
-    @FXML
-    private RadioButton fxRB_personHelpScheme2;
-    @FXML
-    private RadioButton fxRB_personHelpScheme3;
-    @FXML
-    private RadioButton fxRB_personHelpScheme4;
-    @FXML
-    private RadioButton fxRB_personHelpScheme5;
-    @FXML
-    private RadioButton fxRB_personHelpScheme6;
-    @FXML
-    private RadioButton fxRB_personHelpScheme7;
-    @FXML
-    private RadioButton fxRB_housingGeneralCareHome;
-    @FXML
-    private RadioButton fxRB_housingElderlyOrHandicapFriendly;
-    @FXML
-    private RadioButton fxRB_housingShared;
-    @FXML
-    private RadioButton fxRB_housingDayTreatmentOffer;
-    @FXML
-    private RadioButton fxRB_housingCareHome;
-    @FXML
-    private RadioButton fxRB_housingCrisisCenter;
-    @FXML
-    private RadioButton fxRB_housingTemporary;
-    @FXML
-    private RadioButton fxRB_housingNursingHome;
-    @FXML
-    private RadioButton fxRB_housingRehabilitation;
-    @FXML
-    private RadioButton fxRB_securedHousing;
-    @FXML
-    private RadioButton fxRB_otherLengthyHousing;
-    @FXML
-    private RadioButton fxRB_clearLookingForYes;
-    @FXML
-    private RadioButton fxRB_clearLookingForNo;
-    @FXML
-    private RadioButton fxRB_carriage;
-    @FXML
-    private RadioButton fxRB_treatment;
-    @FXML
-    private RadioButton fxRB_control;
-    @FXML
-    private RadioButton fxRB_stay;
-    @FXML
-    private RadioButton fxRB_socialPedagogicalHelp;
-    @FXML
-    private RadioButton fxRB_personHelpScheme;
-    @FXML
-    private RadioButton fxRB_regardingCitizen;
-    @FXML
-    private RadioButton fxRB_regardingRelatives;
-    @FXML
-    private RadioButton fxRB_regardingDoctor;
-    @FXML
-    private RadioButton fxRB_regardingHospital;
-    @FXML
-    private RadioButton fxRB_regardingOtherAdministration;
-    @FXML
-    private RadioButton fxRB_regardingInProgressEffort;
-    @FXML
-    private RadioButton fxRB_regardingOtherCommune;
-    @FXML
-    private RadioButton fxRB_regardingOthers;
-    @FXML
-    private RadioButton fxRB_agreeToInquiryYes;
-    @FXML
-    private RadioButton fxRB_agreeToInquiryNo;
-    @FXML
-    private RadioButton fxRB_activityAndSocialInteractionOffer;
-    @FXML
-    private RadioButton fxRB_protectedEmploymentOffer;
-    @FXML
-    private RadioButton fxRB_dayCareOffer;
-    @FXML
-    private RadioButton fxRB_educationOffer;
-    @FXML
-    private RadioButton fxRB_guadianship;
-    @FXML
-    private RadioButton fxRB_guadianshipWithRevokedCapacity;
-    @FXML
-    private RadioButton fxRB_curatorship;
-    @FXML
-    private RadioButton fxRB_guardian;
-    @FXML
-    private TextArea fxTA_guardianContact;
-    @FXML
-    private RadioButton fxRB_layRepresentative;
-    @FXML
-    private RadioButton fxRB_partRepresentative;
-    @FXML
-    private RadioButton fxRB_powerOfAttorney;
-    @FXML
-    private TextArea fxTA_powerOfAttorney;
-    @FXML
-    private RadioButton fxRB_rightsAndDuties;
-    @FXML
-    private TextArea fxTA_rightsAndDuties;
-    @FXML
-    private RadioButton fxRB_agreeToElectronicRegistrationYes;
-    @FXML
-    private RadioButton fxRB_agreeToElectronicRegistrationNo;
-    @FXML
-    private TextArea fxTA_agreementsWithCitzen;
-    @FXML
-    private RadioButton fxRB_getInfoDoctor;
-    @FXML
-    private RadioButton fxRB_getInfoSpecialDoctor;
-    @FXML
-    private RadioButton fxRB_getInfoHospital;
-    @FXML
-    private RadioButton fxRB_getInfoAKasse;
-    @FXML
-    private RadioButton fxRB_getInfoOffer;
-    @FXML
-    private RadioButton fxRB_getInfoEmployer;
-    @FXML
-    private RadioButton fxRB_getInfoPreviousCommune;
-    @FXML
-    private RadioButton fxRB_getInfoOtherAdministrations;
-    @FXML
-    private TextArea fxTA_obtainOfInformation;
-    @FXML
-    private TextArea fxTA_citizenSpecialCircumstances;
-    @FXML
-    private RadioButton fxRB_OtherActingCommune;
-    @FXML
-    private RadioButton fxRB_otherPayingCommune;
-    @FXML
-    private TextArea fxTA_CommunePayingOrActing;
-    @FXML
-    private RadioButton fxRB_Activity104;
-    @FXML
-    private RadioButton fxRB_ambulantTreatment;
+    private RadioButton fxRB_OtherActingCommune, fxRB_ambulantTreatment, fxRB_Activity104, fxRB_otherPayingCommune;
     @FXML
     private AnchorPane fxAP_subpane;
     @FXML
-    private TitledPane fxTP_inquiries;
-    @FXML
-    private TitledPane fxTP_guardianRepresentation;
-    @FXML
-    private TitledPane fxTP_rightsDuties;
-    @FXML
-    private TitledPane fxTP_agreementsWithCitzen;
-    @FXML
-    private TitledPane fxTP_obtainOfInformation;
-    @FXML
-    private TitledPane fxTP_citizenSpecialCircumstances;
-    @FXML
-    private TitledPane communePayingOrActing;
-    @FXML
-    private TitledPane fxTP_benefitsParagraphs;
+    private TitledPane fxTP_inquiries, fxTP_benefitsParagraphs, communePayingOrActing,
+            fxTP_citizenSpecialCircumstances, fxTP_obtainOfInformation, fxTP_agreementsWithCitzen, fxTP_rightsDuties, fxTP_guardianRepresentation;
 
     // Other attributes
     private ObservableList<RadioButton> carriageList,
@@ -298,6 +99,10 @@ public class CaseOpeningController implements Initializable {
             stayList,
             socialPedagogicalHelpList,
             personHelpSchemeList;
+    @FXML
+    private RadioButton fxRB_outgoingOffer;
+    @FXML
+    private RadioButton fxRB_offerWithAuthority;
 
     /**
      * Initializes the controller class.
@@ -373,8 +178,8 @@ public class CaseOpeningController implements Initializable {
             RadioButton.setToggleGroup(tgLookingForGroup);
         });
 
-    }   
-    
+    }
+
 //    @FXML
 //    private void rbCarriageOnAction(ActionEvent event) {
 //        if (event.getSource() == fxRB_carriage) {
@@ -391,4 +196,7 @@ public class CaseOpeningController implements Initializable {
 //        }
 //    }
 
+    @FXML
+    private void getMarkedInformation(ActionEvent event) {
+    }
 }

@@ -13,6 +13,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -54,7 +56,7 @@ public class CaseInvestigationController implements Initializable {
     @FXML
     private TextArea fxTa_mentallyInformationCitizen;
     @FXML
-    private TextArea fxTa_mentallyInformatinOthers ;
+    private TextArea fxTa_mentallyInformatinOthers;
     @FXML
     private TextArea fxTa_mentallyRemarks;
     @FXML
@@ -223,7 +225,7 @@ public class CaseInvestigationController implements Initializable {
     private RadioButton fxRb_evaluated4;
 
     @FXML
-    private  Button fxBtn_save;
+    private Button fxBtn_save;
     @FXML
     private AnchorPane fxAc_CaseInvestigationroot;
 
@@ -259,9 +261,16 @@ public class CaseInvestigationController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         caseInvestigation = new HashMap<>();
-        //getAllRadioNodes(fxAcfiedsRoot);
-        tName = new HashMap<>();
-        radioButtonsList = new ArrayList<>();
+        
+            new Thread(){
+            @Override
+            public void run() {
+                getAllRadioNodes(fxAc_CaseInvestigationroot);
+            }
+                
+            }.start();
+        
+
     }
 
     @FXML
@@ -279,135 +288,85 @@ public class CaseInvestigationController implements Initializable {
 
     }
 
-    
-    
-    
-    
+    public static ArrayList<Node> getAllRadioNodes(Parent root) {
+        ArrayList<Node> n = new ArrayList<>();
+        System.out.println("her er jeg ");
+        addRadiobutton(root, n);
+        return n;
+    }
 
-//    public ArrayList<Node> getAllRadioNodes(Parent root) {
-//        ArrayList<Node> ranodes = new ArrayList<Node>();
-//        addRadiobutton(root, ranodes);
-//        return ranodes;
-//    }
+    private static void addRadiobutton(Parent parent, ArrayList<Node> n) {
+        List<RadioButton> radioButtonsList = new ArrayList<>();
+        Map<String, ToggleGroup> tName = new HashMap<>();
+        for (Node node : parent.getChildrenUnmodifiable()) {
+            n.add(node);
+            if (node instanceof Parent) {
+                if (node instanceof RadioButton) {
+                    radioButtonsList.add(((RadioButton) node));
+                    System.out.println(((RadioButton) node).getId());
+                }
+                addRadiobutton((Parent) node, n);
+            }
 
-//    private void addRadiobutton(Parent parent, ArrayList<Node> ranodes) {
-//
-//        for (Node node : parent.getChildrenUnmodifiable()) {
-//            System.out.println("hej");
-//            ranodes.add(node);
-//            if (node instanceof Parent) {
-//                if (node instanceof RadioButton) {
-//                    radioButtonsList.add(((RadioButton) node));
-//                    System.out.println(((RadioButton) node).getId().toString());
-//                }
-//                addRadiobutton((Parent) node, ranodes);
-//            }
-//
-//        }
-//
-//        System.out.println("ude ad loop");
-//
-//        for (RadioButton radioButton : radioButtonsList) {
-//            String r = radioButton.getId().substring(5, radioButton.getId().length() - 1);
-//            System.out.println(r);
-//
-//            if (tName.containsKey(r)) {
-//                radioButton.setToggleGroup(tName.get(r));
-//                System.out.println(tName.toString());
-//
-//            } else {
-//                tName.put(r, new ToggleGroup());
-//                radioButton.setToggleGroup(tName.get(r));
-//            }
-//        }
-//    }
+        }
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+        for (RadioButton radioButton : radioButtonsList) {
+            String r = radioButton.getId().substring(5, radioButton.getId().length() - 1);
+            System.out.println(r);
+
+            if (tName.containsKey(r)) {
+                radioButton.setToggleGroup(tName.get(r));
+                System.out.println(tName.toString());
+
+            } else {
+                tName.put(r, new ToggleGroup());
+                radioButton.setToggleGroup(tName.get(r));
+            }
+        }
+    }
+
     public ArrayList<Node> getAllNodes(Parent root) {
         ArrayList<Node> nodes = new ArrayList<Node>();
         addAllDescendents(root, nodes);
         return nodes;
     }
 
-    private  void addAllDescendents(Parent parent, ArrayList<Node> nodes) {
+    private void addAllDescendents(Parent parent, ArrayList<Node> nodes) {
 
         for (Node node : parent.getChildrenUnmodifiable()) {
             nodes.add(node);
             if (node instanceof Parent) {
 
                 if (node instanceof TextArea) {
-                    if (!((TextInputControl)node).getText().isEmpty()) {
+                    if (!((TextInputControl) node).getText().isEmpty()) {
                         String key = node.getId().substring(5);
                         caseInvestigation.put(key, ((TextInputControl) node).getText());
-                        
+
                     }
                 }
                 if (node instanceof JFXTextField) {
-                    if (!((TextInputControl)node).getText().isEmpty()) {
+                    if (!((TextInputControl) node).getText().isEmpty()) {
                         System.out.println(((TextInputControl) node).getText());
                         String key = node.getId().substring(5);
                         caseInvestigation.put(key, ((TextInputControl) node).getText());
-                        
+
                     }
                 }
                 if (node instanceof RadioButton) {
-                    if (((Toggle)node).isSelected()) {
-                        
-                        String key = ((RadioButton) node).getId().substring(5, ((RadioButton) node).getId().length()-1);
+                    if (((Toggle) node).isSelected()) {
+
+                        String key = ((RadioButton) node).getId().substring(5, ((RadioButton) node).getId().length() - 1);
                         caseInvestigation.put(key, ((Labeled) node).getText());
-                       
+
                     }
                 }
                 addAllDescendents((Parent) node, nodes);
             }
-            
+
         }
 
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 

@@ -100,9 +100,51 @@ public class Department implements IDomain {
     }
 
     @Override
-    public Map<String, String> openCase(int caseID) {
+    public Map<String, Map<String, String>> openCase(int caseID) {
         //TODO: Opens a case with all the info into a map that are sendt to the GUI
-        return dataHandler.readCase(caseID).getCaseContent();
+
+        Map<String, Map<String, String>> fullMap = new HashMap<>();
+
+        int regardingID = 0;
+        int requestingID = 0;
+
+        Map<String, String> caseContents = new HashMap<>();
+        Map<String, String> cRegardingInfo = new HashMap<>();
+
+        caseContents = dataHandler.readCase(caseID).getCaseContent();
+
+        Citizen regardingCitizen = dataHandler.readCase(caseID).getRegardingCitizen();
+
+        cRegardingInfo.put("firstname", regardingCitizen.getFirstName());
+        cRegardingInfo.put("lastname", regardingCitizen.getLastName());
+        cRegardingInfo.put("cpr", regardingCitizen.getCprNo());
+        cRegardingInfo.put("houseno", regardingCitizen.getHouseNo());
+        cRegardingInfo.put("cityname", regardingCitizen.getCityname());
+        cRegardingInfo.put("streetname", regardingCitizen.getStreetName());
+        cRegardingInfo.put("floor", regardingCitizen.getFloor());
+        cRegardingInfo.put("floordirection", regardingCitizen.getFloorDirection());
+        Map<String, Map<String, String>> reqMap = new HashMap();
+        for (Citizen citzen : dataHandler.readCase(caseID).getRequestingCitizen()) {
+
+            if (citzen != null) {
+                Map<String, String> cRequestingInfo = new HashMap<>();
+                cRequestingInfo.put("firstname", citzen.getFirstName());
+                cRequestingInfo.put("lastname", citzen.getLastName());
+                cRequestingInfo.put("cpr", citzen.getCprNo());
+                cRequestingInfo.put("houseno", citzen.getHouseNo());
+                cRequestingInfo.put("cityname", citzen.getCityname());
+                cRequestingInfo.put("streetname", citzen.getStreetName());
+                cRequestingInfo.put("floor", citzen.getFloor());
+                cRequestingInfo.put("floordirection", citzen.getFloorDirection());
+                fullMap.put("cRequesting", cRequestingInfo);
+            }
+        }
+
+        fullMap.put("caseContents", caseContents);
+        fullMap.put("cRegarding", cRegardingInfo);
+
+        return fullMap;
+
     }
 
     @Override
@@ -164,8 +206,8 @@ public class Department implements IDomain {
             caze = dataHandler.createCase();
             caze.setCaseContent(contentsMap);
             caze.setCaseStatus("Igang");
-            caze.setRegardingCitizenID(regardingID);
-            caze.setRequestingCitizens(requestingCitizenList);
+//            caze.setRegardingCitizenID(regardingID);
+//            caze.setRequestingCitizens(requestingCitizenList);
             caze.setDepartmentID(departmentID);
         } else {
             // TODO: If there is a case already you just need to set content (In regards to write it to the database)
@@ -205,6 +247,7 @@ public class Department implements IDomain {
 
     public static void main(String[] args) {
         Department department = new Department();
+        department.setDepartmentID(1);
 
         Map<String, Map<String, String>> caseInfo = new HashMap<>();
 
@@ -269,7 +312,7 @@ public class Department implements IDomain {
         caseInfo.put("cRegarding", citizenInfoRegarding);
         caseInfo.put("cRequesting", citizenInfoRequesting);
 
-        department.saveCase(caseInfo);
+        System.out.println(department.openCase(123));
 
     }
 }

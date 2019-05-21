@@ -8,16 +8,16 @@ public class Case {
 
     private final int caseID;
     private String caseStatus;
-    private int regardingCitizenID;
+    private Citizen regardingCitizen;
     private int departmentID;
-    private List<Integer> requestingCitizens;
+    private List<Citizen> requestingCitizens;
     private Map<String, String> caseContent;
 
-    public Case(int caseID, int departmentID, String caseStatus, int regardingCitizenID, List<Integer> requestingCitizens, Map<String, String> caseContent) {
+    public Case(int caseID, int departmentID, String caseStatus, Citizen regardingCitizen, List<Citizen> requestingCitizens, Map<String, String> caseContent) {
         this.caseID = caseID;
         this.departmentID = departmentID;
         this.caseStatus = caseStatus;
-        this.regardingCitizenID = regardingCitizenID;
+        this.regardingCitizen = regardingCitizen;
         this.requestingCitizens = requestingCitizens;
         this.caseContent = caseContent;
     }
@@ -42,15 +42,15 @@ public class Case {
         return caseID;
     }
 
-    public int getRegardingCitizenID() {
-        return regardingCitizenID;
+    public Citizen getRegardingCitizen() {
+        return regardingCitizen;
     }
 
-    public List<Integer> getRequestingCitizen() {
+    public List<Citizen> getRequestingCitizen() {
         return requestingCitizens;
     }
 
-    public void addRequestingCitizen(Integer requestingCitizenID) {
+    public void addRequestingCitizen(Citizen requestingCitizenID) {
 
         // TODO: Add a new requesting citizen to the list. Instead of overridding.
         requestingCitizens.add(requestingCitizenID);
@@ -60,11 +60,11 @@ public class Case {
         return caseContent;
     }
 
-    public void setRegardingCitizenID(int regardingCitizenID) {
-        this.regardingCitizenID = regardingCitizenID;
+    public void setRegardingCitizen(Citizen regardingCitizen) {
+        this.regardingCitizen = regardingCitizen;
     }
 
-    public void setRequestingCitizens(List<Integer> requestingCitizens) {
+    public void setRequestingCitizens(List<Citizen> requestingCitizens) {
         this.requestingCitizens = requestingCitizens;
     }
 
@@ -74,10 +74,8 @@ public class Case {
 
     @Override
     public String toString() {
-        return "Case{" + "caseID=" + caseID + ", caseStatus=" + caseStatus + ", regardingCitizenID=" + regardingCitizenID + ", departmentID=" + departmentID + ", requestingCitizens=" + requestingCitizens + ", caseContent=" + caseContent + '}';
+        return "Case{" + "caseID=" + caseID + ", caseStatus=" + caseStatus + ", regardingCitizenID=" + regardingCitizen + ", departmentID=" + departmentID + ", requestingCitizens=" + requestingCitizens + ", caseContent=" + caseContent + '}';
     }
-    
-    
 
     /**
      *

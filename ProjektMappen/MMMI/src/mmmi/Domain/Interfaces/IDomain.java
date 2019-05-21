@@ -9,7 +9,7 @@ public interface IDomain {
     
     //Case
     public Map<String, Map<String, String>> search (String key, String value); // list
-    public Map<String, String> openCase (int caseID); // open a single case 
+    public Map<String, Map<String, String>> openCase (int caseID); // open a single case 
     public boolean saveCase (Map<String, Map<String, String>> caseInfo);
     
     public Employee getEmployee();

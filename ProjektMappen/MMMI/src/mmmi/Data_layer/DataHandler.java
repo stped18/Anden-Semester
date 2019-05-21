@@ -15,57 +15,105 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ *
+ * @author gruppe 2
+ */
 public class DataHandler extends DatabaseConnection implements IDataHandler {
 
+    /**
+     * returns case object where caseContents has information from the specified caseID and has regarding citizen object which 
+     * refereces to case content based on the regarding Citizen id.
+     * @param caseID, accepts int value
+     * @return returns Case object  
+     */
     @Override
     public Case readCase(int caseID) {
-        String getCaseQuery = "SELECT c.departmentdepartmentid, c.casestatus, c.citizenregardingcitizenid, cr.citizenrequestingcitizenid, cc.* "
-                + "FROM \"case\" AS c "
-                + "RIGHT JOIN case_contents AS cc ON (c.caseid = cc.casecaseid) "
-                + "RIGHT JOIN case_requestingcitizen AS cr ON (c.caseid = cr.casecaseid) "
-                + "WHERE c.caseid = " + caseID;
-//        String getCaseQuery = "SELECT *\n"
-//                + "FROM mmmidb.\"public\".\"Case\" AS c"
-//                + "RIGHT JOIN mmmidb.\"public\".\"Case_contents\" ON (c.caseID = mmmidb.\"public\".\"Case_contents\".casecaseid)"
-//                + "RIGHT JOIN mmmidb.\"public\".\"Case_requestingcitizen\" ON (c.caseID = mmmidb.\"public\".\"Case_requestingcitizen\".casecaseid);";
+        
         List<String> columnNames = new ArrayList<>();
-        List<Integer> requstingCitizenIDs = new ArrayList<>();
+        List<Citizen> requstingCitizens = new ArrayList<>();
         Map<String, String> columnToValuesMap = new HashMap<>();
+        
 
-        Integer regardingCitizenID = 0;
         String caseStatus = "";
         int departmentID = 0;
 
         connectToDB();
 
         try {
+            String getCitizenQuery = "SELECT cit.*, zc.cityname "
+                    + "FROM citizen AS cit, zipcode AS zc, case_requestingcitizen cr "
+                    + "WHERE cit.citizenid = cr.citizenrequestingcitizenid AND cr.casecaseid = ? AND "
+                    + "zc.zipcode = cit.zipcodezipcode";
 
-            dbStatement = dbConnection.createStatement();
+            dbPreparedStatement = dbConnection.prepareStatement(getCitizenQuery);
+            dbPreparedStatement.setInt(1, caseID);
 
-            dbResultSet = dbStatement.executeQuery(getCaseQuery);
+            dbResultSet = dbPreparedStatement.executeQuery();
+            System.out.println("test");
+            while (dbResultSet.next()) {
+                // int citizenID, String firstName, String lastName, String cprNo, String streetName, 
+// String houseNo, String floor, String floorDirection, int zipcode, String cityname, boolean regardingCitizen, boolean requestingCitizen
+
+                requstingCitizens.add(new Citizen(dbResultSet.getInt("citizenid"),
+                        dbResultSet.getString("firstname"),
+                        dbResultSet.getString("lastname"),
+                        dbResultSet.getString("CPR-nr"),
+                        dbResultSet.getString("streetname"),
+                        dbResultSet.getString("houseNo"),
+                        dbResultSet.getString("floor"), dbResultSet.getString("floordirection"), dbResultSet.getInt("zipcodezipcode"), dbResultSet.getString("cityname"),
+                        dbResultSet.getBoolean("regardingcitizen"), dbResultSet.getBoolean("requestingcitizen")));
+
+            }
+
+            String getCaseQuery = "SELECT c.departmentdepartmentid, c.casestatus, crg.*, zc.cityname, cc.* "
+                    + "FROM \"case\" AS c, (SELECT  *FROM case_contents WHERE casecaseid = ? ORDER BY datestamp DESC LIMIT 1) AS cc, citizen AS crg, zipcode AS zc "
+                    + "WHERE c.citizenregardingcitizenid = crg.citizenid AND crg.zipcodezipcode = zc.zipcode AND c.caseid = ?;";
+
+            dbPreparedStatement = dbConnection.prepareStatement(getCaseQuery);
+            dbPreparedStatement.setInt(1, caseID);
+            dbPreparedStatement.setInt(2, caseID);
+
+            dbResultSet = dbPreparedStatement.executeQuery();
 
             ResultSetMetaData rsmd = dbResultSet.getMetaData();
 
             int columnCount = rsmd.getColumnCount();
+            List<String> citizenColumns = new ArrayList<>();
+            Citizen regardingCitizen = null;
 
-            for (int i = 7; i <= columnCount; i++) {
+            for (int i = 19; i <= columnCount; i++) {
                 String columnName = rsmd.getColumnName(i);
                 columnNames.add(columnName);
 
                 //Load the Map initially with keys(columnnames) and empty value
                 columnToValuesMap.put(columnName, "");
+
             }
             //System.out.println(Arrays.asList(columnNames));
-
+            int regardingCitizenID = 0, zipcode = 0;
+            String cityname = "", firstname = "", lastname = "", cprno = "", streetname = "", houseno = "", floor = "", floordirection = "";
+            boolean regardingcitizen = false, requestingcitizen = false;
             while (dbResultSet.next()) {
 
-                requstingCitizenIDs.add(dbResultSet.getInt("citizenrequestingcitizenid"));
-
-                regardingCitizenID = dbResultSet.getInt("citizenregardingcitizenid");
-
+//                requstingCitizens.add(dbResultSet.getInt("citizenrequestingcitizenid"));
+// Hent alt fra db omkring citizen og opret et nyt citizen objekt for hver der findes
+                //requstingCitizens.add(requestingCitizen.setCitizenID(dbResultSet.getInt("citizenrequestingcitizenid")));
+                regardingCitizenID = dbResultSet.getInt("citizenid");
                 caseStatus = dbResultSet.getString("casestatus");
 
                 departmentID = dbResultSet.getInt("departmentdepartmentid");
+                zipcode = dbResultSet.getInt("zipcodezipcode");
+                cityname = dbResultSet.getString("cityname");
+                firstname = dbResultSet.getString("firstname");
+                lastname = dbResultSet.getString("lastname");
+                cprno = dbResultSet.getString("CPR-nr");
+                streetname = dbResultSet.getString("streetname");
+                houseno = dbResultSet.getString("houseno");
+                floor = dbResultSet.getString("floor");
+                floordirection = dbResultSet.getString("floordirection");
+                regardingcitizen = dbResultSet.getBoolean("regardingcitizen");
+                requestingcitizen = dbResultSet.getBoolean("requestingcitizen");
 
                 for (String columnName : columnNames) {
 
@@ -79,16 +127,18 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
                 }
 
             }
+            regardingCitizen = new Citizen(caseID, firstname, lastname, cprno, streetname, houseno, floor, floordirection, caseID, cityname, regardingcitizen, requestingcitizen);
+            return new Case(caseID, departmentID, caseStatus, regardingCitizen, requstingCitizens, columnToValuesMap);
 
             // String caseID, String caseStatus, int regardingCitizenID, List<Integer> requestingCitizens, Map<String, String> caseContent
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            System.out.println(e);
+        } finally {
+            disconnectDB();
         }
         //List<Integer> rc = caze.getRequestingCitizen();
 
-        disconnectDB();
-
-        return new Case(caseID, departmentID, caseStatus, regardingCitizenID, requstingCitizenIDs, columnToValuesMap);
+        return new Case(caseID, departmentID, caseStatus, null, null, columnToValuesMap);
     }
 
     /**
@@ -126,7 +176,7 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
                     dbResultSet.next();
                     int rowCount = dbResultSet.getInt(1);
 
-                    String caseContentQuery = "SELECT c.caseid, c.departmentid, c.casestatus, cc.* FROM case_contents AS cc, \"case\" AS c WHERE cc.casecaseid = caseid AND citizenregardingcitizenid = ? ORDER BY cc.datestamp DESC LIMIT 1";
+                    String caseContentQuery = "SELECT c.caseid, c.departmentdepartmentid, c.casestatus, cc.* FROM case_contents AS cc, \"case\" AS c WHERE cc.casecaseid = caseid AND citizenregardingcitizenid = ? ORDER BY cc.datestamp DESC LIMIT 1";
                     fetchCaseContent = dbConnection.prepareStatement(caseContentQuery);
                     fetchCaseContent.setInt(1, citizenID);
                     caseContentSet = fetchCaseContent.executeQuery();
@@ -137,9 +187,9 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
                     String caseStatus = caseContentSet.getString(3);
 
                     for (int i = 3; i <= rowCount; i++) {
-                        caseContent.put(dbResultSet.getString(7), caseContentSet.getString(i));
+                        caseContent.put(caseContentSet.getString(7), caseContentSet.getString(i));
                         if (i < rowCount) {
-                            dbResultSet.next();
+                            caseContentSet.next();
                         }
                     }
 
@@ -150,8 +200,8 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
                     while (requestingCitizenSet.next()) {
                         requestingCitizens.add(requestingCitizenSet.getInt(1));
                     }
-
-                    cases.add(new Case(caseID, departmentID, caseStatus, citizenID, requestingCitizens, caseContent));
+                    // TODO: Update with the changes for case constructor
+                    cases.add(new Case(caseID, departmentID, caseStatus, null, null, caseContent));
 
                     citizen.setCases(cases);
 
@@ -253,10 +303,16 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
         return new Employee(employeeID, empolyeeName, roleID, departmentID, employeeCases, rights);
     }
 
+    /**
+     *
+     * @param theCase TEST
+     * @return TEST
+     */
     @Override
     public boolean writeCase(Case theCase) {
 
         if (theCase.getCaseID() == -1) {
+
             String[] list = {theCase.columnStringBuilder(theCase)};
             String[] listString = Arrays.toString(list).split(",");
             String[] e = new String[listString.length];
@@ -267,20 +323,35 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
                 count++;
             }
             connectToDB();
+            System.out.println(theCase.getCaseContent());
             try {
                 String insertIntoCase = "INSERT INTO \"case\""
-                        + "(citizenregardingcitizenid, casestatus, departmentdepartmentid)";
+                        + "(citizenregardingcitizenid, casestatus, departmentdepartmentid) ";
+                String values = "VALUES(?,?,?)";
+                dbPreparedStatement = dbConnection.prepareStatement(insertIntoCase + values, Statement.RETURN_GENERATED_KEYS);
+                dbPreparedStatement.setInt(1, theCase.getRegardingCitizen().getCitizenID());
+                dbPreparedStatement.setString(2, theCase.getCaseStatus());
+                dbPreparedStatement.setInt(3, theCase.getDepartmentID());
+                dbPreparedStatement.executeUpdate();
+                dbResultSet = dbPreparedStatement.getGeneratedKeys();
+                dbResultSet.next();
+                int caseID = dbResultSet.getInt(1);
                 String query = "INSERT INTO case_contents "
                         + "(casecaseid, " + theCase.columnStringBuilder(theCase) + ")"
                         + "VALUES"
-                        + "(" + theCase.getCaseContent().get("caseID") + "," + Arrays.toString(e).replace("]", "").replace("[", "") + ")";
+                        + "(" + caseID + "," + Arrays.toString(e).replace("]", "").replace("[", "") + ")";
 
                 System.out.println(query);
                 dbPreparedStatement = dbConnection.prepareStatement(query);
                 int i = 1;
+                String value;
                 for (Map.Entry<String, String> entry : theCase.getCaseContent().entrySet()) {
-                    String value = entry.getValue();
-                    dbPreparedStatement.setString(i, value);
+                    value = entry.getValue();
+                    if (!(value == null)) {
+                        dbPreparedStatement.setString(i, value);
+
+                    }
+                    value = "";
                     i++;
                 }
                 dbPreparedStatement.executeUpdate();
@@ -291,15 +362,19 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
             } catch (SQLException ex) {
                 Logger.getLogger(DataHandler.class
                         .getName()).log(Level.SEVERE, null, ex);
-                disconnectDB();
+
                 return false;
+            } finally {
+
+                if (dbPreparedStatement != null) {
+                    dbPreparedStatement = null;
+                }
+                disconnectDB();
             }
         } else {
-            // TODO: Ind og oprette en ny række i case_contents, med de caseContents oplysninger fra theCase
-            // TODO:
+            // TODO: In and create a new row in case_contents with caseContents information from theCase
 
             return false;
-
         }
 
     }
@@ -397,10 +472,10 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
     @Override
     public Case createCase() {
 
-        List<Integer> requestingCitizen = new ArrayList<>();
+        List<Citizen> requestingCitizen = new ArrayList<>();
         Map<String, String> caseContent = new HashMap<>();
 
-        return new Case(-1, -1, "", -1, requestingCitizen, caseContent);
+        return new Case(-1, -1, "", createCitizen(), requestingCitizen, caseContent);
     }
 
     @Override

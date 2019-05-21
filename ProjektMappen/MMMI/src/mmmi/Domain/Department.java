@@ -201,6 +201,7 @@ public class Department implements IDomain {
         }
 
         Case caze;
+        System.out.println(contentsMap.get("caseID"));
         if (contentsMap.get("caseID").equalsIgnoreCase("-1")) {
             contentsMap.remove("caseID");
             caze = dataHandler.createCase();
@@ -212,6 +213,9 @@ public class Department implements IDomain {
         } else {
             // TODO: If there is a case already you just need to set content (In regards to write it to the database)
             caze = null;
+            System.out.println("TEST");
+            return false;
+            
         }
         return dataHandler.writeCase(caze);
 
@@ -259,10 +263,11 @@ public class Department implements IDomain {
         department.setDepartmentID(1);
 
         Map<String, Map<String, String>> caseInfo = new HashMap<>();
-
+        
         Map<String, String> conentsMap = new HashMap<>();
         conentsMap.put("regardinginquiry", "test1");
         conentsMap.put("treatment", "test2");
+        conentsMap.put("departmentID", "-1");
         conentsMap.put("caseID", "-1");
 
         Map<String, String> citizenInfoRegarding = new HashMap<>();
@@ -322,6 +327,7 @@ public class Department implements IDomain {
         caseInfo.put("cRequesting", citizenInfoRequesting);
 
         System.out.println(department.openCase(123));
+        department.saveCase(caseInfo);
 
     }
 }

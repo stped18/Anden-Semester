@@ -328,10 +328,10 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
             connectToDB();
             System.out.println(theCase.getCaseContent());
             try {
-                String insertIntoCase = "INSERT INTO \"case\""
+                String insertIntoCase = "INSERT INTO \"case\" "
                         + "(citizenregardingcitizenid, casestatus, departmentdepartmentid) ";
-                String values = "VALUES(?,?,?)";
-                dbPreparedStatement = dbConnection.prepareStatement(insertIntoCase + values, Statement.RETURN_GENERATED_KEYS);
+                String values = "VALUES(?,?,?) ";
+               
                 dbPreparedStatement.setInt(1, theCase.getRegardingCitizen().getCitizenID());
                 dbPreparedStatement.setString(2, theCase.getCaseStatus());
                 dbPreparedStatement.setInt(3, theCase.getDepartmentID());

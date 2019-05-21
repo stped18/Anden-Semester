@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ScrollPane?>
@@ -22,76 +23,118 @@
                      <content>
                         <VBox prefHeight="900.0" prefWidth="1050.0">
                            <children>
-                              <TitledPane fx:id="fxTP_inquiries" prefHeight="0.0" prefWidth="1050.0" text="Henvendelse">
+                              <TitledPane fx:id="fxTP_inquiries" prefHeight="738.0" prefWidth="1050.0" text="Henvendelse">
                                  <content>
-                                    <AnchorPane prefHeight="245.0" prefWidth="1048.0">
+                                    <AnchorPane prefHeight="555.0" prefWidth="1048.0">
                                        <children>
-                                          <HBox prefHeight="467.0" prefWidth="1061.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                          <HBox layoutX="29.6" layoutY="29.6" prefHeight="632.0" prefWidth="1048.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                              <children>
-                                                <VBox prefHeight="447.0" prefWidth="532.0">
+                                                <VBox prefHeight="611.0" prefWidth="463.0">
                                                    <children>
                                                       <Label text="Hvad drejer henvendelsen sig om?">
                                                          <font>
                                                             <Font name="System Bold" size="15.0" />
-                                                         </font></Label>
-                                                      <TextArea fx:id="fxTA_RegardingInquiry" prefHeight="87.0" prefWidth="789.0" promptText="Beskriv henvendelsen" wrapText="true" />
+                                                         </font>
+                                                      </Label>
+                                                      <TextArea fx:id="fxTA_RegardingInquiry" prefHeight="101.0" prefWidth="461.0" promptText="Beskriv henvendelsen" wrapText="true">
+                                                         <padding>
+                                                            <Insets bottom="5.0" />
+                                                         </padding>
+                                                      </TextArea>
                                                       <Label text="Er det klart hvad borgeren søger om?" />
-                                                      <RadioButton fx:id="fxRB_clearLookingForYes" mnemonicParsing="false" text="Ja" />
-                                                      <RadioButton fx:id="fxRB_clearLookingForNo" mnemonicParsing="false" text="Nej">
+                                                      <RadioButton fx:id="fxRB_clearLookingForYes" mnemonicParsing="false" onAction="#inquiryRBonAction" text="Ja" />
+                                                      <RadioButton fx:id="fxRB_clearLookingForNo" mnemonicParsing="false" onAction="#inquiryRBonAction" text="Nej">
                                                          <VBox.margin>
                                                             <Insets bottom="10.0" />
-                                                         </VBox.margin></RadioButton>
-                                                      <VBox prefHeight="447.0" prefWidth="509.0">
-                                                         <children>
-                                                            <Label text="Vedrørende borger">
-                                                               <font>
-                                                                  <Font name="System Bold Italic" size="14.0" />
-                                                               </font>
-                                                               <VBox.margin>
-                                                                  <Insets />
-                                                               </VBox.margin>
-                                                            </Label>
-                                                            <Label prefHeight="24.0" prefWidth="571.0" text="Har den henvende borger informationer omkring den borger det drejer sig om?" wrapText="true" />
-                                                            <Label layoutX="10.0" layoutY="30.0" prefHeight="24.0" prefWidth="571.0" text="Eller er det den vedrørende borger selv der har henvendt sig?" wrapText="true" />
-                                                            <RadioButton fx:id="fxRB_agreeToInquiryYesRegarding" mnemonicParsing="false" text="Ja" />
-                                                            <RadioButton fx:id="fxRB_agreeToInquiryNo1Regarding" layoutX="10.0" layoutY="197.0" mnemonicParsing="false" text="Nej" />
-                                                            <Label text="Navn:" />
-                                                            <TextField fx:id="fxTF_firstnameRegarding" prefHeight="15.0" prefWidth="299.0" promptText="Indtast navn evt. mellemnavn" />
-                                                            <Label layoutX="10.0" layoutY="231.0" text="Efternavn" />
-                                                            <TextField fx:id="fxTF_lastnameRegarding" layoutX="10.0" layoutY="248.0" prefHeight="15.0" prefWidth="299.0" promptText="Indtast efternavn" />
-                                                            <Label layoutX="10.0" layoutY="145.0" text="Cpr-nummer" />
-                                                            <TextField fx:id="fxTF_cprNoRegarding" layoutX="10.0" layoutY="221.0" prefHeight="9.0" prefWidth="380.0" promptText="Indtast evt. cpr nummer" />
-                                                            <Label layoutX="10.0" layoutY="273.0" prefHeight="21.0" prefWidth="177.0" text="Postnr/By/Adresse" />
-                                                            <TextField fx:id="fxTF_zipcodeRegarding" layoutX="10.0" layoutY="290.0" prefHeight="9.0" prefWidth="380.0" promptText="Indtast postnummer">
-                                                               <VBox.margin>
-                                                                  <Insets bottom="10.0" />
-                                                               </VBox.margin>
-                                                            </TextField>
-                                                            <TextField fx:id="fxTF_citynameRegarding" prefHeight="8.0" prefWidth="380.0" promptText="Indtast byens navn">
-                                                               <VBox.margin>
-                                                                  <Insets bottom="10.0" />
-                                                               </VBox.margin>
-                                                            </TextField>
-                                                            <TextField fx:id="fxTF_streetNameRegarding" layoutX="10.0" layoutY="357.0" prefHeight="11.0" prefWidth="380.0" promptText="Indtast adresse">
-                                                               <VBox.margin>
-                                                                  <Insets bottom="10.0" />
-                                                               </VBox.margin>
-                                                            </TextField>
-                                                            <TextField fx:id="fxTF_houseNoRegarding" layoutX="10.0" layoutY="407.0" prefHeight="11.0" prefWidth="380.0" promptText="husnummer">
-                                                               <VBox.margin>
-                                                                  <Insets bottom="10.0" />
-                                                               </VBox.margin>
-                                                            </TextField>
-                                                            <TextField fx:id="fxTF_floorAndFloorDirectionRegarding" layoutX="10.0" layoutY="382.0" prefHeight="11.0" prefWidth="380.0" promptText="Hvis lejlighed, indtast etage og etage retning (f.eks. 2 etage, højre)">
-                                                               <VBox.margin>
-                                                                  <Insets bottom="10.0" />
-                                                               </VBox.margin>
-                                                            </TextField>
-                                                         </children>
+                                                         </VBox.margin>
+                                                      </RadioButton>
+                                                      <Label text="Vedrørende borger">
+                                                         <font>
+                                                            <Font name="System Bold Italic" size="14.0" />
+                                                         </font>
                                                          <VBox.margin>
                                                             <Insets />
                                                          </VBox.margin>
-                                                      </VBox>
+                                                      </Label>
+                                                      <Label prefHeight="24.0" prefWidth="571.0" text="Har den henvende borger informationer omkring den borger det drejer sig om?" wrapText="true" />
+                                                      <Label prefHeight="24.0" prefWidth="571.0" text="Eller er det den vedrørende borger selv der har henvendt sig?" wrapText="true" />
+                                                      <RadioButton fx:id="fxRB_agreeToInquiryYesRegarding" mnemonicParsing="false" onAction="#inquiryRBonAction" text="Ja" />
+                                                      <RadioButton fx:id="fxRB_agreeToInquiryNo1Regarding" mnemonicParsing="false" onAction="#inquiryRBonAction" text="Nej" />
+                                                      <TitledPane fx:id="fxTP_regardingInfo" expanded="false" prefHeight="410.0" prefWidth="461.0" text="Hvis ja, angiv (mulige) kontaktoplysninger">
+                                                        <content>
+                                                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                               <children>
+                                                                  <VBox prefHeight="180.0" prefWidth="484.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                     <children>
+                                                                        <Label text="Navn:">
+                                                                           <VBox.margin>
+                                                                              <Insets />
+                                                                           </VBox.margin>
+                                                                        </Label>
+                                                                        <TextField fx:id="fxTF_firstnameRegarding" prefHeight="15.0" prefWidth="299.0" promptText="Indtast navn evt. mellemnavn">
+                                                                           <VBox.margin>
+                                                                              <Insets bottom="5.0" top="5.0" />
+                                                                           </VBox.margin>
+                                                                        </TextField>
+                                                                        <Label text="Efternavn">
+                                                                           <VBox.margin>
+                                                                              <Insets />
+                                                                           </VBox.margin>
+                                                                        </Label>
+                                                                        <TextField fx:id="fxTF_lastnameRegarding" prefHeight="15.0" prefWidth="299.0" promptText="Indtast efternavn">
+                                                                           <VBox.margin>
+                                                                              <Insets bottom="5.0" top="5.0" />
+                                                                           </VBox.margin>
+                                                                        </TextField>
+                                                                        <Label text="Cpr-nummer">
+                                                                           <VBox.margin>
+                                                                              <Insets />
+                                                                           </VBox.margin>
+                                                                        </Label>
+                                                                        <TextField fx:id="fxTF_cprNoRegarding" prefHeight="9.0" prefWidth="380.0" promptText="Indtast evt. cpr nummer">
+                                                                           <padding>
+                                                                              <Insets bottom="5.0" top="5.0" />
+                                                                           </padding>
+                                                                        </TextField>
+                                                                        <Label prefHeight="21.0" prefWidth="177.0" text="Postnr/By/Adresse">
+                                                                           <VBox.margin>
+                                                                              <Insets />
+                                                                           </VBox.margin>
+                                                                        </Label>
+                                                                        <TextField fx:id="fxTF_zipcodeRegarding" prefHeight="9.0" prefWidth="380.0" promptText="Indtast postnummer">
+                                                                           <VBox.margin>
+                                                                              <Insets bottom="5.0" top="5.0" />
+                                                                           </VBox.margin>
+                                                                        </TextField>
+                                                                        <TextField fx:id="fxTF_citynameRegarding" prefHeight="8.0" prefWidth="380.0" promptText="Indtast byens navn">
+                                                                           <VBox.margin>
+                                                                              <Insets bottom="5.0" top="5.0" />
+                                                                           </VBox.margin>
+                                                                        </TextField>
+                                                                        <TextField fx:id="fxTF_streetNameRegarding" prefHeight="11.0" prefWidth="380.0" promptText="Indtast adresse">
+                                                                           <VBox.margin>
+                                                                              <Insets bottom="5.0" top="5.0" />
+                                                                           </VBox.margin>
+                                                                        </TextField>
+                                                                        <TextField fx:id="fxTF_houseNoRegarding" prefHeight="11.0" prefWidth="380.0" promptText="husnummer">
+                                                                           <VBox.margin>
+                                                                              <Insets bottom="5.0" top="5.0" />
+                                                                           </VBox.margin>
+                                                                        </TextField>
+                                                                        <TextField fx:id="fxTF_floorAndFloorDirectionRegarding" prefHeight="11.0" prefWidth="380.0" promptText="Hvis lejlighed, indtast etage og etage retning (f.eks. 2 etage, højre)">
+                                                                           <VBox.margin>
+                                                                              <Insets bottom="5.0" top="5.0" />
+                                                                           </VBox.margin>
+                                                                        </TextField>
+                                                                     </children>
+                                                                  </VBox>
+                                                               </children>
+                                                            </AnchorPane>
+                                                        </content>
+                                                         <padding>
+                                                            <Insets bottom="5.0" />
+                                                         </padding>
+                                                      </TitledPane>
                                                    </children>
                                                    <HBox.margin>
                                                       <Insets right="20.0" top="20.0" />
@@ -105,42 +148,145 @@
                                                          </font>
                                                       </Label>
                                                       <Label prefHeight="21.0" prefWidth="260.0" text="Hvor kommer henvendelsen fra?" />
-                                                      <RadioButton fx:id="fxRB_regardingCitizen" mnemonicParsing="false" text="Borger" />
-                                                      <RadioButton fx:id="fxRB_regardingRelatives" layoutX="10.0" layoutY="285.0" mnemonicParsing="false" text="Pårørende [angiv kontaktoplysninger]" />
-                                                      <RadioButton fx:id="fxRB_regardingDoctor" layoutX="10.0" layoutY="286.0" mnemonicParsing="false" text="Læge [angiv kontaktoplysninger]" />
-                                                      <RadioButton fx:id="fxRB_regardingHospital" layoutX="10.0" layoutY="303.0" mnemonicParsing="false" text="Hospital [angiv kontaktoplysninger]" />
-                                                      <RadioButton fx:id="fxRB_regardingOtherAdministration" layoutX="10.0" layoutY="320.0" mnemonicParsing="false" text="Anden forvaltning [angiv kontaktoplysninger]" />
-                                                      <RadioButton fx:id="fxRB_regardingInProgressEffort" layoutX="10.0" layoutY="337.0" mnemonicParsing="false" text="Igangværende indsats [angiv kontaktoplysninger]" />
-                                                      <RadioButton fx:id="fxRB_regardingOtherCommune" layoutX="10.0" layoutY="354.0" mnemonicParsing="false" text="Anden kommune" />
-                                                      <RadioButton fx:id="fxRB_regardingOthers" layoutX="10.0" layoutY="371.0" mnemonicParsing="false" text="Andre [angiv kontaktoplysninger]" />
-                                                      <Label text="Er borgeren indforstået med henvendelsen?" />
-                                                      <RadioButton fx:id="fxRB_agreeToInquiryYesRequesting" mnemonicParsing="false" text="Ja" />
-                                                      <RadioButton fx:id="fxRB_agreeToInquiryNoRequesting" layoutX="10.0" layoutY="197.0" mnemonicParsing="false" text="Nej" />
-                                                      <Label text="Navn:" />
-                                                      <TextField fx:id="fxTF_firstnameRequesting" prefHeight="15.0" prefWidth="299.0" promptText="Indtast navn evt. mellemnavn" />
-                                                      <Label layoutX="10.0" layoutY="231.0" text="Efternavn" />
-                                                      <TextField fx:id="fxTF_lastnameRequesting" layoutX="10.0" layoutY="248.0" prefHeight="15.0" prefWidth="299.0" promptText="Indtast efternavn" />
-                                                      <Label layoutX="10.0" layoutY="273.0" prefHeight="21.0" prefWidth="164.0" text="Postnr/By/Adresse" />
-                                                      <TextField fx:id="fxTF_zipcodeRequesting" layoutX="10.0" layoutY="290.0" prefHeight="9.0" prefWidth="380.0" promptText="Indtast postnummer">
+                                                      <RadioButton fx:id="fxRB_regardingCitizen" mnemonicParsing="false" onAction="#inquiryRBonAction" text="Borger">
                                                          <VBox.margin>
-                                                            <Insets bottom="10.0" />
-                                                         </VBox.margin></TextField>
-                                                      <TextField fx:id="fxTF_citynameRequesting" prefHeight="8.0" prefWidth="380.0" promptText="Indtast byens navn">
+                                                            <Insets />
+                                                         </VBox.margin>
+                                                         <padding>
+                                                            <Insets bottom="5.0" />
+                                                         </padding></RadioButton>
+                                                      <RadioButton fx:id="fxRB_regardingRelatives" layoutX="10.0" layoutY="285.0" mnemonicParsing="false" onAction="#inquiryRBonAction" text="Pårørende [angiv kontaktoplysninger]">
                                                          <VBox.margin>
-                                                            <Insets bottom="10.0" />
-                                                         </VBox.margin></TextField>
-                                                      <TextField fx:id="fxTF_streetNameRequesting" layoutX="10.0" layoutY="357.0" prefHeight="11.0" prefWidth="380.0" promptText="Indtast adresse">
+                                                            <Insets />
+                                                         </VBox.margin>
+                                                         <padding>
+                                                            <Insets bottom="5.0" />
+                                                         </padding></RadioButton>
+                                                      <RadioButton fx:id="fxRB_regardingDoctor" layoutX="10.0" layoutY="286.0" mnemonicParsing="false" onAction="#inquiryRBonAction" text="Læge [angiv kontaktoplysninger]">
                                                          <VBox.margin>
-                                                            <Insets bottom="10.0" />
-                                                         </VBox.margin></TextField>
-                                                      <TextField fx:id="fxTF_houseNoRequesting" layoutX="10.0" layoutY="407.0" prefHeight="11.0" prefWidth="380.0" promptText="husnummer">
+                                                            <Insets />
+                                                         </VBox.margin>
+                                                         <padding>
+                                                            <Insets bottom="5.0" />
+                                                         </padding></RadioButton>
+                                                      <RadioButton fx:id="fxRB_regardingHospital" layoutX="10.0" layoutY="303.0" mnemonicParsing="false" onAction="#inquiryRBonAction" text="Hospital [angiv kontaktoplysninger]">
                                                          <VBox.margin>
-                                                            <Insets bottom="10.0" />
-                                                         </VBox.margin></TextField>
-                                                      <TextField fx:id="fxTF_floorAndFloorDirectionRequesting" layoutX="10.0" layoutY="382.0" prefHeight="11.0" prefWidth="380.0" promptText="Hvis lejlighed, indtast etage og etage retning (f.eks. 2 etage, højre)">
+                                                            <Insets />
+                                                         </VBox.margin>
+                                                         <padding>
+                                                            <Insets bottom="5.0" />
+                                                         </padding></RadioButton>
+                                                      <RadioButton fx:id="fxRB_regardingOtherAdministration" layoutX="10.0" layoutY="320.0" mnemonicParsing="false" onAction="#inquiryRBonAction" text="Anden forvaltning [angiv kontaktoplysninger]">
                                                          <VBox.margin>
-                                                            <Insets bottom="10.0" />
-                                                         </VBox.margin></TextField>
+                                                            <Insets />
+                                                         </VBox.margin>
+                                                         <padding>
+                                                            <Insets bottom="5.0" />
+                                                         </padding></RadioButton>
+                                                      <RadioButton fx:id="fxRB_regardingInProgressEffort" layoutX="10.0" layoutY="337.0" mnemonicParsing="false" onAction="#inquiryRBonAction" text="Igangværende indsats [angiv kontaktoplysninger]">
+                                                         <VBox.margin>
+                                                            <Insets />
+                                                         </VBox.margin>
+                                                         <padding>
+                                                            <Insets bottom="5.0" />
+                                                         </padding></RadioButton>
+                                                      <RadioButton fx:id="fxRB_regardingOtherCommune" layoutX="10.0" layoutY="354.0" mnemonicParsing="false" onAction="#inquiryRBonAction" text="Anden kommune">
+                                                         <VBox.margin>
+                                                            <Insets />
+                                                         </VBox.margin>
+                                                         <padding>
+                                                            <Insets bottom="5.0" />
+                                                         </padding></RadioButton>
+                                                      <RadioButton fx:id="fxRB_regardingOthers" layoutX="10.0" layoutY="371.0" mnemonicParsing="false" onAction="#inquiryRBonAction" text="Andre [angiv kontaktoplysninger]">
+                                                         <VBox.margin>
+                                                            <Insets />
+                                                         </VBox.margin>
+                                                         <padding>
+                                                            <Insets bottom="5.0" />
+                                                         </padding></RadioButton>
+                                                      <Label text="Er borgeren indforstået med henvendelsen?">
+                                                         <VBox.margin>
+                                                            <Insets />
+                                                         </VBox.margin>
+                                                         <padding>
+                                                            <Insets bottom="5.0" />
+                                                         </padding></Label>
+                                                      <RadioButton fx:id="fxRB_agreeToInquiryYesRequesting" mnemonicParsing="false" onAction="#inquiryRBonAction" text="Ja">
+                                                         <VBox.margin>
+                                                            <Insets />
+                                                         </VBox.margin></RadioButton>
+                                                      <RadioButton fx:id="fxRB_agreeToInquiryNoRequesting" layoutX="10.0" layoutY="197.0" mnemonicParsing="false" onAction="#inquiryRBonAction" text="Nej">
+                                                         <VBox.margin>
+                                                            <Insets />
+                                                         </VBox.margin></RadioButton>
+                                                      <TitledPane fx:id="fxTP_requestingInfo" expanded="false" prefHeight="427.0" prefWidth="508.0" text="Hvis ja, angiv kontaktoplysninger">
+                                                        <content>
+                                                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                               <children>
+                                                                  <VBox prefHeight="180.0" prefWidth="506.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                     <children>
+                                                                        <Label text="Navn:">
+                                                                           <VBox.margin>
+                                                                              <Insets />
+                                                                           </VBox.margin>
+                                                                        </Label>
+                                                                        <TextField fx:id="fxTF_firstnameRequesting" prefHeight="15.0" prefWidth="299.0" promptText="Indtast navn evt. mellemnavn">
+                                                                           <VBox.margin>
+                                                                              <Insets bottom="5.0" top="5.0" />
+                                                                           </VBox.margin>
+                                                                        </TextField>
+                                                                        <Label text="Efternavn">
+                                                                           <VBox.margin>
+                                                                              <Insets />
+                                                                           </VBox.margin>
+                                                                        </Label>
+                                                                        <TextField fx:id="fxTF_lastnameRequesting" prefHeight="15.0" prefWidth="299.0" promptText="Indtast efternavn">
+                                                                           <VBox.margin>
+                                                                              <Insets bottom="5.0" top="5.0" />
+                                                                           </VBox.margin>
+                                                                        </TextField>
+                                                                        <Label text="Cpr-nummer" />
+                                                                        <TextField fx:id="fxTF_cprNoRequesting" prefHeight="9.0" prefWidth="380.0" promptText="Indtast evt. cpr nummer">
+                                                                           <padding>
+                                                                              <Insets bottom="5.0" top="5.0" />
+                                                                           </padding>
+                                                                        </TextField>
+                                                                        <Label prefHeight="21.0" prefWidth="164.0" text="Postnr/By/Adresse">
+                                                                           <VBox.margin>
+                                                                              <Insets />
+                                                                           </VBox.margin>
+                                                                        </Label>
+                                                                        <TextField fx:id="fxTF_zipcodeRequesting" prefHeight="9.0" prefWidth="380.0" promptText="Indtast postnummer">
+                                                                           <VBox.margin>
+                                                                              <Insets bottom="5.0" top="5.0" />
+                                                                           </VBox.margin>
+                                                                        </TextField>
+                                                                        <TextField fx:id="fxTF_citynameRequesting" prefHeight="8.0" prefWidth="380.0" promptText="Indtast byens navn">
+                                                                           <VBox.margin>
+                                                                              <Insets bottom="5.0" top="5.0" />
+                                                                           </VBox.margin>
+                                                                        </TextField>
+                                                                        <TextField fx:id="fxTF_streetNameRequesting" prefHeight="11.0" prefWidth="380.0" promptText="Indtast adresse">
+                                                                           <VBox.margin>
+                                                                              <Insets bottom="5.0" top="5.0" />
+                                                                           </VBox.margin>
+                                                                        </TextField>
+                                                                        <TextField fx:id="fxTF_houseNoRequesting" prefHeight="11.0" prefWidth="380.0" promptText="husnummer">
+                                                                           <VBox.margin>
+                                                                              <Insets bottom="5.0" top="5.0" />
+                                                                           </VBox.margin>
+                                                                        </TextField>
+                                                                        <TextField fx:id="fxTF_floorAndFloorDirectionRequesting" prefHeight="11.0" prefWidth="380.0" promptText="Hvis lejlighed, indtast etage og etage retning (f.eks. 2 etage, højre)">
+                                                                           <VBox.margin>
+                                                                              <Insets bottom="5.0" top="5.0" />
+                                                                           </VBox.margin>
+                                                                        </TextField>
+                                                                     </children>
+                                                                  </VBox>
+                                                               </children>
+                                                            </AnchorPane>
+                                                        </content>
+                                                      </TitledPane>
                                                    </children>
                                                    <HBox.margin>
                                                       <Insets right="20.0" top="20.0" />
@@ -148,7 +294,7 @@
                                                 </VBox>
                                              </children>
                                              <padding>
-                                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                              </padding>
                                           </HBox>
                                        </children>
@@ -166,7 +312,7 @@
                                                       <Font name="System Bold Italic" size="12.0" />
                                                    </font>
                                                 </Label>
-                                                <RadioButton fx:id="fxRB_rightsAndDuties" mnemonicParsing="false" onAction="#getMarkedInformation" text="Er borgeren informeret om ret til bisidder og partsrepræsentant?" />
+                                                <RadioButton fx:id="fxRB_rightsAndDuties" mnemonicParsing="false" onAction="#rightsAndDutiesRBOnAction" text="Er borgeren informeret om ret til bisidder og partsrepræsentant?" />
                                                 <TextArea fx:id="fxTA_rightsAndDuties" prefHeight="93.0" prefWidth="351.0" promptText="Eventuel note/beskrivelse" wrapText="true" />
                                                 <VBox />
                                                 <Label text="Er borgeren informeret om at oplysningerne vil blive registreret elektronisk?" />
@@ -209,14 +355,14 @@
                                                    </font>
                                                 </Label>
                                                 <Label text="Er der modtaget samtykke om indhentning af oplysninger fra:" />
-                                                <RadioButton fx:id="fxRB_getInfoDoctor" mnemonicParsing="false" onAction="#getMarkedInformation" text="Egen læge [angiv læge]" />
-                                                <RadioButton fx:id="fxRB_getInfoSpecialDoctor" layoutX="10.0" layoutY="289.0" mnemonicParsing="false" onAction="#getMarkedInformation" text="Speciallæge [angiv læge]" />
-                                                <RadioButton fx:id="fxRB_getInfoHospital" layoutX="10.0" layoutY="306.0" mnemonicParsing="false" onAction="#getMarkedInformation" text="Hospital [angiv hospital]" />
-                                                <RadioButton fx:id="fxRB_getInfoAKasse" layoutX="10.0" layoutY="323.0" mnemonicParsing="false" onAction="#getMarkedInformation" text="A-kasse [angiv a-kasse]" />
-                                                <RadioButton fx:id="fxRB_getInfoOffer" layoutX="10.0" layoutY="340.0" mnemonicParsing="false" onAction="#getMarkedInformation" text="Tilbud [angiv konkret tilbudssted]" />
-                                                <RadioButton fx:id="fxRB_getInfoEmployer" layoutX="10.0" layoutY="357.0" mnemonicParsing="false" onAction="#getMarkedInformation" text="Arbejdsgiver [angiv arbejdsgiver]" />
-                                                <RadioButton fx:id="fxRB_getInfoPreviousCommune" layoutX="10.0" layoutY="374.0" mnemonicParsing="false" onAction="#getMarkedInformation" text="Tidligere opholdskommune[angiv bopælskommune]" />
-                                                <RadioButton fx:id="fxRB_getInfoOtherAdministrations" layoutX="10.0" layoutY="391.0" mnemonicParsing="false" onAction="#getMarkedInformation" text="Andre forvaltninger [angiv hvilke]" />
+                                                <RadioButton fx:id="fxRB_getInfoDoctor" mnemonicParsing="false" onAction="#obtainOfInformationRBonAction" text="Egen læge [angiv læge]" />
+                                                <RadioButton fx:id="fxRB_getInfoSpecialDoctor" layoutX="10.0" layoutY="289.0" mnemonicParsing="false" onAction="#obtainOfInformationRBonAction" text="Speciallæge [angiv læge]" />
+                                                <RadioButton fx:id="fxRB_getInfoHospital" layoutX="10.0" layoutY="306.0" mnemonicParsing="false" onAction="#obtainOfInformationRBonAction" text="Hospital [angiv hospital]" />
+                                                <RadioButton fx:id="fxRB_getInfoAKasse" layoutX="10.0" layoutY="323.0" mnemonicParsing="false" onAction="#obtainOfInformationRBonAction" text="A-kasse [angiv a-kasse]" />
+                                                <RadioButton fx:id="fxRB_getInfoOffer" layoutX="10.0" layoutY="340.0" mnemonicParsing="false" onAction="#obtainOfInformationRBonAction" text="Tilbud [angiv konkret tilbudssted]" />
+                                                <RadioButton fx:id="fxRB_getInfoEmployer" layoutX="10.0" layoutY="357.0" mnemonicParsing="false" onAction="#obtainOfInformationRBonAction" text="Arbejdsgiver [angiv arbejdsgiver]" />
+                                                <RadioButton fx:id="fxRB_getInfoPreviousCommune" layoutX="10.0" layoutY="374.0" mnemonicParsing="false" onAction="#obtainOfInformationRBonAction" text="Tidligere opholdskommune[angiv bopælskommune]" />
+                                                <RadioButton fx:id="fxRB_getInfoOtherAdministrations" layoutX="10.0" layoutY="391.0" mnemonicParsing="false" onAction="#obtainOfInformationRBonAction" text="Andre forvaltninger [angiv hvilke]" />
                                                 <Label layoutX="10.0" layoutY="27.0" text="Andre:[angiv hvilke]" />
                                                 <TextArea fx:id="fxTA_obtainOfInformation" prefHeight="92.0" prefWidth="496.0" promptText="Angiv informationer" wrapText="true" />
                                              </children>
@@ -256,8 +402,8 @@
                                                    </font>
                                                 </Label>
                                                 <Label text="Angiv kun hvilken kommune, hvis det ikke er egen kommune." />
-                                                <RadioButton fx:id="fxRB_OtherActingCommune" mnemonicParsing="false" onAction="#getMarkedInformation" text="Anden handlekommune [angiv hvilke]" />
-                                                <RadioButton fx:id="fxRB_otherPayingCommune" layoutX="10.0" layoutY="170.0" mnemonicParsing="false" onAction="#getMarkedInformation" text="Anden betalingskommune [angiv hvilke]" />
+                                                <RadioButton fx:id="fxRB_OtherActingCommune" mnemonicParsing="false" onAction="#communePayingOrActingRBonAction" text="Anden handlekommune [angiv hvilke]" />
+                                                <RadioButton fx:id="fxRB_otherPayingCommune" layoutX="10.0" layoutY="170.0" mnemonicParsing="false" onAction="#communePayingOrActingRBonAction" text="Anden betalingskommune [angiv hvilke]" />
                                                 <TextArea fx:id="fxTA_CommunePayingOrActing" prefHeight="92.0" prefWidth="496.0" promptText="Angiv informationer" wrapText="true" />
                                              </children>
                                           </VBox>
@@ -273,7 +419,7 @@
                                              <children>
                                                 <VBox fx:id="fxVbox_socialPedagogicalHelp" prefHeight="217.0" prefWidth="397.0">
                                                    <children>
-                                                      <RadioButton fx:id="fxRB_socialPedagogicalHelp" mnemonicParsing="false" onAction="#getMarkedInformation" text="Socialpædagogisk støtte">
+                                                      <RadioButton fx:id="fxRB_socialPedagogicalHelp" mnemonicParsing="false" onAction="#benefitsParagraphs" text="Socialpædagogisk støtte">
                                                          <padding>
                                                             <Insets bottom="5.0" />
                                                          </padding>
@@ -284,14 +430,14 @@
                                                                <children>
                                                                   <VBox prefHeight="180.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                                      <children>
-                                                                        <RadioButton fx:id="fxRB_socialPedagogicalHelp1" mnemonicParsing="false" text="Støtte til administration (§ 85)" />
-                                                                        <RadioButton fx:id="fxRB_socialPedagogicalHelp2" mnemonicParsing="false" text="Støtte til indkøb og kost (§ 85)" />
-                                                                        <RadioButton fx:id="fxRB_socialPedagogicalHelp3" mnemonicParsing="false" text="Støtte til kontakt og samvær (§ 85)" />
-                                                                        <RadioButton fx:id="fxRB_socialPedagogicalHelp4" mnemonicParsing="false" text="Støtte til medicinhåndtering (§ 85)" />
-                                                                        <RadioButton fx:id="fxRB_socialPedagogicalHelp5" mnemonicParsing="false" text="Støtte til personlig pleje (§ 85)" />
-                                                                        <RadioButton fx:id="fxRB_socialPedagogicalHelp6" mnemonicParsing="false" text="Støtte til praktiske opgaver i hjemmet (§ 85)" />
-                                                                        <RadioButton fx:id="fxRB_socialPedagogicalHelp7" mnemonicParsing="false" text="Støtte til uddannelse og beskæftigelse (§ 85)" />
-                                                                        <RadioButton fx:id="fxRB_socialPedagogicalHelp8" mnemonicParsing="false" text="Støtte til varetagelse af forældrerollen (§ 85)" />
+                                                                        <RadioButton fx:id="fxRB_socialPedagogicalHelp1" mnemonicParsing="false" onAction="#benefitsParagraphs" text="Støtte til administration (§ 85)" />
+                                                                        <RadioButton fx:id="fxRB_socialPedagogicalHelp2" mnemonicParsing="false" onAction="#benefitsParagraphs" text="Støtte til indkøb og kost (§ 85)" />
+                                                                        <RadioButton fx:id="fxRB_socialPedagogicalHelp3" mnemonicParsing="false" onAction="#benefitsParagraphs" text="Støtte til kontakt og samvær (§ 85)" />
+                                                                        <RadioButton fx:id="fxRB_socialPedagogicalHelp4" mnemonicParsing="false" onAction="#benefitsParagraphs" text="Støtte til medicinhåndtering (§ 85)" />
+                                                                        <RadioButton fx:id="fxRB_socialPedagogicalHelp5" mnemonicParsing="false" onAction="#benefitsParagraphs" text="Støtte til personlig pleje (§ 85)" />
+                                                                        <RadioButton fx:id="fxRB_socialPedagogicalHelp6" mnemonicParsing="false" onAction="#benefitsParagraphs" text="Støtte til praktiske opgaver i hjemmet (§ 85)" />
+                                                                        <RadioButton fx:id="fxRB_socialPedagogicalHelp7" mnemonicParsing="false" onAction="#benefitsParagraphs" text="Støtte til uddannelse og beskæftigelse (§ 85)" />
+                                                                        <RadioButton fx:id="fxRB_socialPedagogicalHelp8" mnemonicParsing="false" onAction="#benefitsParagraphs" text="Støtte til varetagelse af forældrerollen (§ 85)" />
                                                                      </children>
                                                                   </VBox>
                                                                </children>
@@ -305,7 +451,7 @@
                                                 </VBox>
                                                 <VBox fx:id="fxVbox_personHelpScheme" prefHeight="223.0" prefWidth="390.0">
                                                    <children>
-                                                      <RadioButton fx:id="fxRB_personHelpScheme" mnemonicParsing="false" onAction="#getMarkedInformation" text="Støttepersonordning">
+                                                      <RadioButton fx:id="fxRB_personHelpScheme" mnemonicParsing="false" onAction="#benefitsParagraphs" text="Støttepersonordning">
                                                          <padding>
                                                             <Insets bottom="5.0" />
                                                          </padding>
@@ -316,13 +462,13 @@
                                                                <children>
                                                                   <VBox prefHeight="180.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                                      <children>
-                                                                        <RadioButton fx:id="fxRB_personHelpScheme1" mnemonicParsing="false" text="Afløsning (§ 84)" />
-                                                                        <RadioButton fx:id="fxRB_personHelpScheme2" mnemonicParsing="false" text="Afløsning (§ 95)" />
-                                                                        <RadioButton fx:id="fxRB_personHelpScheme3" mnemonicParsing="false" text="Borgerstyret personlig assistance (§ 96)" />
-                                                                        <RadioButton fx:id="fxRB_personHelpScheme4" mnemonicParsing="false" text="Kontaktperson for døvblinde (§ 98)" />
-                                                                        <RadioButton fx:id="fxRB_personHelpScheme5" mnemonicParsing="false" text="Ledsageordning (§ 97)" />
-                                                                        <RadioButton fx:id="fxRB_personHelpScheme6" mnemonicParsing="false" text="Pasning af pårørende (§ 118)" />
-                                                                        <RadioButton fx:id="fxRB_personHelpScheme7" mnemonicParsing="false" text="Pasning af pårørende (§ 119)" />
+                                                                        <RadioButton fx:id="fxRB_personHelpScheme1" mnemonicParsing="false" onAction="#benefitsParagraphs" text="Afløsning (§ 84)" />
+                                                                        <RadioButton fx:id="fxRB_personHelpScheme2" mnemonicParsing="false" onAction="#benefitsParagraphs" text="Afløsning (§ 95)" />
+                                                                        <RadioButton fx:id="fxRB_personHelpScheme3" mnemonicParsing="false" onAction="#benefitsParagraphs" text="Borgerstyret personlig assistance (§ 96)" />
+                                                                        <RadioButton fx:id="fxRB_personHelpScheme4" mnemonicParsing="false" onAction="#benefitsParagraphs" text="Kontaktperson for døvblinde (§ 98)" />
+                                                                        <RadioButton fx:id="fxRB_personHelpScheme5" mnemonicParsing="false" onAction="#benefitsParagraphs" text="Ledsageordning (§ 97)" />
+                                                                        <RadioButton fx:id="fxRB_personHelpScheme6" mnemonicParsing="false" onAction="#benefitsParagraphs" text="Pasning af pårørende (§ 118)" />
+                                                                        <RadioButton fx:id="fxRB_personHelpScheme7" mnemonicParsing="false" onAction="#benefitsParagraphs" text="Pasning af pårørende (§ 119)" />
                                                                      </children>
                                                                   </VBox>
                                                                </children>
@@ -342,17 +488,17 @@
                                                                <children>
                                                                   <VBox layoutX="-25.0" layoutY="-28.0" prefHeight="180.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                                      <children>
-                                                                        <RadioButton fx:id="fxRB_practicalHelp83" mnemonicParsing="false" onAction="#getMarkedInformation" text="Praktisk hjælp (§ 83)" />
-                                                                        <RadioButton fx:id="fxRB_praticalHelp95" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#getMarkedInformation" text="Praktisk hjælp (§ 95)" />
-                                                                        <RadioButton fx:id="fxRB_dayRelief" mnemonicParsing="false" onAction="#getMarkedInformation" text="Dagaflastning (§ 84)" />
-                                                                        <RadioButton fx:id="fxRB_personalHelp83" mnemonicParsing="false" onAction="#getMarkedInformation" text="Personlig hjælp og pleje (§ 83)" />
-                                                                        <RadioButton fx:id="fxRB_personalHelp95" mnemonicParsing="false" onAction="#getMarkedInformation" text="Personlig hjælp og pleje (§ 95)" />
-                                                                        <RadioButton fx:id="fxRB_protectedEmploymentBenefit" mnemonicParsing="false" onAction="#getMarkedInformation" text="Beskyttet beskæftigelsesydelse (§ 103)" />
+                                                                        <RadioButton fx:id="fxRB_practicalHelp83" mnemonicParsing="false" onAction="#benefitsParagraphs" text="Praktisk hjælp (§ 83)" />
+                                                                        <RadioButton fx:id="fxRB_praticalHelp95" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#benefitsParagraphs" text="Praktisk hjælp (§ 95)" />
+                                                                        <RadioButton fx:id="fxRB_dayRelief" mnemonicParsing="false" onAction="#benefitsParagraphs" text="Dagaflastning (§ 84)" />
+                                                                        <RadioButton fx:id="fxRB_personalHelp83" mnemonicParsing="false" onAction="#benefitsParagraphs" text="Personlig hjælp og pleje (§ 83)" />
+                                                                        <RadioButton fx:id="fxRB_personalHelp95" mnemonicParsing="false" onAction="#benefitsParagraphs" text="Personlig hjælp og pleje (§ 95)" />
+                                                                        <RadioButton fx:id="fxRB_protectedEmploymentBenefit" mnemonicParsing="false" onAction="#benefitsParagraphs" text="Beskyttet beskæftigelsesydelse (§ 103)" />
                                                                         <VBox>
                                                                            <children>
-                                                                              <RadioButton fx:id="fxRB_Activity104" mnemonicParsing="false" onAction="#getMarkedInformation" text="Aktivitets- og samværsydelse (§ 104)" />
-                                                                              <RadioButton fx:id="fxRB_cashBenefit1" mnemonicParsing="false" onAction="#getMarkedInformation" text="Arbejdsvederlag (§ 105)" />
-                                                                              <RadioButton fx:id="fxRB_cashBenefit2" layoutX="10.0" layoutY="44.0" mnemonicParsing="false" onAction="#getMarkedInformation" text="Dækning af merudgift (§ 100)" />
+                                                                              <RadioButton fx:id="fxRB_Activity104" mnemonicParsing="false" onAction="#benefitsParagraphs" text="Aktivitets- og samværsydelse (§ 104)" />
+                                                                              <RadioButton fx:id="fxRB_cashBenefit1" mnemonicParsing="false" onAction="#benefitsParagraphs" text="Arbejdsvederlag (§ 105)" />
+                                                                              <RadioButton fx:id="fxRB_cashBenefit2" layoutX="10.0" layoutY="44.0" mnemonicParsing="false" onAction="#benefitsParagraphs" text="Dækning af merudgift (§ 100)" />
                                                                            </children>
                                                                         </VBox>
                                                                      </children>
@@ -379,15 +525,15 @@
                                                                <children>
                                                                   <VBox prefHeight="180.0" prefWidth="137.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                                      <children>
-                                                                        <RadioButton fx:id="fxRB_housingGeneralCareHome" mnemonicParsing="false" onAction="#getMarkedInformation" text="Almen plejebolig" />
-                                                                        <RadioButton fx:id="fxRB_housingElderlyOrHandicapFriendly" mnemonicParsing="false" onAction="#getMarkedInformation" text="Almen ældrebolig/handicapvenlig bolig" />
-                                                                        <RadioButton fx:id="fxRB_housingShared" mnemonicParsing="false" onAction="#getMarkedInformation" text="Bofællesskab" />
-                                                                        <RadioButton fx:id="fxRB_housingDayTreatmentOffer" mnemonicParsing="false" onAction="#getMarkedInformation" text="Døgnbehandlingstilbud til voksne" />
-                                                                        <RadioButton fx:id="fxRB_housingCareHome" mnemonicParsing="false" onAction="#getMarkedInformation" text="Forsorgshjem/herberg" />
-                                                                        <RadioButton fx:id="fxRB_housingCrisisCenter" mnemonicParsing="false" onAction="#getMarkedInformation" text="Krisecenter" />
-                                                                        <RadioButton fx:id="fxRB_housingTemporary" mnemonicParsing="false" onAction="#getMarkedInformation" text="Midlertidigt botilbud" />
-                                                                        <RadioButton fx:id="fxRB_housingNursingHome" mnemonicParsing="false" onAction="#getMarkedInformation" text="Plejehjem" />
-                                                                        <RadioButton fx:id="fxRB_housingRehabilitation" mnemonicParsing="false" onAction="#getMarkedInformation" text="Rehabiliteringstilbud" />
+                                                                        <RadioButton fx:id="fxRB_housingGeneralCareHome" mnemonicParsing="false" onAction="#benefitsParagraphs" text="Almen plejebolig" />
+                                                                        <RadioButton fx:id="fxRB_housingElderlyOrHandicapFriendly" mnemonicParsing="false" onAction="#benefitsParagraphs" text="Almen ældrebolig/handicapvenlig bolig" />
+                                                                        <RadioButton fx:id="fxRB_housingShared" mnemonicParsing="false" onAction="#benefitsParagraphs" text="Bofællesskab" />
+                                                                        <RadioButton fx:id="fxRB_housingDayTreatmentOffer" mnemonicParsing="false" onAction="#benefitsParagraphs" text="Døgnbehandlingstilbud til voksne" />
+                                                                        <RadioButton fx:id="fxRB_housingCareHome" mnemonicParsing="false" onAction="#benefitsParagraphs" text="Forsorgshjem/herberg" />
+                                                                        <RadioButton fx:id="fxRB_housingCrisisCenter" mnemonicParsing="false" onAction="#benefitsParagraphs" text="Krisecenter" />
+                                                                        <RadioButton fx:id="fxRB_housingTemporary" mnemonicParsing="false" onAction="#benefitsParagraphs" text="Midlertidigt botilbud" />
+                                                                        <RadioButton fx:id="fxRB_housingNursingHome" mnemonicParsing="false" onAction="#benefitsParagraphs" text="Plejehjem" />
+                                                                        <RadioButton fx:id="fxRB_housingRehabilitation" mnemonicParsing="false" onAction="#benefitsParagraphs" text="Rehabiliteringstilbud" />
                                                                      </children>
                                                                   </VBox>
                                                                </children>
@@ -412,10 +558,10 @@
                                                                <children>
                                                                   <VBox layoutX="53.0" layoutY="70.0" prefHeight="180.0" prefWidth="237.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                                      <children>
-                                                                        <RadioButton fx:id="fxRB_securedHousing" mnemonicParsing="false" text="Sikret botilbud" />
-                                                                        <RadioButton fx:id="fxRB_otherLengthyHousing" mnemonicParsing="false" text="Andet længerevarende botilbud til voksne" />
-                                                                        <RadioButton fx:id="fxRB_outgoingOffer" mnemonicParsing="false" text="Udgående tilbud til voksne" />
-                                                                        <RadioButton fx:id="fxRB_offerWithAuthority" mnemonicParsing="false" text="Tilbud med myndighedsbeføjelse" />
+                                                                        <RadioButton fx:id="fxRB_securedHousing" mnemonicParsing="false" onAction="#benefitsParagraphs" text="Sikret botilbud" />
+                                                                        <RadioButton fx:id="fxRB_otherLengthyHousing" mnemonicParsing="false" onAction="#benefitsParagraphs" text="Andet længerevarende botilbud til voksne" />
+                                                                        <RadioButton fx:id="fxRB_outgoingOffer" mnemonicParsing="false" onAction="#benefitsParagraphs" text="Udgående tilbud til voksne" />
+                                                                        <RadioButton fx:id="fxRB_offerWithAuthority" mnemonicParsing="false" onAction="#benefitsParagraphs" text="Tilbud med myndighedsbeføjelse" />
                                                                      </children>
                                                                   </VBox>
                                                                </children>
@@ -458,7 +604,7 @@
                                                                <children>
                                                                   <VBox prefHeight="180.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                                      <children>
-                                                                        <RadioButton fx:id="fxRB_ambulantTreatment" mnemonicParsing="false" text="Ambulant behandlingstilbud til voksne" />
+                                                                        <RadioButton fx:id="fxRB_ambulantTreatment" mnemonicParsing="false" onAction="#benefitsParagraphs" text="Ambulant behandlingstilbud til voksne" />
                                                                      </children>
                                                                   </VBox>
                                                                </children>
@@ -486,10 +632,10 @@
                                                                <children>
                                                                   <VBox prefHeight="37.0" prefWidth="206.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                                      <children>
-                                                                        <RadioButton fx:id="fxRB_activityAndSocialInteractionOffer" mnemonicParsing="false" text="Aktivitets- og samværstilbud" />
-                                                                        <RadioButton fx:id="fxRB_protectedEmploymentOffer" mnemonicParsing="false" text="Beskyttet beskæftigelsestilbud" />
-                                                                        <RadioButton fx:id="fxRB_dayCareOffer" mnemonicParsing="false" text="Dagbehandlingstilbud til voksne" />
-                                                                        <RadioButton fx:id="fxRB_educationOffer" mnemonicParsing="false" text="Uddannelsestilbud" />
+                                                                        <RadioButton fx:id="fxRB_activityAndSocialInteractionOffer" mnemonicParsing="false" onAction="#benefitsParagraphs" text="Aktivitets- og samværstilbud" />
+                                                                        <RadioButton fx:id="fxRB_protectedEmploymentOffer" mnemonicParsing="false" onAction="#benefitsParagraphs" text="Beskyttet beskæftigelsestilbud" />
+                                                                        <RadioButton fx:id="fxRB_dayCareOffer" mnemonicParsing="false" onAction="#benefitsParagraphs" text="Dagbehandlingstilbud til voksne" />
+                                                                        <RadioButton fx:id="fxRB_educationOffer" mnemonicParsing="false" onAction="#benefitsParagraphs" text="Uddannelsestilbud" />
                                                                      </children>
                                                                   </VBox>
                                                                </children>
@@ -507,7 +653,7 @@
                                              <children>
                                                 <VBox fx:id="fxVbox_treatment" prefHeight="155.0" prefWidth="457.0">
                                                    <children>
-                                                      <RadioButton fx:id="fxRB_treatment" mnemonicParsing="false" onAction="#getMarkedInformation" text="Behandling">
+                                                      <RadioButton fx:id="fxRB_treatment" mnemonicParsing="false" onAction="#benefitsParagraphs" text="Behandling">
                                                          <VBox.margin>
                                                             <Insets />
                                                          </VBox.margin>
@@ -521,11 +667,11 @@
                                                                <children>
                                                                   <VBox prefHeight="0.0" prefWidth="294.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                                      <children>
-                                                                        <RadioButton fx:id="fxRB_treatment1" mnemonicParsing="false" text="Misbrugsbehandling (§ 101)" />
-                                                                        <RadioButton fx:id="fxRB_treatment2" mnemonicParsing="false" text="Misbrugsbehandling (SUL § 141)" />
-                                                                        <RadioButton fx:id="fxRB_treatment3" mnemonicParsing="false" text="Terapi (§ 102)" />
-                                                                        <RadioButton fx:id="fxRB_treatment5" mnemonicParsing="false" text="Speciallæge behandling (§ 102)" />
-                                                                        <RadioButton fx:id="fxRB_treatment4" mnemonicParsing="false" text="Psykologisk behandling (§ 102)" />
+                                                                        <RadioButton fx:id="fxRB_treatment1" mnemonicParsing="false" onAction="#benefitsParagraphs" text="Misbrugsbehandling (§ 101)" />
+                                                                        <RadioButton fx:id="fxRB_treatment2" mnemonicParsing="false" onAction="#benefitsParagraphs" text="Misbrugsbehandling (SUL § 141)" />
+                                                                        <RadioButton fx:id="fxRB_treatment3" mnemonicParsing="false" onAction="#benefitsParagraphs" text="Terapi (§ 102)" />
+                                                                        <RadioButton fx:id="fxRB_treatment5" mnemonicParsing="false" onAction="#benefitsParagraphs" text="Speciallæge behandling (§ 102)" />
+                                                                        <RadioButton fx:id="fxRB_treatment4" mnemonicParsing="false" onAction="#benefitsParagraphs" text="Psykologisk behandling (§ 102)" />
                                                                      </children>
                                                                   </VBox>
                                                                </children>
@@ -542,7 +688,7 @@
                                                 </VBox>
                                                 <VBox fx:id="fxVbox_control" prefHeight="144.0" prefWidth="456.0">
                                                    <children>
-                                                      <RadioButton fx:id="fxRB_control" mnemonicParsing="false" onAction="#getMarkedInformation" text="Kontrolordning">
+                                                      <RadioButton fx:id="fxRB_control" mnemonicParsing="false" onAction="#benefitsParagraphs" text="Kontrolordning">
                                                          <padding>
                                                             <Insets bottom="5.0" />
                                                          </padding>
@@ -553,10 +699,10 @@
                                                                <children>
                                                                   <VBox prefHeight="143.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                                      <children>
-                                                                        <RadioButton fx:id="fxRB_control1" mnemonicParsing="false" text="Fastholdelse (§ 126) " />
-                                                                        <RadioButton fx:id="fxRB_control2" mnemonicParsing="false" text="Fastholdelse (§ 127) " />
-                                                                        <RadioButton fx:id="fxRB_control3" mnemonicParsing="false" text="Fastholdelse (§ 128)" />
-                                                                        <RadioButton fx:id="fxRB_control4" mnemonicParsing="false" text="Kontrol med færden (§ 125) " />
+                                                                        <RadioButton fx:id="fxRB_control1" mnemonicParsing="false" onAction="#benefitsParagraphs" text="Fastholdelse (§ 126) " />
+                                                                        <RadioButton fx:id="fxRB_control2" mnemonicParsing="false" onAction="#benefitsParagraphs" text="Fastholdelse (§ 127) " />
+                                                                        <RadioButton fx:id="fxRB_control3" mnemonicParsing="false" onAction="#benefitsParagraphs" text="Fastholdelse (§ 128)" />
+                                                                        <RadioButton fx:id="fxRB_control4" mnemonicParsing="false" onAction="#benefitsParagraphs" text="Kontrol med færden (§ 125) " />
                                                                      </children>
                                                                   </VBox>
                                                                </children>
@@ -570,7 +716,7 @@
                                                 </VBox>
                                                 <VBox fx:id="fxVbox_stay" prefHeight="160.0" prefWidth="457.0">
                                                    <children>
-                                                      <RadioButton fx:id="fxRB_stay" mnemonicParsing="false" onAction="#getMarkedInformation" text="Ophold">
+                                                      <RadioButton fx:id="fxRB_stay" mnemonicParsing="false" onAction="#benefitsParagraphs" text="Ophold">
                                                          <padding>
                                                             <Insets bottom="5.0" />
                                                          </padding>
@@ -581,11 +727,11 @@
                                                                <children>
                                                                   <VBox layoutX="-16.0" layoutY="20.0" prefHeight="180.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                                      <children>
-                                                                        <RadioButton fx:id="fxRB_stay1" mnemonicParsing="false" text="Døgnaflastning (§ 84)" />
-                                                                        <RadioButton fx:id="fxRB_stay2" mnemonicParsing="false" text="Længevarende ophold (§ 108)" />
-                                                                        <RadioButton fx:id="fxRB_stay3" mnemonicParsing="false" text="Midlertidigt ophold (§ 80)" />
-                                                                        <RadioButton fx:id="fxRB_stay4" mnemonicParsing="false" text="Midlertidigt ophold (§ 107)" />
-                                                                        <RadioButton fx:id="fxRB_stay5" mnemonicParsing="false" text="Midlertidigt ophold (§ 109)" />
+                                                                        <RadioButton fx:id="fxRB_stay1" mnemonicParsing="false" onAction="#benefitsParagraphs" text="Døgnaflastning (§ 84)" />
+                                                                        <RadioButton fx:id="fxRB_stay2" mnemonicParsing="false" onAction="#benefitsParagraphs" text="Længevarende ophold (§ 108)" />
+                                                                        <RadioButton fx:id="fxRB_stay3" mnemonicParsing="false" onAction="#benefitsParagraphs" text="Midlertidigt ophold (§ 80)" />
+                                                                        <RadioButton fx:id="fxRB_stay4" mnemonicParsing="false" onAction="#benefitsParagraphs" text="Midlertidigt ophold (§ 107)" />
+                                                                        <RadioButton fx:id="fxRB_stay5" mnemonicParsing="false" onAction="#benefitsParagraphs" text="Midlertidigt ophold (§ 109)" />
                                                                      </children>
                                                                   </VBox>
                                                                </children>
@@ -599,7 +745,7 @@
                                                 </VBox>
                                                 <VBox>
                                                    <children>
-                                                      <RadioButton fx:id="fxRB_carriage" mnemonicParsing="false" onAction="#getMarkedInformation" text="Befordring ">
+                                                      <RadioButton fx:id="fxRB_carriage" mnemonicParsing="false" onAction="#benefitsParagraphs" text="Befordring ">
                                                          <padding>
                                                             <Insets bottom="5.0" />
                                                          </padding>
@@ -610,12 +756,12 @@
                                                                <children>
                                                                   <VBox layoutX="19.6" layoutY="19.6" prefHeight="165.0" prefWidth="449.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                                      <children>
-                                                                        <RadioButton fx:id="fxRB_carriage4" mnemonicParsing="false" text="Befordring til og fra et tilbud (SUL § 170)" />
-                                                                        <RadioButton fx:id="fxRB_carriage1" mnemonicParsing="false" text="Befordring til og fra et tilbud (Hjælpemiddelbekendtgørelsen § 25)" />
-                                                                        <RadioButton fx:id="fxRB_carriage2" mnemonicParsing="false" text="Befordring til og fra et tilbud (Lov om specialundervisning til voksne § 5)" />
-                                                                        <RadioButton fx:id="fxRB_carriage3" mnemonicParsing="false" text="Befordring til og fra et tilbud (Lov om ungdomsuddannelse for unge med særlige" />
-                                                                        <RadioButton fx:id="fxRB_carriage5" mnemonicParsing="false" text="Befordring til og fra et tilbud (SUL § 172)" />
-                                                                        <RadioButton fx:id="fxRB_carriage6" mnemonicParsing="false" text="Individuel befordring (§ 117) " />
+                                                                        <RadioButton fx:id="fxRB_carriage4" mnemonicParsing="false" onAction="#benefitsParagraphs" text="Befordring til og fra et tilbud (SUL § 170)" />
+                                                                        <RadioButton fx:id="fxRB_carriage1" mnemonicParsing="false" onAction="#benefitsParagraphs" text="Befordring til og fra et tilbud (Hjælpemiddelbekendtgørelsen § 25)" />
+                                                                        <RadioButton fx:id="fxRB_carriage2" mnemonicParsing="false" onAction="#benefitsParagraphs" text="Befordring til og fra et tilbud (Lov om specialundervisning til voksne § 5)" />
+                                                                        <RadioButton fx:id="fxRB_carriage3" mnemonicParsing="false" onAction="#benefitsParagraphs" text="Befordring til og fra et tilbud (Lov om ungdomsuddannelse for unge med særlige" />
+                                                                        <RadioButton fx:id="fxRB_carriage5" mnemonicParsing="false" onAction="#benefitsParagraphs" text="Befordring til og fra et tilbud (SUL § 172)" />
+                                                                        <RadioButton fx:id="fxRB_carriage6" mnemonicParsing="false" onAction="#benefitsParagraphs" text="Individuel befordring (§ 117) " />
                                                                      </children>
                                                                   </VBox>
                                                                </children>
@@ -633,6 +779,8 @@
                                     </AnchorPane>
                                  </content>
                               </TitledPane>
+                              <Label fx:id="fxLB_userInfo" text="Label" />
+                              <Button fx:id="fxBT_save" contentDisplay="TOP" mnemonicParsing="false" onAction="#saveBtnOnAction" text="Save" />
                            </children>
                         </VBox>
                      </content>

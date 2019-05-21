@@ -458,11 +458,6 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
     }
 
     @Override
-    public boolean writeEmployee(Employee employee) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public String readAlternativeNotets(int caseID) {
 
         String selectQuery, fromQuery, whereQuery, query;

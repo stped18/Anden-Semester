@@ -5,9 +5,7 @@
  */
 package mmmi.Domain;
 
-import mmmi.Data_layer.Interfaces.IDataHandler;
-import mmmi.Data_layer.DataHandler;
-import MMMI.Data_layer.SearchCase;
+import mmmi.Data_layer.SearchCase;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,27 +24,28 @@ import LoginSystem.Domain.LoginSystem;
 import mmmi.Data_layer.DataHandler;
 import mmmi.Data_layer.Interfaces.IDataHandler;
 import mmmi.Domain.Interfaces.IDomain;
+
 public class DepartmentTest {
-    
+
     private IDataHandler dataHandler = new DataHandler();
     private IEmployee loginEmployee = new LoginSystem();
     private IDomain department = Department.getInstance();
-     
+
     public DepartmentTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -59,12 +58,12 @@ public class DepartmentTest {
         //value += "%" + String.valueOf(departmentID);
         IDataHandler searchHandler = new DataHandler();
         List<SearchCase> searchCases = searchHandler.search("Case", "%7");
-
+        int employeeid = 1;
         mmmi.Data_layer.Employee newEmployee = dataHandler.readEmployee(employeeid);
         String[] split = newEmployee.toString().split(",");
 
         Map searchResultList = new HashMap();
-        for (int i = 0; i < length; i++) {
+        for (int i = 0; i < split.length; i++) {
             Map searchResultMap = new HashMap();
             searchResultMap.put("citizenName", searchCases.get(i).getCitizenName());
             searchResultMap.put("currentCaseDate", searchCases.get(i).getCurrentCaseDate());
@@ -75,9 +74,9 @@ public class DepartmentTest {
             searchResultList.put(searchCases.get(i).getCaseID(), searchResultMap);
         }
     }
+
     @Test
     public void saveCaseTest() {
-        
 
         Map<String, Map<String, String>> caseInfo = new HashMap<>();
 
@@ -144,5 +143,5 @@ public class DepartmentTest {
 
         department.saveCase(caseInfo);
     }
-    
+
 }

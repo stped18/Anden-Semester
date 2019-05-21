@@ -1,20 +1,10 @@
 package mmmi.Data_layer;
 
-import MMMI.Data_layer.Case;
-import MMMI.Data_layer.Citizen;
-import MMMI.Data_layer.Employee;
-import MMMI.Data_layer.SearchCase;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import mmmi.Data_layer.Connection.DatabaseConnection;
-import mmmi.Data_layer.Interfaces.IDataHandler;
 import java.sql.ResultSet;
-import java.sql.Statement;
-import java.util.Arrays;
 import mmmi.Data_layer.Interfaces.IDataHandler;
 import java.util.HashMap;
 import java.sql.PreparedStatement;
-import java.sql.ResultSetMetaData;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -35,18 +25,19 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
     private Employee employee = null;
 
     /**
-     * returns case object where caseContents has information from the specified caseID and has regarding citizen object which 
-     * refereces to case content based on the regarding Citizen id.
+     * returns case object where caseContents has information from the specified
+     * caseID and has regarding citizen object which refereces to case content
+     * based on the regarding Citizen id.
+     *
      * @param caseID, accepts int value
-     * @return returns Case object  
+     * @return returns Case object
      */
     @Override
     public Case readCase(int caseID) {
-        
+
         List<String> columnNames = new ArrayList<>();
         List<Citizen> requstingCitizens = new ArrayList<>();
         Map<String, String> columnToValuesMap = new HashMap<>();
-        
 
         String caseStatus = "";
         int departmentID = 0;

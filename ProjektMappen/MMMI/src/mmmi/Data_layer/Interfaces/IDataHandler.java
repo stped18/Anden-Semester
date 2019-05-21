@@ -5,6 +5,7 @@ import mmmi.Data_layer.Citizen;
 import mmmi.Data_layer.Employee;
 import mmmi.Data_layer.SearchCase;
 import java.util.List;
+import java.util.Map;
 
 public interface IDataHandler {
 
@@ -37,6 +38,7 @@ public interface IDataHandler {
      * @return
      */
     public Employee readEmployee(int employeeID);
+    public String readAlternativeNotets(int caseID);
 
     /**
      * public boolean writeCase(Case theCase);
@@ -54,13 +56,8 @@ public interface IDataHandler {
      * @return
      */
     public int writeCitizen(Citizen citizen);
-
-    /**
-     *
-     * @param employee
-     * @return
-     */
-    public boolean writeEmployee(Employee employee);
+    //public boolean writeEmployee(Employee employee);
+    public boolean writeAlternativeNote(int caseID, String note);
 
     /**
      *

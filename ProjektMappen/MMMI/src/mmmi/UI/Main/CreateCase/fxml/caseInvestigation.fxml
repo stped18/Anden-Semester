@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.TextField?>
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.CheckBox?>
@@ -83,7 +83,7 @@
                                                             <Font name="System Bold" size="12.0" />
                                                          </font>
                                                       </Label>
-                                                      <JFXTextField prefHeight="25.0" prefWidth="249.0" />
+                                                      <TextField prefHeight="25.0" prefWidth="249.0" />
                                                    </children>
                                                    <opaqueInsets>
                                                       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -140,7 +140,7 @@
                                                             <Font name="System Bold" size="12.0" />
                                                          </font>
                                                       </Label>
-                                                      <JFXTextField prefHeight="25.0" prefWidth="249.0" />
+                                                      <TextField prefHeight="25.0" prefWidth="249.0" />
                                                    </children>
                                                    <opaqueInsets>
                                                       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -197,7 +197,7 @@
                                                             <Font name="System Bold" size="12.0" />
                                                          </font>
                                                       </Label>
-                                                      <JFXTextField prefHeight="25.0" prefWidth="249.0" />
+                                                      <TextField prefHeight="25.0" prefWidth="249.0" />
                                                    </children>
                                                    <opaqueInsets>
                                                       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -253,7 +253,7 @@
                                                             <Font name="System Bold" size="12.0" />
                                                          </font>
                                                       </Label>
-                                                      <JFXTextField prefHeight="25.0" prefWidth="249.0" />
+                                                      <TextField prefHeight="25.0" prefWidth="249.0" />
                                                    </children>
                                                    <opaqueInsets>
                                                       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -309,7 +309,7 @@
                                                             <Font name="System Bold" size="12.0" />
                                                          </font>
                                                       </Label>
-                                                      <JFXTextField prefHeight="25.0" prefWidth="249.0" />
+                                                      <TextField prefHeight="25.0" prefWidth="249.0" />
                                                    </children>
                                                    <opaqueInsets>
                                                       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -365,7 +365,7 @@
                                                             <Font name="System Bold" size="12.0" />
                                                          </font>
                                                       </Label>
-                                                      <JFXTextField prefHeight="25.0" prefWidth="249.0" />
+                                                      <TextField prefHeight="25.0" prefWidth="249.0" />
                                                    </children>
                                                    <opaqueInsets>
                                                       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -421,7 +421,7 @@
                                                             <Font name="System Bold" size="12.0" />
                                                          </font>
                                                       </Label>
-                                                      <JFXTextField prefHeight="25.0" prefWidth="249.0" />
+                                                      <TextField prefHeight="25.0" prefWidth="249.0" />
                                                    </children>
                                                    <opaqueInsets>
                                                       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -477,7 +477,7 @@
                                                             <Font name="System Bold" size="12.0" />
                                                          </font>
                                                       </Label>
-                                                      <JFXTextField prefHeight="25.0" prefWidth="249.0" />
+                                                      <TextField prefHeight="25.0" prefWidth="249.0" />
                                                    </children>
                                                    <opaqueInsets>
                                                       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -533,7 +533,7 @@
                                                             <Font name="System Bold" size="12.0" />
                                                          </font>
                                                       </Label>
-                                                      <JFXTextField prefHeight="25.0" prefWidth="249.0" />
+                                                      <TextField prefHeight="25.0" prefWidth="249.0" />
                                                    </children>
                                                    <opaqueInsets>
                                                       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -589,7 +589,7 @@
                                                             <Font name="System Bold" size="12.0" />
                                                          </font>
                                                       </Label>
-                                                      <JFXTextField prefHeight="25.0" prefWidth="249.0" />
+                                                      <TextField prefHeight="25.0" prefWidth="249.0" />
                                                    </children>
                                                    <opaqueInsets>
                                                       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -645,7 +645,7 @@
                                                             <Font name="System Bold" size="12.0" />
                                                          </font>
                                                       </Label>
-                                                      <JFXTextField prefHeight="25.0" prefWidth="249.0" />
+                                                      <TextField prefHeight="25.0" prefWidth="249.0" />
                                                    </children>
                                                    <opaqueInsets>
                                                       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

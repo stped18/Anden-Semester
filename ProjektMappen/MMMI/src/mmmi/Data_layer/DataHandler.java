@@ -1,10 +1,20 @@
 package mmmi.Data_layer;
 
+import MMMI.Data_layer.Case;
+import MMMI.Data_layer.Citizen;
+import MMMI.Data_layer.Employee;
+import MMMI.Data_layer.SearchCase;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import mmmi.Data_layer.Connection.DatabaseConnection;
 import mmmi.Data_layer.Interfaces.IDataHandler;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.Arrays;
+import mmmi.Data_layer.Interfaces.IDataHandler;
 import java.util.HashMap;
+import java.sql.PreparedStatement;
+import java.sql.ResultSetMetaData;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -20,6 +30,9 @@ import java.util.logging.Logger;
  * @author gruppe 2
  */
 public class DataHandler extends DatabaseConnection implements IDataHandler {
+
+    private int employeeID;
+    private Employee employee = null;
 
     /**
      * returns case object where caseContents has information from the specified caseID and has regarding citizen object which 
@@ -243,64 +256,63 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
     @Override
     public Employee readEmployee(int employeeID) {
 
-        int id = employeeID;
-        String empolyeeName = "";
-        int roleID = -1;
-        int departmentID = -1;
-        Map<String, String> employeeCases = new HashMap<>();
-        Map<Integer, String> rights = new HashMap<>();
+        if (this.employeeID != employeeID) {
 
-        String selectQuery, fromQuery, whereQuery, query;
-        PreparedStatement keyPreparedStatement = null;
+            this.employeeID = employeeID;
+            String empolyeeName = "";
+            int roleID = -1;
+            Map<Integer, String> employeeCases = new HashMap<>();
+            Map<Integer, String> rights = new HashMap<>();
 
-        try {
-            connectToDB();
+            String selectQuery, fromQuery, whereQuery, query;
+            PreparedStatement keyPreparedStatement = null;
 
-            selectQuery = "SELECT em.departmentdepartmentid AS departmentid, "
-                    + "em.roleroleid AS roleid, "
-                    + "CONCAT(em.firstname, ' ', em.lastname) AS employeename, "
-                    + "ce.casecaseid AS caseid, "
-                    + "CONCAT(ci.firstname, ' ', ci.lastname) AS citizenname ";
-            fromQuery = "FROM employee AS em, case_employee AS ce, \"case\" AS c, citizen AS ci ";
-            whereQuery = "WHERE em.employeeid = ? "
-                    + "AND ce.employeeemployeeid = em.employeeid AND c.caseid = ce.casecaseid "
-                    + "AND ci.citizenid = c.citizenregardingcitizenid;";
-            query = selectQuery + fromQuery + whereQuery;
+            try {
+                connectToDB();
 
-            keyPreparedStatement = dbConnection.prepareStatement(query);
-            keyPreparedStatement.setInt(1, employeeID);
-            dbResultSet = keyPreparedStatement.executeQuery();
+                selectQuery = "SELECT em.roleroleid AS roleid, "
+                        + "CONCAT(em.firstname, ' ', em.lastname) AS employeename, "
+                        + "ce.casecaseid AS caseid, "
+                        + "CONCAT(ci.firstname, ' ', ci.lastname) AS citizenname ";
+                fromQuery = "FROM employee AS em, case_employee AS ce, \"case\" AS c, citizen AS ci ";
+                whereQuery = "WHERE em.employeeid = ? "
+                        + "AND ce.employeeemployeeid = em.employeeid AND c.caseid = ce.casecaseid "
+                        + "AND ci.citizenid = c.citizenregardingcitizenid;";
+                query = selectQuery + fromQuery + whereQuery;
 
-            while (dbResultSet.next()) {
-                departmentID = dbResultSet.getInt("departmentid");
-                roleID = dbResultSet.getInt("roleid");
-                empolyeeName = dbResultSet.getString("employeename");
-                employeeCases.put(dbResultSet.getString("caseid"), dbResultSet.getString("citizenname"));
+                keyPreparedStatement = dbConnection.prepareStatement(query);
+                keyPreparedStatement.setInt(1, employeeID);
+                dbResultSet = keyPreparedStatement.executeQuery();
+
+                while (dbResultSet.next()) {
+                    roleID = dbResultSet.getInt("roleid");
+                    empolyeeName = dbResultSet.getString("employeename");
+                    employeeCases.put(dbResultSet.getInt("caseid"), dbResultSet.getString("citizenname"));
+                }
+
+                selectQuery = "SELECT r.rightsid AS rightsid, r,rightsname AS rightsname ";
+                fromQuery = "FROM role_rights AS rr, rights AS r ";
+                whereQuery = "WHERE rr.roleroleid = " + roleID + " AND r.rightsid = rr.rightsrightsid;";
+
+                query = selectQuery + fromQuery + whereQuery;
+
+                dbStatement = dbConnection.createStatement();
+                dbResultSet = dbStatement.executeQuery(query);
+
+                while (dbResultSet.next()) {
+                    rights.put(dbResultSet.getInt("rightsid"), dbResultSet.getString("rightsname"));
+                }
+            } catch (SQLException ex) {
+                System.out.println("getEmployee:\nSQLState:" + ex.getSQLState() + "\nMessage:" + ex.getMessage());
+                Logger.getLogger(DataHandler.class.getName()).log(Level.SEVERE, null, ex);
+                disconnectDB();
+            } finally {
+                disconnectDB();
             }
-
-            selectQuery = "SELECT r.rightsid AS rightsid, r,rightsname AS rightsname ";
-            fromQuery = "FROM role_rights AS rr, rights AS r ";
-            whereQuery = "WHERE rr.roleroleid = " + roleID + " AND r.rightsid = rr.rightsrightsid;";
-
-            query = selectQuery + fromQuery + whereQuery;
-
-            dbStatement = dbConnection.createStatement();
-            dbResultSet = dbStatement.executeQuery(query);
-
-            while (dbResultSet.next()) {
-                rights.put(dbResultSet.getInt("rightsid"), dbResultSet.getString("rightsname"));
-            }
-        } catch (SQLException ex) {
-            System.out.println("getEmployee:\nSQLState:" + ex.getSQLState() + "\nMessage:" + ex.getMessage());
-            Logger
-                    .getLogger(DataHandler.class
-                            .getName()).log(Level.SEVERE, null, ex);
-            disconnectDB();
-        } finally {
-            disconnectDB();
+            employee = new Employee(employeeID, empolyeeName, roleID, employeeCases, rights);
         }
 
-        return new Employee(employeeID, empolyeeName, roleID, departmentID, employeeCases, rights);
+        return employee;
     }
 
     /**
@@ -611,8 +623,97 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
     }
 
     @Override
-    public boolean writeEmployee(Employee employee) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String readAlternativeNotets(int caseID) {
+
+        String selectQuery, fromQuery, whereQuery, query;
+        String note = null;
+
+        try {
+            connectToDB();
+
+            selectQuery = "SELECT alternativenotes ";
+            fromQuery = "FROM case_contents AS cc ";
+            whereQuery = "WHERE cc.casecaseid = ? ORDER BY cc.datestamp DESC LIMIT 1;";
+            query = selectQuery + fromQuery + whereQuery;
+
+            dbPreparedStatement = dbConnection.prepareStatement(query);
+            dbPreparedStatement.setInt(1, caseID);
+            dbResultSet = dbPreparedStatement.executeQuery();
+
+            while (dbResultSet.next()) {
+                note = dbResultSet.getString("alternativenotes");
+            }
+
+        } catch (SQLException ex) {
+            System.out.println("read note:\nSQLState: " + ex.getSQLState() + "\nMessage: " + ex.getMessage());
+        } finally {
+            disconnectDB();
+        }
+
+        if (note == null) {
+            note = "";
+        }
+
+        return note;
+    }
+
+    @Override
+    public boolean writeAlternativeNote(int caseID, String note) {
+
+        String selectQuery, fromQuery, whereQuery, query;
+        Map<String, String> valueMap = new HashMap<>();
+
+        try {
+            connectToDB();
+
+            selectQuery = "SELECT * ";
+            fromQuery = "FROM case_contents AS cc ";
+            whereQuery = "WHERE cc.casecaseid = ? ORDER BY cc.datestamp DESC LIMIT 1;";
+            query = selectQuery + fromQuery + whereQuery;
+
+            dbPreparedStatement = dbConnection.prepareStatement(query);
+            dbPreparedStatement.setInt(1, caseID);
+            dbResultSet = dbPreparedStatement.executeQuery();
+            ResultSetMetaData rsmd = dbResultSet.getMetaData();
+
+            while (dbResultSet.next()) {
+                for (int i = 4; i <= rsmd.getColumnCount(); i++) {
+                    if ("alternativenotes".equals(rsmd.getColumnName(i)) || dbResultSet.getString(i) == null) {
+                    } else {
+                        valueMap.put(rsmd.getColumnName(i), dbResultSet.getString(i));
+                    }
+                }
+            }
+
+            StringBuilder keysb = new StringBuilder();
+            StringBuilder questionmarksb = new StringBuilder();
+
+            for (String key : valueMap.keySet()) {
+                keysb.append(",").append(key);
+                questionmarksb.append(", ?");
+            }
+
+            String insert = "INSERT INTO case_contents (casecaseid, alternativenotes " + keysb.toString() + ") ";
+            String values = "VALUES (?, ?" + questionmarksb.toString() + ");";
+            query = insert + values;
+
+            dbPreparedStatement = dbConnection.prepareStatement(query);
+            dbPreparedStatement.setInt(1, caseID);
+            dbPreparedStatement.setString(2, note);
+            for (int i = 3; i < valueMap.size() + 3; i++) {
+                dbPreparedStatement.setString(i, valueMap.get(rsmd.getColumnName(i)));
+            }
+            dbResultSet = dbPreparedStatement.executeQuery();
+
+            return true;
+
+        } catch (SQLException ex) {
+            System.out.println("write note:\nSQLState: " + ex.getSQLState() + "\nMessage: " + ex.getMessage());
+            return false;
+        } finally {
+            disconnectDB();
+        }
+
     }
 
     public static void main(String[] args) {

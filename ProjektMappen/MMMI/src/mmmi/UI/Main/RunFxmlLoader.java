@@ -24,7 +24,7 @@ public class RunFxmlLoader {
             pane = FXMLLoader.load(getClass().getResource(fxml));
             subPane.getChildren().setAll(pane);
         } catch (IOException ex) {
-            Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Message: " + ex.getMessage() + ex.getLocalizedMessage());
         }
     }
 

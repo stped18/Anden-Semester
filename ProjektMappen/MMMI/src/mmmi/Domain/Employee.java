@@ -8,10 +8,10 @@ public class Employee {
     private final String name;
     private final int roleID;
     private final int departmentID;
-    private final Map<String, String> employeeCases;
+    private final Map<Integer, String> employeeCases;
     private final Map<Integer, String> rights;
 
-    public Employee(int employeeID, String name, int roleID, int departmentID, Map<String, String> employeeCases, Map<Integer, String> rights) {
+    public Employee(int employeeID, String name, int roleID, int departmentID, Map<Integer, String> employeeCases, Map<Integer, String> rights) {
         this.employeeID = employeeID;
         this.name = name;
         this.roleID = roleID;
@@ -36,7 +36,7 @@ public class Employee {
         return this.departmentID;
     }
 
-    public Map<String, String> getEmployeeCases() {
+    public Map<Integer, String> getEmployeeCases() {
         return this.employeeCases;
     }
 

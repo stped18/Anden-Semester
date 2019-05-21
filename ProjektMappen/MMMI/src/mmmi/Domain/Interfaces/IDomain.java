@@ -17,6 +17,9 @@ public interface IDomain {
     public void setDepartmentID(int departmentID);
     public void setLoginEmployee(IEmployee employee);
     
+    public String getnote(int caseID);
+    public boolean writenote(int caseID, String note);
+    
     
     
     

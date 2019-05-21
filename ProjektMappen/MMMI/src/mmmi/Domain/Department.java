@@ -215,11 +215,11 @@ public class Department implements IDomain {
         return false;
     }
     
-    public String getnote(String caseID) {
+    public String getnote(int caseID) {
         return dataHandler.readAlternativeNotets(caseID);
     }
     
-    public boolean writenote(String caseID, String note) {
+    public boolean writenote(int caseID, String note) {
         System.out.println("in domain");
         return dataHandler.writeAlternativeNote(caseID, note);
     }
@@ -235,7 +235,7 @@ public class Department implements IDomain {
 
         String employeeName = dataHandler.readEmployee(employeeid).getName();
         int roleID = dataHandler.readEmployee(employeeid).getRoleID();
-        Map<String, String> casemap = dataHandler.readEmployee(employeeid).getEmployeeCases();
+        Map<Integer, String> casemap = dataHandler.readEmployee(employeeid).getEmployeeCases();
         Map<Integer, String> rightsMap = dataHandler.readEmployee(employeeid).getrights();
 
         return mmmiEmployee = new Employee(employeeid, employeeName, this.departmentID, roleID, casemap, rightsMap);

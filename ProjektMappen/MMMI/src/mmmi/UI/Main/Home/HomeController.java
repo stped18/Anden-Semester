@@ -39,7 +39,7 @@ public class HomeController implements Initializable {
     @FXML
     private Button Savebtn;
     
-    String caseid = "";
+    int caseid = -1;
    
 
     /**
@@ -61,11 +61,11 @@ public class HomeController implements Initializable {
         String fullName = department.getEmployee().getName();
         employeeName.setText(fullName);
 
-        Map<String, String> caseMap = department.getEmployee().getEmployeeCases();
+        Map<Integer, String> caseMap = department.getEmployee().getEmployeeCases();
         numberOfCases.setText(caseMap.size() + "");
 
-        for (Map.Entry<String, String> entry : caseMap.entrySet()) {
-            String key = entry.getKey();
+        for (Map.Entry<Integer, String> entry : caseMap.entrySet()) {
+            int key = entry.getKey();
             String valuve = entry.getValue();
 
             casesNo.add(new UIEmployee(key, valuve));

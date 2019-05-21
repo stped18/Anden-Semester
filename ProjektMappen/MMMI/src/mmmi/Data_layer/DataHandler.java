@@ -132,7 +132,7 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
             this.employeeID = employeeID;
             String empolyeeName = "";
             int roleID = -1;
-            Map<String, String> employeeCases = new HashMap<>();
+            Map<Integer, String> employeeCases = new HashMap<>();
             Map<Integer, String> rights = new HashMap<>();
 
             String selectQuery, fromQuery, whereQuery, query;
@@ -158,7 +158,7 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
                 while (dbResultSet.next()) {
                     roleID = dbResultSet.getInt("roleid");
                     empolyeeName = dbResultSet.getString("employeename");
-                    employeeCases.put(dbResultSet.getString("caseid"), dbResultSet.getString("citizenname"));
+                    employeeCases.put(dbResultSet.getInt("caseid"), dbResultSet.getString("citizenname"));
                 }
 
                 selectQuery = "SELECT r.rightsid AS rightsid, r,rightsname AS rightsname ";
@@ -464,7 +464,7 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
     }
 
     @Override
-    public String readAlternativeNotets(String caseID) {
+    public String readAlternativeNotets(int caseID) {
 
         String selectQuery, fromQuery, whereQuery, query;
         String note = null;
@@ -478,7 +478,7 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
             query = selectQuery + fromQuery + whereQuery;
 
             dbPreparedStatement = dbConnection.prepareStatement(query);
-            dbPreparedStatement.setString(1, caseID);
+            dbPreparedStatement.setInt(1, caseID);
             dbResultSet = dbPreparedStatement.executeQuery();
 
             while (dbResultSet.next()) {
@@ -499,7 +499,7 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
     }
 
     @Override
-    public boolean writeAlternativeNote(String caseID, String note) {
+    public boolean writeAlternativeNote(int caseID, String note) {
 
         String selectQuery, fromQuery, whereQuery, query;
 
@@ -514,20 +514,13 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
             query = selectQuery + fromQuery + whereQuery;
 
             dbPreparedStatement = dbConnection.prepareStatement(query);
-            dbPreparedStatement.setString(1, caseID);
+            dbPreparedStatement.setInt(1, caseID);
             dbResultSet = dbPreparedStatement.executeQuery();
             ResultSetMetaData rsmd = dbResultSet.getMetaData();
 
             while (dbResultSet.next()) {
-                for (int i = 1; i <= rsmd.getColumnCount(); i++) {
-                    if ("alternativenotes".equals(rsmd.getColumnName(i))) {
-                        valueMap.put(rsmd.getColumnName(i), note);
-                    } else if ("casecontentid".equals(rsmd.getColumnName(i))) {
-                        // Is empty so we dont set casecontent id.
-                    } else if ("datestamp".equals(rsmd.getColumnName(i))) {
-                        // Is empty so we dont set datestamp.
-                    } else if ("casecaseid".equals(rsmd.getColumnName(i))) {
-                        // Is empty so we dont set case ID.
+                for (int i = 4; i <= rsmd.getColumnCount(); i++) {
+                    if ("alternativenotes".equals(rsmd.getColumnName(i)) || dbResultSet.getString(i) == null || dbResultSet.getString(i) == "null") {
                     } else {
                         valueMap.put(rsmd.getColumnName(i), dbResultSet.getString(i));
                     }
@@ -536,23 +529,25 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
 
             StringBuilder sb = new StringBuilder();
             StringBuilder keysb = new StringBuilder();
-            
+            StringBuilder someString = new StringBuilder();
+
             for (String key : valueMap.keySet()) {
-                keysb.append(key).append(",");
+                keysb.append(",").append(key);
+                someString.append(", ?");
             }
 
-            for (String value : valueMap.values()) {
-                sb.append("'").append(value).append("',");
+            String insert = "INSERT INTO case_contents (casecaseid, alternativenotes " + keysb.toString() + ") ";
+            String values = "VALUES (?, ?" + someString.toString() + ");";
+            query = insert + values;
+
+            dbPreparedStatement = dbConnection.prepareStatement(query);
+            dbPreparedStatement.setInt(1, caseID);
+            dbPreparedStatement.setString(2, note);
+            for (int i = 3; i < valueMap.size() + 3; i++) {
+                dbPreparedStatement.setString(i, valueMap.get(rsmd.getColumnName(i)));
             }
-            
-            System.out.println(sb.toString() + "\n" + keysb.toString());
-            
-            String insert = "INSERT INTO case_contents (casecaseid," + keysb.toString() + ") ";
-            String values = "VALUES (" + caseID + ", " + sb.toString() + ");";
-            
-            dbStatement = dbConnection.createStatement();
-            dbStatement.executeQuery(insert + values);
-            
+            dbResultSet = dbPreparedStatement.executeQuery();
+
             return true;
 
         } catch (SQLException ex) {

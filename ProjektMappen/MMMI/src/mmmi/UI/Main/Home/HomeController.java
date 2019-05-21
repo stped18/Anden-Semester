@@ -24,26 +24,29 @@ public class HomeController implements Initializable {
 
     @FXML
     private TableView<UIEmployee> caseTable;
-    TableColumn<UIEmployee, String> number;
-    TableColumn<UIEmployee, String> name;
     @FXML
     private Label employeeName;
     @FXML
     private Label numberOfCases;
     @FXML
     private TextArea alterentativeNotets;
+    @FXML
+    private Button Savebtn;
     
+    private TableColumn<UIEmployee, String> number;
+    private TableColumn<UIEmployee, String> name;
     private ObservableList<UIEmployee> casesNo;
 
     private IDomain department = Department.getInstance();
-    @FXML
-    private Button Savebtn;
+    
     
     int caseid = -1;
    
 
     /**
      * Initializes the controller class.
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -74,12 +77,16 @@ public class HomeController implements Initializable {
 
     }
 
+    /**
+     * 
+     * @param event 
+     */
     @FXML
     private void eventnote(MouseEvent event) {
 
         if (event.getSource() == caseTable) {
             if (event.getClickCount() >= 2) {
-                System.out.println("2 click");
+                // TODO: Opens the case window with all the case data, with the right caseID.
             } else {
                 caseid = caseTable.getSelectionModel().getSelectedItem().getNumber();
 
@@ -87,9 +94,12 @@ public class HomeController implements Initializable {
         }
     }
 
+    /**
+     * 
+     * @param event 
+     */
     @FXML
     private void eventnotes(ActionEvent event) {
-        System.out.println("Gemmer!!!");
         department.writenote(caseid, alterentativeNotets.getText());
     }
 }

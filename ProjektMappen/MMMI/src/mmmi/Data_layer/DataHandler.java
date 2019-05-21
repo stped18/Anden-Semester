@@ -485,8 +485,8 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
                 note = dbResultSet.getString("alternativenotes");
             }
 
-        } catch (SQLException e) {
-            disconnectDB();
+        } catch (SQLException ex) {
+            System.out.println("read note:\nSQLState: " + ex.getSQLState() + "\nMessage: " + ex.getMessage());
         } finally {
             disconnectDB();
         }
@@ -502,7 +502,6 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
     public boolean writeAlternativeNote(int caseID, String note) {
 
         String selectQuery, fromQuery, whereQuery, query;
-
         Map<String, String> valueMap = new HashMap<>();
 
         try {
@@ -520,24 +519,23 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
 
             while (dbResultSet.next()) {
                 for (int i = 4; i <= rsmd.getColumnCount(); i++) {
-                    if ("alternativenotes".equals(rsmd.getColumnName(i)) || dbResultSet.getString(i) == null || dbResultSet.getString(i) == "null") {
+                    if ("alternativenotes".equals(rsmd.getColumnName(i)) || dbResultSet.getString(i) == null) {
                     } else {
                         valueMap.put(rsmd.getColumnName(i), dbResultSet.getString(i));
                     }
                 }
             }
 
-            StringBuilder sb = new StringBuilder();
             StringBuilder keysb = new StringBuilder();
-            StringBuilder someString = new StringBuilder();
+            StringBuilder questionmarksb = new StringBuilder();
 
             for (String key : valueMap.keySet()) {
                 keysb.append(",").append(key);
-                someString.append(", ?");
+                questionmarksb.append(", ?");
             }
 
             String insert = "INSERT INTO case_contents (casecaseid, alternativenotes " + keysb.toString() + ") ";
-            String values = "VALUES (?, ?" + someString.toString() + ");";
+            String values = "VALUES (?, ?" + questionmarksb.toString() + ");";
             query = insert + values;
 
             dbPreparedStatement = dbConnection.prepareStatement(query);
@@ -551,8 +549,7 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
             return true;
 
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-            disconnectDB();
+            System.out.println("write note:\nSQLState: " + ex.getSQLState() + "\nMessage: " + ex.getMessage());
             return false;
         } finally {
             disconnectDB();

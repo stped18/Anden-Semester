@@ -6,27 +6,23 @@
 package mmmi.UI.Main.CreateCase;
 
 import com.jfoenix.controls.JFXTextField;
-import com.sun.javafx.scene.control.skin.VirtualFlow;
-import java.awt.Component;
-import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputControl;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
@@ -38,11 +34,11 @@ import javafx.scene.layout.VBox;
 public class CaseInvestigationController implements Initializable {
 
     @FXML
-    private TextArea fxTa_physicsInformationCitizen;
+    private TextArea fxTa_physicsInformationCitizen = new TextArea();
     @FXML
-    private TextArea fxTa_physicsInformatinOthers;
+    private TextArea fxTa_physicsInformatinOthers = new TextArea();
     @FXML
-    private TextArea fxTa_physicsRemarks;
+    private TextArea fxTa_physicsRemarks = new TextArea();
     @FXML
     private RadioButton fxRb_physicalLevelFunction0;
     @FXML
@@ -54,11 +50,11 @@ public class CaseInvestigationController implements Initializable {
     @FXML
     private RadioButton fxRb_physicalLevelFunction4;
     @FXML
-    private TextArea fxTa_mentallyInformationCitizen;
+    private TextArea fxTa_mentallyInformationCitizen = new TextArea();
     @FXML
-    private TextArea fxTa_mentallyInformatinOthers;
+    private TextArea fxTa_mentallyInformatinOthers = new TextArea();
     @FXML
-    private TextArea fxTa_mentallyRemarks;
+    private TextArea fxTa_mentallyRemarks = new TextArea();
     @FXML
     private RadioButton fxRb_mentallyLevelFunction0;
     @FXML
@@ -224,7 +220,6 @@ public class CaseInvestigationController implements Initializable {
     @FXML
     private RadioButton fxRb_evaluated4;
 
-    Map<String, String> caseInvestigation;
     @FXML
     private JFXTextField fxTf_physicalThemes;
     @FXML
@@ -256,57 +251,116 @@ public class CaseInvestigationController implements Initializable {
     @FXML
     private VBox fxVB_TiledpaneRoot;
 
+    Map<String, String> caseInvestigation;
+ List<RadioButton> radioButtonsList =new ArrayList<>();
+ Map<String, ToggleGroup> tName = new HashMap<>();
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        getAllRadioNodes( fxAcfiedsRoot);
+        caseInvestigation = new HashMap<>();
         
+
     }
 
     @FXML
     private void BtnHandler(ActionEvent event) {
-        String name;
+
         if (event.getSource() == fxBtn_save) {
-            
+            getAllNodes(fxAc_CaseInvestigationroot);
 
-        }
-
-    }
-public Map<String, String> getnode(){
-    caseInvestigation = new HashMap<>();
-   for (Node node : fxVB_TiledpaneRoot.getChildren()) {
-    System.out.println("Id: " + node.getId());
-        String s = node.getId().toString();
-                if (node instanceof TextArea) {
-                    System.out.println("1");
-                    caseInvestigation.put(s, ((TextArea) node).getText());
-
-                } else if (node instanceof JFXTextField) {
-                    System.out.println("2");
-                    caseInvestigation.put(s, ((JFXTextField) node).getText());
-                }
-                      else if (node instanceof RadioButton) {
-                    caseInvestigation.put(s, ((RadioButton) node).toString());
-                }
-                System.out.println("3");
+            for (Map.Entry<String, String> entry : caseInvestigation.entrySet()) {
+                Object key = entry.getKey();
+                Object val = entry.getValue();
+                System.out.println(key + "  :  " + val);
             }
-
-            return caseInvestigation;
-}
-    
-    
-    public static void main(String[] args) {
-        CaseInvestigationController c = new CaseInvestigationController();
-             System.out.println(c.getnode().toString());
-             
-            
         }
+
+    }
+    public ArrayList<Node> getAllRadioNodes(Parent root) {
+        ArrayList<Node> ranodes = new ArrayList<Node>();
+         addRadiobutton(root, ranodes);
+        return ranodes;
     }
 
+    private void addRadiobutton(Parent parent, ArrayList<Node> ranodes) {
+       
+        for (Node node : parent.getChildrenUnmodifiable()) {
+            System.out.println("hej");
+            ranodes.add(node);
+            if (node instanceof Parent) {
+                if (node instanceof RadioButton) { 
+                    radioButtonsList.add(((RadioButton)node));
+                    System.out.println(((RadioButton)node).getId().toString());
+                } 
+                    addRadiobutton((Parent) node, ranodes);
+            }
+            
+           
 
+        }
+        
+           System.out.println("ude ad loop");
+           
+         for(RadioButton radioButton: radioButtonsList){
+             String r = radioButton.getId().substring(5,radioButton.getId().length()-1);
+             System.out.println(r);
+              
+             if(tName.containsKey(r)){
+                    radioButton.setToggleGroup(tName.get(r));
+                    System.out.println(tName.toString());
+                    
+             }else {
+                 tName.put(r, new ToggleGroup());
+                 radioButton.setToggleGroup(tName.get(r));
+             }
+         }
+    }
+    
+ public ArrayList<Node> getAllNodes(Parent root) {
+        ArrayList<Node> nodes = new ArrayList<Node>();
+        addAllDescendents(root, nodes);
+        return nodes;
+    }
+ 
+    private void addAllDescendents(Parent parent, ArrayList<Node> nodes) {
 
+        for (Node node : parent.getChildrenUnmodifiable()) {
+            nodes.add(node);
+            if (node instanceof Parent) {
 
+                if (node instanceof TextArea) {
+                    if (!((TextArea) node).getText().isEmpty()) {
+                        String key = ((TextArea) node).getId().toString().substring(5);
+                        caseInvestigation.put(key, ((TextArea) node).getText());
+                    }
+                }
+                if (node instanceof JFXTextField) {
+                    if (!((JFXTextField) node).getText().isEmpty()) {
+                        System.out.println(((JFXTextField) node).getText());
+                        String key = ((JFXTextField) node).getId().toString().substring(5);
+                        caseInvestigation.put(key, ((JFXTextField) node).getText());
+
+                    }
+                }
+                if (node instanceof RadioButton) {
+                    if (((RadioButton) node).isSelected()) {
+
+                        String key = ((RadioButton) node).getId().toString().substring(5);
+                        caseInvestigation.put(key, ((RadioButton) node).getText());
+                    }
+                }
+
+            }
+//                System.out.println("intet");
+            addAllDescendents((Parent) node, nodes);
+        }
+
+    }
+
+}
 
 
 

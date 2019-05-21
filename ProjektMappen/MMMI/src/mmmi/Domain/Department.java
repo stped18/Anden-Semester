@@ -6,8 +6,8 @@ import MMMI.Data_layer.SearchCase;
 import java.util.ArrayList;
 import java.util.HashMap;
 import LoginSystem.Domain.IEmployee;
-import MMMI.Data_layer.DataHandler;
-import MMMI.Data_layer.Interfaces.IDataHandler;
+import mmmi.Data_layer.DataHandler;
+import mmmi.Data_layer.Interfaces.IDataHandler;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -214,6 +214,15 @@ public class Department implements IDomain {
         }
         return false;
     }
+    
+    public String getnote(int caseID) {
+        return dataHandler.readAlternativeNotets(caseID);
+    }
+    
+    public boolean writenote(int caseID, String note) {
+        System.out.println("in domain");
+        return dataHandler.writeAlternativeNote(caseID, note);
+    }
 
     @Override
     public Employee getEmployee() {
@@ -226,7 +235,7 @@ public class Department implements IDomain {
 
         String employeeName = dataHandler.readEmployee(employeeid).getName();
         int roleID = dataHandler.readEmployee(employeeid).getRoleID();
-        Map<String, String> casemap = dataHandler.readEmployee(employeeid).getEmployeeCases();
+        Map<Integer, String> casemap = dataHandler.readEmployee(employeeid).getEmployeeCases();
         Map<Integer, String> rightsMap = dataHandler.readEmployee(employeeid).getrights();
 
         return mmmiEmployee = new Employee(employeeid, employeeName, this.departmentID, roleID, casemap, rightsMap);

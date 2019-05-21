@@ -1,20 +1,23 @@
-package MMMI.Data_layer.Interfaces;
+package mmmi.Data_layer.Interfaces;
 
 import MMMI.Data_layer.Case;
 import MMMI.Data_layer.Citizen;
 import MMMI.Data_layer.Employee;
 import MMMI.Data_layer.SearchCase;
 import java.util.List;
+import java.util.Map;
 
 public interface IDataHandler {
 
     public Case readCase(String caseID);
     public Citizen readCitizen(int citizenID);
     public Employee readEmployee(int employeeID);
+    public String readAlternativeNotets(int caseID);
 
     public boolean writeCase(Case theCase);
     public int writeCitizen(Citizen citizen);
-    public boolean writeEmployee(Employee employee);
+    //public boolean writeEmployee(Employee employee);
+    public boolean writeAlternativeNote(int caseID, String note);
 
     public boolean updateCitizen(Citizen citizen);
 

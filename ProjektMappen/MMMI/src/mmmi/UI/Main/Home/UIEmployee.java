@@ -5,6 +5,7 @@
  */
 package mmmi.UI.Main.Home;
 
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 /**
@@ -13,13 +14,13 @@ import javafx.beans.property.SimpleStringProperty;
 public class UIEmployee {
 
     private SimpleStringProperty name;
-    private SimpleStringProperty number;
+    private SimpleIntegerProperty number;
 
     public UIEmployee() {
     }
 
-    public UIEmployee(String number, String name) {
-        this.number = new SimpleStringProperty(number);
+    public UIEmployee(int number, String name) {
+        this.number = new SimpleIntegerProperty(number);
         this.name = new SimpleStringProperty(name);
     }
 
@@ -31,12 +32,12 @@ public class UIEmployee {
         this.name = new SimpleStringProperty(name);
     }
 
-    public String getNumber() {
+    public int getNumber() {
         return number.get();
     }
 
-    public void setNumber(String number) {
-        this.number = new SimpleStringProperty(number);
+    public void setNumber(int number) {
+        this.number = new SimpleIntegerProperty(number);
     }
 
 }

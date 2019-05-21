@@ -13,159 +13,66 @@ import javafx.scene.layout.AnchorPane;
 import mmmi.UI.Main.RunFxmlLoader;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.fxml.FXMLLoader;
-import mmmi.UI.Main.MainController;
 
 public class CreateCaseController extends RunFxmlLoader implements Initializable {
-
 
     @FXML
     private Button fxnextBtn;
     @FXML
     private Button fxBackBtn;
-
     @FXML
     private Button fxSaveBtn;
-
     @FXML
     private AnchorPane fxSubSubpane;
-    
-    ObservableList<String> list;
 
-    int count = 0;
+    List<String> list;
+
+    private int count = 0;
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-        
-                this.list = FXCollections.observableArrayList();
-                list.add(0, "createCase/fxml/caseOpeningNEW.fxml");
-                list.add(1, "createCase/fxml/caseInvestigation.fxml"); 
-                list.add(2, "createCase/fxml/caseOpeningNEW.fxml");
-                changeFxml(fxSubSubpane, list.get(0));
 
-
+        this.list = new ArrayList<>();
+        list.add(0, "../createcase/fxml/caseOpeningNEW.fxml");
+        list.add(1, "../createcase/fxml/caseInvestigation.fxml");
+        changeFxml(fxSubSubpane, list.get(0));
+        chanceScene();
     }
 
     @FXML
     private void buttonHandler(ActionEvent event) {
-        
-           if(event.getSource()==fxnextBtn){
-               
-               if(count==0){
-                   changeFxml(fxSubSubpane, list.get(1));
-                   count = 1;
-               }
-               if(count ==1){
-                    changeFxml(fxSubSubpane, list.get(2));
-               }
-           } 
-        
-         
-  
-       
+
+        if (event.getSource() == fxnextBtn) {
+            this.count++;
+            chanceScene();
+        }
+        if (event.getSource() == fxBackBtn) {
+            this.count--;
+            chanceScene();
+        }
+        if (event.getSource() == fxSaveBtn) {
+            System.out.println("SKRIV KODE HER!!!!");
+        }
     }
 
-
+    private void chanceScene() {
+        switch (this.count) {
+            case 0:
+                changeFxml(fxSubSubpane, list.get(count));
+                fxnextBtn.setVisible(true);
+                fxBackBtn.setVisible(false);
+                break;
+            case 1:
+                changeFxml(fxSubSubpane, list.get(count));
+                fxnextBtn.setVisible(false);
+                fxBackBtn.setVisible(true);
+                break;
+        }
+    }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

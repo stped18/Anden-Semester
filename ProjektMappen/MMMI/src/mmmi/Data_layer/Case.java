@@ -9,16 +9,25 @@ public class Case {
     private final int caseID;
     private String caseStatus;
     private int regardingCitizenID;
-
+    private int departmentID;
     private List<Integer> requestingCitizens;
     private Map<String, String> caseContent;
 
-    public Case(int caseID, String caseStatus, int regardingCitizenID, List<Integer> requestingCitizens, Map<String, String> caseContent) {
+    public Case(int caseID, int departmentID, String caseStatus, int regardingCitizenID, List<Integer> requestingCitizens, Map<String, String> caseContent) {
         this.caseID = caseID;
+        this.departmentID = departmentID;
         this.caseStatus = caseStatus;
         this.regardingCitizenID = regardingCitizenID;
         this.requestingCitizens = requestingCitizens;
         this.caseContent = caseContent;
+    }
+
+    public int getDepartmentID() {
+        return departmentID;
+    }
+
+    public void setDepartmentID(int departmentID) {
+        this.departmentID = departmentID;
     }
 
     public String getCaseStatus() {
@@ -63,6 +72,13 @@ public class Case {
         this.caseContent = caseContent;
     }
 
+    @Override
+    public String toString() {
+        return "Case{" + "caseID=" + caseID + ", caseStatus=" + caseStatus + ", regardingCitizenID=" + regardingCitizenID + ", departmentID=" + departmentID + ", requestingCitizens=" + requestingCitizens + ", caseContent=" + caseContent + '}';
+    }
+    
+    
+
     /**
      *
      * @param theCase
@@ -73,6 +89,7 @@ public class Case {
         List<String> stringColoumnBuilder = new ArrayList<>();
         // put mapKeys to list
         for (String mapKey : theCase.getCaseContent().keySet()) {
+
             stringColoumnBuilder.add(mapKey);
         }
         // build string, seperated with ","

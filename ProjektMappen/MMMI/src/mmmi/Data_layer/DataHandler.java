@@ -1,15 +1,15 @@
 package mmmi.Data_layer;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import mmmi.Data_layer.Connection.DatabaseConnection;
 import mmmi.Data_layer.Interfaces.IDataHandler;
-import java.sql.ResultSet;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.sql.PreparedStatement;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
@@ -19,10 +19,11 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
 
     @Override
     public Case readCase(int caseID) {
-        String getCaseQuery = "SELECT * "
+        String getCaseQuery = "SELECT c.departmentdepartmentid, c.casestatus, c.citizenregardingcitizenid, cr.citizenrequestingcitizenid, cc.* "
                 + "FROM \"case\" AS c "
                 + "RIGHT JOIN case_contents AS cc ON (c.caseid = cc.casecaseid) "
-                + "RIGHT JOIN case_requestingcitizen AS cr ON (c.caseid = cr.casecaseid)";
+                + "RIGHT JOIN case_requestingcitizen AS cr ON (c.caseid = cr.casecaseid) "
+                + "WHERE c.caseid = " + caseID;
 //        String getCaseQuery = "SELECT *\n"
 //                + "FROM mmmidb.\"public\".\"Case\" AS c"
 //                + "RIGHT JOIN mmmidb.\"public\".\"Case_contents\" ON (c.caseID = mmmidb.\"public\".\"Case_contents\".casecaseid)"
@@ -32,6 +33,8 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
         Map<String, String> columnToValuesMap = new HashMap<>();
 
         Integer regardingCitizenID = 0;
+        String caseStatus = "";
+        int departmentID = 0;
 
         connectToDB();
 
@@ -45,7 +48,7 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
 
             int columnCount = rsmd.getColumnCount();
 
-            for (int i = 1; i <= columnCount; i++) {
+            for (int i = 7; i <= columnCount; i++) {
                 String columnName = rsmd.getColumnName(i);
                 columnNames.add(columnName);
 
@@ -56,12 +59,15 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
 
             while (dbResultSet.next()) {
 
+                requstingCitizenIDs.add(dbResultSet.getInt("citizenrequestingcitizenid"));
+
+                regardingCitizenID = dbResultSet.getInt("citizenregardingcitizenid");
+
+                caseStatus = dbResultSet.getString("casestatus");
+
+                departmentID = dbResultSet.getInt("departmentdepartmentid");
+
                 for (String columnName : columnNames) {
-                    if (columnName.equalsIgnoreCase("citizenrequestingcitizenid")) {
-                        requstingCitizenIDs.add(dbResultSet.getInt(String.valueOf(columnName)));
-                    } else if (columnName.equalsIgnoreCase("citizenregardingcitizenid")) {
-                        regardingCitizenID = dbResultSet.getInt(String.valueOf(columnName));
-                    }
 
                     //Get the list mapped to column name
 //                    String columnDataList = columnToValuesMap.get(columnName);
@@ -79,8 +85,10 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
             System.out.println(e.getMessage());
         }
         //List<Integer> rc = caze.getRequestingCitizen();
+
         disconnectDB();
-        return new Case(caseID, "Igang", regardingCitizenID, requstingCitizenIDs, columnToValuesMap);
+
+        return new Case(caseID, departmentID, caseStatus, regardingCitizenID, requstingCitizenIDs, columnToValuesMap);
     }
 
     /**
@@ -118,15 +126,18 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
                     dbResultSet.next();
                     int rowCount = dbResultSet.getInt(1);
 
-                    String caseContentQuery = "SELECT cc.*, c.* FROM case_contents AS cc, \"case\" AS c WHERE cc.casecaseid = caseid AND citizenregardingcitizenid = ? ORDER BY cc.datestamp DESC LIMIT 1";
+                    String caseContentQuery = "SELECT c.caseid, c.departmentid, c.casestatus, cc.* FROM case_contents AS cc, \"case\" AS c WHERE cc.casecaseid = caseid AND citizenregardingcitizenid = ? ORDER BY cc.datestamp DESC LIMIT 1";
                     fetchCaseContent = dbConnection.prepareStatement(caseContentQuery);
                     fetchCaseContent.setInt(1, citizenID);
                     caseContentSet = fetchCaseContent.executeQuery();
 
                     caseContentSet.next();
-                    caseID = caseContentSet.getInt(2);
+                    caseID = caseContentSet.getInt(1);
+                    int departmentID = caseContentSet.getInt(2);
+                    String caseStatus = caseContentSet.getString(3);
+
                     for (int i = 3; i <= rowCount; i++) {
-                        caseContent.put(dbResultSet.getString(2), caseContentSet.getString(i));
+                        caseContent.put(dbResultSet.getString(7), caseContentSet.getString(i));
                         if (i < rowCount) {
                             dbResultSet.next();
                         }
@@ -140,15 +151,17 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
                         requestingCitizens.add(requestingCitizenSet.getInt(1));
                     }
 
-                    cases.add(new Case(caseID, "Status", citizenID, requestingCitizens, caseContent));
+                    cases.add(new Case(caseID, departmentID, caseStatus, citizenID, requestingCitizens, caseContent));
 
                     citizen.setCases(cases);
+
                 }
             } else {
                 // NO DB CONNECTION
             }
         } catch (SQLException ex) {
-            Logger.getLogger(DataHandler.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DataHandler.class
+                    .getName()).log(Level.SEVERE, null, ex);
             System.out.println("readCitizen:\nSQLState: " + ex.getSQLState() + "\nmessage: " + ex.getMessage());
             disconnectDB();
         } finally {
@@ -229,7 +242,9 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
             }
         } catch (SQLException ex) {
             System.out.println("getEmployee:\nSQLState:" + ex.getSQLState() + "\nMessage:" + ex.getMessage());
-            Logger.getLogger(DataHandler.class.getName()).log(Level.SEVERE, null, ex);
+            Logger
+                    .getLogger(DataHandler.class
+                            .getName()).log(Level.SEVERE, null, ex);
             disconnectDB();
         } finally {
             disconnectDB();
@@ -240,25 +255,25 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
 
     @Override
     public boolean writeCase(Case theCase) {
-        String[] list = {theCase.columnStringBuilder(theCase)};
-        String[] listString = Arrays.toString(list).split(",");
 
-        String[] e = new String[listString.length];
-        int count = 0;
-        for (int i = 0; i < listString.length; i++) {
-
-            e[i] = "?";
-            count++;
-        }
         if (theCase.getCaseID() == -1) {
+            String[] list = {theCase.columnStringBuilder(theCase)};
+            String[] listString = Arrays.toString(list).split(",");
+            String[] e = new String[listString.length];
+            int count = 0;
+            for (int i = 0; i < listString.length; i++) {
 
+                e[i] = "?";
+                count++;
+            }
             connectToDB();
             try {
-
+                String insertIntoCase = "INSERT INTO \"case\""
+                        + "(citizenregardingcitizenid, casestatus, departmentdepartmentid)";
                 String query = "INSERT INTO case_contents "
                         + "(casecaseid, " + theCase.columnStringBuilder(theCase) + ")"
                         + "VALUES"
-                        + "(" + theCase.getCaseID() + "," + Arrays.toString(e).replace("]", "").replace("[", "") + ")";
+                        + "(" + theCase.getCaseContent().get("caseID") + "," + Arrays.toString(e).replace("]", "").replace("[", "") + ")";
 
                 System.out.println(query);
                 dbPreparedStatement = dbConnection.prepareStatement(query);
@@ -268,42 +283,23 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
                     dbPreparedStatement.setString(i, value);
                     i++;
                 }
-
                 dbPreparedStatement.executeUpdate();
 
                 disconnectDB();
                 return true;
+
             } catch (SQLException ex) {
-                Logger.getLogger(DataHandler.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(DataHandler.class
+                        .getName()).log(Level.SEVERE, null, ex);
                 disconnectDB();
                 return false;
             }
         } else {
             // TODO: Ind og oprette en ny række i case_contents, med de caseContents oplysninger fra theCase
-            try {
+            // TODO:
 
-                theCase = createCase();
+            return false;
 
-                String creatNewRowquery = "INSERT INTO case_contents"
-                        + "(casecaseid, " + theCase.columnStringBuilder(theCase) + ")"
-                        + "VALUES"
-                        + "(" + theCase.getCaseID() + "," + Arrays.toString(e).replace("]", "").replace("[", "") + ")";
-                dbPreparedStatement = dbConnection.prepareStatement(creatNewRowquery);
-                int i = 1;
-                for (Map.Entry<String, String> entry : theCase.getCaseContent().entrySet()) {
-                    String value = entry.getValue();
-                    dbPreparedStatement.setString(i, value);
-                    i++;
-                }
-                dbPreparedStatement.executeUpdate();
-
-                disconnectDB();
-                return true;
-            } catch (SQLException ex) {
-                Logger.getLogger(DataHandler.class.getName()).log(Level.SEVERE, null, ex);
-                disconnectDB();
-                return false;
-            }
         }
 
     }
@@ -404,7 +400,7 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
         List<Integer> requestingCitizen = new ArrayList<>();
         Map<String, String> caseContent = new HashMap<>();
 
-        return new Case(-1, "", -1, requestingCitizen, caseContent);
+        return new Case(-1, -1, "", -1, requestingCitizen, caseContent);
     }
 
     @Override
@@ -542,5 +538,13 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
     @Override
     public boolean writeEmployee(Employee employee) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public static void main(String[] args) {
+
+        DataHandler dataHandler = new DataHandler();
+
+        System.out.println(dataHandler.readCase(123));
+
     }
 }

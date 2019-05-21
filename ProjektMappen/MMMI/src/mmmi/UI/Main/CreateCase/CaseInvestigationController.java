@@ -265,6 +265,10 @@ public class CaseInvestigationController implements Initializable {
         
 
     }
+
+    public Map<String, String> getCaseInvestigation() {
+        return caseInvestigation;
+    }
     
     
     
@@ -273,13 +277,11 @@ public class CaseInvestigationController implements Initializable {
             @Override
             public void run() {
                 try {
-                    Thread.sleep(500);
+                    Thread.sleep(1000);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(CaseInvestigationController.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                     getAllRadioNodes(fxAc_CaseInvestigationroot);
-                
-                
+                     getAllRadioNodes(fxAc_CaseInvestigationroot);           
             }
                 
             }.start();
@@ -302,7 +304,6 @@ public class CaseInvestigationController implements Initializable {
 
     public static ArrayList<Node> getAllRadioNodes(Parent root) {
         ArrayList<Node> n = new ArrayList<>();
-        System.out.println("her er jeg ");
         addRadiobutton(root, n);
         return n;
     }
@@ -315,7 +316,6 @@ public class CaseInvestigationController implements Initializable {
             if (node instanceof Parent) {
                 if (node instanceof RadioButton) {
                     radioButtonsList.add(((RadioButton) node));
-                    System.out.println(((RadioButton) node).getId());
                 }
                 addRadiobutton((Parent) node, n);
             }
@@ -324,11 +324,8 @@ public class CaseInvestigationController implements Initializable {
 
         for (RadioButton radioButton : radioButtonsList) {
             String r = radioButton.getId().substring(5, radioButton.getId().length() - 1);
-            System.out.println(r);
-
             if (tName.containsKey(r)) {
                 radioButton.setToggleGroup(tName.get(r));
-                System.out.println(tName.toString());
 
             } else {
                 tName.put(r, new ToggleGroup());
@@ -358,7 +355,6 @@ public class CaseInvestigationController implements Initializable {
                 }
                 if (node instanceof JFXTextField) {
                     if (!((TextInputControl) node).getText().isEmpty()) {
-                        System.out.println(((TextInputControl) node).getText());
                         String key = node.getId().substring(5);
                         caseInvestigation.put(key, ((TextInputControl) node).getText());
 
@@ -380,6 +376,8 @@ public class CaseInvestigationController implements Initializable {
     }
 
 }
+
+
 
 
 

@@ -19,9 +19,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.Labeled;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextInputControl;
+import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -320,6 +322,26 @@ public class CaseInvestigationController implements Initializable {
 //        }
 //    }
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     public ArrayList<Node> getAllNodes(Parent root) {
         ArrayList<Node> nodes = new ArrayList<Node>();
         addAllDescendents(root, nodes);
@@ -333,25 +355,25 @@ public class CaseInvestigationController implements Initializable {
             if (node instanceof Parent) {
 
                 if (node instanceof TextArea) {
-                    if (!((TextArea)node).getText().isEmpty()) {
-                        String key = ((TextArea) node).getId().toString().substring(5);
-                        caseInvestigation.put(key, ((TextArea) node).getText());
+                    if (!((TextInputControl)node).getText().isEmpty()) {
+                        String key = node.getId().substring(5);
+                        caseInvestigation.put(key, ((TextInputControl) node).getText());
                         
                     }
                 }
                 if (node instanceof JFXTextField) {
-                    if (!((JFXTextField)node).getText().isEmpty()) {
-                        System.out.println(((JFXTextField) node).getText());
-                        String key = ((JFXTextField) node).getId().toString().substring(5);
-                        caseInvestigation.put(key, ((JFXTextField) node).getText());
+                    if (!((TextInputControl)node).getText().isEmpty()) {
+                        System.out.println(((TextInputControl) node).getText());
+                        String key = node.getId().substring(5);
+                        caseInvestigation.put(key, ((TextInputControl) node).getText());
                         
                     }
                 }
                 if (node instanceof RadioButton) {
-                    if (((RadioButton)node).isSelected()) {
-
-                        String key = ((RadioButton) node).getId().toString().substring(5);
-                        caseInvestigation.put(key, ((RadioButton) node).getText());
+                    if (((Toggle)node).isSelected()) {
+                        
+                        String key = ((RadioButton) node).getId().substring(5, ((RadioButton) node).getId().length()-1);
+                        caseInvestigation.put(key, ((Labeled) node).getText());
                        
                     }
                 }
@@ -363,6 +385,11 @@ public class CaseInvestigationController implements Initializable {
     }
 
 }
+
+
+
+
+
 
 
 

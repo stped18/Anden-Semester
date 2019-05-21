@@ -9,6 +9,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.RadioButton;
@@ -18,13 +19,14 @@ import javafx.scene.control.TitledPane;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import mmmi.UI.Main.MainController;
 
 /**
  * FXML Controller class
  *
  * @author PCATG
  */
-public class CaseOpeningController implements Initializable {
+public class CaseOpeningController extends CreateCaseController implements Initializable {
 
     // FXML fx:ids
     // CB = CheckBox
@@ -298,6 +300,10 @@ public class CaseOpeningController implements Initializable {
             stayList,
             socialPedagogicalHelpList,
             personHelpSchemeList;
+    @FXML
+    private RadioButton fxRB_outgoingOffer;
+    @FXML
+    private RadioButton fxRB_offerWithAuthority;
 
     /**
      * Initializes the controller class.
@@ -391,4 +397,10 @@ public class CaseOpeningController implements Initializable {
 //        }
 //    }
 
+    @FXML
+    private void getMarkedInformation(ActionEvent event) {
+    }
+
 }
+
+

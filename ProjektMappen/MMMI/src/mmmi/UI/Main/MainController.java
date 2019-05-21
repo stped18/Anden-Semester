@@ -45,25 +45,31 @@ public class MainController extends RunFxmlLoader implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-                changeFxml(fxSubPane, "home/home.fxml");
+                changeFxml(fxSubPane, "Home/home.fxml");
 
     }
 
     @FXML
     private void BtnHandler(ActionEvent event) {
         if (event.getSource() == fxHomeBtn) {
-            changeFxml(fxSubPane, "home/home.fxml");
+            changeFxml(fxSubPane, "Home/home.fxml");
         }
         if (event.getSource() == fxCreateCaseBtn) {
-            changeFxml(fxSubPane, "createCase/createCase.fxml");
+            changeFxml(fxSubPane, "createCase/fxml/caseInvestigation.fxml");
         }
         if (event.getSource() == fxSearchcaseBtn) {
-            changeFxml(fxSubPane, "findCase/findCase.fxml");
+            changeFxml(fxSubPane, "FindCase/findCase.fxml");
 
         }
     }
 
 }
+
+
+
+
+
+
 
 
 

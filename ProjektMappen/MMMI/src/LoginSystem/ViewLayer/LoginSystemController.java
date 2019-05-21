@@ -7,12 +7,16 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Platform;
+import javafx.application.Preloader.ProgressNotification;
+import javafx.application.Preloader.StateChangeNotification;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -34,12 +38,12 @@ public class LoginSystemController implements Initializable {
     private AnchorPane fxloginroot;
 
     @FXML
-    private Button fxtryagainBtn;
+    private Label fxLb_ErroMesage;
+    int count = 0;
     @FXML
-    private AnchorPane fxErroBoks;
-    private MMMI main;
+    private AnchorPane fxAp_Laader;
     @FXML
-    private ProgressBar fxprocessbar;
+    private ProgressIndicator FXLoader;
 
     /**
      * Initializes the controller class.
@@ -47,98 +51,56 @@ public class LoginSystemController implements Initializable {
      * @param url
      * @param rb
      */
+    boolean isind = true;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        fxErroBoks.setVisible(false);
-        try {
-            process();
-            double d = fxprocessbar.getProgress();
-            fxprocessbar.setProgress(d);
-            Thread.sleep(1000);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(LoginSystemController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        fxAp_Laader.setVisible(false);
     }
 
     @FXML
     private void loginBtnHandler(ActionEvent event) {
-        if (event.getSource() == fxLoginBtn) {
+        if (count < 3) {
+            fxAp_Laader.setVisible(true);          
+            // TODO : need a procesIndikator for time to login;
+
             loginSystem = new LoginSystem();
             loginSystem.setUsername(fxUsername.getText());
             loginSystem.setPassword(fxPassword.getText());
+            if (event.getSource() == fxLoginBtn) {
+                if (loginSystem.getEmployee()) {
+                    MMMI main = new MMMI();
+                    try {
+                        main.changeScene();
 
-            if (loginSystem.getEmployee()) {
-                MMMI main = new MMMI();
+                        Stage stage = (Stage) fxloginroot.getScene().getWindow();
+                        isind = false;
+                        stage.close();
 
-                try {
-                    main.changeScene();
-
-                    Stage stage = (Stage) fxloginroot.getScene().getWindow();
-
-                    stage.close();
-
-                } catch (IOException ex) {
-                    Logger.getLogger(LoginSystemController.class
-                            .getName()).log(Level.SEVERE, null, ex);
+                    } catch (IOException ex) {
+                        Logger.getLogger(LoginSystemController.class
+                                .getName()).log(Level.SEVERE, null, ex);
+                    }
+                } else {
+                    fxAp_Laader.setVisible(false);
+                    fxLb_ErroMesage.setText("Forkert brugernavn eller kode prøv igen \nForsøg tilbage :  " + (3 - count));
+                    count++;
                 }
-
-            } else {
-                fxErroBoks.setVisible(true);
-
             }
-        } else if (event.getSource() == fxtryagainBtn) {
-            fxErroBoks.setVisible(false);
+        } else {
+            fxLb_ErroMesage.setText("Kontakt admin:");
+
         }
-
     }
+  
 
-//    private void proces() {
-//        new Thread(() -> {
-//            for (double i = 0.01; i < 1.00; i++) {
-//                fxprocessbar.setProgress(i);
-//                try {
-//                    Thread.sleep(10);
-//                } catch (InterruptedException ex) {
-//                    Logger.getLogger(LoginSystemController.class.getName()).log(Level.SEVERE, null, ex);
-//                }
-//                if (i == 1.00) {
-//                    i = 0.00;
-//                }
-////        try {
-////            Thread.sleep(300);
-////        } catch (InterruptedException e) {
-////            e.printStackTrace();
-////        }
-////        final double progress = i * 0.1;
-////        
-////        Platform.runLater(() -> ui.updateProgress(progress));
-//
-//            }
-//        }).start();
-//    }
-    private void process() {
-        new Thread(() -> {
-            for (int i = 0; i < 10; i++) {
-
-                try {
-                    Thread.sleep(300);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                final double progress = i * 0.1;
-
-                Platform.runLater(() -> updateProgress(progress));
-
-            }
-        }).start();
-
-    }
-
-    public void updateProgress(double progress) {
-
-        fxprocessbar.setProgress(progress);
-        double d = fxprocessbar.getProgress();
-        System.out.println("progress APPARENTLY set to: " + d);
-
-    }
 }
+
+
+
+
+
+
+
+
+

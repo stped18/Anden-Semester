@@ -16,6 +16,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXMLLoader;
+import mmmi.UI.Main.MainController;
 
 public class CreateCaseController extends RunFxmlLoader implements Initializable {
 
@@ -33,6 +35,7 @@ public class CreateCaseController extends RunFxmlLoader implements Initializable
     
     ObservableList<String> list;
 
+    int count = 0;
     /**
      * Initializes the controller class.
      */
@@ -41,9 +44,9 @@ public class CreateCaseController extends RunFxmlLoader implements Initializable
         
         
                 this.list = FXCollections.observableArrayList();
-                list.add(0, "caseOpening/caseOpening.fxml");
-                list.add(1, "caseInvestigation/caseInvestigation.fxml"); 
-                list.add(2, "caseOpening/caseOpening.fxml");
+                list.add(0, "createCase/fxml/caseOpeningNEW.fxml");
+                list.add(1, "createCase/fxml/caseInvestigation.fxml"); 
+                list.add(2, "createCase/fxml/caseOpeningNEW.fxml");
                 changeFxml(fxSubSubpane, list.get(0));
 
 
@@ -51,8 +54,9 @@ public class CreateCaseController extends RunFxmlLoader implements Initializable
 
     @FXML
     private void buttonHandler(ActionEvent event) {
-        int count=0; 
+        
            if(event.getSource()==fxnextBtn){
+               
                if(count==0){
                    changeFxml(fxSubSubpane, list.get(1));
                    count = 1;
@@ -69,6 +73,20 @@ public class CreateCaseController extends RunFxmlLoader implements Initializable
 
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

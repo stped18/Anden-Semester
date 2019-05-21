@@ -2,6 +2,7 @@ package LoginSystem.DataLayer;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -17,6 +18,7 @@ public class DatabaseHandler {
     protected Connection dbConnection = null;
     protected Statement dbStatement = null;
     protected ResultSet dbResultSet = null;
+    protected PreparedStatement preparedStatement=null;
 
 
     public void connectDB() {
@@ -31,12 +33,13 @@ public class DatabaseHandler {
     }
 
     public DbEmployee getEmployeedb(String username, String password) {
-        
+        String qurryString = "SELECT *  From employee WHERE username='" + username + "'  AND password='" + password + "';";
         connectDB();
          DbEmployee employee = null;
         try {
-            dbStatement = dbConnection.createStatement();
-            dbResultSet = dbStatement.executeQuery("SELECT *  From employee WHERE username='" + username + "'  AND password='" + password + "';");
+            
+            preparedStatement= dbConnection.prepareStatement(qurryString);
+            dbResultSet = preparedStatement.executeQuery();
             while (dbResultSet.next()) {
                 int employeid = dbResultSet.getInt("employeeid");
                 String first_name = dbResultSet.getString("firstname");
@@ -73,6 +76,7 @@ public class DatabaseHandler {
     }
 
 }
+
 
 
 

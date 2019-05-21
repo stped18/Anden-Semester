@@ -28,7 +28,6 @@ public class LoginSystem implements IEmployee {
 
     public void setUsername(String username) {
         this.username = username;
-        System.out.println("im set");
     }
 
     public String getPassword() {
@@ -37,16 +36,15 @@ public class LoginSystem implements IEmployee {
 
     public void setPassword(String password) {
         this.password = password;
-        System.out.println("im set2");
     }
 
     public boolean getEmployee() {
         employee = db.getEmployeedb(this.username, this.password);
-        mmmi.setDepartmentID(employee.getDepartmentID());
-        mmmi.setLoginEmployee(this);
         if (employee == null) {
             return false;
         }
+        mmmi.setDepartmentID(employee.getDepartmentID());
+        mmmi.setLoginEmployee(this);
         return true;
     }
 
@@ -56,3 +54,6 @@ public class LoginSystem implements IEmployee {
     }
 
 }
+
+
+

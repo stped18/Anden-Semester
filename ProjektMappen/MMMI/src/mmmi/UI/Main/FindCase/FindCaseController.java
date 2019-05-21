@@ -25,12 +25,13 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import mmmi.Domain.Department;
 import mmmi.Domain.Interfaces.IDomain;
+import mmmi.UI.Main.MainController;
 
 /**
  *
  * @author Gruppe 2
  */
-public class FindCaseController implements Initializable {
+public class FindCaseController extends MainController implements Initializable {
 
     @FXML
     private Button BTN_search;
@@ -159,3 +160,4 @@ public class FindCaseController implements Initializable {
     }
 
 }
+

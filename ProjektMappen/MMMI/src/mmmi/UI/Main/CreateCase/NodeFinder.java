@@ -23,6 +23,8 @@ import mmmi.UI.Main.RunFxmlLoader;
 /**
  *
  * @author steffeffen Vitten Pedersen
+ * this class finds all the nodes and puts them in a Map< String , String> nodeMap 
+ *with key = node.getid and value = node.get text
  */
 public class NodeFinder {
     List<RadioButton> radioButtonsList;
@@ -49,7 +51,7 @@ public class NodeFinder {
     /**
      *
      * @param parent
-     * This method makes a sleep funktion to allow the program time to load all nodes and then call getAllRadioNodes.
+     * This method makes a sleep funktion to allow the program time to load all nodes and then call getAllRadioNodes().
      */
     public void runRadioFinder(Parent parent) {
         
@@ -69,6 +71,8 @@ public class NodeFinder {
 
     /**
      *
+     *This method must be called from the controller where it will store all nodes in a Map 
+     *and prints them in the console
      * @param parent
      * @return 
      */
@@ -83,9 +87,10 @@ public class NodeFinder {
     }
 
     /**
-     *
+     *This method find alle nodes and add them tho addTadiobuton.
+     * addRadiobutton sort and find all radioboton and save them in a toggle groop for a spicifice gruppe of radiobutton.
      * @param root
-     * @return
+     * @return 
      */
     public static ArrayList<Node> getAllRadioNodes(Parent root) {
         ArrayList<Node> n = new ArrayList<>();
@@ -120,7 +125,7 @@ public class NodeFinder {
     }
 
     /**
-     *
+     *Find all nods in the Parent. and adds them in map.
      * @param root
      * @return
      */
@@ -166,5 +171,6 @@ public class NodeFinder {
     }
 
 }
+
 
 

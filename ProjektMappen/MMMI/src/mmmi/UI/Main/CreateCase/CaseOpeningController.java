@@ -118,8 +118,11 @@ public class CaseOpeningController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         department = Department.getInstance();
+        department.setDepartmentID(1);
         theFullContentsMap = new HashMap<>();
-        contentsMap = cRegardingMap = cRequestingMap = new HashMap<>();
+        contentsMap = new HashMap<>();
+        cRegardingMap = new HashMap<>();
+        cRequestingMap = new HashMap<>();
 
         // ToggleGroups for first section, inquiry
         yesNoInquiryTG1 = createToggleGroup(fxRB_agreeToInquiryYesRegarding, fxRB_agreeToInquiryNo1Regarding);
@@ -253,39 +256,28 @@ public class CaseOpeningController implements Initializable {
                 fxLB_userInfo.setTextFill(Paint.valueOf("#0076a3"));
             }
             contentsMap.put("caseID", "-1");
-            contentsMap.put("casestatus", "igang");
-            contentsMap.put("regardingInquiry", fxTA_RegardingInquiry.getText());
+//            contentsMap.put("casestatus", "igang");
+            contentsMap.put("regardinginquiry", fxTA_RegardingInquiry.getText());
             fxLB_userInfo.setTextFill(Paint.valueOf("#0076a3"));
-            contentsMap.put("rightsAndDutiesText", fxTA_rightsAndDuties.getText());
-            contentsMap.put("rightsAndDuties", agreeToElectronicRegistrationTG.getSelectedToggle() == fxRB_agreeToElectronicRegistrationYes ? "yes"
+            contentsMap.put("rightsanddutiestext", fxTA_rightsAndDuties.getText());
+            contentsMap.put("rightsandduties", agreeToElectronicRegistrationTG.getSelectedToggle() == fxRB_agreeToElectronicRegistrationYes ? "yes"
                     : (agreeToElectronicRegistrationTG.getSelectedToggle() == fxRB_agreeToElectronicRegistrationNo) ? "no" : "");
-            contentsMap.put("agreementsWithCitzenText", !fxTA_agreementsWithCitzen.getText().isEmpty() ? fxTA_agreementsWithCitzen.getText() : "");
+            contentsMap.put("agreementswithcitizentext", !fxTA_agreementsWithCitzen.getText().isEmpty() ? fxTA_agreementsWithCitzen.getText() : "");
 
-            System.out.println(contentsMap);
-            for (Map.Entry<String, Map<String, String>> entry : theFullContentsMap.entrySet()) {
-                if (entry.getKey().equalsIgnoreCase("caseContents")) {
+            theFullContentsMap.put("caseContents", contentsMap);
+            theFullContentsMap.put("cRegarding", cRegardingMap);
+            theFullContentsMap.put("cRequesting", cRequestingMap);
 
-                    entry.setValue(contentsMap);
+            System.out.println(theFullContentsMap);
+            department.saveCase(theFullContentsMap);
 
-                }
-                if (entry.getKey().equalsIgnoreCase("cRegarding")) {
-                    entry.setValue(cRegardingMap);
-                }
-                if (entry.getKey().equalsIgnoreCase("cRequesting")) {
-                    entry.setValue(cRequestingMap);
-                }
-
-            }
-
-            boolean b = department.saveCase(theFullContentsMap);
-            System.out.println(b);
         }
     }
 
     private ToggleGroup createToggleGroup(RadioButton... names) {
         ToggleGroup tg = new ToggleGroup();
         for (RadioButton name : names) {
-            //RadioButton rb = new RadioButton(name);
+
             name.setToggleGroup(tg);
 
         }

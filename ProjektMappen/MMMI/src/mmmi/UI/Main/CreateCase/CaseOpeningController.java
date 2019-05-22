@@ -31,7 +31,7 @@ import mmmi.UI.Main.MainController;
  *
  * @author PCATG
  */
-public class CaseOpeningController extends CreateCaseController implements Initializable {
+public class CaseOpeningController  implements Initializable {
 
     @FXML
     private TextArea fxTA_RegardingInquiry;

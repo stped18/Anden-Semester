@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package mmmi.UI.Main.CreateCase;
 
 import javafx.scene.control.TextField;
@@ -17,11 +12,6 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
 import mmmi.UI.Main.createCase.NodeFinder;
 
-/**
- * FXML Controller class
- *
- * @author steff
- */
 public class CaseInvestigationController extends NodeFinder implements Initializable {
 
     @FXML
@@ -210,12 +200,10 @@ public class CaseInvestigationController extends NodeFinder implements Initializ
     private RadioButton fxRb_evaluated3;
     @FXML
     private RadioButton fxRb_evaluated4;
-
     @FXML
     private Button fxBtn_save;
     @FXML
     private AnchorPane fxAc_CaseInvestigationroot;
-
     @FXML
     private TextField fxTf_physicalThemes;
     @FXML
@@ -245,29 +233,10 @@ public class CaseInvestigationController extends NodeFinder implements Initializ
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         runRadioFinder(fxAc_CaseInvestigationroot);
-        
-
     }
 
     @FXML
     private void BtnHandler(ActionEvent event) {
         findeNodehandler(fxAc_CaseInvestigationroot);
-     
-
     }
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

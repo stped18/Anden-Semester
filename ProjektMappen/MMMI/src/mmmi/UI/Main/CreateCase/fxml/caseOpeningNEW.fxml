@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="fxAP_subpane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mmmi.UI.Main.CreateCase.CaseOpeningController">
+<AnchorPane fx:id="fxAP_subpane" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mmmi.UI.Main.CreateCase.CaseOpeningController">
    <children>
       <ScrollPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <content>
@@ -23,282 +23,281 @@
                      <content>
                         <VBox prefHeight="900.0" prefWidth="1050.0">
                            <children>
-                              <TitledPane fx:id="fxTP_inquiries" prefHeight="738.0" prefWidth="1050.0" text="Henvendelse">
+                              <TitledPane fx:id="fxTP_inquiries" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="14.0" prefWidth="1050.0" text="Henvendelse">
                                  <content>
-                                    <AnchorPane prefHeight="555.0" prefWidth="1048.0">
+                                    <HBox prefWidth="1050.0">
                                        <children>
-                                          <HBox layoutX="29.6" layoutY="29.6" prefHeight="632.0" prefWidth="1048.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                          <VBox prefHeight="457.0" prefWidth="525.0">
                                              <children>
-                                                <VBox prefHeight="611.0" prefWidth="463.0">
-                                                   <children>
-                                                      <Label text="Hvad drejer henvendelsen sig om?">
-                                                         <font>
-                                                            <Font name="System Bold" size="15.0" />
-                                                         </font>
-                                                      </Label>
-                                                      <TextArea fx:id="fxTA_RegardingInquiry" prefHeight="101.0" prefWidth="461.0" promptText="Beskriv henvendelsen" wrapText="true">
-                                                         <padding>
-                                                            <Insets bottom="5.0" />
-                                                         </padding>
-                                                      </TextArea>
-                                                      <Label text="Er det klart hvad borgeren søger om?" />
-                                                      <RadioButton fx:id="fxRB_clearLookingForYes" mnemonicParsing="false" onAction="#inquiryRBonAction" text="Ja" />
-                                                      <RadioButton fx:id="fxRB_clearLookingForNo" mnemonicParsing="false" onAction="#inquiryRBonAction" text="Nej">
-                                                         <VBox.margin>
-                                                            <Insets bottom="10.0" />
-                                                         </VBox.margin>
-                                                      </RadioButton>
-                                                      <Label text="Vedrørende borger">
-                                                         <font>
-                                                            <Font name="System Bold Italic" size="14.0" />
-                                                         </font>
-                                                         <VBox.margin>
-                                                            <Insets />
-                                                         </VBox.margin>
-                                                      </Label>
-                                                      <Label prefHeight="24.0" prefWidth="571.0" text="Har den henvende borger informationer omkring den borger det drejer sig om?" wrapText="true" />
-                                                      <Label prefHeight="24.0" prefWidth="571.0" text="Eller er det den vedrørende borger selv der har henvendt sig?" wrapText="true" />
-                                                      <RadioButton fx:id="fxRB_agreeToInquiryYesRegarding" mnemonicParsing="false" onAction="#inquiryRBonAction" text="Ja" />
-                                                      <RadioButton fx:id="fxRB_agreeToInquiryNo1Regarding" mnemonicParsing="false" onAction="#inquiryRBonAction" text="Nej" />
-                                                      <TitledPane fx:id="fxTP_regardingInfo" expanded="false" prefHeight="410.0" prefWidth="461.0" text="Hvis ja, angiv (mulige) kontaktoplysninger">
-                                                        <content>
-                                                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                                               <children>
-                                                                  <VBox prefHeight="180.0" prefWidth="484.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                                     <children>
-                                                                        <Label text="Navn:">
-                                                                           <VBox.margin>
-                                                                              <Insets />
-                                                                           </VBox.margin>
-                                                                        </Label>
-                                                                        <TextField fx:id="fxTF_firstnameRegarding" prefHeight="15.0" prefWidth="299.0" promptText="Indtast navn evt. mellemnavn">
-                                                                           <VBox.margin>
-                                                                              <Insets bottom="5.0" top="5.0" />
-                                                                           </VBox.margin>
-                                                                        </TextField>
-                                                                        <Label text="Efternavn">
-                                                                           <VBox.margin>
-                                                                              <Insets />
-                                                                           </VBox.margin>
-                                                                        </Label>
-                                                                        <TextField fx:id="fxTF_lastnameRegarding" prefHeight="15.0" prefWidth="299.0" promptText="Indtast efternavn">
-                                                                           <VBox.margin>
-                                                                              <Insets bottom="5.0" top="5.0" />
-                                                                           </VBox.margin>
-                                                                        </TextField>
-                                                                        <Label text="Cpr-nummer">
-                                                                           <VBox.margin>
-                                                                              <Insets />
-                                                                           </VBox.margin>
-                                                                        </Label>
-                                                                        <TextField fx:id="fxTF_cprNoRegarding" prefHeight="9.0" prefWidth="380.0" promptText="Indtast evt. cpr nummer">
-                                                                           <padding>
-                                                                              <Insets bottom="5.0" top="5.0" />
-                                                                           </padding>
-                                                                        </TextField>
-                                                                        <Label prefHeight="21.0" prefWidth="177.0" text="Postnr/By/Adresse">
-                                                                           <VBox.margin>
-                                                                              <Insets />
-                                                                           </VBox.margin>
-                                                                        </Label>
-                                                                        <TextField fx:id="fxTF_zipcodeRegarding" prefHeight="9.0" prefWidth="380.0" promptText="Indtast postnummer">
-                                                                           <VBox.margin>
-                                                                              <Insets bottom="5.0" top="5.0" />
-                                                                           </VBox.margin>
-                                                                        </TextField>
-                                                                        <TextField fx:id="fxTF_citynameRegarding" prefHeight="8.0" prefWidth="380.0" promptText="Indtast byens navn">
-                                                                           <VBox.margin>
-                                                                              <Insets bottom="5.0" top="5.0" />
-                                                                           </VBox.margin>
-                                                                        </TextField>
-                                                                        <TextField fx:id="fxTF_streetNameRegarding" prefHeight="11.0" prefWidth="380.0" promptText="Indtast adresse">
-                                                                           <VBox.margin>
-                                                                              <Insets bottom="5.0" top="5.0" />
-                                                                           </VBox.margin>
-                                                                        </TextField>
-                                                                        <TextField fx:id="fxTF_houseNoRegarding" prefHeight="11.0" prefWidth="380.0" promptText="husnummer">
-                                                                           <VBox.margin>
-                                                                              <Insets bottom="5.0" top="5.0" />
-                                                                           </VBox.margin>
-                                                                        </TextField>
-                                                                        <TextField fx:id="fxTF_floorAndFloorDirectionRegarding" prefHeight="11.0" prefWidth="380.0" promptText="Hvis lejlighed, indtast etage og etage retning (f.eks. 2 etage, højre)">
-                                                                           <VBox.margin>
-                                                                              <Insets bottom="5.0" top="5.0" />
-                                                                           </VBox.margin>
-                                                                        </TextField>
-                                                                     </children>
-                                                                  </VBox>
-                                                               </children>
-                                                            </AnchorPane>
-                                                        </content>
-                                                         <padding>
-                                                            <Insets bottom="5.0" />
-                                                         </padding>
-                                                      </TitledPane>
-                                                   </children>
-                                                   <HBox.margin>
-                                                      <Insets right="20.0" top="20.0" />
-                                                   </HBox.margin>
-                                                </VBox>
-                                                <VBox prefHeight="447.0" prefWidth="509.0">
-                                                   <children>
-                                                      <Label text="Henvendelse">
-                                                         <font>
-                                                            <Font name="System Bold Italic" size="14.0" />
-                                                         </font>
-                                                      </Label>
-                                                      <Label prefHeight="21.0" prefWidth="260.0" text="Hvor kommer henvendelsen fra?" />
-                                                      <RadioButton fx:id="fxRB_regardingCitizen" mnemonicParsing="false" onAction="#inquiryRBonAction" text="Borger">
-                                                         <VBox.margin>
-                                                            <Insets />
-                                                         </VBox.margin>
-                                                         <padding>
-                                                            <Insets bottom="5.0" />
-                                                         </padding></RadioButton>
-                                                      <RadioButton fx:id="fxRB_regardingRelatives" layoutX="10.0" layoutY="285.0" mnemonicParsing="false" onAction="#inquiryRBonAction" text="Pårørende [angiv kontaktoplysninger]">
-                                                         <VBox.margin>
-                                                            <Insets />
-                                                         </VBox.margin>
-                                                         <padding>
-                                                            <Insets bottom="5.0" />
-                                                         </padding></RadioButton>
-                                                      <RadioButton fx:id="fxRB_regardingDoctor" layoutX="10.0" layoutY="286.0" mnemonicParsing="false" onAction="#inquiryRBonAction" text="Læge [angiv kontaktoplysninger]">
-                                                         <VBox.margin>
-                                                            <Insets />
-                                                         </VBox.margin>
-                                                         <padding>
-                                                            <Insets bottom="5.0" />
-                                                         </padding></RadioButton>
-                                                      <RadioButton fx:id="fxRB_regardingHospital" layoutX="10.0" layoutY="303.0" mnemonicParsing="false" onAction="#inquiryRBonAction" text="Hospital [angiv kontaktoplysninger]">
-                                                         <VBox.margin>
-                                                            <Insets />
-                                                         </VBox.margin>
-                                                         <padding>
-                                                            <Insets bottom="5.0" />
-                                                         </padding></RadioButton>
-                                                      <RadioButton fx:id="fxRB_regardingOtherAdministration" layoutX="10.0" layoutY="320.0" mnemonicParsing="false" onAction="#inquiryRBonAction" text="Anden forvaltning [angiv kontaktoplysninger]">
-                                                         <VBox.margin>
-                                                            <Insets />
-                                                         </VBox.margin>
-                                                         <padding>
-                                                            <Insets bottom="5.0" />
-                                                         </padding></RadioButton>
-                                                      <RadioButton fx:id="fxRB_regardingInProgressEffort" layoutX="10.0" layoutY="337.0" mnemonicParsing="false" onAction="#inquiryRBonAction" text="Igangværende indsats [angiv kontaktoplysninger]">
-                                                         <VBox.margin>
-                                                            <Insets />
-                                                         </VBox.margin>
-                                                         <padding>
-                                                            <Insets bottom="5.0" />
-                                                         </padding></RadioButton>
-                                                      <RadioButton fx:id="fxRB_regardingOtherCommune" layoutX="10.0" layoutY="354.0" mnemonicParsing="false" onAction="#inquiryRBonAction" text="Anden kommune">
-                                                         <VBox.margin>
-                                                            <Insets />
-                                                         </VBox.margin>
-                                                         <padding>
-                                                            <Insets bottom="5.0" />
-                                                         </padding></RadioButton>
-                                                      <RadioButton fx:id="fxRB_regardingOthers" layoutX="10.0" layoutY="371.0" mnemonicParsing="false" onAction="#inquiryRBonAction" text="Andre [angiv kontaktoplysninger]">
-                                                         <VBox.margin>
-                                                            <Insets />
-                                                         </VBox.margin>
-                                                         <padding>
-                                                            <Insets bottom="5.0" />
-                                                         </padding></RadioButton>
-                                                      <Label text="Er borgeren indforstået med henvendelsen?">
-                                                         <VBox.margin>
-                                                            <Insets />
-                                                         </VBox.margin>
-                                                         <padding>
-                                                            <Insets bottom="5.0" />
-                                                         </padding></Label>
-                                                      <RadioButton fx:id="fxRB_agreeToInquiryYesRequesting" mnemonicParsing="false" onAction="#inquiryRBonAction" text="Ja">
-                                                         <VBox.margin>
-                                                            <Insets />
-                                                         </VBox.margin></RadioButton>
-                                                      <RadioButton fx:id="fxRB_agreeToInquiryNoRequesting" layoutX="10.0" layoutY="197.0" mnemonicParsing="false" onAction="#inquiryRBonAction" text="Nej">
-                                                         <VBox.margin>
-                                                            <Insets />
-                                                         </VBox.margin></RadioButton>
-                                                      <TitledPane fx:id="fxTP_requestingInfo" expanded="false" prefHeight="427.0" prefWidth="508.0" text="Hvis ja, angiv kontaktoplysninger">
-                                                        <content>
-                                                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                                               <children>
-                                                                  <VBox prefHeight="180.0" prefWidth="506.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                                     <children>
-                                                                        <Label text="Navn:">
-                                                                           <VBox.margin>
-                                                                              <Insets />
-                                                                           </VBox.margin>
-                                                                        </Label>
-                                                                        <TextField fx:id="fxTF_firstnameRequesting" prefHeight="15.0" prefWidth="299.0" promptText="Indtast navn evt. mellemnavn">
-                                                                           <VBox.margin>
-                                                                              <Insets bottom="5.0" top="5.0" />
-                                                                           </VBox.margin>
-                                                                        </TextField>
-                                                                        <Label text="Efternavn">
-                                                                           <VBox.margin>
-                                                                              <Insets />
-                                                                           </VBox.margin>
-                                                                        </Label>
-                                                                        <TextField fx:id="fxTF_lastnameRequesting" prefHeight="15.0" prefWidth="299.0" promptText="Indtast efternavn">
-                                                                           <VBox.margin>
-                                                                              <Insets bottom="5.0" top="5.0" />
-                                                                           </VBox.margin>
-                                                                        </TextField>
-                                                                        <Label text="Cpr-nummer" />
-                                                                        <TextField fx:id="fxTF_cprNoRequesting" prefHeight="9.0" prefWidth="380.0" promptText="Indtast evt. cpr nummer">
-                                                                           <padding>
-                                                                              <Insets bottom="5.0" top="5.0" />
-                                                                           </padding>
-                                                                        </TextField>
-                                                                        <Label prefHeight="21.0" prefWidth="164.0" text="Postnr/By/Adresse">
-                                                                           <VBox.margin>
-                                                                              <Insets />
-                                                                           </VBox.margin>
-                                                                        </Label>
-                                                                        <TextField fx:id="fxTF_zipcodeRequesting" prefHeight="9.0" prefWidth="380.0" promptText="Indtast postnummer">
-                                                                           <VBox.margin>
-                                                                              <Insets bottom="5.0" top="5.0" />
-                                                                           </VBox.margin>
-                                                                        </TextField>
-                                                                        <TextField fx:id="fxTF_citynameRequesting" prefHeight="8.0" prefWidth="380.0" promptText="Indtast byens navn">
-                                                                           <VBox.margin>
-                                                                              <Insets bottom="5.0" top="5.0" />
-                                                                           </VBox.margin>
-                                                                        </TextField>
-                                                                        <TextField fx:id="fxTF_streetNameRequesting" prefHeight="11.0" prefWidth="380.0" promptText="Indtast adresse">
-                                                                           <VBox.margin>
-                                                                              <Insets bottom="5.0" top="5.0" />
-                                                                           </VBox.margin>
-                                                                        </TextField>
-                                                                        <TextField fx:id="fxTF_houseNoRequesting" prefHeight="11.0" prefWidth="380.0" promptText="husnummer">
-                                                                           <VBox.margin>
-                                                                              <Insets bottom="5.0" top="5.0" />
-                                                                           </VBox.margin>
-                                                                        </TextField>
-                                                                        <TextField fx:id="fxTF_floorAndFloorDirectionRequesting" prefHeight="11.0" prefWidth="380.0" promptText="Hvis lejlighed, indtast etage og etage retning (f.eks. 2 etage, højre)">
-                                                                           <VBox.margin>
-                                                                              <Insets bottom="5.0" top="5.0" />
-                                                                           </VBox.margin>
-                                                                        </TextField>
-                                                                     </children>
-                                                                  </VBox>
-                                                               </children>
-                                                            </AnchorPane>
-                                                        </content>
-                                                      </TitledPane>
-                                                   </children>
-                                                   <HBox.margin>
-                                                      <Insets right="20.0" top="20.0" />
-                                                   </HBox.margin>
-                                                </VBox>
+                                                <Label text="Hvad drejer henvendelsen sig om?">
+                                                   <font>
+                                                      <Font name="System Bold" size="15.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextArea fx:id="fxTA_RegardingInquiry" prefHeight="101.0" prefWidth="461.0" promptText="Beskriv henvendelsen" wrapText="true">
+                                                   <padding>
+                                                      <Insets bottom="5.0" />
+                                                   </padding>
+                                                </TextArea>
+                                                <Label text="Er det klart hvad borgeren søger om?" />
+                                                <RadioButton fx:id="fxRB_clearLookingForYes" mnemonicParsing="false" onAction="#inquiryRBonAction" text="Ja" />
+                                                <RadioButton fx:id="fxRB_clearLookingForNo" mnemonicParsing="false" onAction="#inquiryRBonAction" text="Nej">
+                                                   <VBox.margin>
+                                                      <Insets bottom="10.0" />
+                                                   </VBox.margin>
+                                                </RadioButton>
+                                                <Label text="Vedrørende borger">
+                                                   <font>
+                                                      <Font name="System Bold Italic" size="14.0" />
+                                                   </font>
+                                                   <VBox.margin>
+                                                      <Insets />
+                                                   </VBox.margin>
+                                                </Label>
+                                                <Label prefHeight="24.0" prefWidth="571.0" text="Har den henvende borger informationer omkring den borger det drejer sig om?" wrapText="true" />
+                                                <Label prefHeight="24.0" prefWidth="571.0" text="Eller er det den vedrørende borger selv der har henvendt sig?" wrapText="true" />
+                                                <RadioButton fx:id="fxRB_agreeToInquiryYesRegarding" mnemonicParsing="false" onAction="#inquiryRBonAction" text="Ja" />
+                                                <RadioButton fx:id="fxRB_agreeToInquiryNo1Regarding" mnemonicParsing="false" onAction="#inquiryRBonAction" text="Nej" />
+                                                <TitledPane fx:id="fxTP_regardingInfo" expanded="false" prefWidth="525.0" text="Hvis ja, angiv (mulige) kontaktoplysninger">
+                                                   <padding>
+                                                      <Insets bottom="5.0" />
+                                                   </padding>
+                                                   <content>
+                                                      <VBox prefHeight="180.0" prefWidth="484.0">
+                                                         <children>
+                                                            <Label text="Navn:">
+                                                               <VBox.margin>
+                                                                  <Insets />
+                                                               </VBox.margin>
+                                                            </Label>
+                                                            <TextField fx:id="fxTF_firstnameRegarding" prefHeight="15.0" prefWidth="299.0" promptText="Indtast navn evt. mellemnavn">
+                                                               <VBox.margin>
+                                                                  <Insets bottom="5.0" top="5.0" />
+                                                               </VBox.margin>
+                                                            </TextField>
+                                                            <Label text="Efternavn">
+                                                               <VBox.margin>
+                                                                  <Insets />
+                                                               </VBox.margin>
+                                                            </Label>
+                                                            <TextField fx:id="fxTF_lastnameRegarding" prefHeight="15.0" prefWidth="299.0" promptText="Indtast efternavn">
+                                                               <VBox.margin>
+                                                                  <Insets bottom="5.0" top="5.0" />
+                                                               </VBox.margin>
+                                                            </TextField>
+                                                            <Label text="Cpr-nummer">
+                                                               <VBox.margin>
+                                                                  <Insets />
+                                                               </VBox.margin>
+                                                            </Label>
+                                                            <TextField fx:id="fxTF_cprNoRegarding" prefHeight="9.0" prefWidth="380.0" promptText="Indtast evt. cpr nummer">
+                                                               <padding>
+                                                                  <Insets bottom="5.0" top="5.0" />
+                                                               </padding>
+                                                            </TextField>
+                                                            <Label prefHeight="21.0" prefWidth="177.0" text="Postnr/By/Adresse">
+                                                               <VBox.margin>
+                                                                  <Insets />
+                                                               </VBox.margin>
+                                                            </Label>
+                                                            <TextField fx:id="fxTF_zipcodeRegarding" prefHeight="9.0" prefWidth="380.0" promptText="Indtast postnummer">
+                                                               <VBox.margin>
+                                                                  <Insets bottom="5.0" top="5.0" />
+                                                               </VBox.margin>
+                                                            </TextField>
+                                                            <TextField fx:id="fxTF_citynameRegarding" prefHeight="8.0" prefWidth="380.0" promptText="Indtast byens navn">
+                                                               <VBox.margin>
+                                                                  <Insets bottom="5.0" top="5.0" />
+                                                               </VBox.margin>
+                                                            </TextField>
+                                                            <TextField fx:id="fxTF_streetNameRegarding" prefHeight="0.0" prefWidth="484.0" promptText="Indtast adresse">
+                                                               <VBox.margin>
+                                                                  <Insets bottom="5.0" top="5.0" />
+                                                               </VBox.margin>
+                                                            </TextField>
+                                                            <TextField fx:id="fxTF_houseNoRegarding" prefHeight="11.0" prefWidth="380.0" promptText="husnummer">
+                                                               <VBox.margin>
+                                                                  <Insets bottom="5.0" top="5.0" />
+                                                               </VBox.margin>
+                                                            </TextField>
+                                                            <TextField fx:id="fxTF_floorAndFloorDirectionRegarding" prefHeight="11.0" prefWidth="380.0" promptText="Hvis lejlighed, indtast etage og etage retning (f.eks. 2 etage, højre)">
+                                                               <VBox.margin>
+                                                                  <Insets bottom="5.0" top="5.0" />
+                                                               </VBox.margin>
+                                                            </TextField>
+                                                         </children>
+                                                      </VBox>
+                                                   </content>
+                                                </TitledPane>
                                              </children>
-                                             <padding>
-                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                             </padding>
-                                          </HBox>
+                                             <HBox.margin>
+                                                <Insets right="20.0" top="20.0" />
+                                             </HBox.margin>
+                                          </VBox>
+                                          <VBox prefHeight="447.0" prefWidth="525.0">
+                                             <children>
+                                                <Label text="Henvendelse">
+                                                   <font>
+                                                      <Font name="System Bold Italic" size="14.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label prefHeight="21.0" prefWidth="260.0" text="Hvor kommer henvendelsen fra?" />
+                                                <RadioButton fx:id="fxRB_regardingCitizen" mnemonicParsing="false" onAction="#inquiryRBonAction" text="Borger">
+                                                   <VBox.margin>
+                                                      <Insets />
+                                                   </VBox.margin>
+                                                   <padding>
+                                                      <Insets bottom="5.0" />
+                                                   </padding>
+                                                </RadioButton>
+                                                <RadioButton fx:id="fxRB_regardingRelatives" layoutX="10.0" layoutY="285.0" mnemonicParsing="false" onAction="#inquiryRBonAction" text="Pårørende [angiv kontaktoplysninger]">
+                                                   <VBox.margin>
+                                                      <Insets />
+                                                   </VBox.margin>
+                                                   <padding>
+                                                      <Insets bottom="5.0" />
+                                                   </padding>
+                                                </RadioButton>
+                                                <RadioButton fx:id="fxRB_regardingDoctor" layoutX="10.0" layoutY="286.0" mnemonicParsing="false" onAction="#inquiryRBonAction" text="Læge [angiv kontaktoplysninger]">
+                                                   <VBox.margin>
+                                                      <Insets />
+                                                   </VBox.margin>
+                                                   <padding>
+                                                      <Insets bottom="5.0" />
+                                                   </padding>
+                                                </RadioButton>
+                                                <RadioButton fx:id="fxRB_regardingHospital" layoutX="10.0" layoutY="303.0" mnemonicParsing="false" onAction="#inquiryRBonAction" text="Hospital [angiv kontaktoplysninger]">
+                                                   <VBox.margin>
+                                                      <Insets />
+                                                   </VBox.margin>
+                                                   <padding>
+                                                      <Insets bottom="5.0" />
+                                                   </padding>
+                                                </RadioButton>
+                                                <RadioButton fx:id="fxRB_regardingOtherAdministration" layoutX="10.0" layoutY="320.0" mnemonicParsing="false" onAction="#inquiryRBonAction" text="Anden forvaltning [angiv kontaktoplysninger]">
+                                                   <VBox.margin>
+                                                      <Insets />
+                                                   </VBox.margin>
+                                                   <padding>
+                                                      <Insets bottom="5.0" />
+                                                   </padding>
+                                                </RadioButton>
+                                                <RadioButton fx:id="fxRB_regardingInProgressEffort" layoutX="10.0" layoutY="337.0" mnemonicParsing="false" onAction="#inquiryRBonAction" text="Igangværende indsats [angiv kontaktoplysninger]">
+                                                   <VBox.margin>
+                                                      <Insets />
+                                                   </VBox.margin>
+                                                   <padding>
+                                                      <Insets bottom="5.0" />
+                                                   </padding>
+                                                </RadioButton>
+                                                <RadioButton fx:id="fxRB_regardingOtherCommune" layoutX="10.0" layoutY="354.0" mnemonicParsing="false" onAction="#inquiryRBonAction" text="Anden kommune">
+                                                   <VBox.margin>
+                                                      <Insets />
+                                                   </VBox.margin>
+                                                   <padding>
+                                                      <Insets bottom="5.0" />
+                                                   </padding>
+                                                </RadioButton>
+                                                <RadioButton fx:id="fxRB_regardingOthers" layoutX="10.0" layoutY="371.0" mnemonicParsing="false" onAction="#inquiryRBonAction" text="Andre [angiv kontaktoplysninger]">
+                                                   <VBox.margin>
+                                                      <Insets />
+                                                   </VBox.margin>
+                                                   <padding>
+                                                      <Insets bottom="5.0" />
+                                                   </padding>
+                                                </RadioButton>
+                                                <Label text="Er borgeren indforstået med henvendelsen?">
+                                                   <VBox.margin>
+                                                      <Insets />
+                                                   </VBox.margin>
+                                                   <padding>
+                                                      <Insets bottom="5.0" />
+                                                   </padding>
+                                                </Label>
+                                                <RadioButton fx:id="fxRB_agreeToInquiryYesRequesting" mnemonicParsing="false" onAction="#inquiryRBonAction" text="Ja">
+                                                   <VBox.margin>
+                                                      <Insets />
+                                                   </VBox.margin>
+                                                </RadioButton>
+                                                <RadioButton fx:id="fxRB_agreeToInquiryNoRequesting" layoutX="10.0" layoutY="197.0" mnemonicParsing="false" onAction="#inquiryRBonAction" text="Nej">
+                                                   <VBox.margin>
+                                                      <Insets />
+                                                   </VBox.margin>
+                                                </RadioButton>
+                                                <TitledPane fx:id="fxTP_requestingInfo" expanded="false" prefHeight="800.0" prefWidth="525.0" text="Hvis ja, angiv kontaktoplysninger">
+                                                   <content>
+                                                      <VBox prefHeight="180.0" prefWidth="506.0">
+                                                         <children>
+                                                            <Label text="Navn:">
+                                                               <VBox.margin>
+                                                                  <Insets />
+                                                               </VBox.margin>
+                                                            </Label>
+                                                            <TextField fx:id="fxTF_firstnameRequesting" prefHeight="15.0" prefWidth="299.0" promptText="Indtast navn evt. mellemnavn">
+                                                               <VBox.margin>
+                                                                  <Insets bottom="5.0" top="5.0" />
+                                                               </VBox.margin>
+                                                            </TextField>
+                                                            <Label text="Efternavn">
+                                                               <VBox.margin>
+                                                                  <Insets />
+                                                               </VBox.margin>
+                                                            </Label>
+                                                            <TextField fx:id="fxTF_lastnameRequesting" prefHeight="15.0" prefWidth="299.0" promptText="Indtast efternavn">
+                                                               <VBox.margin>
+                                                                  <Insets bottom="5.0" top="5.0" />
+                                                               </VBox.margin>
+                                                            </TextField>
+                                                            <Label text="Cpr-nummer" />
+                                                            <TextField fx:id="fxTF_cprNoRequesting" prefHeight="9.0" prefWidth="380.0" promptText="Indtast evt. cpr nummer">
+                                                               <padding>
+                                                                  <Insets bottom="5.0" top="5.0" />
+                                                               </padding>
+                                                            </TextField>
+                                                            <Label prefHeight="21.0" prefWidth="164.0" text="Postnr/By/Adresse">
+                                                               <VBox.margin>
+                                                                  <Insets />
+                                                               </VBox.margin>
+                                                            </Label>
+                                                            <TextField fx:id="fxTF_zipcodeRequesting" prefHeight="9.0" prefWidth="380.0" promptText="Indtast postnummer">
+                                                               <VBox.margin>
+                                                                  <Insets bottom="5.0" top="5.0" />
+                                                               </VBox.margin>
+                                                            </TextField>
+                                                            <TextField fx:id="fxTF_citynameRequesting" prefHeight="8.0" prefWidth="380.0" promptText="Indtast byens navn">
+                                                               <VBox.margin>
+                                                                  <Insets bottom="5.0" top="5.0" />
+                                                               </VBox.margin>
+                                                            </TextField>
+                                                            <TextField fx:id="fxTF_streetNameRequesting" prefHeight="11.0" prefWidth="380.0" promptText="Indtast adresse">
+                                                               <VBox.margin>
+                                                                  <Insets bottom="5.0" top="5.0" />
+                                                               </VBox.margin>
+                                                            </TextField>
+                                                            <TextField fx:id="fxTF_houseNoRequesting" prefHeight="11.0" prefWidth="380.0" promptText="husnummer">
+                                                               <VBox.margin>
+                                                                  <Insets bottom="5.0" top="5.0" />
+                                                               </VBox.margin>
+                                                            </TextField>
+                                                            <TextField fx:id="fxTF_floorAndFloorDirectionRequesting" prefHeight="11.0" prefWidth="380.0" promptText="Hvis lejlighed, indtast etage og etage retning (f.eks. 2 etage, højre)">
+                                                               <VBox.margin>
+                                                                  <Insets bottom="5.0" top="5.0" />
+                                                               </VBox.margin>
+                                                            </TextField>
+                                                         </children>
+                                                      </VBox>
+                                                   </content>
+                                                </TitledPane>
+                                             </children>
+                                             <HBox.margin>
+                                                <Insets right="20.0" top="20.0" />
+                                             </HBox.margin>
+                                          </VBox>
                                        </children>
-                                    </AnchorPane>
+                                       <padding>
+                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                       </padding>
+                                    </HBox>
                                  </content>
                               </TitledPane>
                               <TitledPane fx:id="fxTP_rightsDuties" expanded="false" layoutX="10.0" layoutY="10.0" prefHeight="0.0" prefWidth="1050.0" text="Rettigheder og pligter">
@@ -654,9 +653,6 @@
                                                 <VBox fx:id="fxVbox_treatment" prefHeight="155.0" prefWidth="457.0">
                                                    <children>
                                                       <RadioButton fx:id="fxRB_treatment" mnemonicParsing="false" onAction="#benefitsParagraphs" text="Behandling">
-                                                         <VBox.margin>
-                                                            <Insets />
-                                                         </VBox.margin>
                                                          <padding>
                                                             <Insets bottom="5.0" />
                                                          </padding>
@@ -779,7 +775,6 @@
                                     </AnchorPane>
                                  </content>
                               </TitledPane>
-                              <Label fx:id="fxLB_userInfo" text="Label" />
                               <Button fx:id="fxBT_save" contentDisplay="TOP" mnemonicParsing="false" onAction="#saveBtnOnAction" text="Save" />
                            </children>
                         </VBox>

@@ -37,7 +37,7 @@ public class CreateCaseController extends RunFxmlLoader implements Initializable
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        
         this.list = new ArrayList<>();
         list.add(0, "../createcase/fxml/caseOpeningNEW.fxml");
         list.add(1, "../createcase/fxml/caseInvestigation.fxml");

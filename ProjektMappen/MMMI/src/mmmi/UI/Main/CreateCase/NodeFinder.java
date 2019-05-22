@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package mmmi.UI.Main.createCase;
 
 import com.jfoenix.controls.JFXTextField;
@@ -26,18 +22,37 @@ import mmmi.UI.Main.RunFxmlLoader;
 
 /**
  *
- * @author steff
+ * @author steffeffen Vitten Pedersen
  */
 public class NodeFinder {
     List<RadioButton> radioButtonsList;
     Map<String, ToggleGroup> tName;
     Map<String, String> nodeMap = new HashMap<>();
 
+    /**
+     *
+     * @return
+     */
     public Map<String, String> getCaseInvestigation() {
         return nodeMap;
     }
 
+    public Map<String, String> getNodeMap() {
+        return nodeMap;
+    }
+
+    public void putAllNodeMap(Map<String, String> Map) {
+        Map.putAll(this.nodeMap);
+    }
+    
+
+    /**
+     *
+     * @param parent
+     * This method makes a sleep funktion to allow the program time to load all nodes and then call getAllRadioNodes.
+     */
     public void runRadioFinder(Parent parent) {
+        
         new Thread() {
             @Override
             public void run() {
@@ -52,6 +67,11 @@ public class NodeFinder {
         }.start();
     }
 
+    /**
+     *
+     * @param parent
+     * @return 
+     */
     public Map<String, String> findeNodehandler(Parent parent) {
         getAllNodes(parent);
         for (Map.Entry<String, String> entry : nodeMap.entrySet()) {
@@ -62,6 +82,11 @@ public class NodeFinder {
         return nodeMap;
     }
 
+    /**
+     *
+     * @param root
+     * @return
+     */
     public static ArrayList<Node> getAllRadioNodes(Parent root) {
         ArrayList<Node> n = new ArrayList<>();
         addRadiobutton(root, n);
@@ -94,6 +119,11 @@ public class NodeFinder {
         }
     }
 
+    /**
+     *
+     * @param root
+     * @return
+     */
     public ArrayList<Node> getAllNodes(Parent root) {
         ArrayList<Node> nodes = new ArrayList<Node>();
         addAllDescendents(root, nodes);
@@ -136,4 +166,5 @@ public class NodeFinder {
     }
 
 }
+
 

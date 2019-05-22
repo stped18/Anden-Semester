@@ -55,7 +55,7 @@ public class MainController extends RunFxmlLoader implements Initializable {
             changeFxml(fxSubPane, "Home/home.fxml");
         }
         if (event.getSource() == fxCreateCaseBtn) {
-            changeFxml(fxSubPane, "createCase/fxml/caseInvestigation.fxml");
+            changeFxml(fxSubPane, "createCase/fxml/createcase.fxml");
         }
         if (event.getSource() == fxSearchcaseBtn) {
             changeFxml(fxSubPane, "findcase/findCase.fxml");

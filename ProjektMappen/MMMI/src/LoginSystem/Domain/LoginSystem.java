@@ -5,10 +5,6 @@ import LoginSystem.DataLayer.DbEmployee;
 import mmmi.Domain.Department;
 import mmmi.Domain.Interfaces.IDomain;
 
-/**
- *
- * @author steff
- */
 public class LoginSystem implements IEmployee {
 
     private String username;
@@ -52,8 +48,4 @@ public class LoginSystem implements IEmployee {
     public int getEmployeeID() {
         return employee.getEmployeeID();
     }
-
 }
-
-
-

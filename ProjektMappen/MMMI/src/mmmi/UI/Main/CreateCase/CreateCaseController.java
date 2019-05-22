@@ -57,7 +57,7 @@ public class CreateCaseController extends RunFxmlLoader implements Initializable
             chanceScene();
         }
         if (event.getSource() == fxSaveBtn) {
-            System.out.println("SKRIV KODE HER!!!!");
+            
         }
     }
 

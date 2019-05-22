@@ -5,7 +5,6 @@ import mmmi.Data_layer.Citizen;
 import mmmi.Data_layer.Employee;
 import mmmi.Data_layer.SearchCase;
 import java.util.List;
-import java.util.Map;
 
 public interface IDataHandler {
 

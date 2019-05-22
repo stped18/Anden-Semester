@@ -5,37 +5,24 @@
  */
 package mmmi.UI.Main.CreateCase;
 
-import com.jfoenix.controls.JFXTextField;
+import javafx.scene.control.TextField;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
-import javafx.scene.control.Labeled;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextInputControl;
-import javafx.scene.control.Toggle;
-import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
+import mmmi.UI.Main.createCase.NodeFinder;
 
 /**
  * FXML Controller class
  *
  * @author steff
  */
-public class CaseInvestigationController implements Initializable {
+public class CaseInvestigationController extends NodeFinder implements Initializable {
 
     @FXML
     private TextArea fxTa_physicsInformationCitizen;
@@ -229,153 +216,51 @@ public class CaseInvestigationController implements Initializable {
     @FXML
     private AnchorPane fxAc_CaseInvestigationroot;
 
-    Map<String, String> caseInvestigation;
-    List<RadioButton> radioButtonsList;
-    Map<String, ToggleGroup> tName;
     @FXML
-    private JFXTextField fxTf_physicalThemes;
+    private TextField fxTf_physicalThemes;
     @FXML
-    private JFXTextField fxTf_mentallyThemes;
+    private TextField fxTf_mentallyThemes;
     @FXML
-    private JFXTextField fxTf_sociallyThemes;
+    private TextField fxTf_sociallyThemes;
     @FXML
-    private JFXTextField fxTf_practiceTasksThemes;
+    private TextField fxTf_practiceTasksThemes;
     @FXML
-    private JFXTextField fxTf_selfcareThemes;
+    private TextField fxTf_selfcareThemes;
     @FXML
-    private JFXTextField fxTf_mobilityThemes;
+    private TextField fxTf_mobilityThemes;
     @FXML
-    private JFXTextField fxTf_communicationThemes;
+    private TextField fxTf_communicationThemes;
     @FXML
-    private JFXTextField fxTf_communityLifeThemes;
+    private TextField fxTf_communityLifeThemes;
     @FXML
-    private JFXTextField fxTf_socialLifeThemes;
+    private TextField fxTf_socialLifeThemes;
     @FXML
-    private JFXTextField fxTf_healthThemes;
+    private TextField fxTf_healthThemes;
     @FXML
-    private JFXTextField fxTf_environmentThemes;
+    private TextField fxTf_environmentThemes;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        caseInvestigation = new HashMap<>();
-        runRadioFinder();
+        runRadioFinder(fxAc_CaseInvestigationroot);
         
 
     }
 
-    public Map<String, String> getCaseInvestigation() {
-        return caseInvestigation;
-    }
-    
-    
-    
-    public void runRadioFinder(){
-                    new Thread(){
-            @Override
-            public void run() {
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(CaseInvestigationController.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                     getAllRadioNodes(fxAc_CaseInvestigationroot);           
-            }
-                
-            }.start();
-    }
-
     @FXML
     private void BtnHandler(ActionEvent event) {
-
-        if (event.getSource() == fxBtn_save) {
-            getAllNodes(fxAc_CaseInvestigationroot);
-
-            for (Map.Entry<String, String> entry : caseInvestigation.entrySet()) {
-                Object key = entry.getKey();
-                Object val = entry.getValue();
-                System.out.println(key + "  :  " + val);
-            }
-        }
+        findeNodehandler(fxAc_CaseInvestigationroot);
+     
 
     }
 
-    public static ArrayList<Node> getAllRadioNodes(Parent root) {
-        ArrayList<Node> n = new ArrayList<>();
-        addRadiobutton(root, n);
-        return n;
-    }
-
-    private static void addRadiobutton(Parent parent, ArrayList<Node> n) {
-        List<RadioButton> radioButtonsList = new ArrayList<>();
-        Map<String, ToggleGroup> tName = new HashMap<>();
-        for (Node node : parent.getChildrenUnmodifiable()) {
-            n.add(node);
-            if (node instanceof Parent) {
-                if (node instanceof RadioButton) {
-                    radioButtonsList.add(((RadioButton) node));
-                }
-                addRadiobutton((Parent) node, n);
-            }
-
-        }
-
-        for (RadioButton radioButton : radioButtonsList) {
-            String r = radioButton.getId().substring(5, radioButton.getId().length() - 1);
-            if (tName.containsKey(r)) {
-                radioButton.setToggleGroup(tName.get(r));
-
-            } else {
-                tName.put(r, new ToggleGroup());
-                radioButton.setToggleGroup(tName.get(r));
-            }
-        }
-    }
-
-    public ArrayList<Node> getAllNodes(Parent root) {
-        ArrayList<Node> nodes = new ArrayList<Node>();
-        addAllDescendents(root, nodes);
-        return nodes;
-    }
-
-    private void addAllDescendents(Parent parent, ArrayList<Node> nodes) {
-
-        for (Node node : parent.getChildrenUnmodifiable()) {
-            nodes.add(node);
-            if (node instanceof Parent) {
-
-                if (node instanceof TextArea) {
-                    if (!((TextInputControl) node).getText().isEmpty()) {
-                        String key = node.getId().substring(5);
-                        caseInvestigation.put(key, ((TextInputControl) node).getText());
-
-                    }
-                }
-                if (node instanceof JFXTextField) {
-                    if (!((TextInputControl) node).getText().isEmpty()) {
-                        String key = node.getId().substring(5);
-                        caseInvestigation.put(key, ((TextInputControl) node).getText());
-
-                    }
-                }
-                if (node instanceof RadioButton) {
-                    if (((Toggle) node).isSelected()) {
-
-                        String key = ((RadioButton) node).getId().substring(5, ((RadioButton) node).getId().length() - 1);
-                        caseInvestigation.put(key, ((Labeled) node).getText());
-
-                    }
-                }
-                addAllDescendents((Parent) node, nodes);
-            }
-
-        }
-
-    }
 
 }
+
+
+
 
 
 

@@ -1,14 +1,7 @@
-/*
- * Denne classe skaber kontakten mellem programet og databasen
- *
- */
 package mmmi.Data_layer.Connection;
 
 import java.sql.*;
 
-/**
- * @author steff dette er kun en ide til hvordan man henter og sender data
- */
 public class DatabaseConnection {
 
     private final String url = "jdbc:postgresql://mmmihosting.ddns.net:3306/mmmidb";
@@ -22,10 +15,8 @@ public class DatabaseConnection {
 
     public void connectToDB() {
         try {
-
             Class.forName("org.postgresql.Driver");
             dbConnection = DriverManager.getConnection(url, username, password);
-            System.out.println("Connectet to MMMI Database");
         } catch (ClassNotFoundException | SQLException ex) {
         }
     }
@@ -44,10 +35,7 @@ public class DatabaseConnection {
             if (dbConnection != null) {
                 dbConnection.close();
             }
-
-            System.out.println("Disconnectet From MMMI Database");
         } catch (SQLException ex) {
         }
     }
-
 }

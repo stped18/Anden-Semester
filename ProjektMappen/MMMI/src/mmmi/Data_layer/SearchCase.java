@@ -76,5 +76,4 @@ public class SearchCase {
     public String toString() {
         return "SearchCase{" + "citizenID=" + citizenID + ", citizenName=" + citizenName + ", caseID=" + caseID + ", caseStatus=" + caseStatus + ", currentCaseDate=" + currentCaseDate + ", reason=" + reason + ", employeeID=" + employeeID + ", employeeName=" + employeeName + '}';
     }
-
 }

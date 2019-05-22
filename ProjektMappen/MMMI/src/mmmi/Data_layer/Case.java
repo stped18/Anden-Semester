@@ -51,7 +51,6 @@ public class Case {
     }
 
     public void addRequestingCitizen(Citizen requestingCitizenID) {
-
         // TODO: Add a new requesting citizen to the list. Instead of overridding.
         requestingCitizens.add(requestingCitizenID);
     }
@@ -87,19 +86,16 @@ public class Case {
         List<String> stringColoumnBuilder = new ArrayList<>();
         // put mapKeys to list
         for (String mapKey : theCase.getCaseContent().keySet()) {
-
             stringColoumnBuilder.add(mapKey);
         }
         // build string, seperated with ","
         StringBuilder sb = new StringBuilder();
         for (String s : stringColoumnBuilder) {
-
             sb.append(s).append(",");
         }
 
         sb.setLength(sb.length() - 1);  // To remove "," on the last part of the string when it gets appended.
 
         return sb.toString();
-
     }
 }

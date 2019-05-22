@@ -1,18 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package LoginSystem.DataLayer;
 
 import java.util.Map;
 
-/**
- *
- * @author steff
- */
 public class DbEmployee {
-
 
     private final int employeeID;
     private final String firstName;
@@ -27,7 +17,6 @@ public class DbEmployee {
         this.lastName = lastName;
         this.roleID = roleID;
         this.departmentID = departmentID;
-        
     }
 
     public int getEmployeeID() {
@@ -55,16 +44,8 @@ public class DbEmployee {
     public String toString() {
         return "DbEmployee{" + "employeeID=" + employeeID + ", firstName=" + firstName + ", lastName=" + lastName + ", roleID=" + roleID + ", departmentID=" + departmentID + ", rigths=" + rigths + '}';
     }
-    
+
     public Map<Integer, String> getRights() {
         return rigths;
     }
-
 }
-    
-
-
-
-
-
-

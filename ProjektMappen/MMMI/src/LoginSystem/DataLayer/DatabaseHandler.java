@@ -18,27 +18,26 @@ public class DatabaseHandler {
     protected Connection dbConnection = null;
     protected Statement dbStatement = null;
     protected ResultSet dbResultSet = null;
-    protected PreparedStatement preparedStatement=null;
-
+    protected PreparedStatement preparedStatement = null;
 
     public void connectDB() {
-        try {
 
+        try {
             Class.forName("org.postgresql.Driver");
             dbConnection = DriverManager.getConnection(url, username, password);
             System.out.println("Connectet to MMMI Database");
         } catch (ClassNotFoundException | SQLException ex) {
-
         }
     }
 
     public DbEmployee getEmployeedb(String username, String password) {
+
         String qurryString = "SELECT *  From employee WHERE username='" + username + "'  AND password='" + password + "';";
         connectDB();
-         DbEmployee employee = null;
+        DbEmployee employee = null;
+        
         try {
-            
-            preparedStatement= dbConnection.prepareStatement(qurryString);
+            preparedStatement = dbConnection.prepareStatement(qurryString);
             dbResultSet = preparedStatement.executeQuery();
             while (dbResultSet.next()) {
                 int employeid = dbResultSet.getInt("employeeid");
@@ -46,17 +45,14 @@ public class DatabaseHandler {
                 String last_name = dbResultSet.getString("lastname");
                 int departnemtId = dbResultSet.getInt("departmentdepartmentid");
                 int roleID = dbResultSet.getInt("roleroleid");
-                 
-                
+
                 employee = new DbEmployee(employeid, first_name, last_name, roleID, departnemtId);
             }
         } catch (SQLException ex) {
             Logger.getLogger(DatabaseHandler.class.getName()).log(Level.SEVERE, null, ex);
         }
-
         disconect();
         return employee;
-
     }
 
     public void disconect() {
@@ -74,12 +70,4 @@ public class DatabaseHandler {
         } catch (SQLException ex) {
         }
     }
-
 }
-
-
-
-
-
-
-

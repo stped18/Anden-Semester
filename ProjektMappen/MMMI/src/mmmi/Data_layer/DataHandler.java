@@ -15,10 +15,6 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author gruppe 2
- */
 public class DataHandler extends DatabaseConnection implements IDataHandler {
 
     private int employeeID;
@@ -43,7 +39,6 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
         int departmentID = 0;
 
         connectToDB();
-
         try {
             String getCitizenQuery = "SELECT cit.*, zc.cityname "
                     + "FROM citizen AS cit, zipcode AS zc, case_requestingcitizen cr "
@@ -56,9 +51,6 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
             dbResultSet = dbPreparedStatement.executeQuery();
             System.out.println("test");
             while (dbResultSet.next()) {
-                // int citizenID, String firstName, String lastName, String cprNo, String streetName, 
-// String houseNo, String floor, String floorDirection, int zipcode, String cityname, boolean regardingCitizen, boolean requestingCitizen
-
                 requstingCitizens.add(new Citizen(dbResultSet.getInt("citizenid"),
                         dbResultSet.getString("firstname"),
                         dbResultSet.getString("lastname"),
@@ -67,7 +59,6 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
                         dbResultSet.getString("houseNo"),
                         dbResultSet.getString("floor"), dbResultSet.getString("floordirection"), dbResultSet.getInt("zipcodezipcode"), dbResultSet.getString("cityname"),
                         dbResultSet.getBoolean("regardingcitizen"), dbResultSet.getBoolean("requestingcitizen")));
-
             }
 
             String getCaseQuery = "SELECT c.departmentdepartmentid, c.casestatus, crg.*, zc.cityname, cc.* "
@@ -77,9 +68,7 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
             dbPreparedStatement = dbConnection.prepareStatement(getCaseQuery);
             dbPreparedStatement.setInt(1, caseID);
             dbPreparedStatement.setInt(2, caseID);
-
             dbResultSet = dbPreparedStatement.executeQuery();
-
             ResultSetMetaData rsmd = dbResultSet.getMetaData();
 
             int columnCount = rsmd.getColumnCount();
@@ -89,23 +78,17 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
             for (int i = 19; i <= columnCount; i++) {
                 String columnName = rsmd.getColumnName(i);
                 columnNames.add(columnName);
-
                 //Load the Map initially with keys(columnnames) and empty value
                 columnToValuesMap.put(columnName, "");
 
             }
-            //System.out.println(Arrays.asList(columnNames));
             int regardingCitizenID = 0, zipcode = 0;
             String cityname = "", firstname = "", lastname = "", cprno = "", streetname = "", houseno = "", floor = "", floordirection = "";
             boolean regardingcitizen = false, requestingcitizen = false;
             while (dbResultSet.next()) {
-
-//                requstingCitizens.add(dbResultSet.getInt("citizenrequestingcitizenid"));
-// Hent alt fra db omkring citizen og opret et nyt citizen objekt for hver der findes
-                //requstingCitizens.add(requestingCitizen.setCitizenID(dbResultSet.getInt("citizenrequestingcitizenid")));
+                // Hent alt fra db omkring citizen og opret et nyt citizen objekt for hver der findes
                 regardingCitizenID = dbResultSet.getInt("citizenid");
                 caseStatus = dbResultSet.getString("casestatus");
-
                 departmentID = dbResultSet.getInt("departmentdepartmentid");
                 zipcode = dbResultSet.getInt("zipcodezipcode");
                 cityname = dbResultSet.getString("cityname");
@@ -120,28 +103,19 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
                 requestingcitizen = dbResultSet.getBoolean("requestingcitizen");
 
                 for (String columnName : columnNames) {
-
                     //Get the list mapped to column name
-//                    String columnDataList = columnToValuesMap.get(columnName);
                     String columnDataList = dbResultSet.getString(columnName);
-
                     //add the updated list of column data to the map now
                     columnToValuesMap.put(columnName, columnDataList);
-
                 }
-
             }
             regardingCitizen = new Citizen(caseID, firstname, lastname, cprno, streetname, houseno, floor, floordirection, caseID, cityname, regardingcitizen, requestingcitizen);
             return new Case(caseID, departmentID, caseStatus, regardingCitizen, requstingCitizens, columnToValuesMap);
-
-            // String caseID, String caseStatus, int regardingCitizenID, List<Integer> requestingCitizens, Map<String, String> caseContent
         } catch (SQLException e) {
             System.out.println(e);
         } finally {
             disconnectDB();
         }
-        //List<Integer> rc = caze.getRequestingCitizen();
-
         return new Case(caseID, departmentID, caseStatus, null, null, columnToValuesMap);
     }
 
@@ -208,14 +182,12 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
                     cases.add(new Case(caseID, departmentID, caseStatus, null, null, caseContent));
 
                     citizen.setCases(cases);
-
                 }
             } else {
                 // NO DB CONNECTION
             }
         } catch (SQLException ex) {
-            Logger.getLogger(DataHandler.class
-                    .getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DataHandler.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("readCitizen:\nSQLState: " + ex.getSQLState() + "\nmessage: " + ex.getMessage());
             disconnectDB();
         } finally {
@@ -248,7 +220,6 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
     public Employee readEmployee(int employeeID) {
 
         if (this.employeeID != employeeID) {
-
             this.employeeID = employeeID;
             String empolyeeName = "";
             int roleID = -1;
@@ -260,7 +231,6 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
 
             try {
                 connectToDB();
-
                 selectQuery = "SELECT em.roleroleid AS roleid, "
                         + "CONCAT(em.firstname, ' ', em.lastname) AS employeename, "
                         + "ce.casecaseid AS caseid, "
@@ -302,7 +272,6 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
             }
             employee = new Employee(employeeID, empolyeeName, roleID, employeeCases, rights);
         }
-
         return employee;
     }
 
@@ -315,16 +284,16 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
     public boolean writeCase(Case theCase) {
 
         if (theCase.getCaseID() == -1) {
-
             String[] list = {theCase.columnStringBuilder(theCase)};
             String[] listString = Arrays.toString(list).split(",");
             String[] e = new String[listString.length];
             int count = 0;
+            
             for (int i = 0; i < listString.length; i++) {
-
                 e[i] = "?";
                 count++;
             }
+            
             connectToDB();
             System.out.println(theCase.getCaseContent());
             try {
@@ -352,7 +321,6 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
                     value = entry.getValue();
                     if (value != null) {
                         dbPreparedStatement.setString(i, value);
-
                     }
                     value = "";
                     i++;
@@ -363,12 +331,9 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
                 return true;
 
             } catch (SQLException ex) {
-                Logger.getLogger(DataHandler.class
-                        .getName()).log(Level.SEVERE, null, ex);
-
+                Logger.getLogger(DataHandler.class.getName()).log(Level.SEVERE, null, ex);
                 return false;
             } finally {
-
                 if (dbPreparedStatement != null) {
                     dbPreparedStatement = null;
                 }
@@ -376,10 +341,8 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
             }
         } else {
             // TODO: In and create a new row in case_contents with caseContents information from theCase
-
             return false;
         }
-
     }
 
     /**
@@ -413,14 +376,12 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
                 ResultSet rs = insertCitizen.getGeneratedKeys();
                 if (rs.next()) {
                     citizenID = rs.getInt(1);
-
                 }
             } else {
                 // NO DB CONNECTION
             }
         } catch (SQLException ex) {
-            Logger.getLogger(DataHandler.class
-                    .getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DataHandler.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("writeCitizen:\nSQLState: " + ex.getSQLState() + "\nmessage: " + ex.getMessage());
             disconnectDB();
         } finally {
@@ -483,7 +444,6 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
 
     @Override
     public Citizen createCitizen() {
-
         return new Citizen(-1, "", "", "", "", "", "", "", -1, "", false, false);
     }
 
@@ -599,9 +559,7 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
                 }
             } catch (SQLException ex) {
                 System.out.println("search:\nSQLState: " + ex.getSQLState() + "\nmessage: " + ex.getMessage());
-                Logger
-                        .getLogger(DataHandler.class
-                                .getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(DataHandler.class.getName()).log(Level.SEVERE, null, ex);
                 disconnectDB();
             } finally {
                 if (searchCaseStmt != null) {
@@ -640,11 +598,9 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
         } finally {
             disconnectDB();
         }
-
         if (note == null) {
             note = "";
         }
-
         return note;
     }
 
@@ -697,21 +653,11 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
             dbResultSet = dbPreparedStatement.executeQuery();
 
             return true;
-
         } catch (SQLException ex) {
             System.out.println("write note:\nSQLState: " + ex.getSQLState() + "\nMessage: " + ex.getMessage());
             return false;
         } finally {
             disconnectDB();
         }
-
-    }
-
-    public static void main(String[] args) {
-
-        DataHandler dataHandler = new DataHandler();
-
-        System.out.println(dataHandler.readCase(123));
-
     }
 }

@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Citizen {
 
-    private final int citizenID;
+    private int citizenID;
     private String firstName;
     private String lastName;
     private String cprNo;
@@ -94,7 +94,11 @@ public class Citizen {
     public boolean isRequestingCitizen() {
         return requestingCitizen;
     }
-
+    
+    public void setCitizenID(int citizenID) {
+        this.citizenID = citizenID;
+    }
+    
     public void setCases(List<Case> Cases) {
         this.Cases = Cases;
     }

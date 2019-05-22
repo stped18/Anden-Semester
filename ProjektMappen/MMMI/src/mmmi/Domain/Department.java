@@ -173,9 +173,9 @@ public class Department implements IDomain {
             }
         }
 
-        int regardingID = 0;
-
-        List<Integer> requestingCitizenList = new ArrayList<>();
+        int regardingID, requestingID = 0;
+        Citizen regardingCitizen = null;
+        List<Citizen> requestingCitizenList = new ArrayList<>();
         for (Map<String, String> map : citizenInfoList) {
 
             Citizen citizen = dataHandler.createCitizen();
@@ -192,11 +192,14 @@ public class Department implements IDomain {
             citizen.setRequestingCitizen(Boolean.valueOf(map.get("requestingCitizen")));
 
             if (citizen.isRequestingCitizen()) {
-
-                requestingCitizenList.add(dataHandler.writeCitizen(citizen));
+                requestingID = dataHandler.writeCitizen(citizen);
+                citizen.setCitizenID(requestingID);
+                requestingCitizenList.add(citizen);
 
             } else if (citizen.isRegardingCitizen()) {
                 regardingID = dataHandler.writeCitizen(citizen);
+                citizen.setCitizenID(regardingID);
+                regardingCitizen = citizen;
             }
         }
 
@@ -207,8 +210,8 @@ public class Department implements IDomain {
             caze = dataHandler.createCase();
             caze.setCaseContent(contentsMap);
             caze.setCaseStatus("Igang");
-//            caze.setRegardingCitizenID(regardingID);
-//            caze.setRequestingCitizens(requestingCitizenList);
+            caze.setRegardingCitizen(regardingCitizen);
+            caze.setRequestingCitizens(requestingCitizenList);
             caze.setDepartmentID(departmentID);
         } else {
             // TODO: If there is a case already you just need to set content (In regards to write it to the database)
@@ -267,7 +270,7 @@ public class Department implements IDomain {
         Map<String, String> conentsMap = new HashMap<>();
         conentsMap.put("regardinginquiry", "test1");
         conentsMap.put("treatment", "test2");
-        conentsMap.put("departmentID", "-1");
+        //conentsMap.put("departmentID", "-1");
         conentsMap.put("caseID", "-1");
 
         Map<String, String> citizenInfoRegarding = new HashMap<>();

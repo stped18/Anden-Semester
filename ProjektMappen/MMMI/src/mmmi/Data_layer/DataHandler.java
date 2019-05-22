@@ -331,7 +331,7 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
                 String insertIntoCase = "INSERT INTO \"case\" "
                         + "(citizenregardingcitizenid, casestatus, departmentdepartmentid) ";
                 String values = "VALUES(?,?,?) ";
-               
+                dbPreparedStatement = dbConnection.prepareStatement(insertIntoCase+values, Statement.RETURN_GENERATED_KEYS);
                 dbPreparedStatement.setInt(1, theCase.getRegardingCitizen().getCitizenID());
                 dbPreparedStatement.setString(2, theCase.getCaseStatus());
                 dbPreparedStatement.setInt(3, theCase.getDepartmentID());

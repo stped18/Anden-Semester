@@ -1,6 +1,4 @@
-package MMMI.Data_layer;
-
-import java.util.Date;
+package mmmi.Data_layer;
 
 public class SearchCase {
 

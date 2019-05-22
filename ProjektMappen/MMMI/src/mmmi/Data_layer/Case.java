@@ -1,24 +1,33 @@
-package MMMI.Data_layer;
+package mmmi.Data_layer;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class Case {
 
-    private final String caseID;
+    private final int caseID;
     private String caseStatus;
-    private final int regardingCitizenID;
-    private List<Integer> requestingCitizens;
-    private final Map<String, String> caseContent;
+    private Citizen regardingCitizen;
+    private int departmentID;
+    private List<Citizen> requestingCitizens;
+    private Map<String, String> caseContent;
 
-    public Case(String caseID, String caseStatus, int regardingCitizenID, List<Integer> requestingCitizens, Map<String, String> caseContent) {
+    public Case(int caseID, int departmentID, String caseStatus, Citizen regardingCitizen, List<Citizen> requestingCitizens, Map<String, String> caseContent) {
         this.caseID = caseID;
+        this.departmentID = departmentID;
         this.caseStatus = caseStatus;
-        this.regardingCitizenID = regardingCitizenID;
+        this.regardingCitizen = regardingCitizen;
         this.requestingCitizens = requestingCitizens;
         this.caseContent = caseContent;
+    }
+
+    public int getDepartmentID() {
+        return departmentID;
+    }
+
+    public void setDepartmentID(int departmentID) {
+        this.departmentID = departmentID;
     }
 
     public String getCaseStatus() {
@@ -29,19 +38,19 @@ public class Case {
         this.caseStatus = caseStatus;
     }
 
-    public String getCaseID() {
+    public int getCaseID() {
         return caseID;
     }
 
-    public int getRegardingCitizenID() {
-        return regardingCitizenID;
+    public Citizen getRegardingCitizen() {
+        return regardingCitizen;
     }
 
-    public List<Integer> getRequestingCitizen() {
+    public List<Citizen> getRequestingCitizen() {
         return requestingCitizens;
     }
 
-    public void addRequestingCitizen(Integer requestingCitizenID) {
+    public void addRequestingCitizen(Citizen requestingCitizenID) {
 
         // TODO: Add a new requesting citizen to the list. Instead of overridding.
         requestingCitizens.add(requestingCitizenID);
@@ -51,20 +60,34 @@ public class Case {
         return caseContent;
     }
 
-    public void addContents(String key, String value) {
-        caseContent.put(key, value);
+    public void setRegardingCitizen(Citizen regardingCitizen) {
+        this.regardingCitizen = regardingCitizen;
     }
-    
+
+    public void setRequestingCitizens(List<Citizen> requestingCitizens) {
+        this.requestingCitizens = requestingCitizens;
+    }
+
+    public void setCaseContent(Map<String, String> caseContent) {
+        this.caseContent = caseContent;
+    }
+
+    @Override
+    public String toString() {
+        return "Case{" + "caseID=" + caseID + ", caseStatus=" + caseStatus + ", regardingCitizenID=" + regardingCitizen + ", departmentID=" + departmentID + ", requestingCitizens=" + requestingCitizens + ", caseContent=" + caseContent + '}';
+    }
+
     /**
      *
-     * @param caseContenst
+     * @param theCase
      * @return
      */
-    public String columnStringBuilder(Map<String, String> caseContenst) {
+    public String columnStringBuilder(Case theCase) {
 
         List<String> stringColoumnBuilder = new ArrayList<>();
         // put mapKeys to list
-        for (String mapKey : caseContenst.keySet()) {
+        for (String mapKey : theCase.getCaseContent().keySet()) {
+
             stringColoumnBuilder.add(mapKey);
         }
         // build string, seperated with ","

@@ -102,7 +102,7 @@ public class Department implements IDomain {
      *
      * @param key, String
      * @param value, String
-     * @return Map<tring, <Map<String, String>>
+     * @return Map<String, <Map<String, String>>
      */
     @Override
     public Map<String, Map<String, String>> search(String key, String value) {
@@ -128,12 +128,21 @@ public class Department implements IDomain {
 
     /**
      *
-     * @param caseID
-     * @return
+     * //TODO: Opens a case with all the info into a map that are sent to the
+     * GUI
+     *
+     * This method forwards the @params to the method
+     * {@link mmmi.Data_layer.DataHandler#readCase(java.lang.Integer)}. The
+     * result of #readCase sends a {@link mmmi.Data_layer.Case} object back
+     * found with specific caseID and its contents.
+     *
+     * @param caseID, int
+     * @return Map<String, Map<String, String>> with the case contents found in
+     * the returned Case object.
      */
     @Override
     public Map<String, Map<String, String>> openCase(int caseID) {
-        //TODO: Opens a case with all the info into a map that are sendt to the GUI
+        //TODO: Opens a case with all the info into a map that are sent to the GUI
 
         Map<String, Map<String, String>> fullMap = new HashMap<>();
 
@@ -177,9 +186,22 @@ public class Department implements IDomain {
     }
 
     /**
+     * // TODO: If there is a case already you just need to set content (In
+     * regards to write it to the database)
      *
-     * @param caseInfo
-     * @return
+     * This method forwards the @params to the method
+     * {@link mmmi.Data_layer.DataHandler#search(java.util.Map<String, java.util.Map<String, String>>)}
+     *
+     * if (contentsMap.get("caseID").equalsIgnoreCase("-1")), then the method
+     * creates a new {@link mmmi.Data_layer.Case} object and sets the variable
+     * to the result, and fills the empty object with Case specific informtaion
+     * and case contents and afterwards {@link mmmi.Data_layer.DataHandler#writeCase(theCase), where theCase
+     * is the Case sent from saveCase()
+     *
+     * @param caseInfo, Map<String, Map<String, String>>
+     * @ret
+     * urn boolean, if the case got saved successfully, or false if error
+     * occured.
      */
     @Override
     public boolean saveCase(Map<String, Map<String, String>> caseInfo) {

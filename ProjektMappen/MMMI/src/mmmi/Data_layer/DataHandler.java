@@ -28,6 +28,9 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
      * caseID and has regarding citizen object which refereces to case content
      * based on the regarding Citizen id.
      *
+     * Method return: returns Case with case specific information and case
+     * contents.
+     *
      * @param caseID, accepts int value
      * @return returns Case object
      */
@@ -301,9 +304,16 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
     }
 
     /**
+     * 
+     * Method return: Returns a boolean value based on if the write to database
+     * was successful, else false if an error occured
      *
-     * @param theCase TEST
-     * @return TEST
+     * // TODO: In and create a new row in case_contents with caseContents
+     * information from theCase
+     *
+     * @param theCase, Case object.
+     * @return boolean, true if the write to database was successful, false if
+     * error occured.
      */
     @Override
     public boolean writeCase(Case theCase) {

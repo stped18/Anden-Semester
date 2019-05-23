@@ -246,22 +246,25 @@ public class CaseInvestigationController  implements Initializable {
     @FXML
     private void BtnHandler(ActionEvent event) {
 
-        Map<String, String>d = nf.getContens();
-
-        d.putAll(nf.findeNodehandler(fxAc_CaseInvestigationroot));
+        
+        nf.getContens().put("caseID", "-1");
+        nf.addContens(nf.findeNodehandler(fxAc_CaseInvestigationroot));
 //        for (Map.Entry<String, String> entry : nf.findeNodehandler(fxAc_CaseInvestigationroot).entrySet()) {
 //            String key = entry.getKey();
 //            String val = entry.getValue();
 //            d.put(key, val);
 //        }
+        
 
-        for (Map.Entry<String, String> entry : d.entrySet()) {
+        for (Map.Entry<String, String> entry : nf.getContens().entrySet()) {
             String key = entry.getKey();
             String val = entry.getValue();
             System.out.println(key+"    "+ val);
         }
     }
     }
+
+
 
 
 

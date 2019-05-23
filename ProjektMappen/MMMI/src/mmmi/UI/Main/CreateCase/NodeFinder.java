@@ -23,11 +23,21 @@ public class NodeFinder {
     Map<String, ToggleGroup> tName;
     Map<String, String> nodeMap = new HashMap<>();
     public Map<String, String> contens = new HashMap<>();
+    private Map<String, Map<String, String>> fullContensMap = new HashMap<>();
     private static NodeFinder nodeFinder;
 
     private NodeFinder() {
     }
 
+    public boolean isFullMapEmty(){
+       return fullContensMap.isEmpty();
+    }
+
+    public Map<String, Map<String, String>> getFullContensMap() {
+        return fullContensMap;
+    }
+    
+    
     public static NodeFinder getInstant (){
         if(nodeFinder==null){
             nodeFinder = new NodeFinder();
@@ -41,8 +51,16 @@ public class NodeFinder {
         return contens;
     }
 
-    public void setContens(Map<String, String> contens) {
-        this.contens = contens;
+    public void addContens(Map<String, String> contens) {
+        this.contens.putAll(contens);
+        fullContensMap.put("caseContents", this.contens);
+        
+    }
+    public void addmap(Map<String, String> map, String keyString){
+        fullContensMap.put(keyString, map);
+        
+        
+        
     }
 
     public Map<String, String> getNodeMap() {
@@ -179,6 +197,8 @@ public class NodeFinder {
         }
     }
 }
+
+
 
 
 

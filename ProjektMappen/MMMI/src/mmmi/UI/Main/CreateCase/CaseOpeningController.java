@@ -111,8 +111,7 @@ public class CaseOpeningController  implements Initializable {
     private IDomain department;
     @FXML
     private TextField fxTF_cprNoRequesting;
-    @FXML
-    private Label fxLB_userInfo;
+    //private Label fxLB_userInfo;
     NodeFinder nf;
     /**
      * Initializes the controller class.
@@ -219,16 +218,80 @@ public class CaseOpeningController  implements Initializable {
 
     @FXML
     private void saveBtnOnAction(ActionEvent event) {
-         
-        Map<String, String>d = nf.getNodeMap();
-        d.putAll( nf.findeNodehandler(fxAP_subpane));
-//        for (Map.Entry<String, String> entry : nf.findeNodehandler(fxAP_subpane).entrySet()) {
-//            String key = entry.getKey();
-//            String val = entry.getValue();
-//            d.put(key, val);
-//            System.out.println(key+"    "+ val );
-//        }
-//      
+         if (event.getSource() == fxBT_save) {
+             System.out.println("her er jeg");
+            if (!fxTF_firstnameRegarding.getText().isEmpty()) {
+                cRegardingMap.put("firstName", fxTF_firstnameRegarding.getText());
+                cRegardingMap.put("lastName", fxTF_lastnameRegarding.getText());
+                cRegardingMap.put("streetName", fxTF_streetNameRegarding.getText());
+                cRegardingMap.put("cityName", fxTF_citynameRegarding.getText());
+                cRegardingMap.put("zipCode", String.valueOf(fxTF_zipcodeRegarding.getText()));
+                cRegardingMap.put("houseNo", String.valueOf(fxTF_zipcodeRegarding.getText()));
+                cRegardingMap.put("regardingCitizen", "true");
+                cRegardingMap.put("requestingCitizen", "false");
+                cRegardingMap.put("cpr", String.valueOf(fxTF_cprNoRegarding.getText()));
+                String[] regfd = fxTF_floorAndFloorDirectionRegarding.getText().split(", ", 2);
+                if (regfd.length != 2) {
+                    cRegardingMap.put("floor", "");
+                    cRegardingMap.put("floorDirection", "");
+                } else {
+                    String regfloor = regfd[0];
+                    String regfloorDir = regfd[1];
+                    cRegardingMap.put("floor", regfloor);
+                    cRegardingMap.put("floorDirection", regfloorDir);
+                }
+                System.out.println("her er jeg");
+            }
+            if (!fxTF_firstnameRequesting.getText().isEmpty()) {
+                cRequestingMap.put("firstName", fxTF_firstnameRegarding.getText());
+                cRequestingMap.put("lastName", fxTF_lastnameRequesting.getText());
+                cRequestingMap.put("streetName", fxTF_streetNameRequesting.getText());
+                cRequestingMap.put("cityName", fxTF_citynameRegarding.getText());
+                cRequestingMap.put("zipCode", String.valueOf(fxTF_zipcodeRequesting.getText()));
+                cRequestingMap.put("houseNo", String.valueOf(fxTF_zipcodeRequesting.getText()));
+                cRequestingMap.put("regardingCitizen", "false");
+                cRequestingMap.put("requestingCitizen", "true");
+                cRequestingMap.put("cpr", String.valueOf(fxTF_cprNoRequesting.getText()));
+                String[] reqfd = fxTF_floorAndFloorDirectionRequesting.getText().split(", ", 2);
+                if (reqfd.length != 2) {
+                    cRegardingMap.put("floor", "");
+                    cRegardingMap.put("floorDirection", "");
+                } else {
+                    String reqfloor = reqfd[0];
+                    String reqfloorDir = reqfd[1];
+                    cRequestingMap.put("floor", reqfloor);
+                    cRequestingMap.put("floorDirection", reqfloorDir);
+                }
+
+            }
+            String text = "";
+            if (fxTA_RegardingInquiry.getText().isEmpty()) {
+               //fxLB_userInfo.setText("Udfyld venligst tekstboks omkring henvendelsen");
+               // fxLB_userInfo.setTextFill(Paint.valueOf("#0076a3"));
+            }
+            contentsMap.put("caseID", "-1");
+//            contentsMap.put("casestatus", "igang");
+            contentsMap.put("regardinginquiry", fxTA_RegardingInquiry.getText());
+           //fxLB_userInfo.setTextFill(Paint.valueOf("#0076a3"));
+            contentsMap.put("rightsanddutiestext", fxTA_rightsAndDuties.getText());
+            contentsMap.put("rightsandduties", agreeToElectronicRegistrationTG.getSelectedToggle() == fxRB_agreeToElectronicRegistrationYes ? "yes"
+                    : (agreeToElectronicRegistrationTG.getSelectedToggle() == fxRB_agreeToElectronicRegistrationNo) ? "no" : "");
+            contentsMap.put("agreementswithcitizentext", !fxTA_agreementsWithCitzen.getText().isEmpty() ? fxTA_agreementsWithCitzen.getText() : "");
+
+            theFullContentsMap.put("caseContents", contentsMap);
+            theFullContentsMap.put("cRegarding", cRegardingMap);
+            theFullContentsMap.put("cRequesting", cRequestingMap);
+
+            System.out.println(theFullContentsMap);
+            //department.saveCase(theFullContentsMap);
+
+        }
+       
+        nf.addContens(contentsMap);
+        nf.addmap(cRegardingMap, "cRegarding");
+        nf.addmap(cRequestingMap, "cRequesting");
+        
+
     }
 
     private ToggleGroup createToggleGroup(RadioButton... names) {
@@ -241,6 +304,14 @@ public class CaseOpeningController  implements Initializable {
         return tg;
     }
 }
+
+
+
+
+
+
+
+
 
 
 

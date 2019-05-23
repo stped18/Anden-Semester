@@ -16,6 +16,9 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import mmmi.Domain.Department;
+import mmmi.Domain.Interfaces.IDomain;
+import mmmi.UI.Main.createCase.NodeFinder;
 
 public class CreateCaseController extends RunFxmlLoader implements Initializable {
 
@@ -29,15 +32,15 @@ public class CreateCaseController extends RunFxmlLoader implements Initializable
     private AnchorPane fxSubSubpane;
 
     List<String> list;
-
+    IDomain department = Department.getInstance();
     private int count = 0;
-
+    private NodeFinder nf;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+        nf = NodeFinder.getInstant();
         this.list = new ArrayList<>();
         list.add(0, "../createcase/fxml/caseOpeningNEW.fxml");
         list.add(1, "../createcase/fxml/caseInvestigation.fxml");
@@ -57,7 +60,9 @@ public class CreateCaseController extends RunFxmlLoader implements Initializable
             chanceScene();
         }
         if (event.getSource() == fxSaveBtn) {
-            
+            if(!nf.isFullMapEmty()){
+                department.saveCase(nf.getFullContensMap());
+            }
         }
     }
 
@@ -76,3 +81,4 @@ public class CreateCaseController extends RunFxmlLoader implements Initializable
         }
     }
 }
+

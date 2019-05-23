@@ -24,7 +24,8 @@ public class SearchCase {
      * @param employeeID
      * @param employeeName
      */
-    public SearchCase(int citizenID, String citizenName, String caseID, String caseStatus, String date, String createdDate, String reason, int employeeID, String employeeName) {
+    public SearchCase(int citizenID, String citizenName, String caseID, String caseStatus,
+			String date, String createdDate, String reason, int employeeID, String employeeName) {
         this.citizenID = citizenID;
         this.citizenName = citizenName;
         this.caseID = caseID;
@@ -74,6 +75,8 @@ public class SearchCase {
 
     @Override
     public String toString() {
-        return "SearchCase{" + "citizenID=" + citizenID + ", citizenName=" + citizenName + ", caseID=" + caseID + ", caseStatus=" + caseStatus + ", currentCaseDate=" + currentCaseDate + ", reason=" + reason + ", employeeID=" + employeeID + ", employeeName=" + employeeName + '}';
+        return "SearchCase{" + "citizenID=" + citizenID + ", citizenName=" + citizenName + ","
+				+ "caseID=" + caseID + ", caseStatus=" + caseStatus + ", currentCaseDate=" + currentCaseDate
+				+ ", reason=" + reason + ", employeeID=" + employeeID + ", employeeName=" + employeeName + '}';
     }
 }

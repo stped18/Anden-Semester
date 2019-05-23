@@ -19,8 +19,4 @@ public interface IDomain {
     
     public String getnote(int caseID);
     public boolean writenote(int caseID, String note);
-    
-    
-    
-    
 }

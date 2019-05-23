@@ -19,6 +19,7 @@ public class MMMI extends Application {
 
     Scene scene;
     Stage stage;
+	Parent root;
 
     /**
      * @param args the command line arguments
@@ -29,11 +30,11 @@ public class MMMI extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
+//        Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
 
-        Scene scene = new Scene(root);
+        this.scene = new Scene(root);
 
-        stage.setScene(scene);
+        stage.setScene(this.scene);
         stage.setTitle("MMMI");
         stage.show();
     }
@@ -41,11 +42,11 @@ public class MMMI extends Application {
     public void changeScene() throws IOException {
 
         this.stage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
+        this.root = FXMLLoader.load(getClass().getResource("Main.fxml"));
         this.stage.setResizable(false);
-        this.scene = new Scene(root);
-        this.stage.setScene(scene);
-        this.stage.show();
+//        this.scene = new Scene(root);
+//        this.stage.setScene(scene);
+//        this.stage.show();
     }
 
 }

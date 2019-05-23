@@ -119,11 +119,34 @@ public class NodeFinder {
      * @return
      */
     public Map<String, String> findeNodehandler(Parent parent) {
+        for (Map.Entry<String, String> entry : nodeMap.entrySet()) {
+            String key = entry.getKey();
+            String  value = entry.getValue();
+            System.out.println("case contens  : key = "+ key+"  value = "+value);
+        }
         getAllNodes(parent);
         return nodeMap;
     }
-
-    /**
+public static ArrayList<Node> addToAllRadioNodes(Parent root) {
+        ArrayList<Node> n = new ArrayList<>();
+        changeRadiobutton(root, n);
+        return n;
+    }
+   
+      private static void changeRadiobutton(Parent parent, ArrayList<Node> n) {
+        for (Node node : parent.getChildrenUnmodifiable()) {
+            n.add(node);
+            if (node instanceof Parent) {
+                if (node instanceof RadioButton) {
+                  String a =  ((RadioButton) node).getId();
+                  a = a+"0";
+                  ((RadioButton) node).setId(a);
+                }
+                changeRadiobutton((Parent) node, n);
+            }
+        }
+      }
+ /**
      * This method find alle nodes and add them tho addTadiobuton.
      * addRadiobutton sort and find all radioboton and save them in a toggle
      * groop for a spicifice gruppe of radiobutton.
@@ -136,7 +159,6 @@ public class NodeFinder {
         addRadiobutton(root, n);
         return n;
     }
-
     private static void addRadiobutton(Parent parent, ArrayList<Node> n) {
 
         List<RadioButton> radioButtonsList = new ArrayList<>();
@@ -197,6 +219,8 @@ public class NodeFinder {
         }
     }
 }
+
+
 
 
 

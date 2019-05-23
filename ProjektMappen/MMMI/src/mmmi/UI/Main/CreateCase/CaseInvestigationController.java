@@ -247,7 +247,7 @@ public class CaseInvestigationController  implements Initializable {
     private void BtnHandler(ActionEvent event) {
 
         
-        nf.getContens().put("caseID", "-1");
+       // nf.getContens().put("caseID", "-1");
         nf.addContens(nf.findeNodehandler(fxAc_CaseInvestigationroot));
 //        for (Map.Entry<String, String> entry : nf.findeNodehandler(fxAc_CaseInvestigationroot).entrySet()) {
 //            String key = entry.getKey();
@@ -263,6 +263,7 @@ public class CaseInvestigationController  implements Initializable {
         }
     }
     }
+
 
 
 

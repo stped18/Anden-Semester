@@ -163,16 +163,10 @@ public class CaseOpeningController  implements Initializable {
         agreeToElectronicRegistrationTG = createToggleGroup(fxRB_agreeToElectronicRegistrationYes, fxRB_agreeToElectronicRegistrationNo);
 
     }
-       
-        
+ 
     @FXML
     private void inquiryRBonAction(ActionEvent event) {
-       
-        
-        
-        
-        
-        
+
         if (sureLookingForTG.getSelectedToggle() == fxRB_clearLookingForYes) {
             fxTP_benefitsParagraphs.setVisible(true);
         } else if (sureLookingForTG.getSelectedToggle() == fxRB_clearLookingForNo) {
@@ -219,7 +213,7 @@ public class CaseOpeningController  implements Initializable {
     @FXML
     private void saveBtnOnAction(ActionEvent event) {
          if (event.getSource() == fxBT_save) {
-             System.out.println("her er jeg");
+
             if (!fxTF_firstnameRegarding.getText().isEmpty()) {
                 cRegardingMap.put("firstName", fxTF_firstnameRegarding.getText());
                 cRegardingMap.put("lastName", fxTF_lastnameRegarding.getText());
@@ -264,32 +258,25 @@ public class CaseOpeningController  implements Initializable {
                 }
 
             }
-            String text = "";
-            if (fxTA_RegardingInquiry.getText().isEmpty()) {
-               //fxLB_userInfo.setText("Udfyld venligst tekstboks omkring henvendelsen");
-               // fxLB_userInfo.setTextFill(Paint.valueOf("#0076a3"));
-            }
-            contentsMap.put("caseID", "-1");
-//            contentsMap.put("casestatus", "igang");
-            contentsMap.put("regardinginquiry", fxTA_RegardingInquiry.getText());
-           //fxLB_userInfo.setTextFill(Paint.valueOf("#0076a3"));
-            contentsMap.put("rightsanddutiestext", fxTA_rightsAndDuties.getText());
-            contentsMap.put("rightsandduties", agreeToElectronicRegistrationTG.getSelectedToggle() == fxRB_agreeToElectronicRegistrationYes ? "yes"
-                    : (agreeToElectronicRegistrationTG.getSelectedToggle() == fxRB_agreeToElectronicRegistrationNo) ? "no" : "");
-            contentsMap.put("agreementswithcitizentext", !fxTA_agreementsWithCitzen.getText().isEmpty() ? fxTA_agreementsWithCitzen.getText() : "");
+//            String text = "";
 
-            theFullContentsMap.put("caseContents", contentsMap);
-            theFullContentsMap.put("cRegarding", cRegardingMap);
-            theFullContentsMap.put("cRequesting", cRequestingMap);
-
-            System.out.println(theFullContentsMap);
-            //department.saveCase(theFullContentsMap);
+//          contentsMap.put("caseID", "-1");
+////            contentsMap.put("casestatus", "igang");
+//            contentsMap.put("regardinginquiry", fxTA_RegardingInquiry.getText());
+//           //fxLB_userInfo.setTextFill(Paint.valueOf("#0076a3"));
+//            contentsMap.put("rightsanddutiestext", fxTA_rightsAndDuties.getText());
+//            contentsMap.put("rightsandduties", agreeToElectronicRegistrationTG.getSelectedToggle() == fxRB_agreeToElectronicRegistrationYes ? "yes"
+//                    : (agreeToElectronicRegistrationTG.getSelectedToggle() == fxRB_agreeToElectronicRegistrationNo) ? "no" : "");
+//            contentsMap.put("agreementswithcitizentext", !fxTA_agreementsWithCitzen.getText().isEmpty() ? fxTA_agreementsWithCitzen.getText() : "");
+        nf.getContens().put("caseID", "-1");
+        nf.addToAllRadioNodes(fxAP_subpane);
+        nf.addContens(nf.findeNodehandler(fxAP_subpane));
+        nf.addmap(cRegardingMap, "cRegarding");
+        nf.addmap(cRequestingMap, "cRequesting");
+           
 
         }
        
-        nf.addContens(contentsMap);
-        nf.addmap(cRegardingMap, "cRegarding");
-        nf.addmap(cRequestingMap, "cRequesting");
         
 
     }
@@ -304,6 +291,20 @@ public class CaseOpeningController  implements Initializable {
         return tg;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

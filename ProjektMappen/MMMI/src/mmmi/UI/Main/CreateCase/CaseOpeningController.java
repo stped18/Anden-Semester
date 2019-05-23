@@ -25,6 +25,7 @@ import javafx.scene.paint.Paint;
 import mmmi.Domain.Department;
 import mmmi.Domain.Interfaces.IDomain;
 import mmmi.UI.Main.MainController;
+import mmmi.UI.Main.createCase.NodeFinder;
 
 /**
  * FXML Controller class
@@ -110,14 +111,18 @@ public class CaseOpeningController  implements Initializable {
     private IDomain department;
     @FXML
     private TextField fxTF_cprNoRequesting;
-    @FXML
-    private Label fxLB_userInfo;
-
+    //private Label fxLB_userInfo;
+    NodeFinder nf;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        nf = NodeFinder.getInstant();
+                
+      
+                
+      
         department = Department.getInstance();
         department.setDepartmentID(1);
         theFullContentsMap = new HashMap<>();
@@ -158,9 +163,16 @@ public class CaseOpeningController  implements Initializable {
         agreeToElectronicRegistrationTG = createToggleGroup(fxRB_agreeToElectronicRegistrationYes, fxRB_agreeToElectronicRegistrationNo);
 
     }
-
+       
+        
     @FXML
     private void inquiryRBonAction(ActionEvent event) {
+       
+        
+        
+        
+        
+        
         if (sureLookingForTG.getSelectedToggle() == fxRB_clearLookingForYes) {
             fxTP_benefitsParagraphs.setVisible(true);
         } else if (sureLookingForTG.getSelectedToggle() == fxRB_clearLookingForNo) {
@@ -206,8 +218,9 @@ public class CaseOpeningController  implements Initializable {
 
     @FXML
     private void saveBtnOnAction(ActionEvent event) {
-        if (event.getSource() == fxBT_save) {
-            if (!fxTF_firstnameRequesting.getText().isEmpty()) {
+         if (event.getSource() == fxBT_save) {
+             System.out.println("her er jeg");
+            if (!fxTF_firstnameRegarding.getText().isEmpty()) {
                 cRegardingMap.put("firstName", fxTF_firstnameRegarding.getText());
                 cRegardingMap.put("lastName", fxTF_lastnameRegarding.getText());
                 cRegardingMap.put("streetName", fxTF_streetNameRegarding.getText());
@@ -227,7 +240,7 @@ public class CaseOpeningController  implements Initializable {
                     cRegardingMap.put("floor", regfloor);
                     cRegardingMap.put("floorDirection", regfloorDir);
                 }
-
+                System.out.println("her er jeg");
             }
             if (!fxTF_firstnameRequesting.getText().isEmpty()) {
                 cRequestingMap.put("firstName", fxTF_firstnameRegarding.getText());
@@ -253,13 +266,13 @@ public class CaseOpeningController  implements Initializable {
             }
             String text = "";
             if (fxTA_RegardingInquiry.getText().isEmpty()) {
-                fxLB_userInfo.setText("Udfyld venligst tekstboks omkring henvendelsen");
-                fxLB_userInfo.setTextFill(Paint.valueOf("#0076a3"));
+               //fxLB_userInfo.setText("Udfyld venligst tekstboks omkring henvendelsen");
+               // fxLB_userInfo.setTextFill(Paint.valueOf("#0076a3"));
             }
             contentsMap.put("caseID", "-1");
 //            contentsMap.put("casestatus", "igang");
             contentsMap.put("regardinginquiry", fxTA_RegardingInquiry.getText());
-            fxLB_userInfo.setTextFill(Paint.valueOf("#0076a3"));
+           //fxLB_userInfo.setTextFill(Paint.valueOf("#0076a3"));
             contentsMap.put("rightsanddutiestext", fxTA_rightsAndDuties.getText());
             contentsMap.put("rightsandduties", agreeToElectronicRegistrationTG.getSelectedToggle() == fxRB_agreeToElectronicRegistrationYes ? "yes"
                     : (agreeToElectronicRegistrationTG.getSelectedToggle() == fxRB_agreeToElectronicRegistrationNo) ? "no" : "");
@@ -270,9 +283,15 @@ public class CaseOpeningController  implements Initializable {
             theFullContentsMap.put("cRequesting", cRequestingMap);
 
             System.out.println(theFullContentsMap);
-            department.saveCase(theFullContentsMap);
+            //department.saveCase(theFullContentsMap);
 
         }
+       
+        nf.addContens(contentsMap);
+        nf.addmap(cRegardingMap, "cRegarding");
+        nf.addmap(cRequestingMap, "cRequesting");
+        
+
     }
 
     private ToggleGroup createToggleGroup(RadioButton... names) {
@@ -285,5 +304,45 @@ public class CaseOpeningController  implements Initializable {
         return tg;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

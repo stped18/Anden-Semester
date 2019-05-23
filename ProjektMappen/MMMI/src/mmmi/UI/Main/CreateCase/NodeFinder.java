@@ -22,22 +22,74 @@ public class NodeFinder {
     List<RadioButton> radioButtonsList;
     Map<String, ToggleGroup> tName;
     Map<String, String> nodeMap = new HashMap<>();
+    public Map<String, String> contens = new HashMap<>();
+    private Map<String, Map<String, String>> fullContensMap = new HashMap<>();
+    private static NodeFinder nodeFinder;
 
-    /**
-     *
-     * @return
-     */
-    public Map<String, String> getCaseInvestigation() {
-        return nodeMap;
+    private NodeFinder() {
+    }
+
+    public boolean isFullMapEmty(){
+       return fullContensMap.isEmpty();
+    }
+
+    public Map<String, Map<String, String>> getFullContensMap() {
+        return fullContensMap;
+    }
+    
+    
+    public static NodeFinder getInstant (){
+        if(nodeFinder==null){
+            nodeFinder = new NodeFinder();
+            
+        }
+        return nodeFinder;
+    }
+    
+
+    public Map<String, String> getContens() {
+        return contens;
+    }
+
+    public void addContens(Map<String, String> contens) {
+        this.contens.putAll(contens);
+        fullContensMap.put("caseContents", this.contens);
+        
+    }
+    public void addmap(Map<String, String> map, String keyString){
+        fullContensMap.put(keyString, map);
+        
+        
+        
     }
 
     public Map<String, String> getNodeMap() {
         return nodeMap;
     }
 
-    public void putAllNodeMap(Map<String, String> Map) {
-        Map.putAll(this.nodeMap);
+    public void setNodeMap(Map<String, String> nodeMap) {
+        this.nodeMap = nodeMap;
     }
+    
+
+
+//    public void putAllNodeMap(Map<String, String> map) {
+//        for (Map.Entry<String, String> entry : map.entrySet()) {
+//            String key = entry.getKey();
+//            String value = entry.getValue();
+//            contens.put(key, value);
+//            
+//        }
+//    }
+    public void printmap(){
+        for (Map.Entry<String, String> entry :contens.entrySet()) {
+            Object key = entry.getKey();
+            Object val = entry.getValue();
+            System.out.println("Contens Map "+key + "  :  " + val);
+        }
+    }
+    
+    //---------------------------------------------------------------------------------------------------------------------------------------------------
 
     /**
      *
@@ -67,13 +119,7 @@ public class NodeFinder {
      * @return
      */
     public Map<String, String> findeNodehandler(Parent parent) {
-
         getAllNodes(parent);
-        for (Map.Entry<String, String> entry : nodeMap.entrySet()) {
-            Object key = entry.getKey();
-            Object val = entry.getValue();
-            System.out.println(key + "  :  " + val);
-        }
         return nodeMap;
     }
 
@@ -151,3 +197,26 @@ public class NodeFinder {
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -37,43 +37,83 @@ public class SearchCase {
         this.employeeName = employeeName;
     }
 
-    public int getCitizenID() {
+	/**
+	 *
+	 * @return
+	 */
+	public int getCitizenID() {
         return citizenID;
     }
     
-    public String getCitizenName() {
+	/**
+	 *
+	 * @return
+	 */
+	public String getCitizenName() {
         return citizenName;
     }
 
-    public String getCaseID() {
+	/**
+	 *
+	 * @return
+	 */
+	public String getCaseID() {
         return caseID;
     }
 
-    public String getCaseStatus() {
+	/**
+	 *
+	 * @return
+	 */
+	public String getCaseStatus() {
         return caseStatus;
     }
 
-    public String getCurrentCaseDate() {
+	/**
+	 *
+	 * @return
+	 */
+	public String getCurrentCaseDate() {
         return currentCaseDate;
     }
 
-    public String getCreatedCaseDate() {
+	/**
+	 *
+	 * @return
+	 */
+	public String getCreatedCaseDate() {
         return createdCaseDate;
     }
 
-    public String getReason() {
+	/**
+	 *
+	 * @return
+	 */
+	public String getReason() {
         return reason;
     }
     
-    public int getEmployeeID() {
+	/**
+	 *
+	 * @return
+	 */
+	public int getEmployeeID() {
         return employeeID;
     }
     
-    public String getEmployeeName() {
+	/**
+	 *
+	 * @return
+	 */
+	public String getEmployeeName() {
         return employeeName;
     }
 
-    @Override
+	/**
+	 * For Testing
+	 * @return
+	 */
+	@Override
     public String toString() {
         return "SearchCase{" + "citizenID=" + citizenID + ", citizenName=" + citizenName + ","
 				+ "caseID=" + caseID + ", caseStatus=" + caseStatus + ", currentCaseDate=" + currentCaseDate

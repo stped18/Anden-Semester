@@ -13,7 +13,10 @@ public class DatabaseConnection {
     protected PreparedStatement dbPreparedStatement = null;
     protected ResultSet dbResultSet = null;
 
-    public void connectToDB() {
+	/**
+	 *
+	 */
+	public void connectToDB() {
         try {
             Class.forName("org.postgresql.Driver");
             dbConnection = DriverManager.getConnection(url, username, password);
@@ -21,7 +24,10 @@ public class DatabaseConnection {
         }
     }
 
-    public void disconnectDB() {
+	/**
+	 *
+	 */
+	public void disconnectDB() {
         try {
             if (dbStatement != null) {
                 dbStatement.close();

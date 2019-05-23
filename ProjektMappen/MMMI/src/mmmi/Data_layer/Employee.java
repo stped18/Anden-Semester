@@ -10,7 +10,15 @@ public class Employee {
     private final Map<Integer, String> employeeCases;
     private final Map<Integer, String> rights;
 
-    public Employee(int employeeID, String name, int roleID, Map<Integer, String> employeeCases, Map<Integer, String> rights) {
+	/**
+	 *
+	 * @param employeeID
+	 * @param name
+	 * @param roleID
+	 * @param employeeCases
+	 * @param rights
+	 */
+	public Employee(int employeeID, String name, int roleID, Map<Integer, String> employeeCases, Map<Integer, String> rights) {
         this.employeeID = employeeID;
         this.name = name;
         this.roleID = roleID;
@@ -18,23 +26,43 @@ public class Employee {
         this.rights = rights;
     }
 
-    public int getEmployeeID() {
+	/**
+	 *
+	 * @return
+	 */
+	public int getEmployeeID() {
         return this.employeeID;
     }
 
-    public String getName() {
+	/**
+	 *
+	 * @return
+	 */
+	public String getName() {
         return this.name;
     }
 
-    public int getRoleID() {
+	/**
+	 *
+	 * @return
+	 */
+	public int getRoleID() {
         return this.roleID;
     }
 
-    public Map<Integer, String> getEmployeeCases() {
+	/**
+	 *
+	 * @return
+	 */
+	public Map<Integer, String> getEmployeeCases() {
         return this.employeeCases;
     }
 
-    public Map<Integer, String> getrights() {
+	/**
+	 *
+	 * @return
+	 */
+	public Map<Integer, String> getrights() {
         return this.rights;
     }
 }

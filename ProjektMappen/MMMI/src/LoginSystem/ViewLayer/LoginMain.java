@@ -9,10 +9,19 @@ import javafx.stage.Stage;
 
 public class LoginMain extends Application {
 
-    public static void main(String[] args) {
+	/**
+	 *
+	 * @param args
+	 */
+	public static void main(String[] args) {
         launch(args);
     }
 
+	/**
+	 * 
+	 * @param stage
+	 * @throws IOException 
+	 */
     @Override
     public void start(Stage stage) throws IOException {
 

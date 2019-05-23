@@ -18,7 +18,16 @@ public class Citizen {
     private boolean requestingCitizen;
     private List<Case> Cases;
 
-    public Citizen(int citizenID, String firstName, String lastName, String cprNo, boolean regardingCitizen, boolean requestingCitizen) {
+	/**
+	 *
+	 * @param citizenID
+	 * @param firstName
+	 * @param lastName
+	 * @param cprNo
+	 * @param regardingCitizen
+	 * @param requestingCitizen
+	 */
+	public Citizen(int citizenID, String firstName, String lastName, String cprNo, boolean regardingCitizen, boolean requestingCitizen) {
         this.citizenID = citizenID;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -27,7 +36,22 @@ public class Citizen {
         this.requestingCitizen = requestingCitizen;
     }
 
-    public Citizen(int citizenID, String firstName, String lastName, String cprNo, String streetName, String houseNo, String floor, String floorDirection, int zipcode, String cityname, boolean regardingCitizen, boolean requestingCitizen) {
+	/**
+	 *
+	 * @param citizenID
+	 * @param firstName
+	 * @param lastName
+	 * @param cprNo
+	 * @param streetName
+	 * @param houseNo
+	 * @param floor
+	 * @param floorDirection
+	 * @param zipcode
+	 * @param cityname
+	 * @param regardingCitizen
+	 * @param requestingCitizen
+	 */
+	public Citizen(int citizenID, String firstName, String lastName, String cprNo, String streetName, String houseNo, String floor, String floorDirection, int zipcode, String cityname, boolean regardingCitizen, boolean requestingCitizen) {
         this.citizenID = citizenID;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -42,111 +66,219 @@ public class Citizen {
         this.requestingCitizen = requestingCitizen;
     }
 
-    public List<Case> getCases() {
+	/**
+	 *
+	 * @return
+	 */
+	public List<Case> getCases() {
         return Cases;
     }
 
-    public int getCitizenID() {
+	/**
+	 *
+	 * @return
+	 */
+	public int getCitizenID() {
         return citizenID;
     }
 
-    public String getFirstName() {
+	/**
+	 *
+	 * @return
+	 */
+	public String getFirstName() {
         return firstName;
     }
 
-    public String getLastName() {
+	/**
+	 *
+	 * @return
+	 */
+	public String getLastName() {
         return lastName;
     }
 
-    public String getCprNo() {
+	/**
+	 *
+	 * @return
+	 */
+	public String getCprNo() {
         return cprNo;
     }
 
-    public String getStreetName() {
+	/**
+	 *
+	 * @return
+	 */
+	public String getStreetName() {
         return streetName;
     }
 
-    public String getHouseNo() {
+	/**
+	 *
+	 * @return
+	 */
+	public String getHouseNo() {
         return houseNo;
     }
 
-    public String getFloor() {
+	/**
+	 *
+	 * @return
+	 */
+	public String getFloor() {
         return floor;
     }
 
-    public String getFloorDirection() {
+	/**
+	 *
+	 * @return
+	 */
+	public String getFloorDirection() {
         return floorDirection;
     }
 
-    public int getZipcode() {
+	/**
+	 *
+	 * @return
+	 */
+	public int getZipcode() {
         return zipcode;
     }
 
-    public String getCityname() {
+	/**
+	 *
+	 * @return
+	 */
+	public String getCityname() {
         return cityname;
     }
 
-    public boolean isRegardingCitizen() {
+	/**
+	 *
+	 * @return
+	 */
+	public boolean isRegardingCitizen() {
         return regardingCitizen;
     }
 
-    public boolean isRequestingCitizen() {
+	/**
+	 *
+	 * @return
+	 */
+	public boolean isRequestingCitizen() {
         return requestingCitizen;
     }
 
-    public void setCitizenID(int citizenID) {
+	/**
+	 *
+	 * @param citizenID
+	 */
+	public void setCitizenID(int citizenID) {
         this.citizenID = citizenID;
     }
 
-    public void setCases(List<Case> Cases) {
+	/**
+	 *
+	 * @param Cases
+	 */
+	public void setCases(List<Case> Cases) {
         this.Cases = Cases;
     }
 
-    public void setFirstName(String firstName) {
+	/**
+	 *
+	 * @param firstName
+	 */
+	public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
-    public void setLastName(String lastName) {
+	/**
+	 *
+	 * @param lastName
+	 */
+	public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
-    public void setCprNo(String cprNo) {
+	/**
+	 *
+	 * @param cprNo
+	 */
+	public void setCprNo(String cprNo) {
         this.cprNo = cprNo;
     }
 
-    public void setStreetName(String streetName) {
+	/**
+	 *
+	 * @param streetName
+	 */
+	public void setStreetName(String streetName) {
         this.streetName = streetName;
     }
 
-    public void setHouseNo(String houseNo) {
+	/**
+	 *
+	 * @param houseNo
+	 */
+	public void setHouseNo(String houseNo) {
         this.houseNo = houseNo;
     }
 
-    public void setFloor(String floor) {
+	/**
+	 *
+	 * @param floor
+	 */
+	public void setFloor(String floor) {
         this.floor = floor;
     }
 
-    public void setFloorDirection(String floorDirection) {
+	/**
+	 *
+	 * @param floorDirection
+	 */
+	public void setFloorDirection(String floorDirection) {
         this.floorDirection = floorDirection;
     }
 
-    public void setZipcode(int zipcode) {
+	/**
+	 *
+	 * @param zipcode
+	 */
+	public void setZipcode(int zipcode) {
         this.zipcode = zipcode;
     }
 
-    public void setCityname(String cityname) {
+	/**
+	 *
+	 * @param cityname
+	 */
+	public void setCityname(String cityname) {
         this.cityname = cityname;
     }
 
-    public void setRegardingCitizen(boolean regardingCitizen) {
+	/**
+	 *
+	 * @param regardingCitizen
+	 */
+	public void setRegardingCitizen(boolean regardingCitizen) {
         this.regardingCitizen = regardingCitizen;
     }
 
-    public void setRequestingCitizen(boolean requestingCitizen) {
+	/**
+	 *
+	 * @param requestingCitizen
+	 */
+	public void setRequestingCitizen(boolean requestingCitizen) {
         this.requestingCitizen = requestingCitizen;
     }
 
-    @Override
+	/**
+	 * For Testing.
+	 * @return
+	 */
+	@Override
     public String toString() {
         String casestring = "";
         return "Citizen{" + "citizenID=" + citizenID + ", firstName=" + firstName + ", lastName=" + lastName + ", cprNo=" + cprNo + ", streetName=" + streetName + ", houseNo=" + houseNo + ", floor=" + floor + ", floorDirection=" + floorDirection + ", zipcode=" + zipcode + ", cityname=" + cityname + ", regardingCitizen=" + regardingCitizen + ", requestingCitizen=" + requestingCitizen + ", Cases=" + casestring + '}';

@@ -11,7 +11,15 @@ public class DbEmployee {
     private final int departmentID;
     private Map<Integer, String> rigths; // Key == IDkey Integer of rigth value = Name
 
-    public DbEmployee(int employeeID, String firstName, String lastName, int roleID, int departmentID) {
+	/**
+	 *
+	 * @param employeeID
+	 * @param firstName
+	 * @param lastName
+	 * @param roleID
+	 * @param departmentID
+	 */
+	public DbEmployee(int employeeID, String firstName, String lastName, int roleID, int departmentID) {
         this.employeeID = employeeID;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -19,19 +27,35 @@ public class DbEmployee {
         this.departmentID = departmentID;
     }
 
-    public int getEmployeeID() {
+	/**
+	 *
+	 * @return
+	 */
+	public int getEmployeeID() {
         return employeeID;
     }
 
-    public String getFirstName() {
+	/**
+	 *
+	 * @return
+	 */
+	public String getFirstName() {
         return firstName;
     }
 
-    public String getLastName() {
+	/**
+	 *
+	 * @return
+	 */
+	public String getLastName() {
         return lastName;
     }
 
-    public int getRoleID() {
+	/**
+	 *
+	 * @return
+	 */
+	public int getRoleID() {
         return roleID;
     }
 
@@ -39,13 +63,21 @@ public class DbEmployee {
         return departmentID;
     }
 
-    // Test
+	/**
+	 * Created for testing.
+	 * 
+	 * @return
+	 */
     @Override
     public String toString() {
         return "DbEmployee{" + "employeeID=" + employeeID + ", firstName=" + firstName + ", lastName=" + lastName + ", roleID=" + roleID + ", departmentID=" + departmentID + ", rigths=" + rigths + '}';
     }
 
-    public Map<Integer, String> getRights() {
+	/**
+	 *
+	 * @return
+	 */
+	public Map<Integer, String> getRights() {
         return rigths;
     }
 }

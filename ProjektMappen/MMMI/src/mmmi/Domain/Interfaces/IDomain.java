@@ -7,16 +7,58 @@ import mmmi.Domain.Employee;
 
 public interface IDomain {
     
-    //Case
-    public Map<String, Map<String, String>> search (String key, String value); // list
-    public Map<String, Map<String, String>> openCase (int caseID); // open a single case 
-    public boolean saveCase (Map<String, Map<String, String>> caseInfo);
+	/**
+	 *
+	 * @param key
+	 * @param value
+	 * @return
+	 */
+	public Map<String, Map<String, String>> search (String key, String value); // list
+	
+	/**
+	 *
+	 * @param caseID
+	 * @return
+	 */
+	public Map<String, Map<String, String>> openCase (int caseID); // open a single case 
+	
+	/**
+	 *
+	 * @param caseInfo
+	 * @return
+	 */
+	public boolean saveCase (Map<String, Map<String, String>> caseInfo);
     
-    public Employee getEmployee();
+	/**
+	 *
+	 * @return
+	 */
+	public Employee getEmployee();
     
-    public void setDepartmentID(int departmentID);
-    public void setLoginEmployee(IEmployee employee);
+	/**
+	 *
+	 * @param departmentID
+	 */
+	public void setDepartmentID(int departmentID);
+	
+	/**
+	 *
+	 * @param employee
+	 */
+	public void setLoginEmployee(IEmployee employee);
     
-    public String getnote(int caseID);
-    public boolean writenote(int caseID, String note);
+	/**
+	 *
+	 * @param caseID
+	 * @return
+	 */
+	public String getnote(int caseID);
+
+	/**
+	 *
+	 * @param caseID
+	 * @param note
+	 * @return
+	 */
+	public boolean writenote(int caseID, String note);
 }

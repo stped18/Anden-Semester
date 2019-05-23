@@ -1,7 +1,5 @@
 package mmmi.UI.Main.FindCase;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -35,59 +33,115 @@ public class SearchResult {
         this.employeeName = new SimpleStringProperty(employeeName);
     }
 
-    public String getCitizenName() {
+	/**
+	 *
+	 * @return
+	 */
+	public String getCitizenName() {
         return citizenName.get();
     }
     
-    public StringProperty citizenNameProperty() {
+	/**
+	 *
+	 * @return
+	 */
+	public StringProperty citizenNameProperty() {
         return citizenName;
     }
 
-    public String getCaseID() {
+	/**
+	 *
+	 * @return
+	 */
+	public String getCaseID() {
         return caseID.get();
     }
     
-    public StringProperty caseIDProperty() {
+	/**
+	 *
+	 * @return
+	 */
+	public StringProperty caseIDProperty() {
         return caseID;
     }
 
-    public String getCaseStatus() {
+	/**
+	 *
+	 * @return
+	 */
+	public String getCaseStatus() {
         return caseStatus.get();
     }
     
-    public StringProperty caseStatusProperty() {
+	/**
+	 *
+	 * @return
+	 */
+	public StringProperty caseStatusProperty() {
         return caseStatus;
     }
 
-    public String getCurrentCaseDate() {
+	/**
+	 *
+	 * @return
+	 */
+	public String getCurrentCaseDate() {
         return currentCaseDate.get();
     }
     
-    public StringProperty currentCaseDateProperty() {
+	/**
+	 *
+	 * @return
+	 */
+	public StringProperty currentCaseDateProperty() {
         return currentCaseDate;
     }
 
-    public String getCreatedCaseDate() {
+	/**
+	 *
+	 * @return
+	 */
+	public String getCreatedCaseDate() {
         return createdCaseDate.get();
     }
     
-    public StringProperty createdCaseDateProperty() {
+	/**
+	 *
+	 * @return
+	 */
+	public StringProperty createdCaseDateProperty() {
         return createdCaseDate;
     }
 
-    public String getReason() {
+	/**
+	 *
+	 * @return
+	 */
+	public String getReason() {
         return reason.get();
     }
     
-    public StringProperty reasonProperty() {
+	/**
+	 *
+	 * @return
+	 */
+	public StringProperty reasonProperty() {
         return reason;
     }
     
-    public String getEmployeeName() {
+	/**
+	 *
+	 * @return
+	 */
+	public String getEmployeeName() {
         return employeeName.get();
     }
     
-    public StringProperty employeeNameProperty() {
+	/**
+	 *
+	 * @return
+	 */
+	public StringProperty employeeNameProperty() {
         return employeeName;
     }
 }

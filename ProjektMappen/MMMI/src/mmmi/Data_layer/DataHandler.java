@@ -410,6 +410,11 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
         return citizenID;
     }
 
+	/**
+	 * 
+	 * @param citizen
+	 * @return 
+	 */
     @Override
     public boolean updateCitizen(Citizen citizen) {
         boolean citizen_updated = false;
@@ -466,6 +471,12 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
         return new Citizen(-1, "", "", "", "", "", "", "", -1, "", false, false);
     }
 
+	/**
+	 * 
+	 * @param searchKey
+	 * @param searchValue
+	 * @return 
+	 */
     @Override
     public List<SearchCase> search(String searchKey, String searchValue) {
 
@@ -484,8 +495,8 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
                     fromQuery = "FROM \"case\" as c, citizen AS ci, (SELECT casecaseid, datestamp,"
 							+ "regardinginquiry FROM case_contents WHERE casecaseid = ? ORDER BY datestamp DESC LIMIT 1) AS cc,"
 							+ "(SELECT casecaseid, employeeemployeeid FROM case_employee WHERE casecaseid = ?) AS ce, employee AS e ";
-                    whereQuery = "WHERE ce.casecaseid = c.caseid AND e.employeeid = ce.employeeemployeeid AND"
-							+ "cc.casecaseid = c.caseid AND ci.citizenid = c.citizenregardingcitizenid AND"
+                    whereQuery = "WHERE ce.casecaseid = c.caseid AND e.employeeid = ce.employeeemployeeid AND "
+							+ "cc.casecaseid = c.caseid AND ci.citizenid = c.citizenregardingcitizenid AND "
 							+ "c.caseid = ? AND c.departmentdepartmentid = ? ORDER BY c.caseid DESC;";
                     query = selectQuery + fromQuery + whereQuery;
 
@@ -564,11 +575,11 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
                             + "FROM citizen AS ci, zipcode AS z "
                             + "WHERE (" + searchQuery + ")) "
                             + ") AS ce ";
-                    whereQuery = "WHERE z.zipcode = ci.zipcodezipcode AND cc.casecaseid = c.caseid AND"
+                    whereQuery = "WHERE z.zipcode = ci.zipcodezipcode AND cc.casecaseid = c.caseid AND "
 							+ "ce.casecaseid = c.caseid AND ce.employeeemployeeid = e.employeeid "
                             + "AND (" + searchQuery + ") "
-                            + "AND ci.citizenid = c.citizenregardingcitizenid AND"
-							+ "ci.regardingcitizen AND c.departmentdepartmentid = ? ORDER BY c.caseid DESC";
+                            + "AND ci.citizenid = c.citizenregardingcitizenid AND "
+							+ "ci.regardingcitizen AND c.departmentdepartmentid = ? ORDER BY c.caseid DESC;";
                     query = selectQuery + fromQuery + whereQuery;
 
                     searchCaseStmt = dbConnection.prepareStatement(query);
@@ -603,6 +614,11 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
         return sc;
     }
 
+	/**
+	 * 
+	 * @param caseID
+	 * @return 
+	 */
     @Override
     public String readAlternativeNotets(int caseID) {
 
@@ -636,6 +652,12 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
         return note;
     }
 
+	/**
+	 * 
+	 * @param caseID
+	 * @param note
+	 * @return 
+	 */
     @Override
     public boolean writeAlternativeNote(int caseID, String note) {
 

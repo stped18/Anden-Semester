@@ -6,7 +6,12 @@ import java.io.IOException;
 
 public class RunFxmlLoader {
 
-    public void changeFxml(AnchorPane subPane, String fxml) {
+	/**
+	 *
+	 * @param subPane
+	 * @param fxml
+	 */
+	public void changeFxml(AnchorPane subPane, String fxml) {
 		
         AnchorPane pane;
         try {

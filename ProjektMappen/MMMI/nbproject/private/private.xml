@@ -3,8 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Aleksander%20Henriksen/Desktop/SDU%20-%202nd%20Semester/Semester%20Projekt/Anden-semester/ProjektMappen/MMMI/src/mmmi/UI/Main/CreateCase/CaseOpeningController.java</file>
-            <file>file:/C:/Users/Aleksander%20Henriksen/Desktop/SDU%20-%202nd%20Semester/Semester%20Projekt/Anden-semester/ProjektMappen/MMMI/src/LoginSystem/DataLayer/DatabaseHandler.java</file>
+            <file>file:/C:/Users/Aleksander%20Henriksen/Desktop/SDU%20-%202nd%20Semester/Semester%20Projekt/Anden-semester/ProjektMappen/MMMI/src/mmmi/UI/Main/CreateCase/CreateCaseController.java</file>
+            <file>file:/C:/Users/Aleksander%20Henriksen/Desktop/SDU%20-%202nd%20Semester/Semester%20Projekt/Anden-semester/ProjektMappen/MMMI/src/mmmi/UI/Main/FindCase/FindCaseController.java</file>
+            <file>file:/C:/Users/Aleksander%20Henriksen/Desktop/SDU%20-%202nd%20Semester/Semester%20Projekt/Anden-semester/ProjektMappen/MMMI/src/mmmi/UI/Main/MMMI.java</file>
         </group>
     </open-files>
 </project-private>

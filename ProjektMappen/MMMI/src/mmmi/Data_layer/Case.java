@@ -13,7 +13,16 @@ public class Case {
     private List<Citizen> requestingCitizens;
     private Map<String, String> caseContent;
 
-    public Case(int caseID, int departmentID, String caseStatus, Citizen regardingCitizen, List<Citizen> requestingCitizens, Map<String, String> caseContent) {
+	/**
+	 *
+	 * @param caseID
+	 * @param departmentID
+	 * @param caseStatus
+	 * @param regardingCitizen
+	 * @param requestingCitizens
+	 * @param caseContent
+	 */
+	public Case(int caseID, int departmentID, String caseStatus, Citizen regardingCitizen, List<Citizen> requestingCitizens, Map<String, String> caseContent) {
         this.caseID = caseID;
         this.departmentID = departmentID;
         this.caseStatus = caseStatus;
@@ -22,56 +31,109 @@ public class Case {
         this.caseContent = caseContent;
     }
 
-    public int getDepartmentID() {
+	/**
+	 *
+	 * @return
+	 */
+	public int getDepartmentID() {
         return departmentID;
     }
 
-    public void setDepartmentID(int departmentID) {
+	/**
+	 *
+	 * @param departmentID
+	 */
+	public void setDepartmentID(int departmentID) {
         this.departmentID = departmentID;
     }
 
-    public String getCaseStatus() {
+	/**
+	 *
+	 * @return
+	 */
+	public String getCaseStatus() {
         return caseStatus;
     }
 
-    public void setCaseStatus(String caseStatus) {
+	/**
+	 *
+	 * @param caseStatus
+	 */
+	public void setCaseStatus(String caseStatus) {
         this.caseStatus = caseStatus;
     }
 
-    public int getCaseID() {
+	/**
+	 *
+	 * @return
+	 */
+	public int getCaseID() {
         return caseID;
     }
 
-    public Citizen getRegardingCitizen() {
+	/**
+	 *
+	 * @return
+	 */
+	public Citizen getRegardingCitizen() {
         return regardingCitizen;
     }
 
-    public List<Citizen> getRequestingCitizen() {
+	/**
+	 *
+	 * @return
+	 */
+	public List<Citizen> getRequestingCitizen() {
         return requestingCitizens;
     }
 
-    public void addRequestingCitizen(Citizen requestingCitizenID) {
+	/**
+	 *
+	 * @param requestingCitizenID
+	 */
+	public void addRequestingCitizen(Citizen requestingCitizenID) {
         // TODO: Add a new requesting citizen to the list. Instead of overridding.
         requestingCitizens.add(requestingCitizenID);
     }
 
-    public Map<String, String> getCaseContent() {
+	/**
+	 *
+	 * @return
+	 */
+	public Map<String, String> getCaseContent() {
         return caseContent;
     }
 
-    public void setRegardingCitizen(Citizen regardingCitizen) {
+	/**
+	 *
+	 * @param regardingCitizen
+	 */
+	public void setRegardingCitizen(Citizen regardingCitizen) {
         this.regardingCitizen = regardingCitizen;
     }
 
-    public void setRequestingCitizens(List<Citizen> requestingCitizens) {
+	/**
+	 *
+	 * @param requestingCitizens
+	 */
+	public void setRequestingCitizens(List<Citizen> requestingCitizens) {
         this.requestingCitizens = requestingCitizens;
     }
 
-    public void setCaseContent(Map<String, String> caseContent) {
+	/**
+	 *
+	 * @param caseContent
+	 */
+	public void setCaseContent(Map<String, String> caseContent) {
         this.caseContent = caseContent;
     }
 
-    @Override
+	/**
+	 * For testing.
+	 * 
+	 * @return
+	 */
+	@Override
     public String toString() {
         return "Case{" + "caseID=" + caseID + ", caseStatus=" + caseStatus + ", regardingCitizenID=" + regardingCitizen + ", departmentID=" + departmentID + ", requestingCitizens=" + requestingCitizens + ", caseContent=" + caseContent + '}';
     }

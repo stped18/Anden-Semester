@@ -2,6 +2,8 @@ package mmmi.UI.Main.CreateCase;
 
 import javafx.scene.control.TextField;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,7 +14,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
 import mmmi.UI.Main.createCase.NodeFinder;
 
-public class CaseInvestigationController extends NodeFinder implements Initializable {
+public class CaseInvestigationController  implements Initializable {
 
     @FXML
     private TextArea fxTa_physicsInformationCitizen;
@@ -226,17 +228,75 @@ public class CaseInvestigationController extends NodeFinder implements Initializ
     private TextField fxTf_healthThemes;
     @FXML
     private TextField fxTf_environmentThemes;
-
     /**
      * Initializes the controller class.
      */
+    NodeFinder nf;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        runRadioFinder(fxAc_CaseInvestigationroot);
+        System.out.println("------------------------------------");
+        nf = NodeFinder.getInstant();
+        nf.runRadioFinder(fxAc_CaseInvestigationroot);
+        
+      
+       
+        
     }
 
     @FXML
     private void BtnHandler(ActionEvent event) {
-        findeNodehandler(fxAc_CaseInvestigationroot);
+
+        Map<String, String>d = nf.getContens();
+
+        d.putAll(nf.findeNodehandler(fxAc_CaseInvestigationroot));
+//        for (Map.Entry<String, String> entry : nf.findeNodehandler(fxAc_CaseInvestigationroot).entrySet()) {
+//            String key = entry.getKey();
+//            String val = entry.getValue();
+//            d.put(key, val);
+//        }
+
+        for (Map.Entry<String, String> entry : d.entrySet()) {
+            String key = entry.getKey();
+            String val = entry.getValue();
+            System.out.println(key+"    "+ val);
+        }
     }
-}
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

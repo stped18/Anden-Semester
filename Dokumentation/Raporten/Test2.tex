@@ -1,1 +1,58 @@
 \subsection{Test}
+
+\subsubsection{Generelt}
+\begin{itemize}
+\item Systemet kan ikke startes ved at trykke på projektmappen og derefter run.
+\item Kan ikke ud kommentere Main-metode i mmmi, hvis dette gøres, kan modulet ikke startes op.
+\item I menuen i venstre side på UI’et er det kun Hjem, Opret sag og Find sag som kan trykkes på, resten af knapperne har ingen funktion.
+\end{itemize}
+\subsubsection{Login System}
+\begin{itemize}
+\item Når man har skrevet brugernavn eller adgangskode forkert 4 gange, skal man kontakte admin, men der er muligt at bypass ved at lukke programmet og starte det igen.
+\end{itemize}
+\subsubsection{Opstarts side}
+\begin{itemize}
+\item Når der er skrevet tekst i eventuelle noter og går videre til sig næste sag, rydder den ikke feltet eller skriver det som er på en anden sag. Der er dog skrevet og gemt i databasen.
+\item Hvis man skriver i kommentarfeltet og reguardingquiry er ”Null” i databasen, bliver der skrevet en SQL-fejl, men ”violates not-null constraint”. 
+\item Feltet hvor navnet på brugerne som er logget ind, er ikke stort nok, da der er en begrænsning og ikke kan vise ”Aleksander Henriksen”, men skriver ”Aleksander Henrik…”
+\end{itemize}
+\subsubsection{Sagsåbnings dokument}
+\begin{itemize}
+\item Mangler en overskrift på dokumentet, så det er tydeligt at se hvilket dokument der arbejdes med.
+\item Vedrørende borger. der er 2 spørgsmål som har samme radiobuttoms.
+\item Underhenvendelse, hvis først bliver trykket ja til at borgerne er indforståede med henvendelsen og bagefter nej, er boksen med hvis ja, stadig åben og derved er det mulighed for at indtaste oplysninger som ikke er nødvendige.
+\item Når man sige at det er en pårørende eller anden person hvor der kræves oplysninger om personen er det ikke muligt at indtaste disse oplysninger.
+\item Når man indtaster information omkring en borger, og man trykker på gem 2 gange, bliver der anden gang man trykker smidt en NullPointerExecption, og der bliver kun oprettet en sag selvom det kunne være 2 forskellige sager på samme borger, men der bliver oprettet 2 borger i Citizen tabellen.
+\item Hvis man indtaster et postnummer som ikke eksistere i databasen, but der smidt en fejl med violates foreign key constraint, der mangler en håndtering.
+\item Rettigheder og pligter:
+\begin{itemize}
+\item Er borgerne informeret om ret til bisidder og partsrepræsentant, der mangler mulighed for at svar ja eller nej.
+\end{itemize}
+\item Indhentelse af oplysninger:
+\begin{itemize}
+\item Der er indsat radiobttoms som alle kan tjekkes af i stedet for en faktisk checkbox.
+\item Når der så bliver tjekket noget af er det ikke muligt at angive informationer om hvor oplysningerne faktisk skal indhentes.
+\end{itemize}
+\item Ydelser og paragraffer:
+\begin{itemize}
+\item Titlen siger (Hvis ja er afkrydset), hvad er det der skal være afkrydset for at kan udfylde dette?
+\item Overskrifterne for de forskellige punkter har radiobuttoms, men det er ikke muligt at markere flere af dem.
+\item Under de forskellige punkter er det ikke muligt at fjerne sin markering helt i tilfælde af fejltryk og borgerne ikke skal have denne ydelse, det er dog lavet på nogle få stykker.
+\item Under botilbud til voksne er der lavet radiobuttoms hvor det er muligt at lave en markering på flere af dem.
+\item Under Dagtilbud til voksne er der lavet radiobuttoms hvor det er muligt at lave en markering på flere af dem.
+\item Det samme forholder sig til længerevarende botilbud til voksne.
+\end{itemize}
+\item Når man gemmer:
+\begin{itemize}
+\item Der skal trykkes på 2 knapper for at gemme et dokument, og når man trykker på den sidste gem knap, bliver dataene som man vil gemme lagt som Null eller tomt i databasen.
+\end{itemize}
+\end{itemize}
+\subsubsection{Udredning dokument}
+\begin{itemize}
+\item Det er ikke muligt at lavet et tab og komme videre til næste tekst felt.
+\end{itemize}
+\subsubsection{Find sag}
+\begin{itemize}
+\item Når Man skal søge på et sagsnummer, bliver der skrevet en fejl på at integer = character varing, så der er ikke blevet håndteret at caseid i database er blevet serial i stedet for varchar, derved ingen output i UI’et.
+\item Der er ikke nogen af felterne under punktet Borger som giver nogen form for response.
+\end{itemize}

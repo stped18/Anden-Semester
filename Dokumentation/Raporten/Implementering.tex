@@ -1,37 +1,11 @@
 \subsection{Implementering}
+Målet med første iteration var at skabe et domain lag der havde de funktionalitetter som var nødvendige for systemet så det kunne fungere. Dette blev gjort så gruppen havde en bedre forståelse for hvordan systemet skulle se ud. I det følgende tekst er der lagt vægt på brugsmønsterende opret sag og find sag. Igennem første iteration var der lavet to klasse (case og department) der implementeret begge brugsmønster. ”case” håndteret hvad for noget data der skulle gemmes i en sag, mens ”department” holdt styr på hvad for nogle sager der var og hvordan man skulle finde dem.  Nedenfor ses de forskellige attributter der var I ”case” klassen(ref), udover dem var der gætter og sætter på attributterne. 
+\\INSERT KODE\\
+Der bruges et map til at holde den data der ændre og skrives ind, mens der er en status på om sagen er lavet, I gang eller færdig. Der er og kan kun være en person, sagen omhandler så der er simple variable, mens der kan være flere der fortæller det kan være en god ide at den her person for noget hjælp. Det gjorde at der skulle være en list over disse personer. \\
+For at kunne se hvad der skrives ud I præsentationslaget går det igennem facaden som er afdeling. Det er også her at alle de forskellige sager vil være gemt I denne iteration. Der bliver genererer et sagsnummer hvor det også er tydeligt at se for os hvilken afdeling sagen tilhørere. \\ 
+For at oprette en sag skal der bruges en person og oprette sagen på hvilket gør at funktionen skal enten få en person ind eller få information nok ind så den kan selv oprette den person sagen omhandler. Neden for er ses det hvordan dette er blevet håndteret(ref). 
+\\INSERT KODE\\
+Som det kan ses I koden nedenfor(ref) ses det hvordan klassen ”department” finder en sag den skal bruge en ”string” som kunne være CPR-nummer for personen den omhandlede, sagsnummeret for sagen og navnet på personen sagen omhandler. 
+\\INSERT KODE\\
+Som det kan ses I koden er der ikke blevet returneret en sag, men en list af sager. Dette er blevet gjort af flere årsager. Et par af de årsager er at en person kan have flere sager og mere end en person hedder det samme. Det kan også være en bruger af systemet ikke kender hele navnet så det skulle være muligt at få alle med fornavnet Anders tilbage, dette nåede ikke at blive implementeret I denne iteration. 
 
-
-
-\subsubsection{Find sag metoden}
-Under Department.java har vi en metode \\
-\textbf{Problem: }
-En aktør skal kunne finde en sag samt få denne sag vist. Sagen skal findes ved hjælp at enten sagsnummer, cpr-nummer eller navn. \\
-\textbf{Løsning: }
-For at finde en sag skal der første laves en liste over sagerne der er inde for den gældende afdeling har. 
-Der bliver lavet en metode search der søger gennem alle de sager afdelingen har,
-Herefter skal der findes en match på om sagen har enten matchende sagsnummer, cpr-nummer eller navn. 
-\begin{figure}[h]
-\begin{lstlisting}
-
-    public List<Case> search(String searchWord) {
-
-        List<Case> listCases = new ArrayList<>();
-
-        for (Case searchCase : caseMap.values()) {
-            if (searchCase.getRegardingCitizen().getCprNumber().equalsIgnoreCase(searchWord)
-                    || searchCase.getCaseNumber().equalsIgnoreCase(String.valueOf(searchWord))
-                    || searchCase.getRegardingCitizen().getName().equalsIgnoreCase(searchWord)) {
-                listCases.add(searchCase);
-            }
-        }
-
-        return listCases;
-    }
-
-
-\end{lstlisting}
-\caption{kode : seartch}
-\label{kode:Search}
-\end{figure}\\
-\textbf{Evaluering:}
-Metoden virker når der kun er kendskab til et map men skal laves om når der skal søges i databasen efter den gældende sag.

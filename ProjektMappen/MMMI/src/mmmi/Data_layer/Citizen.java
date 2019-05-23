@@ -2,6 +2,9 @@ package mmmi.Data_layer;
 
 import java.util.List;
 
+/**
+ * @TODO: Error handling
+ */
 public class Citizen {
 
     private int citizenID;
@@ -18,16 +21,17 @@ public class Citizen {
     private boolean requestingCitizen;
     private List<Case> Cases;
 
-	/**
-	 *
-	 * @param citizenID
-	 * @param firstName
-	 * @param lastName
-	 * @param cprNo
-	 * @param regardingCitizen
-	 * @param requestingCitizen
-	 */
-	public Citizen(int citizenID, String firstName, String lastName, String cprNo, boolean regardingCitizen, boolean requestingCitizen) {
+    /**
+     * Constructor, used when creating a regarding Citizen.
+     *
+     * @param citizenID
+     * @param firstName
+     * @param lastName
+     * @param cprNo
+     * @param regardingCitizen
+     * @param requestingCitizen
+     */
+    public Citizen(int citizenID, String firstName, String lastName, String cprNo, boolean regardingCitizen, boolean requestingCitizen) {
         this.citizenID = citizenID;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -36,22 +40,23 @@ public class Citizen {
         this.requestingCitizen = requestingCitizen;
     }
 
-	/**
-	 *
-	 * @param citizenID
-	 * @param firstName
-	 * @param lastName
-	 * @param cprNo
-	 * @param streetName
-	 * @param houseNo
-	 * @param floor
-	 * @param floorDirection
-	 * @param zipcode
-	 * @param cityname
-	 * @param regardingCitizen
-	 * @param requestingCitizen
-	 */
-	public Citizen(int citizenID, String firstName, String lastName, String cprNo, String streetName, String houseNo, String floor, String floorDirection, int zipcode, String cityname, boolean regardingCitizen, boolean requestingCitizen) {
+    /**
+     * Constructor, used when creating a requesting citizen
+     *
+     * @param citizenID
+     * @param firstName
+     * @param lastName
+     * @param cprNo
+     * @param streetName
+     * @param houseNo
+     * @param floor
+     * @param floorDirection
+     * @param zipcode
+     * @param cityname
+     * @param regardingCitizen
+     * @param requestingCitizen
+     */
+    public Citizen(int citizenID, String firstName, String lastName, String cprNo, String streetName, String houseNo, String floor, String floorDirection, int zipcode, String cityname, boolean regardingCitizen, boolean requestingCitizen) {
         this.citizenID = citizenID;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -66,219 +71,246 @@ public class Citizen {
         this.requestingCitizen = requestingCitizen;
     }
 
-	/**
-	 *
-	 * @return
-	 */
-	public List<Case> getCases() {
+    /**
+     * Getter method for variable cases.
+     *
+     * @return List<Case>
+     */
+    public List<Case> getCases() {
         return Cases;
     }
 
-	/**
-	 *
-	 * @return
-	 */
-	public int getCitizenID() {
+    /**
+     * Getter method for variable citizenID
+     *
+     * @return int citizenID
+     */
+    public int getCitizenID() {
         return citizenID;
     }
 
-	/**
-	 *
-	 * @return
-	 */
-	public String getFirstName() {
+    /**
+     * Getter method for variable firstName.
+     *
+     * @return String firstName
+     */
+    public String getFirstName() {
         return firstName;
     }
 
-	/**
-	 *
-	 * @return
-	 */
-	public String getLastName() {
+    /**
+     * Getter method for variable lastName.
+     *
+     * @return String lastName
+     */
+    public String getLastName() {
         return lastName;
     }
 
-	/**
-	 *
-	 * @return
-	 */
-	public String getCprNo() {
+    /**
+     * Getter method for variable cprNo.
+     *
+     * @return String cprNo
+     */
+    public String getCprNo() {
         return cprNo;
     }
 
-	/**
-	 *
-	 * @return
-	 */
-	public String getStreetName() {
+    /**
+     * Getter method for variable streetName.
+     *
+     * @return String streetName
+     */
+    public String getStreetName() {
         return streetName;
     }
 
-	/**
-	 *
-	 * @return
-	 */
-	public String getHouseNo() {
+    /**
+     * Getter method for variable houseNo.
+     *
+     * @return String houseNo
+     */
+    public String getHouseNo() {
         return houseNo;
     }
 
-	/**
-	 *
-	 * @return
-	 */
-	public String getFloor() {
+    /**
+     * Getter method for variable floor.
+     *
+     * @return String floor
+     */
+    public String getFloor() {
         return floor;
     }
 
-	/**
-	 *
-	 * @return
-	 */
-	public String getFloorDirection() {
+    /**
+     * Getter method for variable floorDirection.
+     *
+     * @return String floorDirection
+     */
+    public String getFloorDirection() {
         return floorDirection;
     }
 
-	/**
-	 *
-	 * @return
-	 */
-	public int getZipcode() {
+    /**
+     * Getter method for variable zipcode.
+     *
+     * @return int zipcode
+     */
+    public int getZipcode() {
         return zipcode;
     }
 
-	/**
-	 *
-	 * @return
-	 */
-	public String getCityname() {
+    /**
+     * Getter method for variable cityname.
+     *
+     * @return Stgring cityname
+     */
+    public String getCityname() {
         return cityname;
     }
 
-	/**
-	 *
-	 * @return
-	 */
-	public boolean isRegardingCitizen() {
+    /**
+     * Getter method for variable regardingCitizen.
+     *
+     * @return boolean regardingCitizen
+     */
+    public boolean isRegardingCitizen() {
         return regardingCitizen;
     }
 
-	/**
-	 *
-	 * @return
-	 */
-	public boolean isRequestingCitizen() {
+    /**
+     * Getter method for variable requestingCitizen.
+     *
+     * @return boolean requestingCitizen
+     */
+    public boolean isRequestingCitizen() {
         return requestingCitizen;
     }
 
-	/**
-	 *
-	 * @param citizenID
-	 */
-	public void setCitizenID(int citizenID) {
+    /**
+     * Setter method for variable citizenID.
+     *
+     * @param citizenID, int
+     */
+    public void setCitizenID(int citizenID) {
         this.citizenID = citizenID;
     }
 
-	/**
-	 *
-	 * @param Cases
-	 */
-	public void setCases(List<Case> Cases) {
+    /**
+     * Setter method for variable Cases.
+     *
+     * @param Cases, List<Case>
+     */
+    public void setCases(List<Case> Cases) {
         this.Cases = Cases;
     }
 
-	/**
-	 *
-	 * @param firstName
-	 */
-	public void setFirstName(String firstName) {
+    /**
+     * Setter method for variable firstName.
+     *
+     * @param firstName, String
+     */
+    public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
-	/**
-	 *
-	 * @param lastName
-	 */
-	public void setLastName(String lastName) {
+    /**
+     * Setter method for variable lastName.
+     *
+     * @param lastName, String
+     */
+    public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
-	/**
-	 *
-	 * @param cprNo
-	 */
-	public void setCprNo(String cprNo) {
+    /**
+     * Setter method for variable cprNo.
+     *
+     * @param cprNo, int
+     */
+    public void setCprNo(String cprNo) {
         this.cprNo = cprNo;
     }
 
-	/**
-	 *
-	 * @param streetName
-	 */
-	public void setStreetName(String streetName) {
+    /**
+     * Setter method for variable streetName.
+     *
+     * @param streetName, String
+     */
+    public void setStreetName(String streetName) {
         this.streetName = streetName;
     }
 
-	/**
-	 *
-	 * @param houseNo
-	 */
-	public void setHouseNo(String houseNo) {
+    /**
+     * Setter method for variable houseNo.
+     *
+     * @param houseNo, String
+     */
+    public void setHouseNo(String houseNo) {
         this.houseNo = houseNo;
     }
 
-	/**
-	 *
-	 * @param floor
-	 */
-	public void setFloor(String floor) {
+    /**
+     * Setter method for variable floor.
+     *
+     * @param floor, String
+     */
+    public void setFloor(String floor) {
         this.floor = floor;
     }
 
-	/**
-	 *
-	 * @param floorDirection
-	 */
-	public void setFloorDirection(String floorDirection) {
+    /**
+     * Setter method for variable floorDirection.
+     *
+     * @param floorDirection, String
+     */
+    public void setFloorDirection(String floorDirection) {
         this.floorDirection = floorDirection;
     }
 
-	/**
-	 *
-	 * @param zipcode
-	 */
-	public void setZipcode(int zipcode) {
+    /**
+     * Setter method for variable zipcode.
+     *
+     * @param zipcode, int
+     */
+    public void setZipcode(int zipcode) {
         this.zipcode = zipcode;
     }
 
-	/**
-	 *
-	 * @param cityname
-	 */
-	public void setCityname(String cityname) {
+    /**
+     * Setter method for variable cityname.
+     *
+     * @param cityname, String
+     */
+    public void setCityname(String cityname) {
         this.cityname = cityname;
     }
 
-	/**
-	 *
-	 * @param regardingCitizen
-	 */
-	public void setRegardingCitizen(boolean regardingCitizen) {
+    /**
+     * Setter method for variable regardingCitizen.
+     *
+     * @param regardingCitizen, boolean
+     */
+    public void setRegardingCitizen(boolean regardingCitizen) {
         this.regardingCitizen = regardingCitizen;
     }
 
-	/**
-	 *
-	 * @param requestingCitizen
-	 */
-	public void setRequestingCitizen(boolean requestingCitizen) {
+    /**
+     * Setter method for variable requestingCitizen.
+     *
+     * @param requestingCitizen, boolean
+     */
+    public void setRequestingCitizen(boolean requestingCitizen) {
         this.requestingCitizen = requestingCitizen;
     }
 
-	/**
-	 * For Testing.
-	 * @return
-	 */
-	@Override
+    /**
+     * For Testing.
+     *
+     * @return
+     */
+    @Override
     public String toString() {
         String casestring = "";
         return "Citizen{" + "citizenID=" + citizenID + ", firstName=" + firstName + ", lastName=" + lastName + ", cprNo=" + cprNo + ", streetName=" + streetName + ", houseNo=" + houseNo + ", floor=" + floor + ", floorDirection=" + floorDirection + ", zipcode=" + zipcode + ", cityname=" + cityname + ", regardingCitizen=" + regardingCitizen + ", requestingCitizen=" + requestingCitizen + ", Cases=" + casestring + '}';

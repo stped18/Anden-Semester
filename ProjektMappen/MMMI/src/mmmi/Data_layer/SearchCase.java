@@ -1,5 +1,8 @@
 package mmmi.Data_layer;
 
+/**
+ * @TODO: Error handling
+ */
 public class SearchCase {
 
     private final int citizenID;
@@ -13,6 +16,8 @@ public class SearchCase {
     private final String employeeName;
 
     /**
+     * Constructor, used when a user Searches the database for a citizen or for
+     * a specific case.
      *
      * @param citizenID
      * @param citizenName
@@ -24,8 +29,7 @@ public class SearchCase {
      * @param employeeID
      * @param employeeName
      */
-    public SearchCase(int citizenID, String citizenName, String caseID, String caseStatus,
-			String date, String createdDate, String reason, int employeeID, String employeeName) {
+    public SearchCase(int citizenID, String citizenName, String caseID, String caseStatus, String date, String createdDate, String reason, int employeeID, String employeeName) {
         this.citizenID = citizenID;
         this.citizenName = citizenName;
         this.caseID = caseID;
@@ -37,86 +41,96 @@ public class SearchCase {
         this.employeeName = employeeName;
     }
 
-	/**
-	 *
-	 * @return
-	 */
-	public int getCitizenID() {
+    /**
+     * Getter method for variable citizenID.
+     *
+     * @return int citizenID
+     */
+    public int getCitizenID() {
         return citizenID;
     }
-    
-	/**
-	 *
-	 * @return
-	 */
-	public String getCitizenName() {
+
+    /**
+     * Getter method for variable citizenName.
+     *
+     * @return String citizenName
+     */
+    public String getCitizenName() {
         return citizenName;
     }
 
-	/**
-	 *
-	 * @return
-	 */
-	public String getCaseID() {
+    /**
+     * Getter method for variable caseID.
+     *
+     * @return String caseID
+     */
+    public String getCaseID() {
         return caseID;
     }
 
-	/**
-	 *
-	 * @return
-	 */
-	public String getCaseStatus() {
+    /**
+     * Getter method for variable caseStatus.
+     *
+     * @return String caseStatus
+     */
+    public String getCaseStatus() {
         return caseStatus;
     }
 
-	/**
-	 *
-	 * @return
-	 */
-	public String getCurrentCaseDate() {
+    /**
+     * Getter method for variable currentCaseDate.
+     *
+     * @return String currentCaseDate
+     */
+    public String getCurrentCaseDate() {
         return currentCaseDate;
     }
 
-	/**
-	 *
-	 * @return
-	 */
-	public String getCreatedCaseDate() {
+    /**
+     * Getter method for variable createdCaseDate.
+     *
+     * @return String createdCaseDate
+     */
+    public String getCreatedCaseDate() {
         return createdCaseDate;
     }
 
-	/**
-	 *
-	 * @return
-	 */
-	public String getReason() {
+    /**
+     * Getter method for variable reason.
+     *
+     * @return String resaon
+     */
+    public String getReason() {
         return reason;
     }
-    
-	/**
-	 *
-	 * @return
-	 */
-	public int getEmployeeID() {
+
+    /**
+     * Getter method for variable employeeID.
+     *
+     * @return int employeeID
+     */
+    public int getEmployeeID() {
         return employeeID;
     }
-    
-	/**
-	 *
-	 * @return
-	 */
-	public String getEmployeeName() {
+
+    /**
+     * Getter method for variable employeeName.
+     *
+     * @return String employeeName
+     */
+    public String getEmployeeName() {
         return employeeName;
     }
 
-	/**
-	 * For Testing
-	 * @return
-	 */
-	@Override
+    /**
+     * For Testing.
+     *
+     * @return
+     */
+    @Override
     public String toString() {
         return "SearchCase{" + "citizenID=" + citizenID + ", citizenName=" + citizenName + ","
-				+ "caseID=" + caseID + ", caseStatus=" + caseStatus + ", currentCaseDate=" + currentCaseDate
-				+ ", reason=" + reason + ", employeeID=" + employeeID + ", employeeName=" + employeeName + '}';
+                + "caseID=" + caseID + ", caseStatus=" + caseStatus + ", currentCaseDate=" + currentCaseDate
+                + ", reason=" + reason + ", employeeID=" + employeeID + ", employeeName=" + employeeName + '}';
     }
 }

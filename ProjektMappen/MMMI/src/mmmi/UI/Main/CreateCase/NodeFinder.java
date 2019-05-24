@@ -129,7 +129,7 @@ public class NodeFinder {
 	 * @return
 	 */
 	public Map<String, String> findeNodehandler(Parent parent) {
-		getAllNodes(parent);
+		getAllNodesFromRoot(parent);
 		return nodeMap;
 	}
 
@@ -183,18 +183,13 @@ public class NodeFinder {
 	 * @param root
 	 * @return
 	 */
-	public ArrayList<Node> getAllNodes(Parent root) {
+	public ArrayList<Node> getAllNodesFromRoot(Parent root) {
 		ArrayList<Node> nodes = new ArrayList<Node>();
-		addAllDescendents(root, nodes);
+		addAllDescendentsFromNode(root, nodes);
 		return nodes;
 	}
-
-	/**
-	 * 
-	 * @param parent
-	 * @param nodes 
-	 */
-	private void addAllDescendents(Parent parent, ArrayList<Node> nodes) {
+    
+	private void addAllDescendentsFromNode(Parent parent, ArrayList<Node> nodes) {
 
 		for (Node node : parent.getChildrenUnmodifiable()) {
 			nodes.add(node);
@@ -208,12 +203,14 @@ public class NodeFinder {
 				if (node instanceof RadioButton) {
 					if (((Toggle) node).isSelected()) {
 
-						String key = ((RadioButton) node).getId().substring(5, ((RadioButton) node).getId().length() - 1);
+						String key = ((RadioButton) node).getId().substring(5, 
+                                ((RadioButton) node).getId().length() - 1);
 						nodeMap.put(key, ((Labeled) node).getText());
 					}
 				}
-				addAllDescendents((Parent) node, nodes);
+				addAllDescendentsFromNode((Parent) node, nodes);
 			}
-		}
+	    }
 	}
 }
+

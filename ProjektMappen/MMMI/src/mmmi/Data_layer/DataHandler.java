@@ -504,9 +504,9 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
                     query = selectQuery + fromQuery + whereQuery;
 
                     searchCaseStmt = dbConnection.prepareStatement(query);
-                    searchCaseStmt.setString(1, search[0]);
-                    searchCaseStmt.setString(2, search[0]);
-                    searchCaseStmt.setString(3, search[0]);
+                    searchCaseStmt.setInt(1, Integer.valueOf(search[0]));
+                    searchCaseStmt.setInt(2, Integer.valueOf(search[0]));
+                    searchCaseStmt.setInt(3, Integer.valueOf(search[0]));
                     searchCaseStmt.setInt(4, Integer.valueOf(search[1]));
                     dbResultSet = searchCaseStmt.executeQuery();
                     while (dbResultSet.next()) {

@@ -1,8 +1,10 @@
 \subsubsection{DesignStatisk}
 \begin{figure}[h]
-\includegraphics[width = \linewidth]{./PNG/designklassediagram.PNG}
+\includegraphics[width = \linewidth]{./PNG/design/designKlasseDiagram.PNG}
+\caption{Klasse diagrammfuld størrelse se interne bilag afsnit \ref{sec:diverse} figur \ref{fig:fuldDesignKlasseDiagram}}
+\label{fig:desginklasse}
 \end{figure}
-Diagrammet beskriver de klasser vi har fundet, der skal implementeres i systemet. Hver klasse har attributter og en del skal have skrevet getter / setter-metoder til, men for at diagrammet ikke skal blive for stort og uoverskueligt, blev der valgt at undlade dem.\\
+Diagrammet \ref{fig:desginklasse} beskriver de klasser vi har fundet, der skal implementeres i systemet. Hver klasse har attributter og en del skal have skrevet getter / setter-metoder til, men for at diagrammet ikke skal blive for stort og uoverskueligt, blev der valgt at undlade dem.\\
 Diagrammet er blevet designet med tanker på en tydelig lagdeling og repræsentere systemets domænelag. Der blev besluttet at ”Department”-klassen skulle benyttes som facadeklasse til præsentationslaget, mens datahandler interfacet bruges til kommunikation mellem domæne- og persistentslag.
 Department – Facade klasse\\
 Der var særligt fokus på attributterne: ”id” af typen int og ”caseMap” af typen Map<String, Case>. Det var tænkt at ID skulle bruges til at godkende adgangen til sager i databasen, for at imødekomme projektets ”Dataafgrænsning”. ID er af typen int, for at holde den simpel. Kravet til dataafgrænsningen er, at en arbejder der henter information omhandlende en borger, ikke må blive gjort opmærksom om sager, der administreres af andre afdelinger end arbejderens egen.\\

@@ -462,7 +462,7 @@
                                     </AnchorPane>
                                  </content>
                               </TitledPane>
-                              <TitledPane fx:id="fxTP_benefitsParagraphs" expanded="false" prefHeight="0.0" prefWidth="1050.0" text="Ydelser og paragraffer (Hvis ja er afkrydset)">
+                              <TitledPane fx:id="fxTP_benefitsParagraphs" expanded="false" prefHeight="0.0" prefWidth="1050.0" text="Ydelser og paragraffer (Hvis det klart hvad borgeren søger om og der er afkrydset ja)">
                                  <content>
                                     <AnchorPane prefHeight="245.0" prefWidth="1048.0">
                                        <children>

@@ -1,11 +1,60 @@
 \subsection{Implementering}
-Målet med første iteration var at skabe et domain lag der havde de funktionalitetter som var nødvendige for systemet så det kunne fungere. Dette blev gjort så gruppen havde en bedre forståelse for hvordan systemet skulle se ud. I det følgende tekst er der lagt vægt på brugsmønsterende opret sag og find sag. Igennem første iteration var der lavet to klasse (case og department) der implementeret begge brugsmønster. ”case” håndteret hvad for noget data der skulle gemmes i en sag, mens ”department” holdt styr på hvad for nogle sager der var og hvordan man skulle finde dem.  Nedenfor ses de forskellige attributter der var I ”case” klassen(ref), udover dem var der gætter og sætter på attributterne. 
-\\INSERT KODE\\
+Målet med første iteration var at skabe et domain lag der havde de funktionalitetter som var nødvendige for systemet så det kunne fungere. Dette blev gjort så gruppen havde en bedre forståelse for hvordan systemet skulle se ud. I det følgende tekst er der lagt vægt på brugsmønsterende opret sag og find sag. Igennem første iteration var der lavet to klasse (case og department) der implementeret begge brugsmønster. ”case” håndteret hvad for noget data der skulle gemmes i en sag, mens ”department” holdt styr på hvad for nogle sager der var og hvordan man skulle finde dem.  Nedenfor ses de forskellige attributter der var I ”case” klassen(Se figur \ref{kode:caseatt}), udover dem var der gætter og sætter på attributterne. 
+\begin{figure}[h]
+\begin{lstlisting}
+public class Case {
+    private static int socialCount = 1;
+    private static int handicapCount = 1;
+
+    private final String caseNumber;
+    private String caseStatus;
+
+    private final String date;
+    private final Citizen regardingCitizen;
+    private final List<Citizen> requestingCitizen = new ArrayList<>();
+    private final Map<String, String> information = new HashMap<>();
+    private final int departmentID;
+\end{lstlisting}
+\caption{Case klassen's attributter har getter og sætter på de nødvendige attributter}
+\label{kode:caseatt}
+\end{figure}\\
 Der bruges et map til at holde den data der ændre og skrives ind, mens der er en status på om sagen er lavet, I gang eller færdig. Der er og kan kun være en person, sagen omhandler så der er simple variable, mens der kan være flere der fortæller det kan være en god ide at den her person for noget hjælp. Det gjorde at der skulle være en list over disse personer. \\
 For at kunne se hvad der skrives ud I præsentationslaget går det igennem facaden som er afdeling. Det er også her at alle de forskellige sager vil være gemt I denne iteration. Der bliver genererer et sagsnummer hvor det også er tydeligt at se for os hvilken afdeling sagen tilhørere. \\ 
-For at oprette en sag skal der bruges en person og oprette sagen på hvilket gør at funktionen skal enten få en person ind eller få information nok ind så den kan selv oprette den person sagen omhandler. Neden for er ses det hvordan dette er blevet håndteret(ref). 
-\\INSERT KODE\\
-Som det kan ses I koden nedenfor(ref) ses det hvordan klassen ”department” finder en sag den skal bruge en ”string” som kunne være CPR-nummer for personen den omhandlede, sagsnummeret for sagen og navnet på personen sagen omhandler. 
-\\INSERT KODE\\
+For at oprette en sag skal der bruges en person og oprette sagen på hvilket gør at funktionen skal enten få en person ind eller få information nok ind så den kan selv oprette den person sagen omhandler. Neden for er ses det hvordan dette er blevet håndteret(\ref{kode:createcase}). \\
+\begin{figure}[h]
+\begin{lstlisting}
+public boolean createCase(String name, String reason) {
+        if (!name.isEmpty() && !reason.isEmpty()) {
+            Citizen citizen = createCitizen(name);
+            Case newCase = new Case(citizen, reason, this.id);
+            caseMap.put(newCase.getCaseNumber(), newCase);
+            return true;
+        } else {
+            return false;
+        }
+    }
+\end{lstlisting}
+\caption{department klassen's create case}
+\label{kode:createcase}
+\end{figure}\\
+Som det kan ses I koden nedenfor(\ref{kode:search}) ses det hvordan klassen ”department” finder en sag den skal bruge en ”string” som kunne være CPR-nummer for personen den omhandlede, sagsnummeret for sagen og navnet på personen sagen omhandler. 
+\begin{figure}
+\begin{lstlisting}
+public List<Case> search(String searchWord) {
+        List<Case> listCases = new ArrayList<>();
+
+        for (Case searchCase : caseMap.values()) {
+            if (searchCase.getRegardingCitizen().getCprNumber().equalsIgnoreCase(searchWord)
+                    || searchCase.getCaseNumber().equalsIgnoreCase(String.valueOf(searchWord))
+                    || searchCase.getRegardingCitizen().getName().equalsIgnoreCase(searchWord)) {
+                listCases.add(searchCase);
+            }
+        }
+         return listCases;
+    }
+\end{lstlisting}
+\caption{department search, finder alle sager der har søgeordet i}
+\label{kode:search}
+\end{figure}
 Som det kan ses I koden er der ikke blevet returneret en sag, men en list af sager. Dette er blevet gjort af flere årsager. Et par af de årsager er at en person kan have flere sager og mere end en person hedder det samme. Det kan også være en bruger af systemet ikke kender hele navnet så det skulle være muligt at få alle med fornavnet Anders tilbage, dette nåede ikke at blive implementeret I denne iteration. 
 

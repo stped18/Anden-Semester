@@ -1,43 +1,193 @@
-\subsection{Test}
+\subsection{Unit test}
+\subsubsection{saveCaseTest()}
+Der er udført en test på saveCase() metoden  i klassen Department. Testens formål er at kunne modtage data fra Præsentationslag og lægge det ned til Persistenslaget som herefter bliver gemt i databasen.  \\
+\begin{figure}[htb!]
+\begin{lstlisting}
+@Test
+public void saveCaseTest() {
+	Map<String, Map<String, String>> caseInfo = new HashMap<>();
+	department.setDepartmentID(1);
+	Map<String, String> conentsMap = new HashMap<>();
+	conentsMap.put("regardinginquiry", "Henvendelse drejer sig om en Test");
+	conentsMap.put("treatment", "paragrafTest2");
+	conentsMap.put("carriage", "paragrafTest1");
+	conentsMap.put("caseID", "-1");
+	
+	Map<String, String> citizenInfoRegarding1 = new HashMap<>();
+	citizenInfoRegarding1.put("firstName", "Hans");
+	citizenInfoRegarding1.put("lastName", "Frederiksen");
+	citizenInfoRegarding1.put("streetName", "Snervej");
+	citizenInfoRegarding1.put("cityName", "Taarup");
+	citizenInfoRegarding1.put("zipCode", "5560");
+	citizenInfoRegarding1.put("houseNo", "75");
+	citizenInfoRegarding1.put("regardingCitizen", "true");
+	citizenInfoRegarding1.put("requestingCitizen", "false");
+	citizenInfoRegarding1.put("cpr", "887799-5544");
+	citizenInfoRegarding1.put("floor", "");
+	citizenInfoRegarding1.put("floorDirection", "");
+	
+	Map<String, String> citizenInfoRequesting1 = new HashMap<>();
+	citizenInfoRequesting1.put("firstName", "Mads");
+	citizenInfoRequesting1.put("lastName", "Simpson");
+	citizenInfoRequesting1.put("streetName", "tillevej");
+	citizenInfoRequesting1.put("cityName", "Odense");
+	citizenInfoRequesting1.put("zipCode", "5000");
+	citizenInfoRequesting1.put("houseNo", "22");
+	citizenInfoRequesting1.put("regardingCitizen", "false");
+	citizenInfoRequesting1.put("requestingCitizen", "true");
+	citizenInfoRequesting1.put("cpr", "120596-7745");
+	citizenInfoRequesting1.put("floor", "etage 2");
+	citizenInfoRequesting1.put("floorDirection", "venstre");
+	
+	caseInfo.put("caseContents", conentsMap);
+	caseInfo.put("cRegarding", citizenInfoRegarding1);
+	caseInfo.put("cRequesting", citizenInfoRequesting1);
+	
+	assertEquals(true, department.saveCase(caseInfo));
+}
+\end{lstlisting}
+\caption{Unit test kode for Savecase}
+\label{kode:savetest}
+\end{figure}\\
+Der er blevet oprettet en metode saveCaseTest() (Se figur \ref{kode:savetest}), hvor der oprettes en caseInfo Map som skal kunne modtage en RegardingCitizen af typen Map og en RequestingCitizen af typen Map. Der bliver udover det også oprettet en caseContents af typen Map hvor alt data vedrørende sagsoplysninger lægges i. På figuren ses det at der er sat key og value værdier ind, og da det også skal være muligt at indsætte tomme pladser i f.eks. case\_contents tabellen i databasen, er caseContents ikke fyldt helt ud med alle værdier. Som det næste sættes en RegardingCitizen ind med oplysninger og en RequestingCitizen med oplysninger. Dette for at teste om borgen registreres i databasens Citizen tabel. Til sidst lægges alle 3 Maps ind i caseInfo Map hvor der efterfølgende bliver brugt en assertEquals() metode for at teste om det forventede resultat er sandt. \\
+Efter at have kørt testen igennem returnerede den true hvilket betød at testen var succesfuldt. \\
+\subsubsection{searchTestCase()}
+Der er udført en test på search() metoden i Department, som skal vise at man får et søges resultat tilbage fra datalaget med det data der er blevet søgt på. I test metoden searchTestCase() er overvejelsen af at man kan søge på en sag med specifikt sagsnummer og få resultatet af søgning fra datalaget og hele vejen igennem op til brugergrænsefladen. \\
+\begin{figure}
+\begin{lstlisting}
+@Test
+public void searchTestCase() {
+	IDataHandler searchHandler = new DataHandler();
+	String caseNumber = "123";
+	
+	List<SearchCase> searchCases = searchHandler.search("Case", caseNumber + "%1");
+	Map<String, String> expectedMap = new HashMap<>();
+	
+	// Expected output
+	expectedMap.put("currentCaseDate", "24/05-2019");
+	expectedMap.put("createdCaseDate", "17/05-2019");
+	expectedMap.put("caseStatus", "igang");
+	expectedMap.put("caseReason", "Henvendelse drejer sig om en Test");
+	expectedMap.put("caseEmployeeName", "Aleksander Henriksen");
+	expectedMap.put("citizenName", "Poul Johanson");
+	
+	 // searchResult
+	 Map<String, String> mapContains = new HashMap<>();
+	 Map searchResultList = new HashMap();
+	 for (int i = 0; i < searchCases.size(); i++) {
+	 	Map searchResultMap = new HashMap();
+	 	searchResultMap.put("citizenName", searchCases.get(i).getCitizenName());
+	 	searchResultMap.put("currentCaseDate", searchCases.get(i).getCurrentCaseDate());
+	 	searchResultMap.put("createdCaseDate", searchCases.get(i).getCreatedCaseDate());
+	 	searchResultMap.put("caseReason", searchCases.get(i).getReason());
+	 	searchResultMap.put("caseEmployeeName", searchCases.get(i).getEmployeeName());
+	 	searchResultMap.put("caseStatus", searchCases.get(i).getCaseStatus());
+	 	searchResultList.put(searchCases.get(i).getCaseID(), searchResultMap);
+	 	
+	 	// Test
+	 	assertThat(searchResultMap, Is.is(expectedMap));
+	 	
+	 	// Print out both maps
+	 	System.out.println("searchResult: " + searchResultMap);
+	 	System.out.println("Expected: " + expectedMap);
+	}
+}
+\end{lstlisting}
+\caption{Unit test kode for search, når den leder efter en case}
+\label{kode:searchcase}
+\end{figure}
+I figur \ref{kode:searchcase} udføres testen searchTestCase() hvor der deklareres en variable caseNumber med værdien ”123” der skal være formålet med at søge en sag frem på et specifikt sagsnummer. Metoden searchHandler.search("Case", caseNumber + "\%1"), er den metode som sender nøglen der ”Case” og værdien ”123\%1”. Adskillelsen med \% fortæller at den første værdi er sagsnummeret og den anden er departmentID. Der oprettes et expected Map med de værdier der forventes at få. I assertThat(searchResultMap, Is.is(expectedMap)) metoden tjekker man om searchResultMap er det samme som det forventede.\\
+Ved test af koden blev det forventede map printet ud og var det samme som funktionens map, hvilket gjorde at testen var succesfuldt. \\
+Testen viser at der kan søges på en specifik sag og samtidig se hvilken borger der er tilknyttet sagen. Dette gør det lettere for at kunne finde ud af hvad sag en borger er tilknyttet.  \\
+\subsubsection{searchTestCitizen()}
+I det forrige  afsnit søgte metoden searchTestCase() på en specifik sag. Der har som en beslutning af gruppen også fortaget at implementere search() med at kunne søge på en borger. Testen searchTestCitizen() har til formål at kunne søge på en specifik borger og baseret på borgeren vise de sager den pågældende borger har. \\
+\begin{figure}
+\begin{lstlisting}
+@Test
+public void searchTestCitizen() {
+	IDataHandler searchHandler = new DataHandler();
+	String citizen = "123123-1231%Poul Johanson%kimvej%"; // citizen to search for
+	
+	List<SearchCase> searchCases = searchHandler.search("Citizen", citizen + "%1"); 
+	Map<String, String> expectedMap = new HashMap<>();
+	
+	// Expected output
+	expectedMap.put("currentCaseDate", "24/05-2019");
+	expectedMap.put("createdCaseDate", "17/05-2019");
+	expectedMap.put("caseStatus", "igang");
+	expectedMap.put("caseReason", "Henvendelse drejer sig om en Test");
+	expectedMap.put("caseEmployeeName", "Aleksander Henriksen");
+	expectedMap.put("citizenName", "Poul Johanson");
+    
+    // searchResult
+    Map<String, String> mapContains = new HashMap<>();
+    Map searchResultList = new HashMap();
+    for (int i = 0; i < searchCases.size(); i++) {
+    	Map searchResultMap = new HashMap();
+    	searchResultMap.put("citizenName", searchCases.get(i).getCitizenName());
+    	searchResultMap.put("currentCaseDate", searchCases.get(i).getCurrentCaseDate());
+    	searchResultMap.put("createdCaseDate", searchCases.get(i).getCreatedCaseDate());
+    	searchResultMap.put("caseReason", searchCases.get(i).getReason());
+    	searchResultMap.put("caseEmployeeName", searchCases.get(i).getEmployeeName());
+    	searchResultMap.put("caseStatus", searchCases.get(i).getCaseStatus());
+    	searchResultList.put(searchCases.get(i).getCaseID(), searchResultMap);
+    	
+    	// Test
+    	assertThat(searchResultMap, Is.is(expectedMap));
+    	
+    	 // Print out both maps
+    	 System.out.println("searchResult: " + searchResultMap);
+    	 System.out.println("Expected: " + expectedMap);
+	}
+}
 
+\end{lstlisting}
+\caption{Unit test kode for search, når den leder efter en citizen}
+\label{kode:searchcitizen}
+\end{figure}
+I figur \ref{kode:searchcitizen} anvendes searchTestCitizen() metoden hvor der bliver deklareret en variable citizen af typen String. Den får værdierne "123123-1231\%Poul Johanson\%kimvej\%", der bliver separeret med ”\%”. Derefter oprettes et Map som kaldes expectedMap der er data som er forventet at få tilbage. Derefter laves assertThat(searchResultMap, Is.is(expectedMap)) der er tester om searchResultMap er det samme som expectedMap. \\
+Testen viser at det er den rigtige borger der kommer frem når man søger, hvilket gør at testen er succesfuldt 
+\subsection{System test}
 \subsubsection{Generelt}
 \begin{itemize}
-\item Systemet kan ikke startes ved at trykke på projektmappen og derefter run.
-\item Kan ikke ud kommentere Main-metode i mmmi, hvis dette gøres, kan modulet ikke startes op.
+\item Systemet kan ikke startes ved at trykke på projektmappen og derefter run. Når dette gøres, starter den login systemet om, og man har mulighed for at indtaste sine logininformationer, der er i dette tilfælde blevet brugt ”admin” til både brugernavn og adgangskode, når dette er gjort og man trykker på loginknappen, bliver der i konsollen smidt en ”NullPointerException” men Location is required, og det er ikke muligt at komme vindere i systemet.
+\item Kan ikke ud kommentere Main-metode i mmmi, hvis dette gøres, kan modulet ikke startes op. Det var forventet at samarbejdet mellem loginsystemet og mmmi modulet var sat op så mmmi ikke havde brug for en Main-metode.
 \item I menuen i venstre side på UI’et er det kun Hjem, Opret sag og Find sag som kan trykkes på, resten af knapperne har ingen funktion.
 \end{itemize}
 \subsubsection{Login System}
 \begin{itemize}
-\item Når man har skrevet brugernavn eller adgangskode forkert 4 gange, skal man kontakte admin, men der er muligt at bypass ved at lukke programmet og starte det igen.
+\item Når man har skrevet brugernavn eller adgangskode forkert 4 gange, der er i input til brugernavn og adgangskode blevet brugt henholdsvis ”admin” til brugernavn og ”ain” til adgangskode, skal man kontakte admin, men der er muligt at bypass ved at lukke programmet og starte det igen.
 \end{itemize}
 \subsubsection{Opstarts side}
 \begin{itemize}
 \item Når der er skrevet tekst i eventuelle noter og går videre til sig næste sag, rydder den ikke feltet eller skriver det som er på en anden sag. Der er dog skrevet og gemt i databasen.
-\item Hvis man skriver i kommentarfeltet og reguardingquiry er ”Null” i databasen, bliver der skrevet en SQL-fejl, men ”violates not-null constraint”. 
+\item Hvis man skriver i kommentarfeltet og reguardingquiry er ”Null” i databasen, der er blevet testet på sagen med sagsnummer ”123” som har noget stående i case\_contents tabellen. bliver der skrevet en SQL-fejl, men ”violates not-null constraint”.  Det forventet output var at det lavet en ny række i tabellen med et nyt timestamp og det eksisterne indhold med ændringer i den kolonne som hedder alternativenotes.  
 \item Feltet hvor navnet på brugerne som er logget ind, er ikke stort nok, da der er en begrænsning og ikke kan vise ”Aleksander Henriksen”, men skriver ”Aleksander Henrik…”
 \end{itemize}
 \subsubsection{Sagsåbnings dokument}
 \begin{itemize}
-\item Mangler en overskrift på dokumentet, så det er tydeligt at se hvilket dokument der arbejdes med.
-\item Vedrørende borger. der er 2 spørgsmål som har samme radiobuttoms.
-\item Underhenvendelse, hvis først bliver trykket ja til at borgerne er indforståede med henvendelsen og bagefter nej, er boksen med hvis ja, stadig åben og derved er det mulighed for at indtaste oplysninger som ikke er nødvendige.
+\item Mangler en overskrift på dokumentet, så det er tydeligt at se hvilket dokument der arbejdes med, der er flere dokumenter man kan udfylde forskellige data i.
+\item Henvendelse:
+\begin{itemize}
+\item Under punktet ”Vedrørende borger” er der 2 spørgsmål som har samme radiobuttoms. Hvilket gør at det ikke er muligt at sige ”ja” til det ene spøgrsmål og ”nej” til det andet.
+\item Underhenvendelse, hvis først bliver trykket ”ja” til at borgerne er indforståede med henvendelsen og bagefter nej, er boksen med ”hvis ja”, stadig åben og derved er det mulighed for at indtaste oplysninger som ikke er nødvendige.
 \item Når man sige at det er en pårørende eller anden person hvor der kræves oplysninger om personen er det ikke muligt at indtaste disse oplysninger.
-\item Når man indtaster information omkring en borger, og man trykker på gem 2 gange, bliver der anden gang man trykker smidt en NullPointerExecption, og der bliver kun oprettet en sag selvom det kunne være 2 forskellige sager på samme borger, men der bliver oprettet 2 borger i Citizen tabellen.
-\item Hvis man indtaster et postnummer som ikke eksistere i databasen, but der smidt en fejl med violates foreign key constraint, der mangler en håndtering.
+\item Hvis man indtaster et postnummer som ikke eksistere i databasen, der er i testen indtastet ”1”, bliver der smidt en fejl med violates foreign key constraint, der mangler en håndtering.
+\end{itemize}
 \item Rettigheder og pligter:
 \begin{itemize}
-\item Er borgerne informeret om ret til bisidder og partsrepræsentant, der mangler mulighed for at svar ja eller nej.
+\item Er borgerne informeret om ret til bisidder og partsrepræsentant, der mangler mulighed for at svar ja eller nej eller så mangler der at gøres så det er muligt at fjerne markeringen af dette ved fejl udfyldning.
 \end{itemize}
 \item Indhentelse af oplysninger:
 \begin{itemize}
-\item Der er indsat radiobttoms som alle kan tjekkes af i stedet for en faktisk checkbox.
+\item Der er indsat radiobttoms som alle kan tjekkes af, i stedet for en faktisk checkbox.
 \item Når der så bliver tjekket noget af er det ikke muligt at angive informationer om hvor oplysningerne faktisk skal indhentes.
 \end{itemize}
 \item Ydelser og paragraffer:
 \begin{itemize}
 \item Titlen siger (Hvis ja er afkrydset), hvad er det der skal være afkrydset for at kan udfylde dette?
-\item Overskrifterne for de forskellige punkter har radiobuttoms, men det er ikke muligt at markere flere af dem.
-\item Under de forskellige punkter er det ikke muligt at fjerne sin markering helt i tilfælde af fejltryk og borgerne ikke skal have denne ydelse, det er dog lavet på nogle få stykker.
+\item Overskrifterne for de forskellige punkter har radiobuttoms, men det er ikke muligt at markere flere af dem, hvilket kan betyde at det kun er muligt at give dem en af de pågældende ydelser.
+\item Under de forskellige punkter er det ikke muligt at fjerne sin markering helt i tilfælde af fejltryk eller borgerne ikke skal have denne ydelse, det er dog lavet på nogle få stykker.
 \item Under botilbud til voksne er der lavet radiobuttoms hvor det er muligt at lave en markering på flere af dem.
 \item Under Dagtilbud til voksne er der lavet radiobuttoms hvor det er muligt at lave en markering på flere af dem.
 \item Det samme forholder sig til længerevarende botilbud til voksne.
@@ -45,14 +195,17 @@
 \item Når man gemmer:
 \begin{itemize}
 \item Der skal trykkes på 2 knapper for at gemme et dokument, og når man trykker på den sidste gem knap, bliver dataene som man vil gemme lagt som Null eller tomt i databasen.
+\item Når man indtaster information omkring en borger, og man trykker på gem 2 gange, bliver der anden gang man trykker gem smidt en ”NullPointerException”, og der bliver kun oprettet en sag selvom det kunne være 2 forskellige sager på samme borger, men der bliver oprettet 2 borger i Citizen tabellen, med de samme værdier.
 \end{itemize}
 \end{itemize}
 \subsubsection{Udredning dokument}
 \begin{itemize}
-\item Det er ikke muligt at lavet et tab og komme videre til næste tekst felt.
-\end{itemize}
+\item Det er ikke muligt at lavet et tab og komme videre til næste tekst felt.\end{itemize}
 \subsubsection{Find sag}
 \begin{itemize}
-\item Når Man skal søge på et sagsnummer, bliver der skrevet en fejl på at integer = character varing, så der er ikke blevet håndteret at caseid i database er blevet serial i stedet for varchar, derved ingen output i UI’et.
-\item Der er ikke nogen af felterne under punktet Borger som giver nogen form for response.
+\item Når der søges på sagsnummer ”123” som er et case id i databasen, bliver der skrevet en fejl på at integer = character varing, så der er ikke blevet håndteret at caseid i database er blevet serial i stedet for varchar, derved ingen output i UI’et.
+\item Når der søges efter ”peter” eller ”peter test” under feltet Borgers navn og trykker på knappen Søg, bliver der ikke fundet nogen sager og vist i tableviewet. Det forventet output var to sager på Peter men sagsnumrene 37 og 38.
+\item Det samme sker når man søger på ”snervej” under feltet Borgers adresse og trykker på kanppen Søg. Det forventet output var 5 sager med sagsnumrene 46-50.
+\item Skrives der ”800” eller ”800 Høje Taastrup” i feltet postnummer og by, vises der ingenting i tableviewet, men et komma adskilles af postnummer og by, gives der heller ikke nogen søgning. Det forventet output var en sag på Jesper Jensen men sagsnummer 28 og to sager på Peter Test med sagsnumrene 37 og 38.
+\item Ved indtastning i CPR-nummer, med CPR-nummeret ”120366-1235” eller ” 1203661235” eller ” 120366 1235”, gives der heller noget resultat, der var ved denne søgning forventet at få vist en sag med sagsnummer 1, en oprettelse dato: 21-05-2019, borgers navn: Jens Hansen og ingen ting i resten af felterne, da der ikke er noget indtastet data dertil.
 \end{itemize}

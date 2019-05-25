@@ -37,22 +37,18 @@
 \pagestyle{fancyplain}
 \fancyhf{
 	\fancyfoot[c]{\thepage \space of \pageref{page:last}}
-	%\fancyhead[c]
 }
+\lhead{\begin{picture}(0,1) \put(0,-25){\includegraphics[scale = 1]{./PNG/layout/Sidehovede.PNG}} \end{picture}}
 
- 
-
-
-
-
+\renewcommand{\headrulewidth}{0pt}
 
 \titleformat{\chapter}
   {\normalfont\LARGE\bfseries}{\thechapter}{1em}{}
-\titlespacing*{\chapter}{0pt}{3.5ex plus 1ex minus .2ex}{2.3ex plus .2ex}
+\titlespacing*{\chapter}{0pt}{0ex plus 1ex minus .2ex}{2.3ex plus .2ex}
 \makeatletter
 \patchcmd{\chapter}{\if@openright\cleardoublepage\else\clearpage\fi}{}{}{}
 
-
+\usepackage{setspace}
 \usepackage{listings}
 \usepackage{color}
 
@@ -85,16 +81,22 @@
 
 
 \begin{document}
-\input{frontpage}
+\onehalfspacing
+\thispagestyle{empty}
+\begin{picture}(0,0) \put(0,0){\includegraphics[scale = 1]{./PNG/layout/Sidehovede.PNG}} 
+\end{picture}
 
+\begin{figure}[hbt!]
+  \includegraphics[width=\linewidth]{./PNG/layout/Forside.PNG} 
+\end{figure}
+\clearpage
+\setcounter{page}{1}
 \input{Resume}
-
+\clearpage
 \input{Forord}
-
-\clearpage
-
+\newpage
 \tableofcontents
-\clearpage
+\newpage
 
 \input{Lasevejledning}
 
@@ -116,10 +118,17 @@
 \input{Perspektivering}
 
 \input{Litteraturliste}
+\label{page:last}
 \newpage
+\fancyhf{
+	\fancyfoot[c]{\thepage}
+}
+\lhead{\begin{picture}(0,1) \put(0,-25){\includegraphics[scale = 1]{./PNG/layout/Sidehovede.PNG}} \end{picture}}
+
 \setcounter{chapter}{1}
 \renewcommand{\thechapter}{\Alph{chapter}}
 \renewcommand{\thesection}{\arabic{section}}
+\setcounter{page}{1}
 \input{Procesrapport}
 
 \input{Kildekode}
@@ -127,14 +136,14 @@
 \input{Brugervejledning}
 
 \input{Projektlog}
-\label{page:last}
-\clearpage
+\label{page:proceslast}
+\newpage
 \fancyhf{
 	\fancyhead{} 
 	\fancyfoot[c]{\thepage}
 }
 \input{Interne_bilag}
 \newpage
-\input{Eksterne_bilag}
+\include{Eksterne_bilag}
 
 \end{document}

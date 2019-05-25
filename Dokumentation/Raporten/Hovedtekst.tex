@@ -18,11 +18,67 @@ Den brugsmønster model som blev udarbejdet i løbet af inceptionsfasen, den vi 
 \end{figure}
 
 \section{Detaljeret kravspecifikation}
-Omfatter den detaljerede kravspecifikation\\
-Detaljeret brugsmønsterdiagram (hvis relevant)\\
-Detaljerede brugsmønsterbeskrivelser\\
-Detaljerede beskrivelser af supplerende krav Fx organiseret efter FURPS+\\
-
+Ud fra den overordnede kravsmodel (Se figur \ref{fig:overkrav}) er der blevet udvalgt forskellige krav, som er set som mere kompliceret krav end resten af de overordnede krav. Der vil blive lagt vægt på to krav i dette afsnit. Disse krav er opret sag og find sag. For at se alle af de detaljeret brugsmønstre se interne bilag firgur \\
+\textbf{Opret sag} \\
+\begin{center} \label{tab:opretSag}
+\begin{longtable}{|p{18cm}|}
+\hline
+\textbf{Brugsmønster: }Opret sag \\
+\hline
+\textbf{ID: }1 \\
+\hline
+\textbf{Primære aktører: }Sagsbehandler, afdelingsleder, administrativt personale\\
+\hline
+\textbf{Sekundære aktører: }CPR\\
+\hline
+\textbf{Kort beskrivelse: }En aktør kan oprette en sag, som gemmes i systemet. \\
+\hline
+\textbf{Prækonditioner: }Aktør skal være logget ind.\\
+\hline
+\textbf{Hovedhændelsesforløb: }\newline 
+Starter når en borger henvender sig til kommunen \\
+1. Aktør indtaster CPR nummer, borgers navn, begrundelse for henvendelse \\
+2. Gemmer indtastet data.	
+\\
+\hline
+\textbf{Postkonditioner: }sag oprettet\\
+\hline
+\textbf{Alternative hændelsesforløb: }\\
+\hline
+\end{longtable}
+\end{center}
+Som vist på figur \ref{tab:opretSag} er der ikke noget specielt svært ved dette brugsmønster. I gennem gang af dette kom der mange forskellige ting op, omkring hvad der ville være fornuftigt at skulle bruge til at oprette sagen. Det endte ud med at der skulle bruges en person, som sagen omhandle samt en grund til at sagen skulle eksistere. \\
+\textbf{Find sag} \\
+\begin{center} \label{tab:findSag}
+\begin{longtable}{|p{18cm}|}
+\hline
+\textbf{Brugsmønster: }Find sag \\
+\hline
+\textbf{ID: }3\\
+\hline
+\textbf{Primære aktører: }Sagsbehandler\\
+\hline
+\textbf{Sekundære aktører: }none\\
+\hline
+\textbf{Kort beskrivelse: }Skal kunne søge i sager og få en sag vist\\
+\hline
+\textbf{Prækonditioner: }Der skal være oprettet en eller flere sager\\
+\hline
+\textbf{Hovedhændelsesforløb: }\\
+Starter når den primære aktør skal finde en sag.\\
+1. Skal søge en sag på sagsnummer, CPR nummer, eller navn.\\
+2. Vise en liste over de sager som blev fundet.\\
+3. Hvis en sag bliver valgt.\\
+3.1 Vis den valgte sag.\\
+\hline
+\textbf{Postkonditioner: }\\
+\hline
+\textbf{Alternative hændelsesforløb: }\\
+\hline
+\end{longtable}
+\end{center}
+Brugsmønsteret find sag (\ref{tab:findSag}) er til for at finde en vilkårlig sag. Dette skal kunne ske ud fra sagsnummer fra sagen, navnet på personen sagen omhandler og deres CPR-nummer. Det er vigtigt at brugsmønsteret kan åbne en sag specifik sag, eller stoppes hvis ikke det er den rigtige søgning. \\
+For se krav se interne bilag afsnit \ref{sec:diverse} figur \ref{fig:krav} og figur \ref{fig:ikkeKrav} 
 \input{iteration1}
 
 \input{iteration2}

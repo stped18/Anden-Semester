@@ -24,6 +24,11 @@
                      <content>
                         <VBox prefHeight="900.0" prefWidth="1050.0">
                            <children>
+                              <Label alignment="BASELINE_CENTER" prefHeight="17.0" prefWidth="1037.0" text="Sagsåbningsformular">
+                                 <font>
+                                    <Font name="System Bold Italic" size="25.0" />
+                                 </font>
+                              </Label>
                               <TitledPane fx:id="fxTP_inquiries" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="14.0" prefWidth="1050.0" text="Henvendelse">
                                  <content>
                                     <HBox prefWidth="1050.0">

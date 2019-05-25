@@ -20,10 +20,10 @@ import javafx.scene.control.ToggleGroup;
 public class NodeFinder {
 
 	List<RadioButton> radioButtonsList;
-	Map<String, ToggleGroup> tName;
+	Map<String, ToggleGroup> tGroupName;
 	Map<String, String> nodeMap = new HashMap<>();
-	public Map<String, String> contens = new HashMap<>();
-	private Map<String, Map<String, String>> fullContensMap = new HashMap<>();
+	public Map<String, String> contents = new HashMap<>();
+	private Map<String, Map<String, String>> fullContentsMap = new HashMap<>();
 	private static NodeFinder nodeFinder;
 
 	/**
@@ -36,23 +36,23 @@ public class NodeFinder {
 	 *
 	 * @return
 	 */
-	public boolean isFullMapEmty() {
-		return fullContensMap.isEmpty();
+	public boolean isFullMapEmtpy() {
+		return fullContentsMap.isEmpty();
 	}
 
 	/**
 	 *
 	 * @return
 	 */
-	public Map<String, Map<String, String>> getFullContensMap() {
-		return fullContensMap;
+	public Map<String, Map<String, String>> getFullContentsMap() {
+		return fullContentsMap;
 	}
 
 	/**
 	 *
 	 * @return
 	 */
-	public static NodeFinder getInstant() {
+	public static NodeFinder getInstance() {
 		if (nodeFinder == null) {
 			nodeFinder = new NodeFinder();
 		}
@@ -63,17 +63,17 @@ public class NodeFinder {
 	 *
 	 * @return
 	 */
-	public Map<String, String> getContens() {
-		return contens;
+	public Map<String, String> getContents() {
+		return contents;
 	}
 
 	/**
 	 *
-	 * @param contens
+	 * @param contents
 	 */
-	public void addContens(Map<String, String> contens) {
-		this.contens.putAll(contens);
-		fullContensMap.put("caseContents", this.contens);
+	public void addContents(Map<String, String> contents) {
+		this.contents.putAll(contents);
+		fullContentsMap.put("caseContents", this.contents);
 	}
 
 	/**
@@ -82,7 +82,7 @@ public class NodeFinder {
 	 * @param keyString
 	 */
 	public void addmap(Map<String, String> map, String keyString) {
-		fullContensMap.put(keyString, map);
+		fullContentsMap.put(keyString, map);
 	}
 
 	/**
@@ -128,7 +128,7 @@ public class NodeFinder {
 	 * @param parent
 	 * @return
 	 */
-	public Map<String, String> findeNodehandler(Parent parent) {
+	public Map<String, String> findNodehandler(Parent parent) {
 		getAllNodesFromRoot(parent);
 		return nodeMap;
 	}

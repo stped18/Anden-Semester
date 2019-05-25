@@ -74,7 +74,7 @@ public class CaseInvestigationController implements Initializable {
 	 */
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
-		nf = NodeFinder.getInstant();
+		nf = NodeFinder.getInstance();
 		nf.runRadioFinder(fxAc_CaseInvestigationroot);
 	}
 
@@ -85,10 +85,10 @@ public class CaseInvestigationController implements Initializable {
 	@FXML
 	private void BtnHandler(ActionEvent event) {
 
-		nf.getContens().put("caseID", "-1");
-		nf.addContens(nf.findeNodehandler(fxAc_CaseInvestigationroot));
+		nf.getContents().put("caseID", "-1");
+		nf.addContents(nf.findNodehandler(fxAc_CaseInvestigationroot));
 
-		for (Map.Entry<String, String> entry : nf.getContens().entrySet()) {
+		for (Map.Entry<String, String> entry : nf.getContents().entrySet()) {
 			String key = entry.getKey();
 			String val = entry.getValue();
 			System.out.println(key + "    " + val);

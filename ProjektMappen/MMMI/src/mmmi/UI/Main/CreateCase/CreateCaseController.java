@@ -37,7 +37,7 @@ public class CreateCaseController extends RunFxmlLoader implements Initializable
 	 */
 	@Override
     public void initialize(URL url, ResourceBundle rb) {
-        nf = NodeFinder.getInstant();
+        nf = NodeFinder.getInstance();
         this.list = new ArrayList<>();
         list.add(0, "../createcase/fxml/caseOpening.fxml");
         list.add(1, "../createcase/fxml/caseInvestigation.fxml");
@@ -61,8 +61,8 @@ public class CreateCaseController extends RunFxmlLoader implements Initializable
             chanceScene();
         }
         if (event.getSource() == fxSaveBtn) {
-            if(!nf.isFullMapEmty()){
-                department.saveCase(nf.getFullContensMap());
+            if(!nf.isFullMapEmtpy()){
+                department.saveCase(nf.getFullContentsMap());
             }
         }
     }

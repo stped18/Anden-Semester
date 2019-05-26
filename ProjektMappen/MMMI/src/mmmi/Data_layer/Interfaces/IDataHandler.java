@@ -83,6 +83,6 @@ public interface IDataHandler {
      * @param searchValue
      * @return
      */
-    public List<SearchCase> search(String searchKey, String searchValue); // searchKey = Where to look, searchValue = What to look for.
+    public List<SearchCase> search(String searchKey, String searchValue);
 
 }

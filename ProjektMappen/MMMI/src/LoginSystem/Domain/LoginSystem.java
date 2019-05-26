@@ -5,6 +5,9 @@ import LoginSystem.DataLayer.DbEmployee;
 import mmmi.Domain.Department;
 import mmmi.Domain.Interfaces.IDomain;
 
+/**
+ * TODO: Need to implement ILogin Interface.
+ */
 public class LoginSystem implements IEmployee {
 
     private String username;
@@ -14,27 +17,50 @@ public class LoginSystem implements IEmployee {
 
     private IDomain mmmi;
 
-    public LoginSystem() {
+	/**
+	 *
+	 */
+	public LoginSystem() {
         mmmi = Department.getInstance();
     }
 
-    public String getUsername() {
+	/**
+	 *
+	 * @return
+	 */
+	public String getUsername() {
         return username;
     }
 
-    public void setUsername(String username) {
+	/**
+	 *
+	 * @param username
+	 */
+	public void setUsername(String username) {
         this.username = username;
     }
 
-    public String getPassword() {
+	/**
+	 *
+	 * @return
+	 */
+	public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
+	/**
+	 *
+	 * @param password
+	 */
+	public void setPassword(String password) {
         this.password = password;
     }
 
-    public boolean getEmployee() {
+	/**
+	 *
+	 * @return
+	 */
+	public boolean getEmployee() {
         employee = db.getEmployeedb(this.username, this.password);
         if (employee == null) {
             return false;
@@ -44,6 +70,10 @@ public class LoginSystem implements IEmployee {
         return true;
     }
 
+	/**
+	 * 
+	 * @return 
+	 */
     @Override
     public int getEmployeeID() {
         return employee.getEmployeeID();

@@ -19,30 +19,48 @@ public class Department implements IDomain {
     private final IDataHandler dataHandler = new DataHandler();
     private IEmployee loginEmployee;
     private Employee mmmiEmployee;
-
     private static Department departmentInstance = null;
 
+    /**
+     *
+     */
     private Department() {
 
     }
 
+    /**
+     *
+     * @return
+     */
     public static Department getInstance() {
 
         if (departmentInstance == null) {
             departmentInstance = new Department();
         }
-
         return departmentInstance;
     }
 
+    /**
+     *
+     * @param departmentID
+     */
+    @Override
     public void setDepartmentID(int departmentID) {
         this.departmentID = departmentID;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getId() {
         return departmentID;
     }
 
+    /**
+     *
+     * @param employee
+     */
     public void setLoginEmployee(IEmployee employee) {
         this.loginEmployee = employee;
     }
@@ -74,11 +92,20 @@ public class Department implements IDomain {
         throw new UnsupportedOperationException();
     }
 
-    //REMEMBER: to use the correct names from the IDataHandler interface.
-    //REMEMBER: check rights ask the people and dont just do some random stuff.
+    /**
+     * Forwards input to data layer and creates map for the UI.
+     *
+     * This method forwards the @params to the method
+     * {@link mmmi.Data_layer.DataHandler#search(java.lang.String, java.lang.String)}.
+     * The resulting List of {@link mmmi.Data_layer.SearchCase} objects is then
+     * looped through to create a Map to send back to the presentation layer.
+     *
+     * @param key, String
+     * @param value, String
+     * @return Map<String, <Map<String, String>>
+     */
     @Override
     public Map<String, Map<String, String>> search(String key, String value) {
-        //TODO: needs to be able to send all info from a searchcase to the GUI in the form of list with a map
         value += "%" + String.valueOf(departmentID);
         IDataHandler searchHandler = new DataHandler();
         List<SearchCase> searchCases = searchHandler.search(key, value);
@@ -99,9 +126,23 @@ public class Department implements IDomain {
         return searchResultList;
     }
 
+    /**
+     *
+     * //TODO: Opens a case with all the info into a map that are sent to the
+     * GUI
+     *
+     * This method forwards the @params to the method
+     * {@link mmmi.Data_layer.DataHandler#readCase(java.lang.Integer)}. The
+     * result of #readCase sends a {@link mmmi.Data_layer.Case} object back
+     * found with specific caseID and its contents.
+     *
+     * @param caseID, int
+     * @return Map<String, Map<String, String>> with the case contents found in
+     * the returned Case object.
+     */
     @Override
     public Map<String, Map<String, String>> openCase(int caseID) {
-        //TODO: Opens a case with all the info into a map that are sendt to the GUI
+        //TODO: Opens a case with all the info into a map that are sent to the GUI
 
         Map<String, Map<String, String>> fullMap = new HashMap<>();
 
@@ -112,7 +153,6 @@ public class Department implements IDomain {
         Map<String, String> cRegardingInfo = new HashMap<>();
 
         caseContents = dataHandler.readCase(caseID).getCaseContent();
-
         Citizen regardingCitizen = dataHandler.readCase(caseID).getRegardingCitizen();
 
         cRegardingInfo.put("firstname", regardingCitizen.getFirstName());
@@ -123,9 +163,9 @@ public class Department implements IDomain {
         cRegardingInfo.put("streetname", regardingCitizen.getStreetName());
         cRegardingInfo.put("floor", regardingCitizen.getFloor());
         cRegardingInfo.put("floordirection", regardingCitizen.getFloorDirection());
+
         Map<String, Map<String, String>> reqMap = new HashMap();
         for (Citizen citzen : dataHandler.readCase(caseID).getRequestingCitizen()) {
-
             if (citzen != null) {
                 Map<String, String> cRequestingInfo = new HashMap<>();
                 cRequestingInfo.put("firstname", citzen.getFirstName());
@@ -139,23 +179,34 @@ public class Department implements IDomain {
                 fullMap.put("cRequesting", cRequestingInfo);
             }
         }
-
         fullMap.put("caseContents", caseContents);
         fullMap.put("cRegarding", cRegardingInfo);
 
         return fullMap;
-
     }
 
+    /**
+     * // TODO: If there is a case already you just need to set content (In
+     * regards to write it to the database)
+     *
+     * This method forwards the @params to the method
+     * {@link mmmi.Data_layer.DataHandler#search(java.util.Map<String, java.util.Map<String, String>>)}
+     *
+     * if (contentsMap.get("caseID").equalsIgnoreCase("-1")), then the method
+     * creates a new {@link mmmi.Data_layer.Case} object and sets the variable
+     * to the result, and fills the empty object with Case specific informtaion
+     * and case contents and afterwards {@link mmmi.Data_layer.DataHandler#writeCase(theCase), where theCase
+     * is the Case sent from saveCase()
+     *
+     * @param caseInfo, Map<String, Map<String, String>>
+     * @ret
+     * urn boolean, if the case got saved successfully, or false if error
+     * occured.
+     */
     @Override
     public boolean saveCase(Map<String, Map<String, String>> caseInfo) {
-        // RequestingCitizen skal kunne gemme alle id'er på de forskellige aktør der henvender sig om borgen, dvs, hvis sagen
-        // åbnes igen og der tilføjes en ny requestingCitizen, skal der tilføjes til requestingCitizen listen.
-//        Case caze = new Case(caseInfo.get("caseID"), caseInfo.get("caseStatus"), c.getCitizenID(), caseInfo.get("requestingCitizens"), caseInfo.get("caseContent"));
         Map<String, String> contentsMap = new HashMap<>();
         List<Map<String, String>> citizenInfoList = new ArrayList<>();
-
-        System.out.println(caseInfo);
 
         for (Map.Entry<String, Map<String, String>> entry : caseInfo.entrySet()) {
             if (entry.getKey().equalsIgnoreCase("caseContents")) {
@@ -164,7 +215,6 @@ public class Department implements IDomain {
             }
             if (entry.getKey().equalsIgnoreCase("cRegarding")
                     && isCitizen("regardingCitizen", "true", entry.getValue())) {
-
                 citizenInfoList.add(entry.getValue());
             }
             if (entry.getKey().equalsIgnoreCase("cRequesting")
@@ -195,7 +245,6 @@ public class Department implements IDomain {
                 requestingID = dataHandler.writeCitizen(citizen);
                 citizen.setCitizenID(requestingID);
                 requestingCitizenList.add(citizen);
-
             } else if (citizen.isRegardingCitizen()) {
                 regardingID = dataHandler.writeCitizen(citizen);
                 citizen.setCitizenID(regardingID);
@@ -218,12 +267,17 @@ public class Department implements IDomain {
             caze = null;
             System.out.println("TEST");
             return false;
-            
         }
         return dataHandler.writeCase(caze);
-
     }
 
+    /**
+     *
+     * @param key
+     * @param value
+     * @param map
+     * @return
+     */
     private boolean isCitizen(String key, String value, Map<String, String> map) {
         if (map != null) {
             if (map.containsKey(key)) {
@@ -234,103 +288,50 @@ public class Department implements IDomain {
         }
         return false;
     }
-    
+
+    /**
+     *
+     * @param caseID
+     * @return
+     */
+    @Override
     public String getnote(int caseID) {
         return dataHandler.readAlternativeNotets(caseID);
     }
-    
+
+    /**
+     *
+     * @param caseID
+     * @param note
+     * @return
+     */
+    @Override
     public boolean writenote(int caseID, String note) {
         System.out.println("in domain");
         return dataHandler.writeAlternativeNote(caseID, note);
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public Employee getEmployee() {
         return receiveEmployee();
     }
 
+    /**
+     *
+     * @return
+     */
     private Employee receiveEmployee() {
 
         int employeeid = loginEmployee.getEmployeeID();
-
         String employeeName = dataHandler.readEmployee(employeeid).getName();
         int roleID = dataHandler.readEmployee(employeeid).getRoleID();
         Map<Integer, String> casemap = dataHandler.readEmployee(employeeid).getEmployeeCases();
         Map<Integer, String> rightsMap = dataHandler.readEmployee(employeeid).getrights();
 
         return mmmiEmployee = new Employee(employeeid, employeeName, this.departmentID, roleID, casemap, rightsMap);
-    }
-
-    public static void main(String[] args) {
-        Department department = new Department();
-        department.setDepartmentID(1);
-
-        Map<String, Map<String, String>> caseInfo = new HashMap<>();
-        
-        Map<String, String> conentsMap = new HashMap<>();
-        conentsMap.put("regardinginquiry", "test1");
-        conentsMap.put("treatment", "test2");
-        //conentsMap.put("departmentID", "-1");
-        conentsMap.put("caseID", "-1");
-
-        Map<String, String> citizenInfoRegarding = new HashMap<>();
-        citizenInfoRegarding.put("firstName", "RegardingFind");
-        citizenInfoRegarding.put("lastName", "RegardingHansen");
-        citizenInfoRegarding.put("streetName", "RegardingStreet");
-        citizenInfoRegarding.put("cityName", "Kerteminde");
-        citizenInfoRegarding.put("zipCode", "5300");
-        citizenInfoRegarding.put("houseNo", "75");
-        citizenInfoRegarding.put("regardingCitizen", "true");
-        citizenInfoRegarding.put("requestingCitizen", "false");
-        citizenInfoRegarding.put("cpr", "");
-        citizenInfoRegarding.put("floor", "");
-        citizenInfoRegarding.put("floorDirection", "");
-
-        Map<String, String> citizenInfoRequesting = new HashMap<>();
-        citizenInfoRequesting.put("firstName", "Requestingmads");
-        citizenInfoRequesting.put("lastName", "RequestingHansen");
-        citizenInfoRequesting.put("streetName", "RequestingStreet");
-        citizenInfoRequesting.put("cityName", "Kerteminde");
-        citizenInfoRequesting.put("zipCode", "5300");
-        citizenInfoRequesting.put("houseNo", "75");
-        citizenInfoRequesting.put("regardingCitizen", "false");
-        citizenInfoRequesting.put("requestingCitizen", "true");
-        citizenInfoRequesting.put("cpr", "");
-        citizenInfoRequesting.put("floor", "");
-        citizenInfoRequesting.put("floorDirection", "");
-
-        Map<String, String> cd = new HashMap<>();
-        citizenInfoRequesting.put("firstName", "cd");
-        citizenInfoRequesting.put("lastName", "RequestingHansen");
-        citizenInfoRequesting.put("streetName", "RequestingStreet");
-        citizenInfoRequesting.put("cityName", "Kerteminde");
-        citizenInfoRequesting.put("zipCode", "5300");
-        citizenInfoRequesting.put("houseNo", "75");
-        citizenInfoRequesting.put("regardingCitizen", "false");
-        citizenInfoRequesting.put("requestingCitizen", "true");
-        citizenInfoRequesting.put("cpr", "");
-        citizenInfoRequesting.put("floor", "");
-        citizenInfoRequesting.put("floorDirection", "");
-
-        Map<String, String> cb = new HashMap<>();
-        citizenInfoRegarding.put("firstName", "cb");
-        citizenInfoRegarding.put("lastName", "RegardingHansen");
-        citizenInfoRegarding.put("streetName", "RegardingStreet");
-        citizenInfoRegarding.put("cityName", "Kerteminde");
-        citizenInfoRegarding.put("zipCode", "5300");
-        citizenInfoRegarding.put("houseNo", "75");
-        citizenInfoRegarding.put("regardingCitizen", "true");
-        citizenInfoRegarding.put("requestingCitizen", "false");
-        citizenInfoRegarding.put("cpr", "");
-        citizenInfoRegarding.put("floor", "");
-        citizenInfoRegarding.put("floorDirection", "");
-
-        caseInfo.put("caseContents", conentsMap);
-        caseInfo.put("cRegarding", citizenInfoRegarding);
-        caseInfo.put("cRequesting", citizenInfoRequesting);
-
-        System.out.println(department.openCase(123));
-        department.saveCase(caseInfo);
-
     }
 }

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package mmmi.UI.Main.CreateCase;
 
 import javafx.event.ActionEvent;
@@ -11,7 +6,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import mmmi.UI.Main.RunFxmlLoader;
-
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,19 +29,26 @@ public class CreateCaseController extends RunFxmlLoader implements Initializable
     IDomain department = Department.getInstance();
     private int count = 0;
     private NodeFinder nf;
-    /**
-     * Initializes the controller class.
-     */
-    @Override
+
+	/**
+	 * 
+	 * @param url
+	 * @param rb 
+	 */
+	@Override
     public void initialize(URL url, ResourceBundle rb) {
-        nf = NodeFinder.getInstant();
+        nf = NodeFinder.getInstance();
         this.list = new ArrayList<>();
-        list.add(0, "../createcase/fxml/caseOpeningNEW.fxml");
+        list.add(0, "../createcase/fxml/caseOpening.fxml");
         list.add(1, "../createcase/fxml/caseInvestigation.fxml");
         changeFxml(fxSubSubpane, list.get(0));
         chanceScene();
     }
 
+	/**
+	 * 
+	 * @param event 
+	 */
     @FXML
     private void buttonHandler(ActionEvent event) {
 
@@ -60,12 +61,15 @@ public class CreateCaseController extends RunFxmlLoader implements Initializable
             chanceScene();
         }
         if (event.getSource() == fxSaveBtn) {
-            if(!nf.isFullMapEmty()){
-                department.saveCase(nf.getFullContensMap());
+            if(!nf.isFullMapEmtpy()){
+                department.saveCase(nf.getFullContentsMap());
             }
         }
     }
 
+	/**
+	 * 
+	 */
     private void chanceScene() {
         switch (this.count) {
             case 0:

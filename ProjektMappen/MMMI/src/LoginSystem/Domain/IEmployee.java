@@ -2,6 +2,10 @@ package LoginSystem.Domain;
 
 public interface IEmployee {
 
-    public int getEmployeeID();
+	/**
+	 *
+	 * @return
+	 */
+	public int getEmployeeID();
 
 }

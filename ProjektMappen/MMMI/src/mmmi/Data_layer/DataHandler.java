@@ -15,6 +15,9 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * @TODO: Error handling
+ */
 public class DataHandler extends DatabaseConnection implements IDataHandler {
 
     private int employeeID;
@@ -24,6 +27,9 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
      * returns case object where caseContents has information from the specified
      * caseID and has regarding citizen object which refereces to case content
      * based on the regarding Citizen id.
+     *
+     * Method return: returns Case with case specific information and case
+     * contents.
      *
      * @param caseID, accepts int value
      * @return returns Case object
@@ -57,12 +63,17 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
                         dbResultSet.getString("CPR-nr"),
                         dbResultSet.getString("streetname"),
                         dbResultSet.getString("houseNo"),
-                        dbResultSet.getString("floor"), dbResultSet.getString("floordirection"), dbResultSet.getInt("zipcodezipcode"), dbResultSet.getString("cityname"),
-                        dbResultSet.getBoolean("regardingcitizen"), dbResultSet.getBoolean("requestingcitizen")));
+                        dbResultSet.getString("floor"),
+                        dbResultSet.getString("floordirection"),
+                        dbResultSet.getInt("zipcodezipcode"),
+                        dbResultSet.getString("cityname"),
+                        dbResultSet.getBoolean("regardingcitizen"),
+                        dbResultSet.getBoolean("requestingcitizen")));
             }
 
             String getCaseQuery = "SELECT c.departmentdepartmentid, c.casestatus, crg.*, zc.cityname, cc.* "
-                    + "FROM \"case\" AS c, (SELECT  *FROM case_contents WHERE casecaseid = ? ORDER BY datestamp DESC LIMIT 1) AS cc, citizen AS crg, zipcode AS zc "
+                    + "FROM \"case\" AS c, (SELECT  *FROM case_contents WHERE casecaseid = ? ORDER BY datestamp DESC LIMIT 1) AS cc,"
+                    + "citizen AS crg, zipcode AS zc "
                     + "WHERE c.citizenregardingcitizenid = crg.citizenid AND crg.zipcodezipcode = zc.zipcode AND c.caseid = ?;";
 
             dbPreparedStatement = dbConnection.prepareStatement(getCaseQuery);
@@ -80,8 +91,8 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
                 columnNames.add(columnName);
                 //Load the Map initially with keys(columnnames) and empty value
                 columnToValuesMap.put(columnName, "");
-
             }
+
             int regardingCitizenID = 0, zipcode = 0;
             String cityname = "", firstname = "", lastname = "", cprno = "", streetname = "", houseno = "", floor = "", floordirection = "";
             boolean regardingcitizen = false, requestingcitizen = false;
@@ -109,7 +120,8 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
                     columnToValuesMap.put(columnName, columnDataList);
                 }
             }
-            regardingCitizen = new Citizen(caseID, firstname, lastname, cprno, streetname, houseno, floor, floordirection, caseID, cityname, regardingcitizen, requestingcitizen);
+            regardingCitizen = new Citizen(caseID, firstname, lastname, cprno, streetname, houseno, floor,
+                    floordirection, caseID, cityname, regardingcitizen, requestingcitizen);
             return new Case(caseID, departmentID, caseStatus, regardingCitizen, requstingCitizens, columnToValuesMap);
         } catch (SQLException e) {
             System.out.println(e);
@@ -120,16 +132,26 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
     }
 
     /**
-     * caseContentQuery should have a check for the departmentid.
+     * Creates a list of Citizen objects with all the cases for the current
+     * department.
+     *
+     * Method looks up the data for a specific Citizen and creates an object of
+     * Citizen with the data found in table citizen. Then it searches for the
+     * Citizens cases and adds them in a list on the Citizen object.
+     *
+     * @TODO: Add departmentID to the where clause in caseContentQuery.
+     * @TODO: Update with the changes for case constructor
      *
      * @param citizenID
      * @return
      */
     @Override
     public Citizen readCitizen(int citizenID) {
+
         Citizen citizen = null;
         PreparedStatement fetchCitizen = null, fetchCase = null, fetchCaseContentKeys = null, fetchCaseContent = null, fetchRequestingCitizen = null;
         ResultSet caseContentSet, requestingCitizenSet;
+
         try {
             connectToDB();
             if (dbConnection != null) {
@@ -137,11 +159,15 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
                 fetchCitizen = dbConnection.prepareStatement(query);
                 fetchCitizen.setInt(1, citizenID);
                 boolean result = fetchCitizen.execute();
+
                 if (result) {
                     dbResultSet = fetchCitizen.getResultSet();
                     dbResultSet.next();
 
-                    citizen = new Citizen(citizenID, dbResultSet.getString(3), dbResultSet.getString(4), dbResultSet.getString(5), dbResultSet.getString(6), dbResultSet.getString(7), dbResultSet.getString(8), dbResultSet.getString(9), dbResultSet.getInt(2), dbResultSet.getString(12), dbResultSet.getBoolean(10), dbResultSet.getBoolean(11));
+                    citizen = new Citizen(citizenID, dbResultSet.getString(3), dbResultSet.getString(4),
+                            dbResultSet.getString(5), dbResultSet.getString(6), dbResultSet.getString(7),
+                            dbResultSet.getString(8), dbResultSet.getString(9), dbResultSet.getInt(2),
+                            dbResultSet.getString(12), dbResultSet.getBoolean(10), dbResultSet.getBoolean(11));
 
                     int caseID;
                     List<Case> cases = new ArrayList();
@@ -154,7 +180,9 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
                     dbResultSet.next();
                     int rowCount = dbResultSet.getInt(1);
 
-                    String caseContentQuery = "SELECT c.caseid, c.departmentdepartmentid, c.casestatus, cc.* FROM case_contents AS cc, \"case\" AS c WHERE cc.casecaseid = caseid AND citizenregardingcitizenid = ? ORDER BY cc.datestamp DESC LIMIT 1";
+                    String caseContentQuery = "SELECT c.caseid, c.departmentdepartmentid, c.casestatus,"
+                            + "cc.* FROM case_contents AS cc, \"case\" AS c WHERE cc.casecaseid = caseid AND"
+                            + "citizenregardingcitizenid = ? ORDER BY cc.datestamp DESC LIMIT 1";
                     fetchCaseContent = dbConnection.prepareStatement(caseContentQuery);
                     fetchCaseContent.setInt(1, citizenID);
                     caseContentSet = fetchCaseContent.executeQuery();
@@ -171,14 +199,14 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
                         }
                     }
 
-                    String requestingCitizenQuery = "SELECT citizenrequestingcitizenid FROM case_requestingcitizen AS cr, \"case\" AS c WHERE casecaseid = caseid AND citizenregardingcitizenid = ?";
+                    String requestingCitizenQuery = "SELECT citizenrequestingcitizenid FROM case_requestingcitizen AS cr,"
+                            + "\"case\" AS c WHERE casecaseid = caseid AND citizenregardingcitizenid = ?";
                     fetchRequestingCitizen = dbConnection.prepareStatement(requestingCitizenQuery);
                     fetchRequestingCitizen.setInt(1, citizenID);
                     requestingCitizenSet = fetchRequestingCitizen.executeQuery();
                     while (requestingCitizenSet.next()) {
                         requestingCitizens.add(requestingCitizenSet.getInt(1));
                     }
-                    // TODO: Update with the changes for case constructor
                     cases.add(new Case(caseID, departmentID, caseStatus, null, null, caseContent));
 
                     citizen.setCases(cases);
@@ -276,9 +304,16 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
     }
 
     /**
+     * 
+     * Method return: Returns a boolean value based on if the write to database
+     * was successful, else false if an error occured
      *
-     * @param theCase TEST
-     * @return TEST
+     * // TODO: In and create a new row in case_contents with caseContents
+     * information from theCase
+     *
+     * @param theCase, Case object.
+     * @return boolean, true if the write to database was successful, false if
+     * error occured.
      */
     @Override
     public boolean writeCase(Case theCase) {
@@ -288,12 +323,12 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
             String[] listString = Arrays.toString(list).split(",");
             String[] e = new String[listString.length];
             int count = 0;
-            
+
             for (int i = 0; i < listString.length; i++) {
                 e[i] = "?";
                 count++;
             }
-            
+
             connectToDB();
             System.out.println(theCase.getCaseContent());
             try {
@@ -346,11 +381,16 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
     }
 
     /**
-     * Method returns the ID of the citizen created in the database or -1 if
-     * something happened an the citizen was not created.
+     * Adds a new citizen to database.
      *
-     * @param citizen
-     * @return
+     * This method takes a Citizen object and creates a new row in table
+     * citizen.
+     *
+     * Method returns either the ID of the citizen created in the database or -1
+     * if something happened and the citizen was not created.
+     *
+     * @param citizen, Citizen
+     * @return int citizenID
      */
     @Override
     public int writeCitizen(Citizen citizen) {
@@ -359,7 +399,9 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
         try {
             connectToDB();
             if (dbConnection != null) {
-                String query = "INSERT INTO citizen(zipcodezipcode, firstname, lastname, \"CPR-nr\", streetname, houseno, floor, floordirection, regardingCitizen, requestingcitizen) VALUES(?,?,?,?,?,?,?,?,?,?)";
+                String query = "INSERT INTO citizen(zipcodezipcode, firstname, lastname,"
+                        + "\"CPR-nr\", streetname, houseno, floor, floordirection, regardingCitizen, requestingcitizen)"
+                        + "VALUES(?,?,?,?,?,?,?,?,?,?)";
                 insertCitizen = dbConnection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
                 insertCitizen.setInt(1, citizen.getZipcode());
                 insertCitizen.setString(2, citizen.getFirstName());
@@ -393,6 +435,18 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
         return citizenID;
     }
 
+    /**
+     * Updates an existing citizen in database.
+     *
+     * This method take a Citizen object and updates the coorsponding row in
+     * table citizen.
+     *
+     * Method return: true if citizen was updated. false if the citizen was not
+     * found.
+     *
+     * @param citizen, Citizen
+     * @return boolean
+     */
     @Override
     public boolean updateCitizen(Citizen citizen) {
         boolean citizen_updated = false;
@@ -400,7 +454,9 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
         try {
             connectToDB();
             String updateQuery = "UPDATE citizen";
-            String setQuery = "SET zipcodezipcode = ?, firstname = ?, lastname = ?, \"CPR-nr\" = ?, streetname = ?, houseno = ?, floor = ?, floordirection = ?, regardingCitizen = ?, requestingcitizen = ?";
+            String setQuery = "SET zipcodezipcode = ?, firstname = ?, lastname = ?,"
+                    + "\"CPR-nr\" = ?, streetname = ?, houseno = ?, floor = ?, floordirection = ?,"
+                    + "regardingCitizen = ?, requestingcitizen = ?";
             String whereQuery = "WHERE citizenid = ?;";
             String query = updateQuery + setQuery + whereQuery;
 
@@ -447,6 +503,22 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
         return new Citizen(-1, "", "", "", "", "", "", "", -1, "", false, false);
     }
 
+    /**
+     * Searches the database for information based on searchKey and searchValue.
+     *
+     * searchKey is used to determine how to search the database. If the
+     * searchKey is citizen, the search is based on the citizen table. If the
+     * searchKey is Case, the search is based on the case table.
+     *
+     * searchValue is used search in the database for the required data.
+     *
+     * Method always returns a List of 1 or more SearchCase object(s), created
+     * with the data found in the database.
+     *
+     * @param searchKey
+     * @param searchValue
+     * @return
+     */
     @Override
     public List<SearchCase> search(String searchKey, String searchValue) {
 
@@ -458,9 +530,16 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
                 connectToDB();
                 if (dbConnection != null) {
                     String[] search = searchValue.split("%");
-                    selectQuery = "SELECT c.caseid, c.casestatus, to_char(c.createddate, 'DD/MM-YYYY'), ci.citizenid, CONCAT(ci.firstname, ' ', ci.lastname) AS citizenName, to_char(cc.datestamp, 'DD/MM-YYYY') AS datestamp, cc.regardinginquiry, CONCAT(e.firstname, ' ', e.lastname) AS employeeName, e.employeeid ";
-                    fromQuery = "FROM \"case\" as c, citizen AS ci, (SELECT casecaseid, datestamp, regardinginquiry FROM case_contents WHERE casecaseid = ? ORDER BY datestamp DESC LIMIT 1) AS cc, (SELECT casecaseid, employeeemployeeid FROM case_employee WHERE casecaseid = ?) AS ce, employee AS e ";
-                    whereQuery = "WHERE ce.casecaseid = c.caseid AND e.employeeid = ce.employeeemployeeid AND cc.casecaseid = c.caseid AND ci.citizenid = c.citizenregardingcitizenid AND c.caseid = ? AND c.departmentdepartmentid = ? ORDER BY c.caseid DESC;";
+                    selectQuery = "SELECT c.caseid, c.casestatus, to_char(c.createddate, 'DD/MM-YYYY'),"
+                            + "ci.citizenid, CONCAT(ci.firstname, ' ', ci.lastname) AS citizenName,"
+                            + "to_char(cc.datestamp, 'DD/MM-YYYY') AS datestamp, cc.regardinginquiry,"
+                            + "CONCAT(e.firstname, ' ', e.lastname) AS employeeName, e.employeeid ";
+                    fromQuery = "FROM \"case\" as c, citizen AS ci, (SELECT casecaseid, datestamp,"
+                            + "regardinginquiry FROM case_contents WHERE casecaseid = ? ORDER BY datestamp DESC LIMIT 1) AS cc,"
+                            + "(SELECT casecaseid, employeeemployeeid FROM case_employee WHERE casecaseid = ?) AS ce, employee AS e ";
+                    whereQuery = "WHERE ce.casecaseid = c.caseid AND e.employeeid = ce.employeeemployeeid AND "
+                            + "cc.casecaseid = c.caseid AND ci.citizenid = c.citizenregardingcitizenid AND "
+                            + "c.caseid = ? AND c.departmentdepartmentid = ? ORDER BY c.caseid DESC;";
                     query = selectQuery + fromQuery + whereQuery;
 
                     searchCaseStmt = dbConnection.prepareStatement(query);
@@ -470,16 +549,16 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
                     searchCaseStmt.setInt(4, Integer.valueOf(search[1]));
                     dbResultSet = searchCaseStmt.executeQuery();
                     while (dbResultSet.next()) {
-                        sc.add(new SearchCase(dbResultSet.getInt(4), dbResultSet.getString(5), dbResultSet.getString(1), dbResultSet.getString(2), dbResultSet.getString(6), dbResultSet.getString(3), dbResultSet.getString(7), dbResultSet.getInt(9), dbResultSet.getString(8)));
+                        sc.add(new SearchCase(dbResultSet.getInt(4), dbResultSet.getString(5),
+                                dbResultSet.getString(1), dbResultSet.getString(2), dbResultSet.getString(6),
+                                dbResultSet.getString(3), dbResultSet.getString(7), dbResultSet.getInt(9), dbResultSet.getString(8)));
                     }
                 } else {
                     // NO DB CONNECTION
                 }
             } catch (SQLException ex) {
                 System.out.println("readCitizen:\nSQLState: " + ex.getSQLState() + "\nmessage: " + ex.getMessage());
-                Logger
-                        .getLogger(DataHandler.class
-                                .getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(DataHandler.class.getName()).log(Level.SEVERE, null, ex);
                 disconnectDB();
             } finally {
                 if (searchCaseStmt != null) {
@@ -519,7 +598,9 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
                         searchVal.add(search[3]);
                     }
                     searchVal.add(search[4]);
-                    selectQuery = "SELECT c.caseid, c.casestatus, to_char(c.createddate, 'DD/MM-YYYY'), ci.citizenid, CONCAT(ci.firstname, ' ', ci.lastname) AS citizenName, to_char(cc.datestamp, 'DD/MM-YYYY'), cc.regardinginquiry, "
+                    selectQuery = "SELECT c.caseid, c.casestatus, to_char(c.createddate, 'DD/MM-YYYY'),"
+                            + "ci.citizenid, CONCAT(ci.firstname, ' ', ci.lastname) AS citizenName,"
+                            + "to_char(cc.datestamp, 'DD/MM-YYYY'), cc.regardinginquiry, "
                             + "CONCAT(e.firstname, ' ', e.lastname) AS employeeName, e.employeeid ";
                     fromQuery = "FROM citizen AS ci, \"case\" AS c, zipcode AS z, employee AS e, "
                             + "(SELECT casecaseid, MAX(datestamp) AS datestamp, regardinginquiry "
@@ -536,9 +617,11 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
                             + "FROM citizen AS ci, zipcode AS z "
                             + "WHERE (" + searchQuery + ")) "
                             + ") AS ce ";
-                    whereQuery = "WHERE z.zipcode = ci.zipcodezipcode AND cc.casecaseid = c.caseid AND ce.casecaseid = c.caseid AND ce.employeeemployeeid = e.employeeid "
+                    whereQuery = "WHERE z.zipcode = ci.zipcodezipcode AND cc.casecaseid = c.caseid AND "
+                            + "ce.casecaseid = c.caseid AND ce.employeeemployeeid = e.employeeid "
                             + "AND (" + searchQuery + ") "
-                            + "AND ci.citizenid = c.citizenregardingcitizenid AND ci.regardingcitizen AND c.departmentdepartmentid = ? ORDER BY c.caseid DESC";
+                            + "AND ci.citizenid = c.citizenregardingcitizenid AND "
+                            + "ci.regardingcitizen AND c.departmentdepartmentid = ? ORDER BY c.caseid DESC;";
                     query = selectQuery + fromQuery + whereQuery;
 
                     searchCaseStmt = dbConnection.prepareStatement(query);
@@ -552,7 +635,9 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
                     searchCaseStmt.setInt(index, Integer.valueOf(search[4]));
                     dbResultSet = searchCaseStmt.executeQuery();
                     while (dbResultSet.next()) {
-                        sc.add(new SearchCase(dbResultSet.getInt(4), dbResultSet.getString(5), dbResultSet.getString(1), dbResultSet.getString(2), dbResultSet.getString(6), dbResultSet.getString(3), dbResultSet.getString(7), dbResultSet.getInt(9), dbResultSet.getString(8)));
+                        sc.add(new SearchCase(dbResultSet.getInt(4), dbResultSet.getString(5),
+                                dbResultSet.getString(1), dbResultSet.getString(2), dbResultSet.getString(6),
+                                dbResultSet.getString(3), dbResultSet.getString(7), dbResultSet.getInt(9), dbResultSet.getString(8)));
                     }
                 } else {
                     // NO DB CONNECTION
@@ -571,6 +656,11 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
         return sc;
     }
 
+    /**
+     *
+     * @param caseID
+     * @return
+     */
     @Override
     public String readAlternativeNotets(int caseID) {
 
@@ -604,6 +694,12 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
         return note;
     }
 
+    /**
+     *
+     * @param caseID
+     * @param note
+     * @return
+     */
     @Override
     public boolean writeAlternativeNote(int caseID, String note) {
 

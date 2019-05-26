@@ -30,7 +30,13 @@ public class DatabaseHandler {
         }
     }
 
-    public DbEmployee getEmployeedb(String username, String password) {
+	/**
+	 *
+	 * @param username
+	 * @param password
+	 * @return
+	 */
+	public DbEmployee getEmployeedb(String username, String password) {
 
         String qurryString = "SELECT *  From employee WHERE username='" + username + "'  AND password='" + password + "';";
         connectDB();
@@ -55,7 +61,10 @@ public class DatabaseHandler {
         return employee;
     }
 
-    public void disconect() {
+	/**
+	 *
+	 */
+	public void disconect() {
         try {
             if (dbStatement != null) {
                 dbStatement.close();

@@ -11,7 +11,16 @@ public class Employee {
     private final Map<Integer, String> employeeCases;
     private final Map<Integer, String> rights;
 
-    public Employee(int employeeID, String name, int roleID, int departmentID, Map<Integer, String> employeeCases, Map<Integer, String> rights) {
+	/**
+	 *
+	 * @param employeeID
+	 * @param name
+	 * @param roleID
+	 * @param departmentID
+	 * @param employeeCases
+	 * @param rights
+	 */
+	public Employee(int employeeID, String name, int roleID, int departmentID, Map<Integer, String> employeeCases, Map<Integer, String> rights) {
         this.employeeID = employeeID;
         this.name = name;
         this.roleID = roleID;
@@ -20,31 +29,60 @@ public class Employee {
         this.rights = rights;
     }
 
-    public int getEmployeeID() {
+	/**
+	 *
+	 * @return
+	 */
+	public int getEmployeeID() {
         return this.employeeID;
     }
 
-    public String getName() {
+	/**
+	 *
+	 * @return
+	 */
+	public String getName() {
         return this.name;
     }
 
-    public int getRoleID() {
+	/**
+	 *
+	 * @return
+	 */
+	public int getRoleID() {
         return this.roleID;
     }
 
-    public int getDepartmentID() {
+	/**
+	 *
+	 * @return
+	 */
+	public int getDepartmentID() {
         return this.departmentID;
     }
 
-    public Map<Integer, String> getEmployeeCases() {
+	/**
+	 *
+	 * @return
+	 */
+	public Map<Integer, String> getEmployeeCases() {
         return this.employeeCases;
     }
 
-    public Map<Integer, String> getrights() {
+	/**
+	 *
+	 * @return
+	 */
+	public Map<Integer, String> getrights() {
         return this.rights;
     }
 
-    public boolean checkRight(int rightID) {
+	/**
+	 *
+	 * @param rightID
+	 * @return
+	 */
+	public boolean checkRight(int rightID) {
         return this.rights.containsKey(rightID);
     }
 }

@@ -1,7 +1,6 @@
 package mmmi.UI.Main.home;
 
 import javafx.fxml.Initializable;
-
 import java.net.URL;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -37,9 +36,7 @@ public class HomeController implements Initializable {
 
     private IDomain department = Department.getInstance();
     
-    
     int caseid = -1;
-   
 
     /**
      * Initializes the controller class.
@@ -50,7 +47,6 @@ public class HomeController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         
         casesNo = FXCollections.observableArrayList();
-        
         number = new TableColumn("sags nummer");
         name = new TableColumn("borger navn");
         number.setCellValueFactory(new PropertyValueFactory<>("number"));
@@ -87,7 +83,6 @@ public class HomeController implements Initializable {
                 // TODO: Opens the case window with all the case data, with the right caseID.
             } else {
                 caseid = caseTable.getSelectionModel().getSelectedItem().getNumber();
-
             }
         }
     }

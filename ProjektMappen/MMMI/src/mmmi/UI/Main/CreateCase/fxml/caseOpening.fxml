@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ScrollPane?>
@@ -13,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="fxAP_subpane" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mmmi.UI.Main.CreateCase.CaseOpeningController">
+<AnchorPane fx:id="fxAP_subpane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mmmi.UI.Main.CreateCase.CaseOpeningController">
    <children>
       <ScrollPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <content>
@@ -23,6 +24,11 @@
                      <content>
                         <VBox prefHeight="900.0" prefWidth="1050.0">
                            <children>
+                              <Label alignment="BASELINE_CENTER" prefHeight="17.0" prefWidth="1037.0" text="Sagsåbningsformular">
+                                 <font>
+                                    <Font name="System Bold Italic" size="25.0" />
+                                 </font>
+                              </Label>
                               <TitledPane fx:id="fxTP_inquiries" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="14.0" prefWidth="1050.0" text="Henvendelse">
                                  <content>
                                     <HBox prefWidth="1050.0">
@@ -300,6 +306,34 @@
                                     </HBox>
                                  </content>
                               </TitledPane>
+                              <TitledPane fx:id="fxTP_representationAndGuardian" expanded="false" text="Værgemål og repræsentation">
+                                <content>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="400.0" prefWidth="1048.0">
+                                       <children>
+                                          <VBox layoutX="24.0" prefHeight="0.0" prefWidth="1024.0" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="-12.0">
+                                             <children>
+                                                <Label text="Angiv, hvis relevant ">
+                                                   <font>
+                                                      <Font name="System Bold Italic" size="17.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="Værgemål" />
+                                                <RadioButton fx:id="fxRP_guardianship" mnemonicParsing="false" onAction="#representationAndGuardianActionHandler" text="Værgemål (§ 5) " />
+                                                <RadioButton fx:id="fxRP_guardianshipWithRenounced" mnemonicParsing="false" onAction="#representationAndGuardianActionHandler" text="Værgemål med frataget retslig handleevne (§ 6)" />
+                                                <RadioButton fx:id="fxRP_socialGoal" mnemonicParsing="false" onAction="#representationAndGuardianActionHandler" text="Samværgemål (§7)" />
+                                                <RadioButton fx:id="fxRB_guardianCheckbox" mnemonicParsing="false" onAction="#representationAndGuardianActionHandler" text="Værge [angiv kontaktoplysninger]" />
+                                                <TextArea fx:id="fxTA_guadianshipText" prefHeight="83.0" prefWidth="1024.0" promptText="Angiv kontaktoplysninger" wrapText="true" />
+                                                <Label text="Repræsentation" />
+                                                <RadioButton fx:id="fxRP_assessor" mnemonicParsing="false" onAction="#representationAndGuardianActionHandler" text="Bisidder " />
+                                                <RadioButton fx:id="fxRP_partyRepresentative" mnemonicParsing="false" onAction="#representationAndGuardianActionHandler" text="Partsrepræsentant" />
+                                                <RadioButton fx:id="fxRP_consentIfYesGiveInfo" mnemonicParsing="false" onAction="#representationAndGuardianActionHandler" text="Fuldmagt - hvis ja, angiv hvad der er givet fuldmagt til: " />
+                                                <TextArea fx:id="fxTA_representationText" prefHeight="200.0" prefWidth="200.0" promptText="angiv hvad der er givet fuldmagt til" wrapText="true" />
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </AnchorPane>
+                                </content>
+                              </TitledPane>
                               <TitledPane fx:id="fxTP_rightsDuties" expanded="false" layoutX="10.0" layoutY="10.0" prefHeight="0.0" prefWidth="1050.0" text="Rettigheder og pligter">
                                  <content>
                                     <AnchorPane prefHeight="245.0" prefWidth="1048.0">
@@ -315,8 +349,8 @@
                                                 <TextArea fx:id="fxTA_rightsAndDuties" prefHeight="93.0" prefWidth="351.0" promptText="Eventuel note/beskrivelse" wrapText="true" />
                                                 <VBox />
                                                 <Label text="Er borgeren informeret om at oplysningerne vil blive registreret elektronisk?" />
-                                                <RadioButton fx:id="fxRB_agreeToElectronicRegistrationYes" mnemonicParsing="false" text="Ja" />
-                                                <RadioButton fx:id="fxRB_agreeToElectronicRegistrationNo" mnemonicParsing="false" text="Nej" />
+                                                <RadioButton fx:id="fxRB_agreeToElectronicRegistrationYes1" layoutX="10.0" layoutY="162.0" mnemonicParsing="false" text="Ja" />
+                                                <RadioButton fx:id="fxRB_agreeToElectronicRegistrationNo1" layoutX="10.0" layoutY="183.0" mnemonicParsing="false" text="Nej" />
                                              </children>
                                           </VBox>
                                        </children>
@@ -354,14 +388,14 @@
                                                    </font>
                                                 </Label>
                                                 <Label text="Er der modtaget samtykke om indhentning af oplysninger fra:" />
-                                                <RadioButton fx:id="fxRB_getInfoDoctor" mnemonicParsing="false" onAction="#obtainOfInformationRBonAction" text="Egen læge [angiv læge]" />
-                                                <RadioButton fx:id="fxRB_getInfoSpecialDoctor" layoutX="10.0" layoutY="289.0" mnemonicParsing="false" onAction="#obtainOfInformationRBonAction" text="Speciallæge [angiv læge]" />
-                                                <RadioButton fx:id="fxRB_getInfoHospital" layoutX="10.0" layoutY="306.0" mnemonicParsing="false" onAction="#obtainOfInformationRBonAction" text="Hospital [angiv hospital]" />
-                                                <RadioButton fx:id="fxRB_getInfoAKasse" layoutX="10.0" layoutY="323.0" mnemonicParsing="false" onAction="#obtainOfInformationRBonAction" text="A-kasse [angiv a-kasse]" />
-                                                <RadioButton fx:id="fxRB_getInfoOffer" layoutX="10.0" layoutY="340.0" mnemonicParsing="false" onAction="#obtainOfInformationRBonAction" text="Tilbud [angiv konkret tilbudssted]" />
-                                                <RadioButton fx:id="fxRB_getInfoEmployer" layoutX="10.0" layoutY="357.0" mnemonicParsing="false" onAction="#obtainOfInformationRBonAction" text="Arbejdsgiver [angiv arbejdsgiver]" />
-                                                <RadioButton fx:id="fxRB_getInfoPreviousCommune" layoutX="10.0" layoutY="374.0" mnemonicParsing="false" onAction="#obtainOfInformationRBonAction" text="Tidligere opholdskommune[angiv bopælskommune]" />
-                                                <RadioButton fx:id="fxRB_getInfoOtherAdministrations" layoutX="10.0" layoutY="391.0" mnemonicParsing="false" onAction="#obtainOfInformationRBonAction" text="Andre forvaltninger [angiv hvilke]" />
+                                                <CheckBox fx:id="fxCB_getInfoDoctor" mnemonicParsing="false" text="Egen læge [angiv læge]" />
+                                                <CheckBox fx:id="fxCB_getInfoSpecialDoctor" layoutX="10.0" layoutY="329.0" mnemonicParsing="false" text="Speciallæge [angiv læge]" />
+                                                <CheckBox fx:id="fxCB_getInfoHospital" layoutX="10.0" layoutY="350.0" mnemonicParsing="false" text="Hospital [angiv hospital]" />
+                                                <CheckBox fx:id="fxCB_getInfoAKasse" layoutX="10.0" layoutY="371.0" mnemonicParsing="false" text="A-kasse [angiv a-kasse]" />
+                                                <CheckBox fx:id="fxCB_getInfoOffer" layoutX="10.0" layoutY="392.0" mnemonicParsing="false" text="Tilbud [angiv konkret tilbudssted]" />
+                                                <CheckBox fx:id="fxCB_getInfoEmployer" layoutX="10.0" layoutY="413.0" mnemonicParsing="false" text="Arbejdsgiver [angiv arbejdsgiver]" />
+                                                <CheckBox fx:id="fxCB_getInfoPreviousCommune" layoutX="10.0" layoutY="434.0" mnemonicParsing="false" text="Tidligere opholdskommune[angiv bopælskommune]" />
+                                                <CheckBox fx:id="fxCB_getInfoOtherAdministrations" layoutX="10.0" layoutY="455.0" mnemonicParsing="false" text="Andre forvaltninger [angiv hvilke]" />
                                                 <Label layoutX="10.0" layoutY="27.0" text="Andre:[angiv hvilke]" />
                                                 <TextArea fx:id="fxTA_obtainOfInformation" prefHeight="92.0" prefWidth="496.0" promptText="Angiv informationer" wrapText="true" />
                                              </children>
@@ -369,6 +403,24 @@
                                        </children>
                                     </AnchorPane>
                                  </content>
+                              </TitledPane>
+                              <TitledPane fx:id="fxTP_consent" expanded="false" text="Samtykke">
+                                <content>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <VBox prefHeight="180.0" prefWidth="1048.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <children>
+                                                <Label text="Er det relevant at indhente samtykke?" />
+                                                <RadioButton fx:id="fxRB_consentYes" mnemonicParsing="false" onAction="#consentActionHandler" text="Ja" />
+                                                <RadioButton fx:id="fxRB_consentNo" mnemonicParsing="false" onAction="#consentActionHandler" text="Nej" />
+                                                <Label text="Hvis ja, angiv hvordan samtykke er modtaget:" />
+                                                <RadioButton fx:id="fxRB_consentOral" mnemonicParsing="false" onAction="#consentActionHandler" text="Mundtligt samtykke " />
+                                                <RadioButton fx:id="fxRB_consentWritten" mnemonicParsing="false" onAction="#consentActionHandler" text="Skriftligt samtykke" />
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </AnchorPane>
+                                </content>
                               </TitledPane>
                               <TitledPane fx:id="fxTP_citizenSpecialCircumstances" expanded="false" layoutX="10.0" layoutY="494.0" prefHeight="0.0" prefWidth="1050.0" text="Borgerinddragelse - særlige forhold">
                                  <content>
@@ -410,7 +462,7 @@
                                     </AnchorPane>
                                  </content>
                               </TitledPane>
-                              <TitledPane fx:id="fxTP_benefitsParagraphs" expanded="false" prefHeight="0.0" prefWidth="1050.0" text="Ydelser og paragraffer (Hvis ja er afkrydset)">
+                              <TitledPane fx:id="fxTP_benefitsParagraphs" expanded="false" prefHeight="0.0" prefWidth="1050.0" text="Ydelser og paragraffer (Hvis det klart hvad borgeren søger om og der er afkrydset ja)">
                                  <content>
                                     <AnchorPane prefHeight="245.0" prefWidth="1048.0">
                                        <children>
@@ -423,7 +475,7 @@
                                                             <Insets bottom="5.0" />
                                                          </padding>
                                                       </RadioButton>
-                                                      <TitledPane fx:id="fxTP_socialPedagogicalHelp" animated="false" expanded="false" text="Socialpædagogisk støtte (liste)">
+                                                      <TitledPane fx:id="fxTP_socialPedagogicalHelp" expanded="false" text="Socialpædagogisk støtte (liste)">
                                                          <content>
                                                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                                                <children>
@@ -455,7 +507,7 @@
                                                             <Insets bottom="5.0" />
                                                          </padding>
                                                       </RadioButton>
-                                                      <TitledPane fx:id="fxTP_personHelpScheme" animated="false" expanded="false" text="Støttepersonordning (liste)">
+                                                      <TitledPane fx:id="fxTP_personHelpScheme" expanded="false" text="Støttepersonordning (liste)">
                                                          <content>
                                                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                                                <children>
@@ -481,7 +533,7 @@
                                                 </VBox>
                                                 <VBox>
                                                    <children>
-                                                      <TitledPane fx:id="fxTP_otherOffersAndParagraphs" animated="false" expanded="false" prefHeight="206.0" prefWidth="390.0" text="Øverige tilbud/paragraffer">
+                                                      <TitledPane fx:id="fxTP_otherOffersAndParagraphs" expanded="false" prefHeight="206.0" prefWidth="390.0" text="Øverige tilbud/paragraffer">
                                                          <content>
                                                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                                                <children>
@@ -518,7 +570,7 @@
                                                             <Insets bottom="5.0" />
                                                          </padding>
                                                       </Label>
-                                                      <TitledPane fx:id="fxTP_homeOfferForAdults" animated="false" expanded="false" prefHeight="206.0" prefWidth="133.0" text="Botilbud til voksne (liste af botilbud)">
+                                                      <TitledPane fx:id="fxTP_homeOfferForAdults" expanded="false" prefHeight="206.0" prefWidth="133.0" text="Botilbud til voksne (liste af botilbud)">
                                                          <content>
                                                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                                                <children>
@@ -551,7 +603,7 @@
                                                             <Insets bottom="5.0" />
                                                          </padding>
                                                       </Label>
-                                                      <TitledPane fx:id="fxTP_extendedHomeOffersForAdults" animated="false" expanded="false" text="Længerevarende botilbud til voksne (liste af tilbud)">
+                                                      <TitledPane fx:id="fxTP_extendedHomeOffersForAdults" expanded="false" text="Længerevarende botilbud til voksne (liste af tilbud)">
                                                          <content>
                                                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                                                <children>
@@ -597,7 +649,7 @@
                                                             <Insets />
                                                          </VBox.margin>
                                                       </Label>
-                                                      <TitledPane fx:id="fxTP_ambulantTreatment" animated="false" expanded="false" text="Ambulant tilbud til voksne">
+                                                      <TitledPane fx:id="fxTP_ambulantTreatment" expanded="false" text="Ambulant tilbud til voksne">
                                                          <content>
                                                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                                                <children>
@@ -625,7 +677,7 @@
                                                             <Insets />
                                                          </VBox.margin>
                                                       </Label>
-                                                      <TitledPane fx:id="fxTP_dayOfferForAdults" animated="false" expanded="false" prefHeight="119.0" prefWidth="459.0" text="Dagtilbud til voksne (tilbud liste)">
+                                                      <TitledPane fx:id="fxTP_dayOfferForAdults" expanded="false" prefHeight="119.0" prefWidth="459.0" text="Dagtilbud til voksne (tilbud liste)">
                                                          <content>
                                                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                                                <children>
@@ -657,7 +709,7 @@
                                                             <Insets bottom="5.0" />
                                                          </padding>
                                                       </RadioButton>
-                                                      <TitledPane fx:id="fxTP_treatment" animated="false" expanded="false" prefHeight="160.0" prefWidth="296.0" text="Behandling (liste)">
+                                                      <TitledPane fx:id="fxTP_treatment" expanded="false" prefHeight="160.0" prefWidth="296.0" text="Behandling (liste)">
                                                          <content>
                                                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                                                <children>
@@ -689,7 +741,7 @@
                                                             <Insets bottom="5.0" />
                                                          </padding>
                                                       </RadioButton>
-                                                      <TitledPane fx:id="fxTP_control" animated="false" expanded="false" text="Kontrolordning (liste)">
+                                                      <TitledPane fx:id="fxTP_control" expanded="false" text="Kontrolordning (liste)">
                                                          <content>
                                                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="109.0" prefWidth="284.0">
                                                                <children>
@@ -717,7 +769,7 @@
                                                             <Insets bottom="5.0" />
                                                          </padding>
                                                       </RadioButton>
-                                                      <TitledPane fx:id="fxTP_stay" animated="false" expanded="false" prefHeight="164.0" prefWidth="202.0" text="Ophold (liste)">
+                                                      <TitledPane fx:id="fxTP_stay" expanded="false" prefHeight="164.0" prefWidth="202.0" text="Ophold (liste)">
                                                          <content>
                                                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                                                <children>
@@ -746,7 +798,7 @@
                                                             <Insets bottom="5.0" />
                                                          </padding>
                                                       </RadioButton>
-                                                      <TitledPane fx:id="fxTP_carriage" animated="false" expanded="false" prefHeight="147.0" prefWidth="451.0" text="Befordring (liste)">
+                                                      <TitledPane fx:id="fxTP_carriage" expanded="false" prefHeight="147.0" prefWidth="451.0" text="Befordring (liste)">
                                                          <content>
                                                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="162.0" prefWidth="449.0">
                                                                <children>

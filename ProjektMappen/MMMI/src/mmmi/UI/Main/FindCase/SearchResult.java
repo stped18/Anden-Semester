@@ -1,10 +1,11 @@
 package mmmi.UI.Main.FindCase;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
+/**
+ * @TODO: Error handling
+ */
 public class SearchResult {
 
     private final StringProperty citizenName;
@@ -16,6 +17,7 @@ public class SearchResult {
     private final StringProperty employeeName;
 
     /**
+     * Constructor, used when creating a SearchResult.
      *
      * @param citizenName
      * @param caseID
@@ -35,58 +37,149 @@ public class SearchResult {
         this.employeeName = new SimpleStringProperty(employeeName);
     }
 
+    /**
+     * Getter for citizenName.
+     *
+     * @return String citizenName
+     */
     public String getCitizenName() {
         return citizenName.get();
     }
-    
+
+    /**
+     * Getter for citizenNameProperty.
+     *
+     * Used by the observableList in
+     * {@link mmmi.UI.Main.FindCase.FindCaseController}
+     *
+     * @return StringProperty citizenName
+     */
     public StringProperty citizenNameProperty() {
         return citizenName;
     }
 
+    /**
+     * Getter for caseID.
+     *
+     * @return
+     */
     public String getCaseID() {
         return caseID.get();
     }
-    
+
+    /**
+     * Getter for caseIDProperty.
+     *
+     * Used by the observableList in
+     * {@link mmmi.UI.Main.FindCase.FindCaseController}
+     *
+     * @return StringProperty caseID
+     */
     public StringProperty caseIDProperty() {
         return caseID;
     }
 
+    /**
+     * Getter for caseStatus.
+     *
+     * @return
+     */
     public String getCaseStatus() {
         return caseStatus.get();
     }
-    
+
+    /**
+     * Getter for caseStatuProperty.
+     *
+     * Used by the observableList in
+     * {@link mmmi.UI.Main.FindCase.FindCaseController}
+     *
+     * @return StringProperty caseStatus
+     */
     public StringProperty caseStatusProperty() {
         return caseStatus;
     }
 
+    /**
+     * Getter for CurrentCaseDate.
+     *
+     * @return
+     */
     public String getCurrentCaseDate() {
         return currentCaseDate.get();
     }
-    
+
+    /**
+     * Getter for currentCaseDateProperty.
+     *
+     * Used by the observableList in
+     * {@link mmmi.UI.Main.FindCase.FindCaseController}
+     *
+     * @return StringProperty currentCaseDate
+     */
     public StringProperty currentCaseDateProperty() {
         return currentCaseDate;
     }
 
+    /**
+     * Getter for createdCaseDate.
+     *
+     * @return
+     */
     public String getCreatedCaseDate() {
         return createdCaseDate.get();
     }
-    
+
+    /**
+     * Getter for createdCaseDateProperty.
+     *
+     * Used by the observableList in
+     * {@link mmmi.UI.Main.FindCase.FindCaseController}
+     *
+     * @return StringProperty createdCaseDate
+     */
     public StringProperty createdCaseDateProperty() {
         return createdCaseDate;
     }
 
+    /**
+     * Getter for reason.
+     *
+     * @return
+     */
     public String getReason() {
         return reason.get();
     }
-    
+
+    /**
+     * Getter for reasonProperty.
+     *
+     * Used by the observableList in
+     * {@link mmmi.UI.Main.FindCase.FindCaseController}
+     *
+     * @return StringProperty reason
+     */
     public StringProperty reasonProperty() {
         return reason;
     }
-    
+
+    /**
+     * Getter for employee.
+     *
+     * @return
+     */
     public String getEmployeeName() {
         return employeeName.get();
     }
-    
+
+    /**
+     * Getter for employeeNameProperty.
+     *
+     * Used by the observableList in
+     * {@link mmmi.UI.Main.FindCase.FindCaseController}
+     *
+     * @return StringProperty employeeName
+     */
     public StringProperty employeeNameProperty() {
         return employeeName;
     }

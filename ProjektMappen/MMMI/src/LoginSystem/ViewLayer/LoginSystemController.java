@@ -36,6 +36,8 @@ public class LoginSystemController implements Initializable {
     private AnchorPane fxAp_Laader;
     @FXML
     private ProgressIndicator FXLoader;
+	
+	private MMMI main = new MMMI();
 
     boolean isind = true;
 
@@ -50,6 +52,10 @@ public class LoginSystemController implements Initializable {
         fxAp_Laader.setVisible(false);
     }
 
+	/**
+	 * 
+	 * @param event 
+	 */
     @FXML
     private void loginBtnHandler(ActionEvent event) {
         if (count < 3) {
@@ -61,7 +67,7 @@ public class LoginSystemController implements Initializable {
             loginSystem.setPassword(fxPassword.getText());
             if (event.getSource() == fxLoginBtn) {
                 if (loginSystem.getEmployee()) {
-                    MMMI main = new MMMI();
+                    
                     try {
                         main.changeScene();
 

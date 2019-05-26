@@ -462,7 +462,7 @@
                                     </AnchorPane>
                                  </content>
                               </TitledPane>
-                              <TitledPane fx:id="fxTP_benefitsParagraphs" expanded="false" prefHeight="0.0" prefWidth="1050.0" text="Ydelser og paragraffer (Hvis det klart hvad borgeren søger om og der er afkrydset ja)">
+                              <TitledPane fx:id="fxTP_benefitsParagraphs" expanded="false" prefHeight="0.0" prefWidth="1050.0" text="Ydelser og paragraffer (Hvis ja er afkrydset)">
                                  <content>
                                     <AnchorPane prefHeight="245.0" prefWidth="1048.0">
                                        <children>
@@ -470,11 +470,6 @@
                                              <children>
                                                 <VBox fx:id="fxVbox_socialPedagogicalHelp" prefHeight="217.0" prefWidth="397.0">
                                                    <children>
-                                                      <RadioButton fx:id="fxRB_socialPedagogicalHelp" mnemonicParsing="false" onAction="#benefitsParagraphs" text="Socialpædagogisk støtte">
-                                                         <padding>
-                                                            <Insets bottom="5.0" />
-                                                         </padding>
-                                                      </RadioButton>
                                                       <TitledPane fx:id="fxTP_socialPedagogicalHelp" expanded="false" text="Socialpædagogisk støtte (liste)">
                                                          <content>
                                                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
@@ -502,11 +497,6 @@
                                                 </VBox>
                                                 <VBox fx:id="fxVbox_personHelpScheme" prefHeight="223.0" prefWidth="390.0">
                                                    <children>
-                                                      <RadioButton fx:id="fxRB_personHelpScheme" mnemonicParsing="false" onAction="#benefitsParagraphs" text="Støttepersonordning">
-                                                         <padding>
-                                                            <Insets bottom="5.0" />
-                                                         </padding>
-                                                      </RadioButton>
                                                       <TitledPane fx:id="fxTP_personHelpScheme" expanded="false" text="Støttepersonordning (liste)">
                                                          <content>
                                                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
@@ -704,11 +694,6 @@
                                              <children>
                                                 <VBox fx:id="fxVbox_treatment" prefHeight="155.0" prefWidth="457.0">
                                                    <children>
-                                                      <RadioButton fx:id="fxRB_treatment" mnemonicParsing="false" onAction="#benefitsParagraphs" text="Behandling">
-                                                         <padding>
-                                                            <Insets bottom="5.0" />
-                                                         </padding>
-                                                      </RadioButton>
                                                       <TitledPane fx:id="fxTP_treatment" expanded="false" prefHeight="160.0" prefWidth="296.0" text="Behandling (liste)">
                                                          <content>
                                                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
@@ -736,11 +721,6 @@
                                                 </VBox>
                                                 <VBox fx:id="fxVbox_control" prefHeight="144.0" prefWidth="456.0">
                                                    <children>
-                                                      <RadioButton fx:id="fxRB_control" mnemonicParsing="false" onAction="#benefitsParagraphs" text="Kontrolordning">
-                                                         <padding>
-                                                            <Insets bottom="5.0" />
-                                                         </padding>
-                                                      </RadioButton>
                                                       <TitledPane fx:id="fxTP_control" expanded="false" text="Kontrolordning (liste)">
                                                          <content>
                                                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="109.0" prefWidth="284.0">
@@ -764,11 +744,6 @@
                                                 </VBox>
                                                 <VBox fx:id="fxVbox_stay" prefHeight="160.0" prefWidth="457.0">
                                                    <children>
-                                                      <RadioButton fx:id="fxRB_stay" mnemonicParsing="false" onAction="#benefitsParagraphs" text="Ophold">
-                                                         <padding>
-                                                            <Insets bottom="5.0" />
-                                                         </padding>
-                                                      </RadioButton>
                                                       <TitledPane fx:id="fxTP_stay" expanded="false" prefHeight="164.0" prefWidth="202.0" text="Ophold (liste)">
                                                          <content>
                                                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
@@ -793,11 +768,6 @@
                                                 </VBox>
                                                 <VBox>
                                                    <children>
-                                                      <RadioButton fx:id="fxRB_carriage" mnemonicParsing="false" onAction="#benefitsParagraphs" text="Befordring ">
-                                                         <padding>
-                                                            <Insets bottom="5.0" />
-                                                         </padding>
-                                                      </RadioButton>
                                                       <TitledPane fx:id="fxTP_carriage" expanded="false" prefHeight="147.0" prefWidth="451.0" text="Befordring (liste)">
                                                          <content>
                                                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="162.0" prefWidth="449.0">

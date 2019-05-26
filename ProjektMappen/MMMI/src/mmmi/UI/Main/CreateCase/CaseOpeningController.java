@@ -4,7 +4,6 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
-import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -62,9 +61,9 @@ public class CaseOpeningController implements Initializable {
     @FXML
     private RadioButton fxRB_housingGeneralCareHome, fxRB_housingElderlyOrHandicapFriendly,
             fxRB_housingShared, fxRB_housingDayTreatmentOffer, fxRB_housingCareHome, fxRB_housingCrisisCenter,
-            fxRB_housingTemporary, fxRB_housingNursingHome, fxRB_housingRehabilitation;
+            fxRB_housingTemporary, fxRB_housingNursingHome, fxRB_housingRehabilitation, fxRB_securedHousing;
     @FXML
-    private RadioButton fxRB_securedHousing, fxRB_otherLengthyHousing, fxRB_clearLookingForYes,
+    private RadioButton fxRB_otherLengthyHousing, fxRB_clearLookingForYes,
             fxRB_clearLookingForNo, fxRB_carriage, fxRB_treatment, fxRB_control, fxRB_stay,
             fxRB_socialPedagogicalHelp, fxRB_personHelpScheme, fxRB_regardingCitizen;
     @FXML
@@ -105,12 +104,13 @@ public class CaseOpeningController implements Initializable {
             otherOffersAndParagraphsTG, controlTG, stayTG, socialPedagogicalHelpTG, housingOfferTG, extendedhousingofferTG,
             personalHelpSchemeTG, requestingList, regardingTG, communePayingOrActingTG, representationTG, guardianTG, consentOptTG, whichConsentTG,
             rightsAndDutiesTG, agreeToElectronicRegistrationTG, outpatientOffersTG;
-    private String carriageText, socialPedagogicalHelpText, treatmentText, stayText, controlText, personalhelpschemeText, outputText,
+    private String carriageText, socialPedagogicalHelpText, treatmentText, stayText, controlText, personalhelpschemeText, outputText, guadianText, representationText,
             otheroffersandparagrafsText, outpatientoffersText, housingofferforadultsText, extendedhousingofferforadultsText, communeTextFromRB;
     private Map<String, String> contentsMap, cRegardingMap, cRequestingMap;
 
     private IDomain department;
     private NodeFinder nf;
+    private Map<Integer, String> contentsOfLisenter;
 
     /**
      * Initializes the controller class.
@@ -127,6 +127,7 @@ public class CaseOpeningController implements Initializable {
         contentsMap = new HashMap<>();
         cRegardingMap = new HashMap<>();
         cRequestingMap = new HashMap<>();
+        contentsOfLisenter = new HashMap<>();
 
         // inquiry section
         yesNoInquiryTG1 = createToggleGroup(fxRB_agreeToInquiryYesRegarding, fxRB_agreeToInquiryNo1Regarding);
@@ -169,12 +170,8 @@ public class CaseOpeningController implements Initializable {
         socialPedagogicalHelpTG = createToggleGroup(fxRB_socialPedagogicalHelp1, fxRB_socialPedagogicalHelp2,
                 fxRB_socialPedagogicalHelp3, fxRB_socialPedagogicalHelp4,
                 fxRB_socialPedagogicalHelp5, fxRB_socialPedagogicalHelp6, fxRB_socialPedagogicalHelp7, fxRB_socialPedagogicalHelp8);
-
         personalHelpSchemeTG = createToggleGroup(fxRB_personHelpScheme1, fxRB_personHelpScheme2, fxRB_personHelpScheme3,
                 fxRB_personHelpScheme4, fxRB_personHelpScheme5, fxRB_personHelpScheme6, fxRB_personHelpScheme7);
-
-        sectionOneVisibilityTG = createToggleGroup(fxRB_carriage, fxRB_treatment, fxRB_control, fxRB_stay, fxRB_socialPedagogicalHelp,
-                fxRB_personHelpScheme);
         housingOfferTG = createToggleGroup(fxRB_housingGeneralCareHome, fxRB_housingElderlyOrHandicapFriendly, fxRB_housingShared,
                 fxRB_housingDayTreatmentOffer, fxRB_housingCareHome, fxRB_housingCrisisCenter, fxRB_housingTemporary, fxRB_housingNursingHome,
                 fxRB_housingRehabilitation);
@@ -246,132 +243,70 @@ public class CaseOpeningController implements Initializable {
     }
 
     /**
-     *
      * @param event
      */
     @FXML
     private void benefitsParagraphs(ActionEvent event) {
-
-        carriageTG.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
-            @Override
-            public void changed(ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) {
-
-                RadioButton rb = (RadioButton) newValue.getToggleGroup().getSelectedToggle();
-                carriageText = rb.getText();
-
-            }
+        carriageTG.selectedToggleProperty().addListener((ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) -> {
+            RadioButton rb = (RadioButton) newValue.getToggleGroup().getSelectedToggle();
+            carriageText = rb.getText();
         });
-        treatmentTG.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
-            @Override
-            public void changed(ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) {
-
-                RadioButton rb = (RadioButton) newValue.getToggleGroup().getSelectedToggle();
-                treatmentText = rb.getText();
-
-            }
+        treatmentTG.selectedToggleProperty().addListener((ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) -> {
+            RadioButton rb = (RadioButton) newValue.getToggleGroup().getSelectedToggle();
+            treatmentText = rb.getText();
         });
-        controlTG.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
-            @Override
-            public void changed(ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) {
-
-                RadioButton rb = (RadioButton) newValue.getToggleGroup().getSelectedToggle();
-                controlText = rb.getText();
-
-            }
+        controlTG.selectedToggleProperty().addListener((ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) -> {
+            RadioButton rb = (RadioButton) newValue.getToggleGroup().getSelectedToggle();
+            controlText = rb.getText();
         });
-        stayTG.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
-            @Override
-            public void changed(ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) {
-
-                RadioButton rb = (RadioButton) newValue.getToggleGroup().getSelectedToggle();
-                stayText = rb.getText();
-
-            }
+        stayTG.selectedToggleProperty().addListener((ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) -> {
+            RadioButton rb = (RadioButton) newValue.getToggleGroup().getSelectedToggle();
+            stayText = rb.getText();
         });
-        socialPedagogicalHelpTG.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
-            @Override
-            public void changed(ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) {
-
-                RadioButton rb = (RadioButton) newValue.getToggleGroup().getSelectedToggle();
-                socialPedagogicalHelpText = rb.getText();
-
-            }
+        socialPedagogicalHelpTG.selectedToggleProperty().addListener((ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) -> {
+            RadioButton rb = (RadioButton) newValue.getToggleGroup().getSelectedToggle();
+            socialPedagogicalHelpText = rb.getText();
         });
-        outpatientOffersTG.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
-            @Override
-            public void changed(ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) {
-
-                RadioButton rb = (RadioButton) newValue.getToggleGroup().getSelectedToggle();
-                outpatientoffersText = rb.getText();
-
-            }
+        outpatientOffersTG.selectedToggleProperty().addListener((ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) -> {
+            RadioButton rb = (RadioButton) newValue.getToggleGroup().getSelectedToggle();
+            outpatientoffersText = rb.getText();
         });
-        personalHelpSchemeTG.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
-            @Override
-            public void changed(ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) {
-
-                RadioButton rb = (RadioButton) newValue.getToggleGroup().getSelectedToggle();
-                personalhelpschemeText = rb.getText();
-
-            }
+        personalHelpSchemeTG.selectedToggleProperty().addListener((ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) -> {
+            RadioButton rb = (RadioButton) newValue.getToggleGroup().getSelectedToggle();
+            personalhelpschemeText = rb.getText();
         });
-        housingOfferTG.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
-
-            @Override
-            public void changed(ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) {
-                RadioButton rb = (RadioButton) newValue.getToggleGroup().getSelectedToggle();
-                housingofferforadultsText = rb.getText();
-
-            }
+        housingOfferTG.selectedToggleProperty().addListener((ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) -> {
+            RadioButton rb = (RadioButton) newValue.getToggleGroup().getSelectedToggle();
+            housingofferforadultsText = rb.getText();
         });
-        extendedhousingofferTG.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
-
-            @Override
-            public void changed(ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) {
-                RadioButton rb = (RadioButton) newValue.getToggleGroup().getSelectedToggle();
-                extendedhousingofferforadultsText = rb.getText();
-
-            }
+        extendedhousingofferTG.selectedToggleProperty().addListener((ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) -> {
+            RadioButton rb = (RadioButton) newValue.getToggleGroup().getSelectedToggle();
+            extendedhousingofferforadultsText = rb.getText();
         });
-        otherOffersAndParagraphsTG.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
-
-            @Override
-            public void changed(ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) {
-                RadioButton rb = (RadioButton) newValue.getToggleGroup().getSelectedToggle();
-                otheroffersandparagrafsText = rb.getText();
-
-            }
+        otherOffersAndParagraphsTG.selectedToggleProperty().addListener((ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) -> {
+            RadioButton rb = (RadioButton) newValue.getToggleGroup().getSelectedToggle();
+            otheroffersandparagrafsText = rb.getText();
         });
-
     }
-    private String guadianText, representationText;
 
     @FXML
     private void representationAndGuardianActionHandler(ActionEvent event) {
         guadianText = "";
-        guardianTG.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
-            @Override
-            public void changed(ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) {
-                RadioButton rb = (RadioButton) newValue.getToggleGroup().getSelectedToggle();
-                guadianText = rb.getText();
-                if (guardianTG.getSelectedToggle() == fxRB_guardianCheckbox) {
-                    fxTA_guadianshipText.setEditable(true);
-
-                }
+        guardianTG.selectedToggleProperty().addListener((ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) -> {
+            RadioButton rb = (RadioButton) newValue.getToggleGroup().getSelectedToggle();
+            guadianText = rb.getText();
+            if (guardianTG.getSelectedToggle() == fxRB_guardianCheckbox) {
+                fxTA_guadianshipText.setEditable(true);
 
             }
         });
         representationText = "";
-        representationTG.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
+        representationTG.selectedToggleProperty().addListener((ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) -> {
+            RadioButton rb = (RadioButton) newValue.getToggleGroup().getSelectedToggle();
+            representationText = rb.getText();
+            if (representationTG.getSelectedToggle() == fxRP_consentIfYesGiveInfo) {
+                fxTA_representationText.setEditable(true);
 
-            @Override
-            public void changed(ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) {
-                RadioButton rb = (RadioButton) newValue.getToggleGroup().getSelectedToggle();
-                representationText = rb.getText();
-                if (representationTG.getSelectedToggle() == fxRP_consentIfYesGiveInfo) {
-                    fxTA_representationText.setEditable(true);
-
-                }
             }
         });
 
@@ -397,7 +332,7 @@ public class CaseOpeningController implements Initializable {
     @FXML
     private void saveBtnOnAction(ActionEvent event) {
         if (event.getSource() == fxBT_save) {
-            System.out.println(socialPedagogicalHelpText + carriageText + carriageText);
+            System.out.println(carriageText + treatmentText + controlText);
 
             if (!fxTF_firstnameRegarding.getText().isEmpty()) {
                 cRegardingMap.put("firstName", fxTF_firstnameRegarding.getText());
@@ -521,21 +456,6 @@ public class CaseOpeningController implements Initializable {
             name.setToggleGroup(tg);
         }
         return tg;
-    }
-
-    private String radionButtonChangeListener(ToggleGroup tg) {
-        //outputText = "";
-        tg.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
-            @Override
-            public void changed(ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) {
-
-                RadioButton rb = (RadioButton) newValue.getToggleGroup().getSelectedToggle(); // Cast object to radio button
-                outputText = rb.getText();
-
-            }
-        });
-
-        return outputText;
     }
 
 }

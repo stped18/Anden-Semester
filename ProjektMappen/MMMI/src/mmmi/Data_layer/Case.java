@@ -15,12 +15,12 @@ public class Case {
 
 	/**
 	 *
-	 * @param caseID
-	 * @param departmentID
-	 * @param caseStatus
-	 * @param regardingCitizen
-	 * @param requestingCitizens
-	 * @param caseContent
+	 * @param caseID, of type int
+	 * @param departmentID, of type int
+	 * @param caseStatus, of type String
+	 * @param regardingCitizen, of type Citizen
+	 * @param requestingCitizens, of type List<Citizen>
+	 * @param caseContent, of type Map<String, String>
 	 */
 	public Case(int caseID, int departmentID, String caseStatus, Citizen regardingCitizen, List<Citizen> requestingCitizens, Map<String, String> caseContent) {
         this.caseID = caseID;

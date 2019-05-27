@@ -115,8 +115,8 @@ public class CaseOpeningController implements Initializable {
     /**
      * Initializes the controller class.
      *
-     * @param url
-     * @param rb
+     * @param url of type URL
+     * @param rb of type ResourceBundle
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -182,8 +182,10 @@ public class CaseOpeningController implements Initializable {
     }
 
     /**
+     * ActionHandler for inquiry Radio buttons. To control the way user
+     * interacts with the UI.
      *
-     * @param event
+     * @param event of type ActionEvent
      */
     @FXML
     private void inquiryRBonAction(ActionEvent event) {
@@ -213,11 +215,13 @@ public class CaseOpeningController implements Initializable {
             }
         }
 
-    }// fxRB_agreeToInquiryNoRequesting
+    }
 
     /**
+     * ActionHandler for rights and duties section To control the way a user
+     * interacts with UI.
      *
-     * @param event
+     * @param event of type ActionEvent
      */
     @FXML
     private void rightsAndDutiesRBOnAction(ActionEvent event) {
@@ -227,8 +231,10 @@ public class CaseOpeningController implements Initializable {
     }
 
     /**
+     * ActionHandler for commune paying- or acting section. Method used to
+     * control the way a user interacts with this section.
      *
-     * @param event
+     * @param event of type ActionEvent
      */
     @FXML
     private void communePayingOrActingRBonAction(ActionEvent event) {
@@ -243,7 +249,17 @@ public class CaseOpeningController implements Initializable {
     }
 
     /**
-     * @param event
+     *
+     * @TODO: Class to make it possible for a ToggleGroup to be sent in and then
+     * save that value in a list or map and mark it specifically and afterwards
+     * sent it back to the handler where it would be possible to distinguish
+     * between the ToggleGroup radioButton.getText() values. (Possible solution
+     * to the problem)
+     *
+     * ActionHandler for benefits Paragraphs section. Method used to control the
+     * way a user interacts with this section.
+     *
+     * @param event of type ActionEvent
      */
     @FXML
     private void benefitsParagraphs(ActionEvent event) {
@@ -289,6 +305,13 @@ public class CaseOpeningController implements Initializable {
         });
     }
 
+    /**
+     *
+     * ActionHandler for representation and guardian section. Method used to
+     * control the way a user interacts with this section.
+     *
+     * @param event of type ActionEvent
+     */
     @FXML
     private void representationAndGuardianActionHandler(ActionEvent event) {
         guadianText = "";
@@ -312,6 +335,12 @@ public class CaseOpeningController implements Initializable {
 
     }
 
+    /**
+     * ActionHandler for consent section. Method used to control the way a user
+     * interacts with this section.
+     *
+     * @param event of type ActionEvent
+     */
     @FXML
     private void consentActionHandler(ActionEvent event) {
         if (event.getSource() == consentOptTG.getSelectedToggle()) {
@@ -326,8 +355,14 @@ public class CaseOpeningController implements Initializable {
     }
 
     /**
+     * Save Button action handler that if event.getSource() == fxBT_save, then
+     * it takes both cRegarding and cRequesting maps and fills them with data.
+     * And then the contentsMap would be filled with data from what the user has
+     * selected or typed.
      *
-     * @param event
+     * Method: To save the data from the case opening document.
+     *
+     * @param event of type ActionEvent
      */
     @FXML
     private void saveBtnOnAction(ActionEvent event) {
@@ -447,8 +482,8 @@ public class CaseOpeningController implements Initializable {
     /**
      * Method to create new toggleGroups.
      *
-     * @param names
-     * @return
+     * @param names of type RadioButton... = RadioButton[]
+     * @return ToggleGroup, with all the RadioButtons from parameter.
      */
     private ToggleGroup createToggleGroup(RadioButton... names) {
         ToggleGroup tg = new ToggleGroup();

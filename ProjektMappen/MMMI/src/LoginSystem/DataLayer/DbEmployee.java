@@ -13,11 +13,11 @@ public class DbEmployee {
 
 	/**
 	 *
-	 * @param employeeID
-	 * @param firstName
-	 * @param lastName
-	 * @param roleID
-	 * @param departmentID
+	 * @param employeeID int
+	 * @param firstName String
+	 * @param lastName String
+	 * @param roleID int
+	 * @param departmentID int
 	 */
 	public DbEmployee(int employeeID, String firstName, String lastName, int roleID, int departmentID) {
         this.employeeID = employeeID;
@@ -29,7 +29,7 @@ public class DbEmployee {
 
 	/**
 	 *
-	 * @return
+	 * @return Employee ID as an int.
 	 */
 	public int getEmployeeID() {
         return employeeID;
@@ -37,7 +37,7 @@ public class DbEmployee {
 
 	/**
 	 *
-	 * @return
+	 * @return Employee first name as a String.
 	 */
 	public String getFirstName() {
         return firstName;
@@ -45,7 +45,7 @@ public class DbEmployee {
 
 	/**
 	 *
-	 * @return
+	 * @return Employee last name as a String
 	 */
 	public String getLastName() {
         return lastName;
@@ -53,7 +53,7 @@ public class DbEmployee {
 
 	/**
 	 *
-	 * @return
+	 * @return Employee role ID as a int.
 	 */
 	public int getRoleID() {
         return roleID;
@@ -66,7 +66,7 @@ public class DbEmployee {
 	/**
 	 * Created for testing.
 	 * 
-	 * @return
+	 * @return The Employee as a String.
 	 */
     @Override
     public String toString() {
@@ -75,7 +75,8 @@ public class DbEmployee {
 
 	/**
 	 *
-	 * @return
+	 * @return A {@link java.util.Map<java.lang.Integer, java.lang.String>}, where the Key is the rightID and
+	 * Value as the name of the right
 	 */
 	public Map<Integer, String> getRights() {
         return rigths;

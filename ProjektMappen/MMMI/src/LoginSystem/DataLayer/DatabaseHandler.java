@@ -20,6 +20,9 @@ public class DatabaseHandler {
     protected ResultSet dbResultSet = null;
     protected PreparedStatement preparedStatement = null;
 
+	/**
+	 * Creates a connection to the database.
+	 */
     public void connectDB() {
 
         try {
@@ -31,10 +34,12 @@ public class DatabaseHandler {
     }
 
 	/**
-	 *
-	 * @param username
-	 * @param password
-	 * @return
+	 * This method returns a new Employee object that has been validated
+	 * by the database on Username and Password.
+	 * 
+	 * @param username, String 
+	 * @param password, String
+	 * @return An object of Employee
 	 */
 	public DbEmployee getEmployeedb(String username, String password) {
 
@@ -62,7 +67,7 @@ public class DatabaseHandler {
     }
 
 	/**
-	 *
+	 * Closes the database connection if there are no statments to executed.
 	 */
 	public void disconect() {
         try {

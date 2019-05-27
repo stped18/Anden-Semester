@@ -128,7 +128,7 @@ public class Department implements IDomain {
 
     /**
      *
-     * //TODO: Opens a case with all the info into a map that are sent to the
+     * @TODO: Opens a case with all the info into a map that are sent to the
      * GUI
      *
      * This method forwards the @params to the method
@@ -186,7 +186,7 @@ public class Department implements IDomain {
     }
 
     /**
-     * // TODO: If there is a case already you just need to set content (In
+     * @TODO: If there is a case already you just need to set content (In
      * regards to write it to the database)
      *
      * This method forwards the @params to the method
@@ -195,11 +195,11 @@ public class Department implements IDomain {
      * if (contentsMap.get("caseID").equalsIgnoreCase("-1")), then the method
      * creates a new {@link mmmi.Data_layer.Case} object and sets the variable
      * to the result, and fills the empty object with Case specific informtaion
-     * and case contents and afterwards {@link mmmi.Data_layer.DataHandler#writeCase(theCase), where theCase
+     * and case contents and afterwards {@link mmmi.Data_layer.DataHandler#writeCase(theCase)), where theCase
      * is the Case sent from saveCase()
      *
-     * @param caseInfo, Map<String, Map<String, String>>
-     * @ret
+     * @param caseInfo, java.util.Map<String, Map<String, String>>
+     * ret
      * urn boolean, if the case got saved successfully, or false if error
      * occured.
      */

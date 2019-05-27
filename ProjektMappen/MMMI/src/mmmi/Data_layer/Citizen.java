@@ -74,7 +74,7 @@ public class Citizen {
     /**
      * Getter method for variable cases.
      *
-     * @return List<Case>
+     * @return A list of cases reguarding the specefice Citizen.
      */
     public List<Case> getCases() {
         return Cases;
@@ -83,7 +83,7 @@ public class Citizen {
     /**
      * Getter method for variable citizenID
      *
-     * @return int citizenID
+     * @return A Citizen ID as an int.
      */
     public int getCitizenID() {
         return citizenID;

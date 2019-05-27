@@ -8,8 +8,8 @@ public class RunFxmlLoader {
 
 	/**
 	 *
-	 * @param subPane
-	 * @param fxml
+	 * @param subPane AnchorPane
+	 * @param fxml String
 	 */
 	public void changeFxml(AnchorPane subPane, String fxml) {
 		

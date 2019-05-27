@@ -22,8 +22,8 @@ public class MMMI extends Application {
 
 	/**
 	 * 
-	 * @param stage
-	 * @throws Exception 
+	 * @param stage Stage
+	 * @throws Exception IOEccpetion if something goes wrong.
 	 */
 	@Override
 	public void start(Stage stage) throws Exception {
@@ -36,11 +36,11 @@ public class MMMI extends Application {
 
 	/**
 	 * 
-	 * @throws IOException 
+	 * @throws IOException New Exceotion
 	 */
 	public void changeScene() throws IOException {
 		this.stage = new Stage();
-		this.root = FXMLLoader.load(getClass().getResource("Main.fxml"));
+		this.root = FXMLLoader.load(getClass().getResource("../mmmi/UI/Main/Main.fxml"));
 		this.stage.setResizable(false);
 		this.scene = new Scene(root);
 		this.stage.setScene(scene);

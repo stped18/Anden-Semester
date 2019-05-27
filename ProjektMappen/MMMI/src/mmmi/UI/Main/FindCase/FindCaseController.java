@@ -69,24 +69,25 @@ public class FindCaseController extends MainController implements Initializable 
 
 	/**
 	 * Handler for all ActionEvents.
-         * 
-         * This method us called when an ActionEvent is triggered any of the 
-         * elements in findCase.fxml.
-         * 
-         * When the button BTN_search is the source, the searchKey and searchValue
-         * are gathered and send to {@link mmmi.Domain.Department#search(java.lang.String, java.lang.String) }.
-         * The result from that method is then parsed into an observableList of {@link mmmi.UI.Main.FindCase.SearchResult} objects.
-         * The list is used to populate the TableView TV_searchCase.
-         * 
-         * When the radio button RB_searchOptionCaseNo is the source, the UI is 
-         * updated to show the search form for searching by case ID.
-         * 
-         * When the radio button RB_searchOptionCitizen is the source, the UI is
-         * updated to shoe the search form for searching by citizen information.
-         * 
-         * WHen the button BTN_openCase is the source, it opens the chosen case 
-         * from the TableView to show the user.
-         * 
+	 *
+	 * This method us called when an ActionEvent is triggered any of the
+	 * elements in findCase.fxml.
+	 *
+	 * When the button BTN_search is the source, the searchKey and searchValue
+	 * are gathered and send to {@link mmmi.Domain.Department#search(java.lang.String, java.lang.String)
+	 * }. The result from that method is then parsed into an observableList of
+	 * {@link mmmi.UI.Main.FindCase.SearchResult} objects. The list is used to
+	 * populate the TableView TV_searchCase.
+	 *
+	 * When the radio button RB_searchOptionCaseNo is the source, the UI is
+	 * updated to show the search form for searching by case ID.
+	 *
+	 * When the radio button RB_searchOptionCitizen is the source, the UI is
+	 * updated to shoe the search form for searching by citizen information.
+	 *
+	 * WHen the button BTN_openCase is the source, it opens the chosen case from
+	 * the TableView to show the user.
+	 *
 	 * @param event, ACtionEvent
 	 */
 	@FXML
@@ -128,12 +129,12 @@ public class FindCaseController extends MainController implements Initializable 
 	}
 
 	/**
-         * Shows a specific case to the user.
-         * 
+	 * Shows a specific case to the user.
+	 *
 	 * @TODO: Write logic to handle opening the selected case.
-         * @TODO: Create the fxml document to show the selected case.
-         * @TODO: Error handling
-         * 
+	 * @TODO: Create the fxml document to show the selected case.
+	 * @TODO: Error handling
+	 *
 	 * @param sr, SearchResult
 	 */
 	private void openCase(SearchResult sr) {

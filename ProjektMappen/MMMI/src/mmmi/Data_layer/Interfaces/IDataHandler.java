@@ -67,7 +67,7 @@ public interface IDataHandler {
 
     /**
      *
-     * @return
+     * @return Case object, from {@link mmmi.Data_layer.Case}
      */
     public Case createCase();
 

@@ -13,9 +13,9 @@ import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 
 /**
- *
- * them in a Map< String , String> nodeMap with key = node.getid and value =
+ * Them in a nodeMap (java.util.MapHash<java.lang.String, java.lang.String>) with key = node.getid and value =
  * node.get text
+ * 
  */
 public class NodeFinder {
 

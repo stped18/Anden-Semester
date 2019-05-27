@@ -33,7 +33,7 @@ public class Case {
 
 	/**
 	 *
-	 * @return
+	 * @return Department ID for at case as an int.
 	 */
 	public int getDepartmentID() {
         return departmentID;
@@ -41,7 +41,7 @@ public class Case {
 
 	/**
 	 *
-	 * @param departmentID
+	 * @param departmentID int
 	 */
 	public void setDepartmentID(int departmentID) {
         this.departmentID = departmentID;
@@ -49,7 +49,7 @@ public class Case {
 
 	/**
 	 *
-	 * @return
+	 * @return The case status as a String.
 	 */
 	public String getCaseStatus() {
         return caseStatus;
@@ -57,7 +57,7 @@ public class Case {
 
 	/**
 	 *
-	 * @param caseStatus
+	 * @param caseStatus String
 	 */
 	public void setCaseStatus(String caseStatus) {
         this.caseStatus = caseStatus;
@@ -65,7 +65,7 @@ public class Case {
 
 	/**
 	 *
-	 * @return
+	 * @return The cases ID as an int.
 	 */
 	public int getCaseID() {
         return caseID;
@@ -73,7 +73,7 @@ public class Case {
 
 	/**
 	 *
-	 * @return
+	 * @return A object of the requarding Citizen for the case.
 	 */
 	public Citizen getRegardingCitizen() {
         return regardingCitizen;
@@ -81,7 +81,7 @@ public class Case {
 
 	/**
 	 *
-	 * @return
+	 * @return A List of the requesting for the case.
 	 */
 	public List<Citizen> getRequestingCitizen() {
         return requestingCitizens;
@@ -89,7 +89,7 @@ public class Case {
 
 	/**
 	 *
-	 * @param requestingCitizenID
+	 * @param requestingCitizenID Citizen
 	 */
 	public void addRequestingCitizen(Citizen requestingCitizenID) {
         // TODO: Add a new requesting citizen to the list. Instead of overridding.
@@ -98,7 +98,8 @@ public class Case {
 
 	/**
 	 *
-	 * @return
+	 * @return The contens of the case as a Map<String, String>.
+	 * Where the Key is the attrubute name, and the value is the content.
 	 */
 	public Map<String, String> getCaseContent() {
         return caseContent;
@@ -106,7 +107,7 @@ public class Case {
 
 	/**
 	 *
-	 * @param regardingCitizen
+	 * @param regardingCitizen Citizen
 	 */
 	public void setRegardingCitizen(Citizen regardingCitizen) {
         this.regardingCitizen = regardingCitizen;
@@ -114,7 +115,7 @@ public class Case {
 
 	/**
 	 *
-	 * @param requestingCitizens
+	 * @param requestingCitizens List<mmmi.Data_layer.Citizen>
 	 */
 	public void setRequestingCitizens(List<Citizen> requestingCitizens) {
         this.requestingCitizens = requestingCitizens;
@@ -122,7 +123,7 @@ public class Case {
 
 	/**
 	 *
-	 * @param caseContent
+	 * @param caseContent Map<String, String>
 	 */
 	public void setCaseContent(Map<String, String> caseContent) {
         this.caseContent = caseContent;

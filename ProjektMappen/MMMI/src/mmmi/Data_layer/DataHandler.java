@@ -16,7 +16,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * @TODO: Error handling
+ * Handles data that come from the domain, and sends it to the right
+ * table in the database
+ * 
+ * @TODO: Some of the methods needs Error Handling. 
  */
 public class DataHandler extends DatabaseConnection implements IDataHandler {
 
@@ -31,7 +34,7 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
      * Method return: returns Case with case specific information and case
      * contents.
      *
-     * @param caseID, accepts int value
+     * @param caseID int
      * @return returns Case object
      */
     @Override
@@ -308,7 +311,7 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
      * Method return: Returns a boolean value based on if the write to database
      * was successful, else false if an error occured
      *
-     * // TODO: In and create a new row in case_contents with caseContents
+     * @TODO: In and create a new row in case_contents with caseContents
      * information from theCase
      *
      * @param theCase, Case object.

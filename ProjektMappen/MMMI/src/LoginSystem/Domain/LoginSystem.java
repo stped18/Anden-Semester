@@ -6,7 +6,7 @@ import mmmi.Domain.Department;
 import mmmi.Domain.Interfaces.IDomain;
 
 /**
- * TODO: Need to implement ILogin Interface.
+ * @TODO: Need to implement ILogin Interface.
  */
 public class LoginSystem implements IEmployee {
 

@@ -1,9 +1,6 @@
 \subsection{Test}
-Der blev ikke lavet unit test på første iteration, da det ikke blev set som en nødvendighed. Det der blev fokuseret på var systemtest som skulle sikre at forståelsen med projektet og hvordan de forskellige brugsmønstre ville fungere i et færdigt system. Der blev fundet flere fejl/mangler igennem systemet. Vist på koden (Se figur \ref{kode:1main}) kan det ses at der bliver lavet en ny ”employee” hvilket skyldes det ikke var lavet så den kunne huske mere end en ad gangen. Det kan ses I figur \ref{kode:1commando} er det de forskellige kommandoer som kan bruges returneres det vil derefter testes om personen der er logget ind. \\
-Dette blev den eneste rigtige test da dette kom ud på at få ideen til hvordan systemet skulle fungere helt på plads så databasen og præsentations laget kunne blive lagt på. 
 \begin{figure}[hbt!]
 \begin{lstlisting}
-
 public static void main(String[] args) {
 	while (!quit) {
                 rollInfor();
@@ -11,15 +8,18 @@ public static void main(String[] args) {
 
                 switch (text) {
                     case "secretary":
-                        Employee trine = detDepartment.createEmployee("trine", 252525, "secretary");
+                        Employee trine = detDepartment.createEmployee("trine", 
+                        252525, "secretary");
                         commands(trine);
                         break;
                     case "caseworker":
-                        Employee mads = detDepartment.createEmployee("mads", 353535, "caseworker");
+                        Employee mads = detDepartment.createEmployee("mads", 
+                        353535, "caseworker");
                         commands(mads);
                         break;
                     case "departmentmanager":
-                        Employee martin = detDepartment.createEmployee("martin", 262626, "departmentmanager");
+                        Employee martin = detDepartment.createEmployee("martin", 
+                        262626, "departmentmanager");
                         commands(martin);
                         break;
                     case "quit":
@@ -34,6 +34,8 @@ public static void main(String[] args) {
 \caption{tekst under figuren}
 \label{kode:1main}
 \end{figure}
+Der blev ikke lavet unit test på første iteration, da det ikke blev set som en nødvendighed. Det der blev fokuseret på var systemtest som skulle sikre at forståelsen med projektet og hvordan de forskellige brugsmønstre ville fungere i et færdigt system. Der blev fundet flere fejl/mangler igennem systemet. Vist på koden (Se figur \ref{kode:1main}) kan det ses at der bliver lavet en ny ”employee” hvilket skyldes det ikke var lavet så den kunne huske mere end en ad gangen. Det kan ses I figur \ref{kode:1commando} er det de forskellige kommandoer som kan bruges returneres det vil derefter testes om personen der er logget ind. \\
+Dette blev den eneste rigtige test da dette kom ud på at få ideen til hvordan systemet skulle fungere helt på plads så databasen og præsentations laget kunne blive lagt på. 
 \begin{figure}[hbt!]
 \begin{lstlisting}
 public static String loop() {

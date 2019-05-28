@@ -1,18 +1,20 @@
 \chapter{Indledning}
-EG Team Online har udarbejdet en case (ekstern bilag \ref{eks:Case}), hvor i de ønsker at en belysning af 3 moduler i deres system Sensum. Gruppen har af de 3 moduler, valgt at lægge vægt på at følge arbejdes processen i Unified Process (Se Afsnit \ref{sec:samlede metoder}) på modulet sagsudredning. Dette modul er bygget til at sagsbehandlere på kommunerne, modulet er opbygget efter VUM (se ordliste side \pageref{sec:ordliste}), denne metode bliver brugt til at visiterer voksende med et handicap eller misbrugt til at få ydelser i form af overførelse indkomst eller botilbud hvor de kan få hjælp til styre deres hverdag.
-\section{Resume af case}
-Gruppen har fået udleveret en case som omhandler systemerne Sensum og Sensum Bosted som er udviklet af EG Team Online. Sensum Bosted og Sensum er systemer der understøtter det samlede behov i den offentlige og private social- og sundhedssektor.\\
-Systemet har hidtil været opdelt i to forskellige systemer det ene er Sensum Bosted og det andet er Sensum, begge dele er modulopbygget plug-and-play, som gør det muligt at tilpasse systemet til kundens behov. Sensum Bosted er det system som har fokus på at digitalisere den daglige arbejdsproces på bostederne, og understøtter alle former for dokumentationsbehov på socialområdet. Sensum er et sags- og udredningssystem der skaber et overblik over sagsbehandlingen, faciliterer og kommunens arbejdsprocesser. Systemet er et DHUV-system 
-(Anon., 2019) %kilde sæt ind rigtig
-”Digitalisering af Handicap og Udsatte Voksne”, som en proces beskrevet under VUM ”Voksen Udrednings Modellen”.\\
-Virksomheden ønsker en belysning af tre moduler: planlægning, sagsudredning og dagbogen. \\
-Planlægningsmodulet er et værktøj hvor et botilbud kan tilrettelægge en borgers hverdag igennem en illustration med piktogrammer, som beskriver de aktiviteter borgeren skal nå den givende dag.
-Sagsudredningsmodulet er den del af systemet hvor i sagsbehandlerne på kommunen udreder borgerne jfr. VUM-metoden 
+EG Team Online har været med til at udarbejde en case (ekstern bilag \ref{eks:Case}), hvori de ønsker en belysning af 3 moduler i deres system, Sensum. Gruppen har af de 3 moduler valgt at lægge vægt på modulet sagsudredning. Udviklingen af modulet vil følge arbejdsprocessen UP (Se metode afsnit \ref{sec:samlede metoder}). Dette modul er bygget til sagsbehandlere hos kommunerne og er opbygget efter VUM’s retningslinjer. (Anon., 2019) Denne metode bliver brugt til at visitere voksne med et handicap eller misbrug til ydelser, der kan hjælpe dem i deres hverdag.
+\section{Resume af case} (ref til case)
+Gruppen har fået udleveret en case som omhandler systemerne Sensum og Sensum Bosted som er udviklet af EG Team Online. Sensum Bosted og Sensum er systemer der understøtter det samlede behov for dokumentationsstyring i den offentlige og private social- og sundhedssektor.\\
+Systemet har hidtil været opdelt i to forskellige systemer det ene er Sensum Bosted og det andet er Sensum, begge dele er modulopbygget plug-and-play, som gør det muligt at tilpasse systemet til kundens behov. Sensum Bosted er det system som har fokus på at digitalisere den daglige arbejdsproces på bostederne, og understøtter alle former for dokumentationsbehov på socialområdet. 
+Sensum er et udredningssystem der skaber et overblik over sagsbehandlingen. 
+Systemet er et DHUV-system 
+”Digitalisering af Handicap og Udsatte Voksne”, som er en proces beskrevet under VUM  (Anon., 2019)
+\\
+Virksomheden ønsker en belysning af tre moduler: planlægning, sagsudredning og dagbog. \\
+Planlægningsmodulet er et værktøj hvor et botilbud kan tilrettelægge en borgers hverdag igennem en illustration med piktogrammer, som beskriver de aktiviteter borgeren skal nå den pågældende dag.
+Sagsudredningsmodulet er den del af systemet hvori sagsbehandlere på en kommune udreder borgerne jfr. VUM 
 (Anon., 2019), %kilde sæt ind rigtig
 og tildeler ydelser som f.eks. behandling på et misbrugscenter eller botilbud for handicappet.\\
-Dagbogsmodulet bruges til journalføring på borgerne. Der bliver både skrevet i journal af sagsbehandlerne i løbet af udredningen og på botilbuddet som daglig notatføring. Dele af dagbogen bliver automatisk genereret af system, det er f.eks. når borgeren er tildelt en ydelse eller når der bliver udleveret medicin.
+Dagbogsmodulet bruges til journalføring på borgerne. Der bliver både skrevet i journal under udredningen og på botilbuddet som daglig notatføring. Dele af dagbogen bliver automatisk genereret af system, det er f.eks. når borgeren er tildelt en ydelse eller når der bliver udleveret medicin.
+\newpage
 \section{Problemformulering}
-
 Gruppen har diskuteret afgrænsning i forhold til de specifikke moduler. I forhold til persondatalovgivningen har virksomheden beskrevet en dataafgrænsning i casen hvor de beskriver hvem der må kunne interagere med hvad i systemet. På baggrund af de strengere regler om persondata, blev det nødvendigt at opdatere systemet.
 
 \textbf{\\Gruppen kom frem til følgende hovedspørgsmål.}\\ \\
@@ -21,7 +23,7 @@ Gruppen har diskuteret afgrænsning i forhold til de specifikke moduler. I forho
 Hvordan kan et program håndtere flere roller uden at de interagerer med hinandens data samt hvilke sikkerhedsforanstaltninger ligger til grund for at beskytte data?
     }%
 }
- \textbf{\\DeleSpørgsmål\\}\\
+ \textbf{\\Delspørgsmål\\}\\
 På baggrund af den centrale problemstilling er der blevet udformet følgende underspørgsmål:\\ 
 \begin{itemize}
 \item Hvad definerer roller?
@@ -33,13 +35,19 @@ På baggrund af den centrale problemstilling er der blevet udformet følgende un
 \item Hvordan sikres det at aktøren kun har adgang til det aktøren har brug for? 
 \end{itemize}
 Gruppen analyserede den udleverede projektcase. På baggrund af analysen dannede gruppen et overblik over problemstillingen. Analysen gav en forståelse for de forskellige aktørers roller og ansvarsområder. EG Team Online ønsker en belysning af 3 moduler, hvor gruppen valgte dataafgrænsningen i forhold til sikkerhedsforanstaltninger, der adskiller de forskellige roller.
+\newpage
 \section{Formål med projekt}
-Formålet med projektet er at lave et udkast til det af de moduler som er beskrevet i den udleveret case, her har gruppen så valgt at ligge vægt på modulet sagsudredning hvor fokuspunktet er at lavet et system med en høj dataafgrænsning.\\
-Igennem processen med udviklingen af modulet er det blevet arbejdet med en softwaremodel Unified Process, som ligger vægt på en agil og iterativ arbejdsgang. Der er i løbet af projektet blevet udarbejdet arkitektoniske og analytiske modeller til at understøtte tanken men systemet, disse diagrammer er blevet udarbejdet på baggrund af den kravspecifikation som gruppen er nået frem til. 
+Formålet med projektet er at udvikle et udkast til et eller flere af de moduler som er beskrevet i den udleveret case. 
+Her har gruppen så valgt at ligge vægt på modulet sagsudredning hvor fokuspunktet er at lavet et system med en dataafgrænsning.\\
+Gennem processen med udviklingen af modulet skal der blive arbejdet med softwareudviklingsmodelen UP. Der er i løbet af projektet blevet udarbejdet arkitektoniske og analytiskes modeller, samt desginmodeller til at understøtte tanken med systemet. Disse diagrammer er blevet udarbejdet på baggrund af den kravspecifikation som gruppen er nået frem til. 
 \section{Målene med projektet}
-Projektet ligger størst vægt på arbejde med i Organisation og Grundlæggende Software Engineering, da projektet hovedsageligt går ud på at undersøge ansvarsområdet med henblik på at skulle identificere struktur og organisatoriske processer, i arbejdsprocessen med udredning og behandling af voksende med et handicap eller misbrug. For at udvikle den softwareapplikation som gruppen er kommet frem til er der blevet arbejdet med Unified Process 
-(Se Afsnit \ref{sec:samlede metoder}) %find det rigtige afsnit og lav ref
-denne arbejdes proces er let balanceret som planstyret og agil, der er i forlængelse af UP blevet brugt dele af Scrum, som er et planlægnings værktøj hvor man udarbejdet milepæle og laver en tidsestimering af de forskellige arbejdes bryder som skulle opstå igennem arbejdet med udviklingen.\\
-I udviklingen af selve applikationen er det blevet brugt elementer fra Programmering og database, der er blevet arbejdet ud fra en 3-lags arkitektur, hvilket gør at systemet består at et præsentations-, domæne og persistens lag. For at udarbejde præsentations- og domænelaget er der blevet brugt dele teorien fra Programmering som ligger fokus på Java, for at udarbejde persistens laget er det bliver brugt dele af teorien fra både Programmering og database, hvor database ligger vægt på SQL.
+Der ligges primært vægt på teorien fra Organisation og Grundlæggende Software Engineering. Projektet går hovedsageligt ud på at analyser ansvarsområdet, med henblik på at identificere strukturer og organisatoriske processer. 
+For at udvikle det modul som gruppen er kommet frem til er der blevet arbejdet med UP. 
+Der er i forlængelse af UP blevet brugt dele af Scrum.
+(Se afsnit \ref{sec:samlede metoder})%find det rigtige afsnit og lav ref
+\\
+I udviklingen af modulet, sagsudredning, skal der indrages elementer fra Videregående Objektorienteret Programmering(VOP) og Database, samt arbejdes ud fra en 3-lags arkitektur, hvilket gør at systemet består af et præsentations-, domæne- og persistenslag. 
+For at udarbejde præsentations- og domænelaget skal der bruges dele af teorien fra VOP. 
+For at udarbejde persistens laget skal der bruges dele af teorien fra både VOP og Database, hvor Database ligger vægt på database design.
 
 

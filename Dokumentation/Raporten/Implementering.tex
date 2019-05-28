@@ -1,5 +1,6 @@
 \subsection{Implementering}
-Målet med første iteration var at skabe et domain lag der havde de funktionalitetter som var nødvendige for systemet så det kunne fungere. Dette blev gjort så gruppen havde en bedre forståelse for hvordan systemet skulle se ud. I det følgende tekst er der lagt vægt på brugsmønsterende opret sag og find sag. Igennem første iteration var der lavet to klasse (case og department) der implementeret begge brugsmønster. ”case” håndteret hvad for noget data der skulle gemmes i en sag, mens ”department” holdt styr på hvad for nogle sager der var og hvordan man skulle finde dem.  Nedenfor ses de forskellige attributter der var I ”case” klassen(Se figur \ref{kode:caseatt}), udover dem var der gætter og sætter på attributterne. 
+Målet med første iteration var at skabe et domænelag, der havde de funktionaliteter, som var nødvendige for at systemet kunne fungere. Dette blev gjort så gruppen havde en bedre forståelse for hvordan systemet skulle se ud. 
+Gennem første iteration blev der lavet to klasse (case og department) der implementerede begge brugsmønstre. ”Case” håndterede hvilke data der skulle gemmes i en sag, mens ”department” holdt styr på hvilke specifikke sager der var og hvordan de skulle tilgås.  Nedenfor ses de forskellige attributter i ”Case” klassen. (Se figur \ref{kode:caseatt})
 \begin{figure}[h]
 \begin{lstlisting}
 public class Case {
@@ -15,46 +16,32 @@ public class Case {
     private final Map<String, String> information = new HashMap<>();
     private final int departmentID;
 \end{lstlisting}
-\caption{Case klassen's attributter har getter og sætter på de nødvendige attributter}
+\caption{Case klassens attributter}
 \label{kode:caseatt}
 \end{figure}\\
-Der bruges et map til at holde den data der ændre og skrives ind, mens der er en status på om sagen er lavet, I gang eller færdig. Der er og kan kun være en person, sagen omhandler så der er simple variable, mens der kan være flere der fortæller det kan være en god ide at den her person for noget hjælp. Det gjorde at der skulle være en list over disse personer. \\
-For at kunne se hvad der skrives ud I præsentationslaget går det igennem facaden som er afdeling. Det er også her at alle de forskellige sager vil være gemt I denne iteration. Der bliver genererer et sagsnummer hvor det også er tydeligt at se for os hvilken afdeling sagen tilhørere. \\ 
-For at oprette en sag skal der bruges en person og oprette sagen på hvilket gør at funktionen skal enten få en person ind eller få information nok ind så den kan selv oprette den person sagen omhandler. Neden for er ses det hvordan dette er blevet håndteret(\ref{kode:createcase}). \\
-\begin{figure}[h]
-\begin{lstlisting}
-public boolean createCase(String name, String reason) {
-        if (!name.isEmpty() && !reason.isEmpty()) {
-            Citizen citizen = createCitizen(name);
-            Case newCase = new Case(citizen, reason, this.id);
-            caseMap.put(newCase.getCaseNumber(), newCase);
-            return true;
-        } else {
-            return false;
-        }
-    }
-\end{lstlisting}
-\caption{department klassen's create case}
-\label{kode:createcase}
-\end{figure}\\
-Som det kan ses I koden nedenfor(\ref{kode:search}) ses det hvordan klassen ”department” finder en sag den skal bruge en ”string” som kunne være CPR-nummer for personen den omhandlede, sagsnummeret for sagen og navnet på personen sagen omhandler. 
+Der bruges et map til at holde den data der ændre og skrives ind.\\ 
+Klassen indeholder en status på om sagen er lavet, i gang eller færdig.\\ 
+Der kan kun være én person sagen omhandler, så der er en instans af klassen. Der kan være flere der henvender sig angående den samme person. Dette blev håndteret ved at lave list over disse personer. 
 \begin{figure}
 \begin{lstlisting}
 public List<Case> search(String searchWord) {
-        List<Case> listCases = new ArrayList<>();
-
-        for (Case searchCase : caseMap.values()) {
-            if (searchCase.getRegardingCitizen().getCprNumber().equalsIgnoreCase(searchWord)
-                    || searchCase.getCaseNumber().equalsIgnoreCase(String.valueOf(searchWord))
-                    || searchCase.getRegardingCitizen().getName().equalsIgnoreCase(searchWord)) {
-                listCases.add(searchCase);
-            }
-        }
-         return listCases;
-    }
+	List<Case> listCases = new ArrayList<>();
+	
+	for (Case searchCase : caseMap.values()) {
+		if (searchCase.getRegardingCitizen().getCprNumber().equalsIgnoreCase(searchWord)
+				|| searchCase.getCaseNumber().equalsIgnoreCase(String.valueOf(searchWord))
+				|| searchCase.getRegardingCitizen().getName().equalsIgnoreCase(searchWord)) {
+            listCases.add(searchCase);
+		}
+	}
+	return listCases;
+}
 \end{lstlisting}
-\caption{department search, finder alle sager der har søgeordet i}
+\caption{Department search, finder alle sager der har søgeordet i}
 \label{kode:search}
 \end{figure}
-Som det kan ses I koden er der ikke blevet returneret en sag, men en list af sager. Dette er blevet gjort af flere årsager. Et par af de årsager er at en person kan have flere sager og mere end en person hedder det samme. Det kan også være en bruger af systemet ikke kender hele navnet så det skulle være muligt at få alle med fornavnet Anders tilbage, dette nåede ikke at blive implementeret I denne iteration. 
+Den data der kan vises i præsentationslaget kaldes igennem facaden "Department". Det var også her at alle de forskellige sager blev gemt i denne iteration. Der bliver genereret et sagsnummer hvor det er muligt at se hvilken afdeling sagen tilhører. \\ 
+I figur \ref{kode:search} kan det ses hvordan klassen ”Department” finder en sag. Den skal bruge en ”string” som kunne være CPR-nummer eller navn for personen den omhandler eller  sagsnummeret. \\
+Som det kan ses i koden er bliver der ikke returneret en sag, men en liste af sager.\\
+Dette valgte gruppen at gøre fordi der kan søges på et navn, som ikke er unikt og der kan derfor findes mere end en persons sager. Samtidig er det også muligt at en person har mere end en sag, så selv hvis der kun er én person med et givent navn eller der søges på et CPR-nr kan der stadig returneres mere end én sag. Dette nåede ikke at blive implementeret i denne iteration. 
 

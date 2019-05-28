@@ -1,16 +1,29 @@
 \chapter{Diskussion}
-Det endelige produkt der er blevet udviklet, er udformet som der var planlagt i forhold til kravspecifikationerne med enkelte undtagelser. \\
-Funktionerne til at afslutte en sag og tildele en sag i systemet, blev aldrig implementeret. Da disse funktioner var undladt, ville det ikke være muligt at bruge systemet i en virkelig kontekst og derfor ikke afslutte den endelige UP-fase, ”Transition”. Hvis en kommune skulle bruge systemet, ville de hverken kunne give deres medarbejdere ansvaret for en opgave eller afslutte den. \\
-Disse kritiske funktioner blev nedprioriteret, fordi projektet udelukkende skulle foregå i ”Inception” og ”Elaboration” faserne.\\
-Nedprioriteringen af disse funktioner blev først besluttet da vi var nået til udvikling af designmodeller til systemet, der er derfor en del analysediagrammer til funktionerne som kunne bruges som basis for videre udvikling af designmodeller og implementering.\\
-Afdelingslederens fulde ansvarsområde, med funktionaliteten som hørte til dette, blev heller ikke realiseret. Området i den udleverede case som der blev arbejdet med, ”Sagsudredning”, inkluderede ingen krav om administreringen af et overordnet system. Da dette var tilfældet, blev alle planer omhandlende intern systemadministrering, udskudt til fremtidige iterationer.\\
-Funktionerne til at oprette en ny sag og finde en given sag, fik den højeste prioritet, da disse aspekter direkte kunne tolkes i semestercasen. Det lykkedes at implementere begge funktioner, samt overholde dataafgrænsningen fra ”Sagsudredning”. Dataafgrænsningen havde at gøre med at finde en given sag, på betingelsen af en afdelingsautentifisering. \\
-Den afdelingsautentifisering som blev implementeret, skete i systemets database, ved brug af et afdelings ID. Dette gjorde at når der blev lavet en søgning, skulle afdelingen søgningen kom fra, være registreret i elementet der blev søgt efter.\\
-Det produkt der er udviklet i Elaborationsfasen er baseret på en 3-lagsarkitektur, som gør det nemmere at adskille funktionalitet og afspejler en adskillelse af brugergrænseflade, forretningslogik og datahåndtering. Denne arkitektur blev til dels valgt for at gøre det mere overskueligt at udvikle systemet fremadrettet, men også fordi vi dermed ville være i stand til at skifte både præsentationslaget og persistenslaget ud, uden større komplikationer. \\
-Det var også en afgrænsning i forhold til de roller en bruger kunne få og vi har gjort domænelaget klar til at kunne håndtere denne afgrænsning i den kode vi har valgt at implementere, men har ikke fået gjort det helt færdigt da implementeringen af vores præsentationslag tog en del mere tid end først beregnet. Vi havde tænkt det skulle være styret af en rolle som en bruger for tildelt, hvor hver rolle så har en mængde rettigheder i forhold til systemet.\\
-For at kunne gemme data udviklede vi et ER-diagram som blev brugt til at oprette tabellerne i en postgresql database. Vi valgte at bruge en relationel database da der var krav om dataafgrænsning, som er besværligt at opnå tilfredsstillende med en nosql database. Valget af postgresql som den understøttende databaseserver, skyldtes at det var den vi var blevet introduceret til i undervisningen i database.\\
-Vi kunne have opnået bedre resultater, hvis vi havde haft et bedre kendskab til problemområdet. Hvis vi havde haft dette, ville vi bedre have kunnet opsætte vores krav og udarbejde brugsmønstre.\\
-Havde vi haft bedre kendskab til arbejdsmetoderne vi har benyttet da vi startede projektet, ville vi nemmere have haft mulighed for at udpege de relevante ting at modellere i forhold til udarbejdelse af dokumentation.\\
-\\
-Der var blevet lagt op til at projektet skulle styres med Scrum, men som helhed blev fra valgt. Scrum blev først gennemgået efter at projektarbejdet var startet, og var derfor besværligt at implementere, da det ville betyde at den allerede etablerede struktur skulle ændres. \\
-Tidsinvesteringen som var nødvendig for at implementere den komplette Scrum, blev vurderet til at være overflødig, da der allerede var en velfungerende arbejdsstruktur. \\
+Det endelige produkt der er blevet udviklet, er udformet som det var planlagt i forhold til kravspecifika- tionerne med enkelte undtagelser. \\ \\
+Funktionerne til at afslutte og tildele en sag i systemet, blev aldrig implementeret. 
+Dette betyder, at modulet ikke er færdigt og brugbart. 
+Hvis det blev brugt, ville det ikke være muligt at afslutte en sag eller ændre på hvem der arbejdede på en given sag. 
+Disse funktioner blev nedprioriteret, fordi projektet udelukkende skulle foregå i Inceptions- og Elaborationsfasen. \\ \\
+Nedprioriteringen af disse funktioner blev først besluttet, da gruppen var nået til udvikling af designmodeller til systemet og der findes derfor en del analysediagrammer som danner grundlaget for den videre udvikling af designmodeller og implementering. \\ \\
+Afdelingslederens fulde ansvarsområde, med funktionaliteten som hørte til dette, blev heller ikke realiseret. 
+Området i den udleverede case som der blev arbejdet med, ”Sagsudredning”, inkluderede ikke krav om administreringen af et overordnet system. 
+Da dette var tilfældet, blev alle planer omhandlende intern systemadministrering, udskudt til fremtidige iterationer. \\ \\
+Funktionerne til at oprette en ny sag og finde en given sag, fik den højeste prioritet, da disse aspekter direkte kunne tolkes ud fra semestercasen. 
+Det lykkedes at implementere begge funktioner samt overholde dataafgrænsningen fra ”Sagsudredning”. 
+Dataafgrænsningen havde at gøre med at finde en given sag på baggrund af en afdelingsautentifisering. 
+Den afdelingsautentifisering som blev implementeret, skete i systemets database ved brug af et afdelings ID. 
+Dette betød, at når der blev lavet en søgning, skulle afdelingen søgningen kom fra, være registreret i elementet der blev søgt efter. \\ \\
+Det produkt der er udviklet i Elaborationsfasen er baseret på en 3-lagsarkitektur, som gør det nemmere at adskille funktionalitet og afspejler en adskillelse af brugergrænseflade, forretningslogik og datahåndtering. 
+Denne arkitektur blev til dels valgt for at gøre det mere overskueligt at udvikle systemet fremadrettet, men også fordi gruppen ville være i stand til at skifte både præsentationslaget og persistenslaget ud uden større komplikationer. \\ \\
+Det var også en afgrænsning i forhold til de roller en bruger kunne få og der blev gjort klar til at domænelaget kunne håndtere denne afgrænsning i den kode som er blevet implementeret. 
+Den er dog ikke gjort helt færdig da implementeringen af præsentationslaget tog en del mere tid end først beregnet. 
+Gruppen havde tænkt det skulle være styret af en rolle som en bruger får tildelt, hvor hver rolle så har en mængde rettigheder i forhold til systemet. \\ \\
+For at kunne gemme data blev der udviklet et ER-diagram som blev brugt til at oprette tabellerne i en postgresql database. 
+Der bruges en relationel database, da der var krav om dataafgrænsning, som er besværligt at opnå tilfredsstillende med en nosql database. 
+Valget af postgresql som den understøttende databaseserver, skyldtes at det var den som blev introduceret i faget Database. \\ \\
+Gruppen kunne have opnået bedre resultater, hvis der havde været et bedre kendskab til problemområdet. 
+Hvis dette havde været tilfældet, ville der nemmere kunne opstilles krav og udarbejdes brugsmønstre. 
+Havde der været bedre kendskab til arbejdsmetoderne, som der blev benyttet i starten af projektet, ville det have været nemmere at udpege de relevante områder at modellere i forhold til udarbejdelse af dokumentation. \\ \\
+Der var blevet lagt op til at projektet skulle styres med Scrum, men som helhed blev fravalgt. 
+Scrum blev først gennemgået efter at projektarbejdet var startet, og var derfor besværligt at implementere, da det ville betyde at den allerede etablerede struktur skulle ændres. 
+Tidsinvesteringen som var nødvendig for at implementere den komplette Scrum, blev vurderet til at være ressourcespild, da der allerede eksisterede en velfungerende arbejdsstruktur. \\

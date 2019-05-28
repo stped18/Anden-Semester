@@ -1,26 +1,30 @@
 \chapter{Hovedtekst}
-I løbet af projektets første to faser, inception og elaboration, har der været en løbende udvikling af projektets planlægning og produkt. Denne udvikling er sket på baggrund af ny viden, som gruppen har til stræbet sig fra virksomhedsmøder, relateret undervisning og professionel vejledning. \\
-En projektrammeplan er blevet brugt til at danne grundlaget for projektets planlægning. Den generelle projektrammeplan indeholdt fire afleveringer, samt grundlæggende milepæle, der skulle suppleres med gruppens egne mål. 
-(Bilag til vores milepæle) \\
+I løbet af projektets to faser, inception og elaboration, har der været en løbende udvikling af projektets planlægning og produkt. Denne udvikling er sket på baggrund af ny viden, som gruppen har indhentet fra virksomhedsmøder, relateret undervisning og professionel vejledning. \\
+En projektrammeplan er blevet brugt til at danne grundlaget for projektets planlægning. Den generelle projektrammeplan indeholdte fire afleveringer, samt grundlæggende milepæle, der skulle suppleres med gruppens egne mål. 
+(Se interne bilag figur \ref{fig:tidsplanf}) \\
 Første aflevering var gruppens projektforslag, som skulle bestå af de første ideer om problemstillingen i forhold til, hvordan den skulle formuleres, afgrænses og takles. (Se interne bilag \ref{in:projektforslag})\\
 Anden aflevering var et Inceptionsdokument, som bestod af en grundlæggende analyse af projektet. Dette dokument skulle bl.a. indeholde systemets omfang, overordnede kravspecifikationer og prioritering af krav. (Se interne bilag \ref{in:inceptions})\\
 Tredje aflevering bestod af det samlede arbejde fra første iteration af elaborationsfasen. Denne aflevering tog udgangspunkt i inceptionsdokumentet og startede med at opdatere projektets overordnede - og detaljerede kravsspecifikationer. Der blev udarbejdet statiske - og dynamiske analysediagrammer, samt statiske designdiagrammer. Ud fra disse planer, blev der udviklet et stykke software, som skulle være første skridt på vejen, mod projektets endelige kildekode.\\
 Fjerde aflevering bestod af det samlede arbejde fra anden iteration af elaborationsfasen. Denne aflevering var en fortsættelse af første iteration, hvor der var fokus på at runde projektet af. Alle analyse- og designdiagrammer blev opdateret og der blev suppleret med et dynamisk designdiagram. Der var særligt fokus på at implementere den funktionalitet i kildekoden, som blev prioriteret højst, i forhold til fremtidig systemudvikling.\\
 Det kommende afsnit vil gå i dybden med arbejdet og resultatet af det, som er blevet udført i første og anden iteration.
 
-\section{Overordnet kravspecifikation (resume, opdateret)}
-Figuren viser to forskellige systemafgrænsninger(Se figur \ref{fig:overkrav}). Den ene systemafgrænsning er af et login system som gruppen har valgt at simulere, da det originale Sensum har et login system tilknyttet, login modulet bliver i dette tilfælde brugt til at en given bruger kan logge ind i systemet og derud fra se sine sager. Den anden systemafgrænsning som er sagsforløb der det modul som gruppe har lagt fokus i, der er så her lagt størst fokus på opret sag og find sag, som en essentiel i opstarten af systemet, da en sagsbehandler skal kunne oprette en sag på en given borger, inden den videre behandling kan forsætte. Dertil er det under sagsudredningen af borgerne også essentiel for en sagsbehandler at kunne gå ind i systemet og nemt finde en borger der er oprette en sag på.\\
-Den brugsmønster model som blev udarbejdet i løbet af inceptionsfasen, den vi har arbejdet ud fra igennem elaborationsfasen også, og den indeholder de brugsmønstre som gruppen har fundet nødvendige for at få netop modulet sagsudredning til at fungere som en kommunalansat skal bruge for at udrede inden for deres område. 
-\begin{figure}[h]
+\section{Overordnet kravspecifikation}
+Figur \ref{fig:overkrav} viser to forskellige systemafgrænsninger. 
+Den ene systemafgrænsning er et login modul, som gruppen har valgt at simulere, da det originale Sensum har et login system tilknyttet. \\
+Den anden systemafgrænsning, som er sagsforløb er det modul som gruppe har lagt fokus i. 
+Her er der lagt størst fokus på opret sag og find sag, som er essentiel for systemet, da en sagsbehandler skal kunne oprette en sag på en given borger, inden den videre behandling kan forsætte. Dertil er det under sagsudredningen af borgerne også essentiel for en sagsbehandler at kunne gå ind i systemet og nemt finde en borger der er oprette en sag på.\\
+Den brugsmønstermodel som blev udarbejdet i løbet af inceptionsfasen, har gruppen arbejdet ud fra, gennem elaborationsfasen. Den indeholder de brugsmønstre som gruppen har fundet nødvendige for at få netop modulet sagsudredning til at fungere.
+\begin{figure}[hbt!]
   \includegraphics[scale = 0.4]{./PNG/krav/overkrav.PNG} 
-  \caption{Gruppens overordnede krav for fuld størrelse se interne bilag afsnit \ref{sec:diverse} figure \ref{fig:fuldoverkrav}}
+  \caption{Overordnede brugsmønsterdiagram. For fuld størrelse se interne bilag afsnit \ref{sec:diverse} figure \ref{fig:fuldoverkrav}}
   \label{fig:overkrav}
 \end{figure}
 
 \section{Detaljeret kravspecifikation}
-Ud fra den overordnede kravsmodel (Se figur \ref{fig:overkrav}) er der blevet udvalgt forskellige krav, som er set som mere kompliceret krav end resten af de overordnede krav. Der vil blive lagt vægt på to krav i dette afsnit. Disse krav er opret sag og find sag. For at se alle af de detaljeret brugsmønstre se interne bilag firgur \\
+Ud fra den overordnede brugsmønsterdiagram (Se figur \ref{fig:overkrav}) er der blevet udvalgt forskellige brugsmønster, som er set som mere komplicerede brugsmønster end resten. Der vil blive lagt vægt på to krav i dette afsnit. Disse krav er opret sag og find sag. For at se alle af de detaljeret brugsmønstre se interne bilag figur \ref{tab:1} til figur \ref{tab:3} \\
 \textbf{Opret sag} \\
-\begin{center} \label{tab:opretSag}
+Som vist på figur \ref{tab:opretSag} er der ikke noget specielt svært ved dette brugsmønster. I gennemgang af dette kom der mange forskellige ting op, omkring hvad der ville være fornuftigt at skulle bruge til at oprette sagen. Det endte ud med at der skulle bruges en person, som sagen omhandle samt en grund til at sagen skulle eksistere.
+\begin{figure}[hbt!]
 \begin{longtable}{|p{18cm}|}
 \hline
 \textbf{Brugsmønster: }Opret sag \\
@@ -36,8 +40,8 @@ Ud fra den overordnede kravsmodel (Se figur \ref{fig:overkrav}) er der blevet ud
 \textbf{Prækonditioner: }Aktør skal være logget ind.\\
 \hline
 \textbf{Hovedhændelsesforløb: }\newline 
-Starter når en borger henvender sig til kommunen \\
-1. Aktør indtaster CPR nummer, borgers navn, begrundelse for henvendelse \\
+Starter når en borger henvender sig til kommunen. \\
+1. Aktør indtaster CPR nummer, borgers navn, begrundelse for henvendelse. \\
 2. Gemmer indtastet data.	
 \\
 \hline
@@ -46,10 +50,13 @@ Starter når en borger henvender sig til kommunen \\
 \textbf{Alternative hændelsesforløb: }\\
 \hline
 \end{longtable}
-\end{center}
-Som vist på figur \ref{tab:opretSag} er der ikke noget specielt svært ved dette brugsmønster. I gennem gang af dette kom der mange forskellige ting op, omkring hvad der ville være fornuftigt at skulle bruge til at oprette sagen. Det endte ud med at der skulle bruges en person, som sagen omhandle samt en grund til at sagen skulle eksistere. \\
-\textbf{Find sag} \\
-\begin{center} \label{tab:findSag}
+\caption{Brugsmønster for opret sag}
+\label{tab:opretSag}
+\end{figure}\\
+\textbf{Find sag}\\
+Brugsmønsteret find sag (Se figur \ref{tab:findSag}) er til for at finde en vilkårlig sag. Dette skal kunne ske ud fra sagsnummer fra sagen, navnet på personen sagen omhandler og deres CPR-nummer. Det er vigtigt at brugsmønsteret kan åbne en specifik sag, eller stoppes hvis ikke det er den rigtige søgning. 
+Alle krav kan findes i interne bilag afsnit \ref{sec:diverse} figur \ref{fig:krav} og figur \ref{fig:ikkeKrav} 
+\begin{figure} [hbt!]
 \begin{longtable}{|p{18cm}|}
 \hline
 \textbf{Brugsmønster: }Find sag \\
@@ -68,17 +75,16 @@ Som vist på figur \ref{tab:opretSag} er der ikke noget specielt svært ved dett
 Starter når den primære aktør skal finde en sag.\\
 1. Skal søge en sag på sagsnummer, CPR nummer, eller navn.\\
 2. Vise en liste over de sager som blev fundet.\\
-3. Hvis en sag bliver valgt.\\
-3.1 Vis den valgte sag.\\
+3. Valgt sag kan åbnes.\\
 \hline
 \textbf{Postkonditioner: }\\
 \hline
 \textbf{Alternative hændelsesforløb: }\\
 \hline
 \end{longtable}
-\end{center}
-Brugsmønsteret find sag (\ref{tab:findSag}) er til for at finde en vilkårlig sag. Dette skal kunne ske ud fra sagsnummer fra sagen, navnet på personen sagen omhandler og deres CPR-nummer. Det er vigtigt at brugsmønsteret kan åbne en sag specifik sag, eller stoppes hvis ikke det er den rigtige søgning. \\
-For se krav se interne bilag afsnit \ref{sec:diverse} figur \ref{fig:krav} og figur \ref{fig:ikkeKrav} 
+\caption{Brugsmønster for find sag}
+\label{tab:findSag}
+\end{figure}
 \input{iteration1}
 
 \input{iteration2}

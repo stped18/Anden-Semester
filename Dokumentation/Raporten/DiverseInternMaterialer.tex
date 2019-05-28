@@ -1,4 +1,5 @@
 \section{Diverse interne materialer} \label{sec:diverse}
+
 \input{brugs}
 Figure \ref{fig:OpretSag} til \ref{fig:ASOpret} viser hvad gruppen havde tænkt der skal ske i systemmet i første iteration. \\
 
@@ -125,5 +126,102 @@ Figure \ref{fig:OpretSag} til \ref{fig:ASOpret} viser hvad gruppen havde tænkt 
 \caption{Tidsplan fuldstørrelse}
 \label{fig:tidsplanf}
 \end{figure}
+\begin{figure}
+\includegraphics[width = \linewidth]{./PNG/database/Database.jpg}
+\caption{Tidsplan fuldstørrelse}
+\label{fig:database}
+\end{figure}
+\begin{figure}[htb!]
+  \includegraphics[width = \linewidth]{./PNG/design/seksearch.PNG} 
+  \caption{Sekvensdiagram search fuld størrelse }
+  \label{fig:seksearch}
+\end{figure}
 \end{landscape}
+\begin{figure}
+\begin{lstlisting}
+@Test
+public void searchTestCase() {
+	IDataHandler searchHandler = new DataHandler();
+	String caseNumber = "123";
+	
+	List<SearchCase> searchCases = searchHandler.search("Case", caseNumber + "%1");
+	Map<String, String> expectedMap = new HashMap<>();
+	
+	// Expected output
+	expectedMap.put("currentCaseDate", "24/05-2019");
+	expectedMap.put("createdCaseDate", "17/05-2019");
+	expectedMap.put("caseStatus", "igang");
+	expectedMap.put("caseReason", "Henvendelse drejer sig om en Test");
+	expectedMap.put("caseEmployeeName", "Aleksander Henriksen");
+	expectedMap.put("citizenName", "Poul Johanson");
+	
+	 // searchResult
+	 Map<String, String> mapContains = new HashMap<>();
+	 Map searchResultList = new HashMap();
+	 for (int i = 0; i < searchCases.size(); i++) {
+	 	Map searchResultMap = new HashMap();
+	 	searchResultMap.put("citizenName", searchCases.get(i).getCitizenName());
+	 	searchResultMap.put("currentCaseDate", searchCases.get(i).getCurrentCaseDate());
+	 	searchResultMap.put("createdCaseDate", searchCases.get(i).getCreatedCaseDate());
+	 	searchResultMap.put("caseReason", searchCases.get(i).getReason());
+	 	searchResultMap.put("caseEmployeeName", searchCases.get(i).getEmployeeName());
+	 	searchResultMap.put("caseStatus", searchCases.get(i).getCaseStatus());
+	 	searchResultList.put(searchCases.get(i).getCaseID(), searchResultMap);
+	 	
+	 	// Test
+	 	assertThat(searchResultMap, Is.is(expectedMap));
+	 	
+	 	// Print out both maps
+	 	System.out.println("searchResult: " + searchResultMap);
+	 	System.out.println("Expected: " + expectedMap);
+	}
+}
+\end{lstlisting}
+\caption{Unit test kode for search, når den leder efter en case}
+\label{kode:searchcase}
+\end{figure}
+\begin{figure}
+\begin{lstlisting}
+@Test
+public void searchTestCitizen() {
+	IDataHandler searchHandler = new DataHandler();
+	String citizen = "123123-1231%Poul Johanson%kimvej%"; // citizen to search for
+	
+	List<SearchCase> searchCases = searchHandler.search("Citizen", citizen + "%1"); 
+	Map<String, String> expectedMap = new HashMap<>();
+	
+	// Expected output
+	expectedMap.put("currentCaseDate", "24/05-2019");
+	expectedMap.put("createdCaseDate", "17/05-2019");
+	expectedMap.put("caseStatus", "igang");
+	expectedMap.put("caseReason", "Henvendelse drejer sig om en Test");
+	expectedMap.put("caseEmployeeName", "Aleksander Henriksen");
+	expectedMap.put("citizenName", "Poul Johanson");
+    
+    // searchResult
+    Map<String, String> mapContains = new HashMap<>();
+    Map searchResultList = new HashMap();
+    for (int i = 0; i < searchCases.size(); i++) {
+    	Map searchResultMap = new HashMap();
+    	searchResultMap.put("citizenName", searchCases.get(i).getCitizenName());
+    	searchResultMap.put("currentCaseDate", searchCases.get(i).getCurrentCaseDate());
+    	searchResultMap.put("createdCaseDate", searchCases.get(i).getCreatedCaseDate());
+    	searchResultMap.put("caseReason", searchCases.get(i).getReason());
+    	searchResultMap.put("caseEmployeeName", searchCases.get(i).getEmployeeName());
+    	searchResultMap.put("caseStatus", searchCases.get(i).getCaseStatus());
+    	searchResultList.put(searchCases.get(i).getCaseID(), searchResultMap);
+    	
+    	// Test
+    	assertThat(searchResultMap, Is.is(expectedMap));
+    	
+    	 // Print out both maps
+    	 System.out.println("searchResult: " + searchResultMap);
+    	 System.out.println("Expected: " + expectedMap);
+	}
+}
+
+\end{lstlisting}
+\caption{Unit test kode for search, når den leder efter en citizen}
+\label{kode:searchcitizen}
+\end{figure}
 \newpage

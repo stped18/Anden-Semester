@@ -1,4 +1,4 @@
-package mmmi.UI.Main.home;
+package mmmi.UI.Main.Home;
 
 import javafx.fxml.Initializable;
 import java.net.URL;

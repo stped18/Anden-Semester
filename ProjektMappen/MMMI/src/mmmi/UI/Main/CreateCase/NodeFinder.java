@@ -1,4 +1,4 @@
-package mmmi.UI.Main.createCase;
+package mmmi.UI.Main.CreateCase;
 
 import java.util.ArrayList;
 import java.util.HashMap;

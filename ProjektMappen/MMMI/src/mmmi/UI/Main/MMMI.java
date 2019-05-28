@@ -40,7 +40,7 @@ public class MMMI extends Application {
 	 */
 	public void changeScene() throws IOException {
 		this.stage = new Stage();
-		this.root = FXMLLoader.load(getClass().getResource("../mmmi/UI/Main/Main.fxml"));
+		this.root = FXMLLoader.load(getClass().getResource("Main.fxml"));
 		this.stage.setResizable(false);
 		this.scene = new Scene(root);
 		this.stage.setScene(scene);

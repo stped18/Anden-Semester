@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.ResourceBundle;
 import mmmi.Domain.Department;
 import mmmi.Domain.Interfaces.IDomain;
-import mmmi.UI.Main.createCase.NodeFinder;
 
 public class CreateCaseController extends RunFxmlLoader implements Initializable {
 
@@ -37,10 +36,11 @@ public class CreateCaseController extends RunFxmlLoader implements Initializable
 	 */
 	@Override
     public void initialize(URL url, ResourceBundle rb) {
+            System.out.println("TESTER");
         nf = NodeFinder.getInstance();
         this.list = new ArrayList<>();
-        list.add(0, "../createcase/fxml/caseOpening.fxml");
-        list.add(1, "../createcase/fxml/caseInvestigation.fxml");
+        list.add(0, "fxml/caseOpening.fxml");
+        list.add(1, "fxml/caseInvestigation.fxml");
         changeFxml(fxSubSubpane, list.get(0));
         chanceScene();
     }
@@ -71,6 +71,7 @@ public class CreateCaseController extends RunFxmlLoader implements Initializable
 	 * 
 	 */
     private void chanceScene() {
+        
         switch (this.count) {
             case 0:
                 changeFxml(fxSubSubpane, list.get(count));

@@ -11,7 +11,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
-import mmmi.UI.Main.createCase.NodeFinder;
 
 public class CaseInvestigationController implements Initializable {
 
@@ -36,7 +35,7 @@ public class CaseInvestigationController implements Initializable {
 			fxTf_communityLifeThemes, fxTf_socialLifeThemes, fxTf_healthThemes, fxTf_environmentThemes;
 	@FXML
 	private RadioButton fxRb_physicalLevelFunction0, fxRb_physicalLevelFunction1, fxRb_physicalLevelFunction2,
-			fxRb_physicalLevelFunction3, fxRb_physicalLevelFunction4fxRb_mentallyLevelFunction0,
+			fxRb_physicalLevelFunction3,
 			fxRb_mentallyLevelFunction1, fxRb_mentallyLevelFunction2, fxRb_mentallyLevelFunction3, fxRb_mentallyLevelFunction4;
 	@FXML
 	private RadioButton fxRb_sociallyLevelFunction0, fxRb_sociallyLevelFunction1, fxRb_sociallyLevelFunction2,
@@ -66,6 +65,10 @@ public class CaseInvestigationController implements Initializable {
 	private AnchorPane fxAc_CaseInvestigationroot;
 
 	NodeFinder nf;
+    @FXML
+    private RadioButton fxRb_physicalLevelFunction4;
+    @FXML
+    private RadioButton fxRb_mentallyLevelFunction0;
 
 	/**
 	 *

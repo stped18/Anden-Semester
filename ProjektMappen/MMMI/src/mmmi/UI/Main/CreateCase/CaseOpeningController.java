@@ -20,7 +20,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import mmmi.Domain.Department;
 import mmmi.Domain.Interfaces.IDomain;
-import mmmi.UI.Main.createCase.NodeFinder;
 
 public class CaseOpeningController implements Initializable {
 

@@ -12,7 +12,8 @@ public class DbEmployee {
     private Map<Integer, String> rigths; // Key == IDkey Integer of rigth value = Name
 
 	/**
-	 *
+	 * Constructor that creates an new object of an Employee
+	 * 
 	 * @param employeeID int
 	 * @param firstName String
 	 * @param lastName String
@@ -28,7 +29,8 @@ public class DbEmployee {
     }
 
 	/**
-	 *
+	 * Retruns the ID of the Employee.
+	 * 
 	 * @return Employee ID as an int.
 	 */
 	public int getEmployeeID() {
@@ -36,7 +38,8 @@ public class DbEmployee {
     }
 
 	/**
-	 *
+	 * Retruns the 
+	 * 
 	 * @return Employee first name as a String.
 	 */
 	public String getFirstName() {

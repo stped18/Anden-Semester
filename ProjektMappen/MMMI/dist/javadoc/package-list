@@ -1,0 +1,12 @@
+LoginSystem.DataLayer
+LoginSystem.Domain
+LoginSystem.ViewLayer
+mmmi.Data_layer
+mmmi.Data_layer.Connection
+mmmi.Data_layer.Interfaces
+mmmi.Domain
+mmmi.Domain.Interfaces
+mmmi.UI.Main
+mmmi.UI.Main.CreateCase
+mmmi.UI.Main.FindCase
+mmmi.UI.Main.Home

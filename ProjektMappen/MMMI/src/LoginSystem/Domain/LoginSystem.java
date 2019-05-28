@@ -17,24 +17,23 @@ public class LoginSystem implements IEmployee {
 
     private IDomain mmmi;
 
-	/**
-	 *
-	 */
 	public LoginSystem() {
         mmmi = Department.getInstance();
     }
 
 	/**
 	 *
-	 * @return
+	 * @return The username of the logged in user as a String
 	 */
 	public String getUsername() {
         return username;
     }
 
 	/**
-	 *
-	 * @param username
+	 * 
+	 * Sets the username for the user that is trying to login or is logged in.
+	 * 
+	 * @param username String
 	 */
 	public void setUsername(String username) {
         this.username = username;
@@ -42,7 +41,7 @@ public class LoginSystem implements IEmployee {
 
 	/**
 	 *
-	 * @return
+	 * @return The passeword for the user as a String
 	 */
 	public String getPassword() {
         return password;
@@ -50,7 +49,9 @@ public class LoginSystem implements IEmployee {
 
 	/**
 	 *
-	 * @param password
+	 * Sets the password for the user that's trying to login or is logged in.
+	 * 
+	 * @param password String
 	 */
 	public void setPassword(String password) {
         this.password = password;
@@ -58,7 +59,8 @@ public class LoginSystem implements IEmployee {
 
 	/**
 	 *
-	 * @return
+	 * @return true if it was possibale to set the login Employee equle to the
+	 * mmmi Employee
 	 */
 	public boolean getEmployee() {
         employee = db.getEmployeedb(this.username, this.password);
@@ -72,7 +74,7 @@ public class LoginSystem implements IEmployee {
 
 	/**
 	 * 
-	 * @return 
+	 * {@inheritDoc}
 	 */
     @Override
     public int getEmployeeID() {

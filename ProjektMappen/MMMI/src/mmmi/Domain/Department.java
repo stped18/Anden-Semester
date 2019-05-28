@@ -61,6 +61,7 @@ public class Department implements IDomain {
      *
      * @param employee
      */
+	@Override
     public void setLoginEmployee(IEmployee employee) {
         this.loginEmployee = employee;
     }
@@ -93,16 +94,8 @@ public class Department implements IDomain {
     }
 
     /**
-     * Forwards input to data layer and creates map for the UI.
-     *
-     * This method forwards the @params to the method
-     * {@link mmmi.Data_layer.DataHandler#search(java.lang.String, java.lang.String)}.
-     * The resulting List of {@link mmmi.Data_layer.SearchCase} objects is then
-     * looped through to create a Map to send back to the presentation layer.
-     *
-     * @param key, String
-     * @param value, String
-     * @return Map<String, <Map<String, String>>
+     * 
+	 * {@inheritDoc }
      */
     @Override
     public Map<String, Map<String, String>> search(String key, String value) {
@@ -131,14 +124,7 @@ public class Department implements IDomain {
      * @TODO: Opens a case with all the info into a map that are sent to the
      * GUI
      *
-     * This method forwards the @params to the method
-     * {@link mmmi.Data_layer.DataHandler#readCase(java.lang.Integer)}. The
-     * result of #readCase sends a {@link mmmi.Data_layer.Case} object back
-     * found with specific caseID and its contents.
-     *
-     * @param caseID, int
-     * @return Map<String, Map<String, String>> with the case contents found in
-     * the returned Case object.
+     * {@inheritDoc }
      */
     @Override
     public Map<String, Map<String, String>> openCase(int caseID) {
@@ -189,19 +175,7 @@ public class Department implements IDomain {
      * @TODO: If there is a case already you just need to set content (In
      * regards to write it to the database)
      *
-     * This method forwards the @params to the method
-     * {@link mmmi.Data_layer.DataHandler#search(java.util.Map<String, java.util.Map<String, String>>)}
-     *
-     * if (contentsMap.get("caseID").equalsIgnoreCase("-1")), then the method
-     * creates a new {@link mmmi.Data_layer.Case} object and sets the variable
-     * to the result, and fills the empty object with Case specific informtaion
-     * and case contents and afterwards {@link mmmi.Data_layer.DataHandler#writeCase(theCase)), where theCase
-     * is the Case sent from saveCase()
-     *
-     * @param caseInfo, java.util.Map<String, Map<String, String>>
-     * ret
-     * urn boolean, if the case got saved successfully, or false if error
-     * occured.
+     * {@inheritDoc }
      */
     @Override
     public boolean saveCase(Map<String, Map<String, String>> caseInfo) {

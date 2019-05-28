@@ -24,12 +24,12 @@ public class Citizen {
     /**
      * Constructor, used when creating a regarding Citizen.
      *
-     * @param citizenID
-     * @param firstName
-     * @param lastName
-     * @param cprNo
-     * @param regardingCitizen
-     * @param requestingCitizen
+     * @param citizenID int
+     * @param firstName String
+     * @param lastName String
+     * @param cprNo String
+     * @param regardingCitizen boolean
+     * @param requestingCitizen boolean
      */
     public Citizen(int citizenID, String firstName, String lastName, String cprNo, boolean regardingCitizen, boolean requestingCitizen) {
         this.citizenID = citizenID;
@@ -43,18 +43,18 @@ public class Citizen {
     /**
      * Constructor, used when creating a requesting citizen
      *
-     * @param citizenID
-     * @param firstName
-     * @param lastName
-     * @param cprNo
-     * @param streetName
-     * @param houseNo
-     * @param floor
-     * @param floorDirection
-     * @param zipcode
-     * @param cityname
-     * @param regardingCitizen
-     * @param requestingCitizen
+     * @param citizenID int
+     * @param firstName String
+     * @param lastName String
+     * @param cprNo String
+     * @param streetName String
+     * @param houseNo String
+     * @param floor String
+     * @param floorDirection String
+     * @param zipcode int
+     * @param cityname String
+     * @param regardingCitizen booelan
+     * @param requestingCitizen boolean
      */
     public Citizen(int citizenID, String firstName, String lastName, String cprNo, String streetName, String houseNo, String floor, String floorDirection, int zipcode, String cityname, boolean regardingCitizen, boolean requestingCitizen) {
         this.citizenID = citizenID;
@@ -191,7 +191,7 @@ public class Citizen {
     /**
      * Setter method for variable citizenID.
      *
-     * @param citizenID, int
+     * @param citizenID int
      */
     public void setCitizenID(int citizenID) {
         this.citizenID = citizenID;
@@ -200,7 +200,7 @@ public class Citizen {
     /**
      * Setter method for variable Cases.
      *
-     * @param Cases, List<Case>
+     * @param Cases List<Case>
      */
     public void setCases(List<Case> Cases) {
         this.Cases = Cases;
@@ -209,7 +209,7 @@ public class Citizen {
     /**
      * Setter method for variable firstName.
      *
-     * @param firstName, String
+     * @param firstName String
      */
     public void setFirstName(String firstName) {
         this.firstName = firstName;
@@ -218,7 +218,7 @@ public class Citizen {
     /**
      * Setter method for variable lastName.
      *
-     * @param lastName, String
+     * @param lastName String
      */
     public void setLastName(String lastName) {
         this.lastName = lastName;
@@ -227,7 +227,7 @@ public class Citizen {
     /**
      * Setter method for variable cprNo.
      *
-     * @param cprNo, int
+     * @param cprNo int
      */
     public void setCprNo(String cprNo) {
         this.cprNo = cprNo;
@@ -236,7 +236,7 @@ public class Citizen {
     /**
      * Setter method for variable streetName.
      *
-     * @param streetName, String
+     * @param streetName String
      */
     public void setStreetName(String streetName) {
         this.streetName = streetName;
@@ -245,7 +245,7 @@ public class Citizen {
     /**
      * Setter method for variable houseNo.
      *
-     * @param houseNo, String
+     * @param houseNo String
      */
     public void setHouseNo(String houseNo) {
         this.houseNo = houseNo;
@@ -254,7 +254,7 @@ public class Citizen {
     /**
      * Setter method for variable floor.
      *
-     * @param floor, String
+     * @param floor String
      */
     public void setFloor(String floor) {
         this.floor = floor;
@@ -263,7 +263,7 @@ public class Citizen {
     /**
      * Setter method for variable floorDirection.
      *
-     * @param floorDirection, String
+     * @param floorDirection String
      */
     public void setFloorDirection(String floorDirection) {
         this.floorDirection = floorDirection;
@@ -272,7 +272,7 @@ public class Citizen {
     /**
      * Setter method for variable zipcode.
      *
-     * @param zipcode, int
+     * @param zipcode int
      */
     public void setZipcode(int zipcode) {
         this.zipcode = zipcode;
@@ -281,7 +281,7 @@ public class Citizen {
     /**
      * Setter method for variable cityname.
      *
-     * @param cityname, String
+     * @param cityname String
      */
     public void setCityname(String cityname) {
         this.cityname = cityname;
@@ -290,7 +290,7 @@ public class Citizen {
     /**
      * Setter method for variable regardingCitizen.
      *
-     * @param regardingCitizen, boolean
+     * @param regardingCitizen boolean
      */
     public void setRegardingCitizen(boolean regardingCitizen) {
         this.regardingCitizen = regardingCitizen;
@@ -299,7 +299,7 @@ public class Citizen {
     /**
      * Setter method for variable requestingCitizen.
      *
-     * @param requestingCitizen, boolean
+     * @param requestingCitizen boolean
      */
     public void setRequestingCitizen(boolean requestingCitizen) {
         this.requestingCitizen = requestingCitizen;
@@ -308,7 +308,7 @@ public class Citizen {
     /**
      * For Testing.
      *
-     * @return
+     * {@inheritDoc }
      */
     @Override
     public String toString() {

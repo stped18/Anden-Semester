@@ -14,7 +14,7 @@ public class DatabaseConnection {
     protected ResultSet dbResultSet = null;
 
 	/**
-	 *
+	 * Creates a connection to the database.
 	 */
 	public void connectToDB() {
         try {
@@ -25,7 +25,7 @@ public class DatabaseConnection {
     }
 
 	/**
-	 *
+	 * Closes the database connection if there are no statments to executed.
 	 */
 	public void disconnectDB() {
         try {

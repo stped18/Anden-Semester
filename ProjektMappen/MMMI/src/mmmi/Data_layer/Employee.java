@@ -12,11 +12,13 @@ public class Employee {
 
 	/**
 	 *
-	 * @param employeeID
-	 * @param name
-	 * @param roleID
-	 * @param employeeCases
-	 * @param rights
+	 * Constructor that creates an new object of 
+	 * 
+	 * @param employeeID int
+	 * @param name String
+	 * @param roleID int
+	 * @param employeeCases Map<Integer, String>
+	 * @param rights Map<Integer, String>
 	 */
 	public Employee(int employeeID, String name, int roleID, Map<Integer, String> employeeCases, Map<Integer, String> rights) {
         this.employeeID = employeeID;
@@ -28,7 +30,7 @@ public class Employee {
 
 	/**
 	 *
-	 * @return
+	 * @return Employee ID as an int
 	 */
 	public int getEmployeeID() {
         return this.employeeID;
@@ -36,7 +38,7 @@ public class Employee {
 
 	/**
 	 *
-	 * @return
+	 * @return Employees full name as a String
 	 */
 	public String getName() {
         return this.name;
@@ -44,7 +46,7 @@ public class Employee {
 
 	/**
 	 *
-	 * @return
+	 * @return Employee role ID as an int
 	 */
 	public int getRoleID() {
         return this.roleID;
@@ -52,7 +54,7 @@ public class Employee {
 
 	/**
 	 *
-	 * @return
+	 * @return Map<Integer, String> of Employees assigned cases
 	 */
 	public Map<Integer, String> getEmployeeCases() {
         return this.employeeCases;
@@ -60,7 +62,7 @@ public class Employee {
 
 	/**
 	 *
-	 * @return
+	 * @return Map<Integer, String> Employees rights
 	 */
 	public Map<Integer, String> getrights() {
         return this.rights;

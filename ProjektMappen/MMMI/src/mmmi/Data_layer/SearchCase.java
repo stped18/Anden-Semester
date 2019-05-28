@@ -19,15 +19,15 @@ public class SearchCase {
      * Constructor, used when a user Searches the database for a citizen or for
      * a specific case.
      *
-     * @param citizenID
-     * @param citizenName
-     * @param caseID
-     * @param caseStatus
-     * @param date
-     * @param createdDate
-     * @param reason
-     * @param employeeID
-     * @param employeeName
+     * @param citizenID int
+     * @param citizenName String
+     * @param caseID String
+     * @param caseStatus String
+     * @param date String
+     * @param createdDate String
+     * @param reason String
+     * @param employeeID int
+     * @param employeeName String
      */
     public SearchCase(int citizenID, String citizenName, String caseID, String caseStatus, String date, String createdDate, String reason, int employeeID, String employeeName) {
         this.citizenID = citizenID;
@@ -125,7 +125,7 @@ public class SearchCase {
     /**
      * For Testing.
      *
-     * @return
+     * {@inheritDoc }
      */
     @Override
     public String toString() {

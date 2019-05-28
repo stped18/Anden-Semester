@@ -27,15 +27,8 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
     private Employee employee = null;
 
     /**
-     * returns case object where caseContents has information from the specified
-     * caseID and has regarding citizen object which refereces to case content
-     * based on the regarding Citizen id.
-     *
-     * Method return: returns Case with case specific information and case
-     * contents.
-     *
-     * @param caseID int
-     * @return returns Case object
+     * 
+	 * {@inheritDoc }
      */
     @Override
     public Case readCase(int caseID) {
@@ -135,18 +128,8 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
     }
 
     /**
-     * Creates a list of Citizen objects with all the cases for the current
-     * department.
-     *
-     * Method looks up the data for a specific Citizen and creates an object of
-     * Citizen with the data found in table citizen. Then it searches for the
-     * Citizens cases and adds them in a list on the Citizen object.
-     *
-     * @TODO: Add departmentID to the where clause in caseContentQuery.
-     * @TODO: Update with the changes for case constructor
-     *
-     * @param citizenID
-     * @return
+     * 
+	 * {@inheritDoc }
      */
     @Override
     public Citizen readCitizen(int citizenID) {
@@ -243,9 +226,10 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
     }
 
     /**
-     *
-     * @param employeeID
-     * @return
+     * @TODO: Add departmentID to the where clause in caseContentQuery.
+     * @TODO: Update with the changes for case constructor
+     * 
+	 * {@inheritDoc }
      */
     @Override
     public Employee readEmployee(int employeeID) {
@@ -307,16 +291,8 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
     }
 
     /**
-     * 
-     * Method return: Returns a boolean value based on if the write to database
-     * was successful, else false if an error occured
-     *
      * @TODO: In and create a new row in case_contents with caseContents
-     * information from theCase
-     *
-     * @param theCase, Case object.
-     * @return boolean, true if the write to database was successful, false if
-     * error occured.
+     * {@inheritDoc }
      */
     @Override
     public boolean writeCase(Case theCase) {
@@ -384,16 +360,8 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
     }
 
     /**
-     * Adds a new citizen to database.
-     *
-     * This method takes a Citizen object and creates a new row in table
-     * citizen.
-     *
-     * Method returns either the ID of the citizen created in the database or -1
-     * if something happened and the citizen was not created.
-     *
-     * @param citizen, Citizen
-     * @return int citizenID
+     * 
+	 * {@inheritDoc }
      */
     @Override
     public int writeCitizen(Citizen citizen) {
@@ -439,16 +407,8 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
     }
 
     /**
-     * Updates an existing citizen in database.
-     *
-     * This method take a Citizen object and updates the coorsponding row in
-     * table citizen.
-     *
-     * Method return: true if citizen was updated. false if the citizen was not
-     * found.
-     *
-     * @param citizen, Citizen
-     * @return boolean
+     * 
+	 * {@inheritDoc }
      */
     @Override
     public boolean updateCitizen(Citizen citizen) {
@@ -492,6 +452,10 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
         return citizen_updated;
     }
 
+	/**
+	 * 
+	 * {@inheritDoc } 
+	 */
     @Override
     public Case createCase() {
 
@@ -507,20 +471,8 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
     }
 
     /**
-     * Searches the database for information based on searchKey and searchValue.
-     *
-     * searchKey is used to determine how to search the database. If the
-     * searchKey is citizen, the search is based on the citizen table. If the
-     * searchKey is Case, the search is based on the case table.
-     *
-     * searchValue is used search in the database for the required data.
-     *
-     * Method always returns a List of 1 or more SearchCase object(s), created
-     * with the data found in the database.
-     *
-     * @param searchKey
-     * @param searchValue
-     * @return
+     * 
+	 * {@inheritDoc }
      */
     @Override
     public List<SearchCase> search(String searchKey, String searchValue) {
@@ -661,8 +613,7 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
 
     /**
      *
-     * @param caseID
-     * @return
+     * {@inheritDoc }
      */
     @Override
     public String readAlternativeNotets(int caseID) {
@@ -699,9 +650,7 @@ public class DataHandler extends DatabaseConnection implements IDataHandler {
 
     /**
      *
-     * @param caseID
-     * @param note
-     * @return
+     * {@inheritDoc }
      */
     @Override
     public boolean writeAlternativeNote(int caseID, String note) {

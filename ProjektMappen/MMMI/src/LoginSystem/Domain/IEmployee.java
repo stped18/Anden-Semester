@@ -4,7 +4,7 @@ public interface IEmployee {
 
 	/**
 	 *
-	 * @return
+	 * @return The Employee ID as an int
 	 */
 	public int getEmployeeID();
 
